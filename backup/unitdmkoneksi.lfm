@@ -1,9 +1,10 @@
 object DataModuleKoneksi: TDataModuleKoneksi
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 262
-  HorizontalOffset = 506
-  VerticalOffset = 204
-  Width = 236
+  Height = 455
+  HorizontalOffset = 822
+  VerticalOffset = 219
+  Width = 443
   object ZConnectionSimrsERM: TZConnection
     ControlsCodePage = cCP_UTF8
     DisableSavepoints = False

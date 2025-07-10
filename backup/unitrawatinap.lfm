@@ -1,0 +1,445 @@
+object FormRawatInap: TFormRawatInap
+  Left = 494
+  Height = 492
+  Top = 255
+  Width = 908
+  BorderStyle = bsNone
+  Caption = 'Form Rawat Inap'
+  ClientHeight = 492
+  ClientWidth = 908
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '3.6.0.0'
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 908
+    Align = alTop
+    Caption = 'DAFTAR PASIEN RAWAT INAP'
+    ClientHeight = 26
+    ClientWidth = 908
+    Color = 16447992
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = 2696481
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object BitBtnKeluar: TBitBtn
+      Left = 832
+      Height = 24
+      Top = 1
+      Width = 75
+      Align = alRight
+      Caption = 'KELUAR'
+      OnClick = BitBtnKeluarClick
+      TabOrder = 0
+    end
+  end
+  object PanelTengah: TPanel
+    Left = 0
+    Height = 466
+    Top = 26
+    Width = 908
+    Align = alClient
+    ClientHeight = 466
+    ClientWidth = 908
+    Color = 15131358
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 1
+    object PanelAtas1: TPanel
+      Left = 1
+      Height = 95
+      Top = 1
+      Width = 906
+      Align = alTop
+      ClientHeight = 95
+      ClientWidth = 906
+      Color = 15131358
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = 2696481
+      Font.Height = -16
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+      object Panel1: TPanel
+        Left = 1
+        Height = 47
+        Top = 1
+        Width = 904
+        Align = alTop
+        ClientHeight = 47
+        ClientWidth = 904
+        ParentBackground = False
+        TabOrder = 0
+        object GroupBox1: TGroupBox
+          Left = 1
+          Height = 45
+          Top = 1
+          Width = 177
+          Align = alLeft
+          Caption = 'Kategori'
+          ClientHeight = 23
+          ClientWidth = 173
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 2696481
+          Font.Height = -13
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          object ComboBoxKategori: TComboBox
+            Left = 0
+            Height = 25
+            Top = 0
+            Width = 173
+            Align = alClient
+            ItemHeight = 17
+            Items.Strings = (
+              'BELUM PULANG'
+              'TGL MASUK'
+              'TGL PULANG'
+            )
+            TabOrder = 0
+            Text = 'ComboBoxKategori'
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 178
+          Height = 45
+          Top = 1
+          Width = 269
+          Align = alLeft
+          Caption = 'Tanggal'
+          ClientHeight = 23
+          ClientWidth = 265
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 2696481
+          Font.Height = -13
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 1
+          object Label1: TLabel
+            Left = 0
+            Height = 23
+            Top = 0
+            Width = 35
+            Align = alLeft
+            Caption = 'Mulai'
+          end
+          object DateTimePicker1: TDateTimePicker
+            Left = 35
+            Height = 23
+            Top = 0
+            Width = 93
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 0
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Align = alLeft
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 45848
+            Time = 0.650554791667673
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+          end
+          object Label2: TLabel
+            Left = 128
+            Height = 23
+            Top = 0
+            Width = 17
+            Align = alLeft
+            Caption = 'SD'
+          end
+          object DateTimePickerSelesai: TDateTimePicker
+            Left = 145
+            Height = 23
+            Top = 0
+            Width = 93
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 1
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Align = alLeft
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 45848
+            Time = 0.651007245367509
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+          end
+        end
+        object GroupBox3: TGroupBox
+          Left = 447
+          Height = 45
+          Top = 1
+          Width = 208
+          Align = alLeft
+          Caption = 'STATUS'
+          ClientHeight = 23
+          ClientWidth = 204
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 2696481
+          Font.Height = -13
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 2
+          object DBLookupComboBox1: TDBLookupComboBox
+            Left = 0
+            Height = 25
+            Top = 0
+            Width = 204
+            Align = alClient
+            AutoComplete = True
+            AutoDropDown = True
+            ListFieldIndex = 0
+            LookupCache = False
+            TabOrder = 0
+          end
+        end
+      end
+      object Panel2: TPanel
+        Left = 1
+        Height = 46
+        Top = 48
+        Width = 904
+        Align = alClient
+        ClientHeight = 46
+        ClientWidth = 904
+        ParentBackground = False
+        TabOrder = 1
+        object Label3: TLabel
+          Left = 1
+          Height = 44
+          Top = 1
+          Width = 30
+          Align = alLeft
+          Alignment = taCenter
+          Caption = 'Cari'
+          Layout = tlCenter
+        end
+        object EditCari: TEdit
+          Left = 31
+          Height = 44
+          Top = 1
+          Width = 185
+          Align = alLeft
+          TabOrder = 0
+          Text = 'EditCari'
+        end
+        object SpeedButtonDokter: TSpeedButton
+          Left = 424
+          Height = 44
+          Top = 1
+          Width = 23
+          Align = alLeft
+          Caption = '...'
+        end
+        object EditDokter: TEdit
+          Left = 216
+          Height = 44
+          Top = 1
+          Width = 208
+          Align = alLeft
+          TabOrder = 1
+          Text = 'EditDokter'
+          TextHint = 'Nama Dokter'
+        end
+        object EditKamar: TEdit
+          Left = 447
+          Height = 44
+          Top = 1
+          Width = 193
+          Align = alLeft
+          TabOrder = 2
+          Text = 'EditKamar'
+        end
+        object SpeedButtonKamar: TSpeedButton
+          Left = 640
+          Height = 44
+          Top = 1
+          Width = 23
+          Align = alLeft
+          Caption = '...'
+        end
+        object ButtonTampil: TButton
+          Left = 663
+          Height = 44
+          Top = 1
+          Width = 75
+          Align = alLeft
+          Caption = 'TAMPIL'
+          TabOrder = 3
+          OnClick = ButtonTampilClick
+        end
+        object ButtonTampil1: TButton
+          Left = 738
+          Height = 44
+          Top = 1
+          Width = 78
+          Align = alLeft
+          Caption = 'CARI'
+          TabOrder = 4
+        end
+      end
+    end
+    object PanelTengah1: TPanel
+      Left = 1
+      Height = 369
+      Top = 96
+      Width = 906
+      Align = alClient
+      ClientHeight = 369
+      ClientWidth = 906
+      Color = 15131358
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = 2696481
+      Font.Height = -16
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 1
+      object DBGridPasienRanap: TDBGrid
+        Left = 1
+        Height = 367
+        Top = 1
+        Width = 904
+        Align = alClient
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'NO RAWAT'
+            FieldName = 'no_rawat'
+          end        
+          item
+            Title.Caption = 'NO RM'
+            FieldName = 'no_rkm_medis'
+          end        
+          item
+            Title.Caption = 'NAMA PASIEN'
+            FieldName = 'nm_pasien'
+          end        
+          item
+            Title.Caption = 'ALAMAT'
+            FieldName = 'alamat'
+          end        
+          item
+            Title.Caption = 'PENANGGUNG JWB'
+            FieldName = 'p_jawab'
+          end        
+          item
+            Title.Caption = 'HUBUNGAN PJ'
+            FieldName = 'hubunganpj'
+          end        
+          item
+            Title.Caption = 'JENIS BAYAR'
+            FieldName = 'png_jawab'
+          end        
+          item
+            Title.Caption = 'KODE KAMAR'
+            FieldName = 'kd_kamar'
+          end        
+          item
+            Title.Caption = 'TARIF KAMAR'
+            FieldName = 'trf_kamar'
+          end        
+          item
+            Title.Caption = 'DIAGNOSA AWAL'
+            FieldName = 'diagnosa_awal'
+          end        
+          item
+            Title.Caption = 'DIAGNOSA AKHIR'
+            FieldName = 'diagnosa_akhir'
+          end        
+          item
+            Title.Caption = 'TGL MASUK'
+            FieldName = 'tgl_masuk'
+          end        
+          item
+            Title.Caption = 'JAM MASUK'
+            FieldName = 'jam_masuk'
+          end        
+          item
+            Title.Caption = 'TGL KELUAR'
+            FieldName = 'tgl_keluar'
+          end        
+          item
+            Title.Caption = 'JAM KELUAR'
+            FieldName = 'jam_keluar'
+          end        
+          item
+            Title.Caption = 'TOTAL BIAYA'
+            FieldName = 'ttl_biaya'
+          end        
+          item
+            Title.Caption = 'STATUS'
+            FieldName = 'stts_pulang'
+          end        
+          item
+            Title.Caption = 'LAMA'
+            FieldName = 'lama'
+          end        
+          item
+            Title.Caption = 'NAMA DOKTER'
+            FieldName = 'nm_dokter'
+          end        
+          item
+            Title.Caption = 'kd_kamar_1'
+            FieldName = 'kd_kamar_1'
+          end        
+          item
+            Title.Caption = 'status_bayar'
+            FieldName = 'status_bayar'
+          end        
+          item
+            Title.Caption = 'agama'
+            FieldName = 'agama'
+          end>
+        DataSource = DataModuleRanap.DsRawatInap
+        PopupMenu = PopupMenu1
+        TabOrder = 0
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 475
+    Top = 231
+    object MenuItem1: TMenuItem
+      Caption = 'ERM DOKTER'
+    end
+  end
+end

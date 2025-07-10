@@ -36,7 +36,7 @@ object FormLogin: TFormLogin
     Align = alClient
     ClientHeight = 163
     ClientWidth = 422
-    Color = 15131358
+    Color = 15723497
     ParentBackground = False
     ParentColor = False
     TabOrder = 1

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls;
+  StdCtrls, ComCtrls;
 
 type
 
@@ -15,14 +15,17 @@ type
   TFormUtama = class(TForm)
     BitBtnRawatInap: TBitBtn;
     BitBtnTombolMenu: TBitBtn;
-    Label1: TLabel;
     PanelKiriAtas: TPanel;
     PanelTengah: TPanel;
     PanelKiri: TPanel;
     PanelAtas: TPanel;
+    StatusBar1: TStatusBar;
+    procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
+    procedure TampilkanFormDiPanel(AForm: TForm);
+    procedure ClearPanel;
 
   public
 
@@ -36,8 +39,27 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
+uses unitRawatInap;
+
 var
    SidebarVisible: Boolean = True;
+
+procedure TFormUtama.TampilkanFormDiPanel(AForm: TForm);
+begin
+  ClearPanel;
+  AForm.Parent := PanelTengah;
+  AForm.Align := alClient;
+  AForm.BorderStyle := bsNone;
+  AForm.Visible := True;
+end;
+
+procedure TFormUtama.ClearPanel;
+var
+  i: Integer;
+begin
+  for i := PanelTengah.ControlCount - 1 downto 0 do
+    PanelTengah.Controls[i].Free;
+end;
 
 procedure TFormUtama.FormActivate(Sender: TObject);
 begin
@@ -60,6 +82,12 @@ begin
     BitBtnTombolMenu.Caption := '<<';  // Tutup
     SidebarVisible := True;
   end;
+end;
+
+procedure TFormUtama.BitBtnRawatInapClick(Sender: TObject);
+begin
+ /// tampil form
+  TampilkanFormDiPanel(TFormRawatInap.Create(Self));
 end;
 
 end.

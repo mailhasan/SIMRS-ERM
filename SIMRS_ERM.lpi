@@ -28,6 +28,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="DateTimeCtrlsDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+      <Item>
         <PackageName Value="zcomponentdesign"/>
       </Item>
       <Item>
@@ -62,8 +71,23 @@
         <Filename Value="unitdmkoneksi.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModuleKoneksi"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitrawatinap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRawatInap"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitRawatInap"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitdmrawatinap.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModuleRanap"/>
+        <ResourceBaseClass Value="DataModule"/>
       </Unit>
     </Units>
   </ProjectOptions>

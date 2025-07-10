@@ -39,6 +39,7 @@ uses unitUtama;
 
 procedure TFormLogin.Button1Click(Sender: TObject);
 begin
+  Application.CreateForm
   FormUtama.ShowModal;
 end;
 

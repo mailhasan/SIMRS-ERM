@@ -1,13 +1,24 @@
 object DataModuleKoneksi: TDataModuleKoneksi
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 455
-  HorizontalOffset = 506
-  VerticalOffset = 204
+  HorizontalOffset = 822
+  VerticalOffset = 219
   Width = 443
   object ZConnectionSimrsERM: TZConnection
     ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    Connected = True
     DisableSavepoints = False
-    Port = 0
+    HostName = '192.168.29.12'
+    Port = 3306
+    Database = 'sikDrSalim1'
+    User = 'admin'
+    Password = '1FRQRmYwHqahlRsPgGdNL00g8qICXAQP8ZwFEu0fT3vlp1Xn5M'
+    Protocol = 'mysql'
+    LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmysql.dll'
     Left = 64
     Top = 40
   end
