@@ -1,4 +1,5 @@
 object DataModuleRanap: TDataModuleRanap
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 569
   HorizontalOffset = 397
@@ -6,7 +7,6 @@ object DataModuleRanap: TDataModuleRanap
   Width = 760
   object ZQRRawatInap: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_rawat,'
@@ -47,5 +47,20 @@ object DataModuleRanap: TDataModuleRanap
     DataSet = ZQRRawatInap
     Left = 138
     Top = 63
+  end
+  object ZQueryBangsal: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'select * from bangsal'
+    )
+    Params = <>
+    Left = 71
+    Top = 126
+  end
+  object DataSourceBangsal: TDataSource
+    DataSet = ZQueryBangsal
+    Left = 147
+    Top = 152
   end
 end

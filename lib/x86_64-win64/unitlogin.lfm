@@ -7,6 +7,7 @@ object FormLogin: TFormLogin
   Caption = 'Silahkan Login....!'
   ClientHeight = 263
   ClientWidth = 422
+  OnCreate = FormCreate
   Position = poDesktopCenter
   LCLVersion = '3.6.0.0'
   object PanelAtas: TPanel
@@ -97,14 +98,14 @@ object FormLogin: TFormLogin
     ParentBackground = False
     ParentColor = False
     TabOrder = 2
-    object Button1: TButton
+    object ButtonLogin: TButton
       Left = 16
       Height = 25
       Top = 16
       Width = 75
       Caption = 'Login'
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = ButtonLoginClick
     end
   end
 end

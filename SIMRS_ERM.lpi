@@ -87,7 +87,15 @@
         <Filename Value="unitdmrawatinap.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModuleRanap"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitkamar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormKamar"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitKamar"/>
       </Unit>
     </Units>
   </ProjectOptions>

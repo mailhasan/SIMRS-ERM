@@ -12,8 +12,11 @@ type
   { TDataModuleRanap }
 
   TDataModuleRanap = class(TDataModule)
+    DataSourceBangsal: TDataSource;
     DsRawatInap: TDataSource;
     ZQRRawatInap: TZQuery;
+    ZQueryBangsal: TZQuery;
+    procedure DataModuleCreate(Sender: TObject);
   private
 
   public
@@ -22,6 +25,7 @@ type
       NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
       TglMasukAwal, TglMasukAkhir, TglKeluarAwal, TglKeluarAkhir: TDate
     );
+  procedure FilterBangsal(NamaBangsal: string);
   end;
 
 
@@ -77,6 +81,11 @@ begin
 
   ZQRRawatInap.Open;
 end;}
+
+procedure TDataModuleRanap.DataModuleCreate(Sender: TObject);
+begin
+
+end;
 
 procedure TDataModuleRanap.CariData(
   NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
@@ -137,27 +146,38 @@ begin
 
     // Binding parameter
     if NoRM <> '' then ZQRRawatInap.ParamByName('norm').AsString := '%' + NoRM + '%';
-    if NamaPasien <> '' then ZQRawatInap.ParamByName('nmpasien').AsString := '%' + NamaPasien + '%';
-    if NamaDokter <> '' then ZQRawatInap.ParamByName('nmdokter').AsString := '%' + NamaDokter + '%';
-    if KodeKamar <> '' then ZQRawatInap.ParamByName('kdkamar').AsString := '%' + KodeKamar + '%';
-    if StatusPulang <> '' then ZQRawatInap.ParamByName('stts').AsString := '%' + StatusPulang + '%';
+    if NamaPasien <> '' then ZQRRawatInap.ParamByName('nmpasien').AsString := '%' + NamaPasien + '%';
+    if NamaDokter <> '' then ZQRRawatInap.ParamByName('nmdokter').AsString := '%' + NamaDokter + '%';
+    if KodeKamar <> '' then ZQRRawatInap.ParamByName('kdkamar').AsString := '%' + KodeKamar + '%';
+    if StatusPulang <> '' then ZQRRawatInap.ParamByName('stts').AsString := '%' + StatusPulang + '%';
 
     if (TglMasukAwal <> 0) and (TglMasukAkhir <> 0) then
     begin
-      ZQRawatInap.ParamByName('tglmasuk1').AsDate := TglMasukAwal;
-      ZQRawatInap.ParamByName('tglmasuk2').AsDate := TglMasukAkhir;
+      ZQRRawatInap.ParamByName('tglmasuk1').AsDate := TglMasukAwal;
+      ZQRRawatInap.ParamByName('tglmasuk2').AsDate := TglMasukAkhir;
     end;
 
     if (TglKeluarAwal <> 0) and (TglKeluarAkhir <> 0) then
     begin
-      ZQRawatInap.ParamByName('tglkeluar1').AsDate := TglKeluarAwal;
-      ZQRawatInap.ParamByName('tglkeluar2').AsDate := TglKeluarAkhir;
+      ZQRRawatInap.ParamByName('tglkeluar1').AsDate := TglKeluarAwal;
+      ZQRRawatInap.ParamByName('tglkeluar2').AsDate := TglKeluarAkhir;
     end;
 
-    ZQRawatInap.Open;
+    ZQRRawatInap.Open;
   finally
     FilterSQL.Free;
   end;
+end;
+
+procedure TDataModuleRanap.FilterBangsal(NamaBangsal: string);
+begin
+  ZQueryBangsal.Close;
+  ZQueryBangsal.SQL.Clear;
+  ZQueryBangsal.SQL.Add('SELECT * FROM bangsal');
+  ZQueryBangsal.SQL.Add('WHERE (:nama = '''' OR nm_bangsal LIKE CONCAT(''%'', :nama, ''%''))');
+  ZQueryBangsal.SQL.Add('ORDER BY kd_bangsal');
+  ZQueryBangsal.ParamByName('nama').AsString := Trim(NamaBangsal);
+  ZQuery1.Open;
 end;
 
 

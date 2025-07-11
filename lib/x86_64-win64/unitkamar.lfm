@@ -1,0 +1,86 @@
+object FormKamar: TFormKamar
+  Left = 616
+  Height = 570
+  Top = 203
+  Width = 370
+  BorderIcons = [biSystemMenu]
+  Caption = 'Form Kamar'
+  ClientHeight = 570
+  ClientWidth = 370
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '3.6.0.0'
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 370
+    Align = alTop
+    ClientHeight = 50
+    ClientWidth = 370
+    Color = 16447992
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = 2696481
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 1
+      Height = 48
+      Top = 1
+      Width = 30
+      Align = alLeft
+      Caption = 'Cari'
+      Layout = tlCenter
+    end
+    object EditCari: TEdit
+      Left = 31
+      Height = 48
+      Top = 1
+      Width = 338
+      Align = alClient
+      TabOrder = 0
+      Text = 'EditCari'
+      OnChange = EditCariChange
+    end
+  end
+  object PanelKonten: TPanel
+    Left = 0
+    Height = 520
+    Top = 50
+    Width = 370
+    Align = alClient
+    ClientHeight = 520
+    ClientWidth = 370
+    Color = 15723497
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 1
+    object DBGrid1: TDBGrid
+      Left = 1
+      Height = 518
+      Top = 1
+      Width = 368
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'Kode'
+          FieldName = 'kd_bangsal'
+        end      
+        item
+          Title.Caption = 'Rawat Inap'
+          FieldName = 'nm_bangsal'
+        end>
+      DataSource = DataModuleRanap.DataSourceBangsal
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      TabOrder = 0
+      OnDblClick = DBGrid1DblClick
+    end
+  end
+end

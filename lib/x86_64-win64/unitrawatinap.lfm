@@ -142,7 +142,7 @@ object FormRawatInap: TFormRawatInap
             Align = alLeft
             Caption = 'Mulai'
           end
-          object DateTimePicker1: TDateTimePicker
+          object DateTimePickerMulai: TDateTimePicker
             Left = 35
             Height = 23
             Top = 0
@@ -215,18 +215,50 @@ object FormRawatInap: TFormRawatInap
           ParentBackground = False
           ParentFont = False
           TabOrder = 2
-          object DBLookupComboBox1: TDBLookupComboBox
+          object ComboBoxStatus: TComboBox
             Left = 0
             Height = 25
             Top = 0
             Width = 204
             Align = alClient
-            AutoComplete = True
-            AutoDropDown = True
-            ListFieldIndex = 0
-            LookupCache = False
+            ItemHeight = 17
+            Items.Strings = (
+              ''
+              'Sehat'
+              'Rujuk'
+              'APS'
+              'Meninggal'
+              'Sembuh'
+              'Membaik'
+              'Pulang Paksa'
+              'Pindah Kamar'
+              'Atas Persetujuan Dokter'
+              'Atas Permintaan Sendiri'
+              'Isoman'
+              'Lain-lain'
+            )
             TabOrder = 0
+            Text = 'ComboBoxStatus'
           end
+        end
+        object EditKamar: TEdit
+          Left = 655
+          Height = 45
+          Top = 1
+          Width = 129
+          Align = alLeft
+          TabOrder = 3
+          Text = 'EditKamar'
+          TextHint = 'Kamar'
+        end
+        object SpeedButtonKamar: TSpeedButton
+          Left = 784
+          Height = 45
+          Top = 1
+          Width = 23
+          Align = alLeft
+          Caption = '...'
+          OnClick = SpeedButtonKamarClick
         end
       end
       object Panel2: TPanel
@@ -253,13 +285,14 @@ object FormRawatInap: TFormRawatInap
           Left = 31
           Height = 44
           Top = 1
-          Width = 185
+          Width = 145
           Align = alLeft
           TabOrder = 0
           Text = 'EditCari'
+          TextHint = 'No RM'
         end
         object SpeedButtonDokter: TSpeedButton
-          Left = 424
+          Left = 632
           Height = 44
           Top = 1
           Width = 23
@@ -267,7 +300,7 @@ object FormRawatInap: TFormRawatInap
           Caption = '...'
         end
         object EditDokter: TEdit
-          Left = 216
+          Left = 424
           Height = 44
           Top = 1
           Width = 208
@@ -276,41 +309,35 @@ object FormRawatInap: TFormRawatInap
           Text = 'EditDokter'
           TextHint = 'Nama Dokter'
         end
-        object EditKamar: TEdit
-          Left = 447
-          Height = 44
-          Top = 1
-          Width = 193
-          Align = alLeft
-          TabOrder = 2
-          Text = 'EditKamar'
-        end
-        object SpeedButtonKamar: TSpeedButton
-          Left = 640
-          Height = 44
-          Top = 1
-          Width = 23
-          Align = alLeft
-          Caption = '...'
-        end
         object ButtonTampil: TButton
-          Left = 663
+          Left = 655
           Height = 44
           Top = 1
           Width = 75
           Align = alLeft
           Caption = 'TAMPIL'
-          TabOrder = 3
+          TabOrder = 2
           OnClick = ButtonTampilClick
         end
         object ButtonTampil1: TButton
-          Left = 738
+          Left = 730
           Height = 44
           Top = 1
           Width = 78
           Align = alLeft
           Caption = 'CARI'
+          TabOrder = 3
+          OnClick = ButtonTampil1Click
+        end
+        object EditNama: TEdit
+          Left = 176
+          Height = 44
+          Top = 1
+          Width = 248
+          Align = alLeft
           TabOrder = 4
+          Text = 'EditNama'
+          TextHint = 'Nama '
         end
       end
     end

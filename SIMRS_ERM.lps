@@ -8,10 +8,9 @@
       <Unit>
         <Filename Value="SIMRS_ERM.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="61" Y="24"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="49" Y="25"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="unitlogin.pas"/>
@@ -20,11 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="70" Y="31"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="17"/>
+        <CursorPos X="24" Y="44"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="unitutama.pas"/>
@@ -33,12 +31,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="39"/>
-        <CursorPos X="144" Y="53"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <CursorPos X="25" Y="53"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmkoneksi.pas"/>
@@ -47,10 +43,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="25"/>
-        <UsageCount Value="44"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="58"/>
       </Unit>
       <Unit>
         <Filename Value="unitrawatinap.pas"/>
@@ -59,149 +54,38 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="99"/>
-        <CursorPos X="100" Y="124"/>
-        <UsageCount Value="36"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="19"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmrawatinap.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModuleRanap"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="153"/>
+        <CursorPos X="16" Y="180"/>
+        <UsageCount Value="47"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitkamar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormKamar"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitKamar"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="76"/>
-        <CursorPos X="49" Y="82"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="38"/>
+        <CursorPos X="38" Y="66"/>
+        <UsageCount Value="21"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="91" Column="45" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="92" Column="45" TopLine="78"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="91" Column="45" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="92" Column="45" TopLine="78"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="93" Column="45" TopLine="79"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="94" Column="45" TopLine="80"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="95" Column="45" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="96" Column="45" TopLine="82"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="97" Column="45" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="98" Column="45" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="98" Column="45" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="100" Column="45" TopLine="86"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="98" Column="45" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="97" Column="45" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="98" Column="45" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="97" Column="45" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="98" Column="45" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="97" Column="45" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="99" Column="45" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="100" Column="45" TopLine="86"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="107" Column="45" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="84" Column="18" TopLine="82"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="85" Column="152" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="117" Column="28" TopLine="99"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatinap.pas"/>
-        <Caret Line="116" Column="12" TopLine="99"/>
-      </Position>
-    </JumpHistory>
+    <General>
+      <ActiveWindowIndexAtStart Value="-1"/>
+    </General>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

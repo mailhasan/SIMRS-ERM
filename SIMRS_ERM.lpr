@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, datetimectrls, unitLogin, unitUtama, unitDmKoneksi, zcomponent,
-  unitRawatInap, unitdmrawatinap;
+  unitRawatInap, unitdmrawatinap, unitKamar;
 
 {$R *.res}
 
@@ -22,6 +22,7 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModuleKoneksi, DataModuleKoneksi);
   Application.CreateForm(TDataModuleRanap, DataModuleRanap);
+  Application.CreateForm(TFormKamar, FormKamar);
   Application.Run;
 end.
 

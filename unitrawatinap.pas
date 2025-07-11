@@ -16,14 +16,15 @@ type
     BitBtnKeluar: TBitBtn;
     ButtonTampil: TButton;
     ButtonTampil1: TButton;
+    ComboBoxStatus: TComboBox;
     ComboBoxKategori: TComboBox;
-    DateTimePicker1: TDateTimePicker;
+    DateTimePickerMulai: TDateTimePicker;
     DateTimePickerSelesai: TDateTimePicker;
     DBGridPasienRanap: TDBGrid;
-    DBLookupComboBox1: TDBLookupComboBox;
+    EditKamar: TEdit;
+    EditNama: TEdit;
     EditCari: TEdit;
     EditDokter: TEdit;
-    EditKamar: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
@@ -43,15 +44,17 @@ type
     procedure BitBtnKeluarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure ButtonFilterClick(Sender: TObject);
+    procedure ButtonTampil1Click(Sender: TObject);
     procedure ButtonTampilClick(Sender: TObject);
     procedure EditNamaChange(Sender: TObject);
     procedure EditNoRmChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure SpeedButtonKamarClick(Sender: TObject);
   private
 
   public
-
+   procedure BaruPencarian;
   end;
 
 var
@@ -62,7 +65,14 @@ implementation
 {$R *.lfm}
 
 { TFormRawatInap }
-uses unitdmrawatinap;
+uses unitdmrawatinap,unitKamar;
+
+procedure TFormRawatInap.BaruPencarian;
+begin
+ DataModuleRanap.CariData('', '', '', '', '-', 0, 0, 0, 0); // Tampilkan pasien belum pulang
+ ComboBoxKategori.ItemIndex:= 0; ComboBoxStatus.Text :=''; DateTimePickerMulai.Date:= Now; DateTimePickerSelesai.Date:= Now+1;
+ EditCari.Text:= ''; EditNama.Text :=''; EditDokter.Text:=''; EditKamar.Text:='';
+end;
 
 procedure TFormRawatInap.BitBtnKeluarClick(Sender: TObject);
 begin
@@ -79,6 +89,12 @@ begin
 
 end;
 
+procedure TFormRawatInap.ButtonTampil1Click(Sender: TObject);
+begin
+  /// panggil procedure
+  BaruPencarian;
+end;
+
 procedure TFormRawatInap.ButtonTampilClick(Sender: TObject);
 begin
   {DataModuleRanap.CariData(
@@ -92,6 +108,46 @@ begin
     DateKeluar1.Date,
     DateKeluar2.Date
   );}
+/// tampil data pencarian
+  if ComboBoxKategori.ItemIndex =0 then
+     begin
+        dataModuleRanap.CariData(
+        EditCari.Text,
+        EditNama.Text,
+        EditDokter.Text,
+        EditKamar.Text,
+        '-',
+        0, /// tgl mulai masuk
+        0, /// tgl selesai masuk
+        0, /// tgl mulai keluar
+        0); /// tgl selesai keluar
+     end
+  else if ComboBoxKategori.ItemIndex =1 then
+      begin
+        dataModuleRanap.CariData(
+        EditCari.Text,
+        EditNama.Text,
+        EditDokter.Text,
+        EditKamar.Text,
+        ComboBoxStatus.Text,
+        DateTimePickerMulai.Date, /// tgl mulai masuk
+        DateTimePickerSelesai.Date, /// tgl selesai masuk
+        0, /// tgl mulai keluar
+        0); /// tgl selesai keluar
+      end
+  else
+      begin
+        dataModuleRanap.CariData(
+        EditCari.Text,
+        EditNama.Text,
+        EditDokter.Text,
+        EditKamar.Text,
+        ComboBoxStatus.Text,
+        0, /// tgl mulai masuk
+        0, /// tgl selesai masuk
+        DateTimePickerMulai.Date, /// tgl mulai keluar
+        DateTimePickerSelesai.Date); /// tgl selesai keluar
+      end;
 end;
 
 procedure TFormRawatInap.EditNamaChange(Sender: TObject);
@@ -113,8 +169,6 @@ procedure TFormRawatInap.FormShow(Sender: TObject);
 var
   i: Integer;
 begin
-
- DataModuleRanap.CariData('', '', '', '', '-', 0, 0, 0, 0); // Tampilkan pasien belum pulang
 
  DBGridPasienRanap.DataSource := DataModuleRanap.DsRawatInap;
  // Gaya seperti tabel web modern
@@ -145,6 +199,15 @@ begin
   for i := 0 to DBGridPasienRanap.Columns.Count - 1 do
     DBGridPasienRanap.Columns[i].Width := 120;
 
+  /// panggil procedure
+  BaruPencarian;
+
+end;
+
+procedure TFormRawatInap.SpeedButtonKamarClick(Sender: TObject);
+begin
+  Application.CreateForm(TFormKamar, FormKamar);
+  FormKamar.ShowModal;
 end;
 
 end.

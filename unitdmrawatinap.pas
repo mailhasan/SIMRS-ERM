@@ -12,8 +12,11 @@ type
   { TDataModuleRanap }
 
   TDataModuleRanap = class(TDataModule)
+    DataSourceBangsal: TDataSource;
     DsRawatInap: TDataSource;
     ZQRRawatInap: TZQuery;
+    ZQueryBangsal: TZQuery;
+    procedure DataModuleCreate(Sender: TObject);
   private
 
   public
@@ -22,6 +25,7 @@ type
       NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
       TglMasukAwal, TglMasukAkhir, TglKeluarAwal, TglKeluarAkhir: TDate
     );
+  procedure FilterBangsal(NamaBangsal: string);
   end;
 
 
@@ -77,6 +81,11 @@ begin
 
   ZQRRawatInap.Open;
 end;}
+
+procedure TDataModuleRanap.DataModuleCreate(Sender: TObject);
+begin
+
+end;
 
 procedure TDataModuleRanap.CariData(
   NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
@@ -158,6 +167,17 @@ begin
   finally
     FilterSQL.Free;
   end;
+end;
+
+procedure TDataModuleRanap.FilterBangsal(NamaBangsal: string);
+begin
+  ZQueryBangsal.Close;
+  ZQueryBangsal.SQL.Clear;
+  ZQueryBangsal.SQL.Add('SELECT * FROM bangsal');
+  ZQueryBangsal.SQL.Add('WHERE (:nama = '''' OR nm_bangsal LIKE CONCAT(''%'', :nama, ''%''))');
+  ZQueryBangsal.SQL.Add('ORDER BY kd_bangsal');
+  ZQueryBangsal.ParamByName('nama').AsString := Trim(NamaBangsal);
+  ZQueryBangsal.Open;
 end;
 
 

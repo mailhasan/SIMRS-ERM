@@ -12,7 +12,7 @@ type
   { TFormLogin }
 
   TFormLogin = class(TForm)
-    Button1: TButton;
+    ButtonLogin: TButton;
     EditPassword: TEdit;
     EditUsername: TEdit;
     Label1: TLabel;
@@ -20,7 +20,8 @@ type
     PanelBawah: TPanel;
     PanelKonten: TPanel;
     PanelAtas: TPanel;
-    procedure Button1Click(Sender: TObject);
+    procedure ButtonLoginClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -37,10 +38,15 @@ uses unitUtama;
 
 { TFormLogin }
 
-procedure TFormLogin.Button1Click(Sender: TObject);
+procedure TFormLogin.ButtonLoginClick(Sender: TObject);
 begin
   Application.CreateForm(TFormUtama, FormUtama);
   FormUtama.ShowModal;
+end;
+
+procedure TFormLogin.FormCreate(Sender: TObject);
+begin
+  EditUsername.Text:= ''; EditPassword.Text:= '';
 end;
 
 end.
