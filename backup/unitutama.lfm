@@ -7,6 +7,7 @@ object FormUtama: TFormUtama
   Caption = 'Form Utama'
   ClientHeight = 552
   ClientWidth = 835
+  Color = 16053233
   OnActivate = FormActivate
   LCLVersion = '3.6.0.0'
   WindowState = wsFullScreen
@@ -18,7 +19,7 @@ object FormUtama: TFormUtama
     Align = alTop
     ClientHeight = 34
     ClientWidth = 835
-    Color = 16447992
+    Color = 2302240
     Font.CharSet = ANSI_CHARSET
     Font.Color = 2696481
     Font.Height = -16
@@ -38,17 +39,27 @@ object FormUtama: TFormUtama
       Caption = 'SIMRS / ERM'
       ClientHeight = 32
       ClientWidth = 170
+      Color = 2302240
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
       ParentBackground = False
+      ParentColor = False
+      ParentFont = False
       TabOrder = 0
-      object BitBtnTombolMenu: TBitBtn
+      object Panel1: TPanel
         Left = 1
         Height = 30
         Top = 1
-        Width = 31
+        Width = 34
         Align = alLeft
-        Caption = '---'
-        OnClick = BitBtnTombolMenuClick
+        Caption = '----'
+        ParentBackground = False
         TabOrder = 0
+        OnClick = Panel1Click
       end
     end
   end
@@ -60,7 +71,7 @@ object FormUtama: TFormUtama
     Align = alLeft
     ClientHeight = 495
     ClientWidth = 170
-    Color = 15723497
+    Color = 3879725
     ParentBackground = False
     ParentColor = False
     TabOrder = 1
@@ -71,7 +82,14 @@ object FormUtama: TFormUtama
       Width = 168
       Align = alTop
       Caption = 'RAWAT INAP'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
       OnClick = BitBtnRawatInapClick
+      ParentFont = False
       TabOrder = 0
     end
   end
@@ -81,7 +99,7 @@ object FormUtama: TFormUtama
     Top = 34
     Width = 665
     Align = alClient
-    Color = 15131358
+    Color = clWhite
     ParentBackground = False
     ParentColor = False
     TabOrder = 2
@@ -91,6 +109,7 @@ object FormUtama: TFormUtama
     Height = 23
     Top = 529
     Width = 835
+    Color = 14737632
     Panels = <    
       item
         Width = 50
@@ -101,6 +120,26 @@ object FormUtama: TFormUtama
       item
         Width = 50
       end>
+    ParentColor = False
     SimplePanel = False
+  end
+  object ImageList1: TImageList
+    Left = 600
+    Top = 109
+    Bitmap = {
+      4C7A020000001000000010000000710100000000000078DAAD94BF4A433114C6
+      D3A98293E0521C44C12E822F70973B147C0841DD6DB1D0C956F48A7F0697D2DD
+      491FC0A1D4C5A58F203E44415C9CEE7AFD0E7C578E6992DE921EF891DB24DF97
+      E4E4A4C6FC4502B20524C61F19DB4DD0632B3150DA69C0A3D45F806DB612EF1C
+      1BA87D84F427E089AD519AB482FE94EB6E803E3D96D1A7565FEAD04FD91E811A
+      D8020FE099FD8FE0C0F275AD9FD043F6BBA6E68BE72DB871DC9FACFD0AEA600F
+      1C7BCEB34EFF84DF3A7640079C8186479FB2067A8E9C9467BAB3EEAD0CC9FB08
+      EC9311FB74DC832B8F3E0BD4461992879667EC120CD5FA43F6E9F8610E4DE0FC
+      6DE23AFF9BFAEE30A776FE5BC4CEFF2E3857BFEBF4C82AD2567B374551FC03D1
+      E4BC31989131FB9AF67CA593BAEB825C6C3DE49C53736827019DCD447BD0B358
+      92AE3AAF6BCF9F0BF4B9CAD5DC38BDE57D7E073CAE995BA79E1EF23FFAE2D197
+      77E4D52B9F43F065CD9BAD401FBBFFD8FCF9EEEFA3CAFDC5D6CF2AEA37F6FDC4
+      BCDF5F148A765E
+    }
   end
 end

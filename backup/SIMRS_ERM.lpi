@@ -28,6 +28,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="CEF4Delphi_Lazarus"/>
+      </Item>
+      <Item>
         <PackageName Value="DateTimeCtrlsDsgn"/>
       </Item>
       <Item>
@@ -94,8 +97,16 @@
         <Filename Value="unitkamar.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormKamar"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitKamar"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitermranapdokter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormERMRanapDokter"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitERMRanapDokter"/>
       </Unit>
     </Units>
   </ProjectOptions>

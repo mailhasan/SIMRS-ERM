@@ -80,6 +80,7 @@ object FormKamar: TFormKamar
       DataSource = DataModuleRanap.DataSourceBangsal
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TabOrder = 0
+      OnCellClick = DBGrid1CellClick
       OnDblClick = DBGrid1DblClick
     end
   end

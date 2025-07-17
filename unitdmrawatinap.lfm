@@ -7,6 +7,7 @@ object DataModuleRanap: TDataModuleRanap
   Width = 760
   object ZQRRawatInap: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_rawat,'
@@ -18,6 +19,7 @@ object DataModuleRanap: TDataModuleRanap
       '    penjab.png_jawab,'
       '    kamar.kd_kamar,'
       '    kamar.trf_kamar,'
+      '    bangsal.nm_bangsal,'
       '    kamar_inap.diagnosa_awal,'
       '    kamar_inap.diagnosa_akhir,'
       '    kamar_inap.tgl_masuk,'
@@ -28,7 +30,6 @@ object DataModuleRanap: TDataModuleRanap
       '    kamar_inap.stts_pulang,'
       '    kamar_inap.lama,'
       '    dokter.nm_dokter,'
-      '    kamar.kd_kamar,'
       '    reg_periksa.status_bayar,'
       '    pasien.agama'
       'FROM '
@@ -37,7 +38,8 @@ object DataModuleRanap: TDataModuleRanap
       'JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis'
       'JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj'
       'JOIN kamar ON kamar_inap.kd_kamar = kamar.kd_kamar'
-      'JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter'
+      'JOIN bangsal ON kamar.kd_bangsal = bangsal.kd_bangsal'
+      'JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter;'
     )
     Params = <>
     Left = 67
@@ -50,7 +52,6 @@ object DataModuleRanap: TDataModuleRanap
   end
   object ZQueryBangsal: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from bangsal'
     )

@@ -21,6 +21,7 @@ type
     PanelKonten: TPanel;
     PanelAtas: TPanel;
     procedure ButtonLoginClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -33,14 +34,38 @@ var
 implementation
 
 {$R *.lfm}
-uses unitUtama;
+uses unitUtama, unitDmKoneksi;
 
 { TFormLogin }
 
 procedure TFormLogin.ButtonLoginClick(Sender: TObject);
 begin
-  Application.CreateForm(TFormUtama, FormUtama);
-  FormUtama.ShowModal;
+  if (EditUsername.Text ='') or (EditPassword.Text='') then
+     ShowMessage('Username & Password Harus Di Isi...!')
+     else
+       begin
+        with DataModuleKoneksi.ZQueryUser do
+         begin
+          SQL.Clear;
+          SQL.Clear;
+          SQL.Add('SELECT AES_DECRYPT(id_user,"nur") as id_user, AES_DECRYPT(password,"windi") as password FROM user');
+          SQL.Add('where id_user = AES_ENCRYPT("'+EditUsername.Text+'","nur") and  password = AES_ENCRYPT("'+EditPassword.Text+'","windi") ');
+          //ParamByName('nama').AsString := (NamaBangsal);
+          Open;
+         end;
+         if DataModuleKoneksi.ZQueryUser.RecordCount >= 1 then
+            begin
+             Application.CreateForm(TFormUtama, FormUtama);
+             FormUtama.ShowModal;
+            end
+         else
+             ShowMessage('Login Gagal !');
+       end
+end;
+
+procedure TFormLogin.FormCreate(Sender: TObject);
+begin
+  EditUsername.Text:= ''; EditPassword.Text:= '';
 end;
 
 end.

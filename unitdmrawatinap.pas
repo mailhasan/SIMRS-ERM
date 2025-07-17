@@ -104,7 +104,7 @@ begin
       Add('SELECT');
       Add('  reg_periksa.no_rawat, pasien.no_rkm_medis, pasien.nm_pasien, pasien.alamat,');
       Add('  reg_periksa.p_jawab, reg_periksa.hubunganpj, penjab.png_jawab, kamar.kd_kamar,');
-      Add('  kamar.trf_kamar, kamar_inap.diagnosa_awal, kamar_inap.diagnosa_akhir,');
+      Add('  kamar.trf_kamar,bangsal.nm_bangsal, kamar_inap.diagnosa_awal, kamar_inap.diagnosa_akhir,');
       Add('  kamar_inap.tgl_masuk, kamar_inap.jam_masuk, kamar_inap.tgl_keluar, kamar_inap.jam_keluar,');
       Add('  kamar_inap.ttl_biaya, kamar_inap.stts_pulang, kamar_inap.lama, dokter.nm_dokter,');
       Add('  kamar.kd_kamar, reg_periksa.status_bayar, pasien.agama');
@@ -113,6 +113,7 @@ begin
       Add('JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis');
       Add('JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj');
       Add('JOIN kamar ON kamar_inap.kd_kamar = kamar.kd_kamar');
+      Add('JOIN bangsal ON kamar.kd_bangsal = bangsal.kd_bangsal');
       Add('JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter');
       Add('WHERE 1=1');
 
@@ -123,7 +124,7 @@ begin
       if NamaDokter <> '' then
         Add('AND dokter.nm_dokter LIKE :nmdokter');
       if KodeKamar <> '' then
-        Add('AND kamar.kd_kamar LIKE :kdkamar');
+        Add('AND bangsal.nm_bangsal LIKE :kdkamar');
       if StatusPulang <> '' then
         Add('AND kamar_inap.stts_pulang LIKE :stts');
 

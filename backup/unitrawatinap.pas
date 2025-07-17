@@ -13,7 +13,6 @@ type
   { TFormRawatInap }
 
   TFormRawatInap = class(TForm)
-    BitBtnKeluar: TBitBtn;
     ButtonTampil: TButton;
     ButtonTampil1: TButton;
     ComboBoxStatus: TComboBox;
@@ -32,8 +31,10 @@ type
     Label2: TLabel;
     Label3: TLabel;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
     PanelAtas: TPanel;
     PanelAtas1: TPanel;
     PanelTengah1: TPanel;
@@ -50,11 +51,14 @@ type
     procedure EditNoRmChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure Panel3Click(Sender: TObject);
     procedure SpeedButtonKamarClick(Sender: TObject);
   private
 
   public
    procedure BaruPencarian;
+   procedure TerimaKamar(const NamaKamar: string);
   end;
 
 var
@@ -65,7 +69,16 @@ implementation
 {$R *.lfm}
 
 { TFormRawatInap }
-uses unitdmrawatinap,unitKamar;
+uses unitdmrawatinap,unitKamar,unitERMRanapDokter;
+
+procedure TFormRawatInap.TerimaKamar(const NamaKamar: string);
+begin
+  //EditKodeKamar.Text := Kode;
+  EditKamar.Text := NamaKamar;
+
+  // Fokus ke field lain jika perlu
+  //EditDiagnosa.SetFocus;
+end;
 
 procedure TFormRawatInap.BaruPencarian;
 begin
@@ -108,6 +121,7 @@ begin
     DateKeluar1.Date,
     DateKeluar2.Date
   );}
+
 /// tampil data pencarian
   if ComboBoxKategori.ItemIndex =0 then
      begin
@@ -189,7 +203,8 @@ begin
 
     //AlternatingRowColor := $00F8F8F8; // Warna selang-seling baris
     TitleFont.Style := [fsBold];      // Judul kolom tebal
-    FixedColor := clSkyBlue;          // Warna header
+    TitleFont.Color:= clWhite;//$00232120;
+    FixedColor := $00232120;          // Warna header
     GridLineColor := clSilver;
 
     BorderStyle := bsSingle;
@@ -204,10 +219,26 @@ begin
 
 end;
 
+procedure TFormRawatInap.MenuItem1Click(Sender: TObject);
+begin
+/// tampil form rawat inap
+Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
+FormERMRanapDokter.ShowModal;
+end;
+
+procedure TFormRawatInap.Panel3Click(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TFormRawatInap.SpeedButtonKamarClick(Sender: TObject);
 begin
-  Application.CreateForm(TFormKamar, FormKamar);
-  FormUtama.ShowModal;
+  //Application.CreateForm(TFormKamar, FormKamar);
+  //FormKamar.ShowModal;
+  if not Assigned(FormKamar) then
+    FormKamar := TFormKamar.Create(Self);
+  FormKamar.ShowModal; // atau Show jika Anda pakai panel
+
 end;
 
 end.

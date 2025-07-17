@@ -22,4 +22,14 @@ object DataModuleKoneksi: TDataModuleKoneksi
     Left = 64
     Top = 40
   end
+  object ZQueryUser: TZQuery
+    Connection = ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT AES_DECRYPT(id_user,"nur") as id_user, AES_DECRYPT(password,"windi") as password FROM user'
+    )
+    Params = <>
+    Left = 73
+    Top = 135
+  end
 end

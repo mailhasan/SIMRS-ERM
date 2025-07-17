@@ -18,6 +18,7 @@ type
     Label1: TLabel;
     PanelAtas: TPanel;
     PanelKonten: TPanel;
+    procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure EditCariChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -50,22 +51,27 @@ end;
 
 procedure TFormKamar.DBGrid1DblClick(Sender: TObject);
 var
-  kode, nama: string;
+  NamaKamar: string;
 begin
-  // Pastikan dataset aktif dan tidak kosong
   if not DataModuleRanap.ZQueryBangsal.IsEmpty then
   begin
-    ///kode := DataModuleRanap.ZQueryBangsal.FieldByName('kd_bangsal').AsString;
-    nama := DataModuleRanap.ZQueryBangsal.FieldByName('nm_bangsal').AsString;
+    ///KodeKamar := ZQuery1.FieldByName('kd_bangsal').AsString;
+    if DataModuleRanap.ZQueryBangsal.FieldByName('nm_bangsal').AsString = '-' then
+       NamaKamar:= '';
+    NamaKamar := DataModuleRanap.ZQueryBangsal.FieldByName('nm_bangsal').AsString;
+    //ShowMessage('Dipilih: '+ NamaKamar);
 
-    ShowMessage('Kode: ' + kode + sLineBreak + 'Nama: ' + nama);
+    // Kirim ke form Rawat Inap
+    if Assigned(FormRawatInap) then
+      FormRawatInap.terimaKamar(NamaKamar);
 
-    // Atau bisa langsung isi ke komponen edit, misal:
-    ///EditKode.Text := kode;
-
-    FormRawatInap.EditKamar.Text := nama;
+    Close; // Tutup form kamar setelah pilih
   end;
-  Close;
+end;
+
+procedure TFormKamar.DBGrid1CellClick(Column: TColumn);
+begin
+
 end;
 
 end.

@@ -19,9 +19,9 @@ object FormRawatInap: TFormRawatInap
     Caption = 'DAFTAR PASIEN RAWAT INAP'
     ClientHeight = 26
     ClientWidth = 908
-    Color = 16447992
+    Color = 2302240
     Font.CharSet = ANSI_CHARSET
-    Font.Color = 2696481
+    Font.Color = clWhite
     Font.Height = -16
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -30,15 +30,18 @@ object FormRawatInap: TFormRawatInap
     ParentColor = False
     ParentFont = False
     TabOrder = 0
-    object BitBtnKeluar: TBitBtn
-      Left = 832
+    object Panel3: TPanel
+      Left = 833
       Height = 24
       Top = 1
-      Width = 75
+      Width = 74
       Align = alRight
-      Caption = 'KELUAR'
-      OnClick = BitBtnKeluarClick
+      Caption = 'Keluar'
+      Color = 3487205
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 0
+      OnClick = Panel3Click
     end
   end
   object PanelTengah: TPanel
@@ -49,9 +52,11 @@ object FormRawatInap: TFormRawatInap
     Align = alClient
     ClientHeight = 466
     ClientWidth = 908
-    Color = 15131358
+    Color = clWhite
+    Font.Color = 2302240
     ParentBackground = False
     ParentColor = False
+    ParentFont = False
     TabOrder = 1
     object PanelAtas1: TPanel
       Left = 1
@@ -61,7 +66,7 @@ object FormRawatInap: TFormRawatInap
       Align = alTop
       ClientHeight = 95
       ClientWidth = 906
-      Color = 15131358
+      Color = clWhite
       Font.CharSet = ANSI_CHARSET
       Font.Color = 2696481
       Font.Height = -16
@@ -401,6 +406,10 @@ object FormRawatInap: TFormRawatInap
             FieldName = 'kd_kamar'
           end        
           item
+            Title.Caption = 'Rawat Inap'
+            FieldName = 'nm_bangsal'
+          end        
+          item
             Title.Caption = 'TARIF KAMAR'
             FieldName = 'trf_kamar'
           end        
@@ -445,10 +454,6 @@ object FormRawatInap: TFormRawatInap
             FieldName = 'nm_dokter'
           end        
           item
-            Title.Caption = 'kd_kamar_1'
-            FieldName = 'kd_kamar_1'
-          end        
-          item
             Title.Caption = 'status_bayar'
             FieldName = 'status_bayar'
           end        
@@ -463,10 +468,18 @@ object FormRawatInap: TFormRawatInap
     end
   end
   object PopupMenu1: TPopupMenu
+    Images = FormUtama.ImageList1
     Left = 475
     Top = 231
     object MenuItem1: TMenuItem
       Caption = 'ERM DOKTER'
+      ImageIndex = 1
+      SubMenuImages = FormUtama.ImageList1
+      OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'ERM PERAWAT'
+      ImageIndex = 1
     end
   end
 end

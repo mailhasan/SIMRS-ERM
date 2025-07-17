@@ -7,6 +7,7 @@ object FormLogin: TFormLogin
   Caption = 'Silahkan Login....!'
   ClientHeight = 263
   ClientWidth = 422
+  Color = 16053233
   OnCreate = FormCreate
   Position = poDesktopCenter
   LCLVersion = '3.6.0.0'
@@ -17,9 +18,9 @@ object FormLogin: TFormLogin
     Width = 422
     Align = alTop
     Caption = 'Silahkan Login...!'
-    Color = 16447992
+    Color = 2302240
     Font.CharSet = ANSI_CHARSET
-    Font.Color = 2696481
+    Font.Color = clWhite
     Font.Height = -16
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -37,9 +38,11 @@ object FormLogin: TFormLogin
     Align = alClient
     ClientHeight = 163
     ClientWidth = 422
-    Color = 15723497
+    Color = clWhite
+    Font.Color = clWhite
     ParentBackground = False
     ParentColor = False
+    ParentFont = False
     TabOrder = 1
     object Label1: TLabel
       Left = 16
@@ -60,6 +63,8 @@ object FormLogin: TFormLogin
       Height = 23
       Top = 64
       Width = 283
+      Font.Color = clBlack
+      ParentFont = False
       TabOrder = 0
       Text = 'EditUsername'
     end
@@ -82,6 +87,8 @@ object FormLogin: TFormLogin
       Height = 23
       Top = 98
       Width = 283
+      Font.Color = clBlack
+      ParentFont = False
       TabOrder = 1
       Text = 'EditPassword'
     end
@@ -94,15 +101,18 @@ object FormLogin: TFormLogin
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 422
-    Color = 16447992
+    Color = 14737632
+    Font.Color = 14737632
     ParentBackground = False
     ParentColor = False
+    ParentFont = False
     TabOrder = 2
     object ButtonLogin: TButton
-      Left = 16
-      Height = 25
-      Top = 16
-      Width = 75
+      Left = 1
+      Height = 48
+      Top = 1
+      Width = 99
+      Align = alLeft
       Caption = 'Login'
       TabOrder = 0
       OnClick = ButtonLoginClick
