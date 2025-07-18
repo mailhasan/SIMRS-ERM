@@ -52,6 +52,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure SpeedButtonKamarClick(Sender: TObject);
   private
@@ -220,10 +221,26 @@ begin
 end;
 
 procedure TFormRawatInap.MenuItem1Click(Sender: TObject);
+var
+  noRawat: String;
 begin
 /// tampil form rawat inap
 Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
-FormERMRanapDokter.ShowModal;
+if not DataModuleRanap.ZQRRawatInap.IsEmpty then
+    begin
+      noRawat := DataModuleRanap.ZQRRawatInap.FieldByName('no_rawat').AsString;
+      //ShowMessage('Data dari grid: ' + DataYangDipilih);
+    end;
+with FormERMRanapDokter do
+begin
+EditNoRawat.Text:= noRawat;
+ShowModal;
+///FormERMRanapDokter.ShowModal;
+end;
+
+procedure TFormRawatInap.MenuItem2Click(Sender: TObject);
+begin
+
 end;
 
 procedure TFormRawatInap.Panel3Click(Sender: TObject);

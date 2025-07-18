@@ -105,6 +105,7 @@
         <Filename Value="unitermranapdokter.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormERMRanapDokter"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
       </Unit>

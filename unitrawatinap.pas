@@ -221,10 +221,22 @@ begin
 end;
 
 procedure TFormRawatInap.MenuItem1Click(Sender: TObject);
+var
+  noRawat: String;
 begin
 /// tampil form rawat inap
 Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
-FormERMRanapDokter.ShowModal;
+if not DataModuleRanap.ZQRRawatInap.IsEmpty then
+    begin
+      noRawat := DataModuleRanap.ZQRRawatInap.FieldByName('no_rawat').AsString;
+      //ShowMessage('Data dari grid: ' + DataYangDipilih);
+    end;
+  with FormERMRanapDokter do
+  begin
+  EditNoRawat.Text:= noRawat;
+  ShowModal;
+  ///FormERMRanapDokter.ShowModal;
+  end;
 end;
 
 procedure TFormRawatInap.MenuItem2Click(Sender: TObject);

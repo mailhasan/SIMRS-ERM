@@ -480,6 +480,7 @@ object FormRawatInap: TFormRawatInap
     object MenuItem2: TMenuItem
       Caption = 'ERM PERAWAT'
       ImageIndex = 1
+      OnClick = MenuItem2Click
     end
   end
 end

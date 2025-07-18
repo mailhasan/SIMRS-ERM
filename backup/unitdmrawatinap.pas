@@ -5,16 +5,19 @@ unit unitdmrawatinap;
 interface
 
 uses
-  Classes, SysUtils,unitDmKoneksi, DB, ZDataset;
+  Classes, SysUtils,unitDmKoneksi, DB, ZDataset,Dialogs, Forms, Controls, Graphics, ExtCtrls, ComCtrls,
+  StdCtrls,ZConnection;
 
 type
 
   { TDataModuleRanap }
 
   TDataModuleRanap = class(TDataModule)
+    DataSourcePemeriksaanRanap: TDataSource;
     DataSourceBangsal: TDataSource;
     DsRawatInap: TDataSource;
     ZQRRawatInap: TZQuery;
+    ZQueryPemeriksaanRanap: TZQuery;
     ZQueryBangsal: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
@@ -26,6 +29,22 @@ type
       TglMasukAwal, TglMasukAkhir, TglKeluarAwal, TglKeluarAkhir: TDate
     );
   procedure FilterBangsal(NamaBangsal: string);
+  /// pemeriksaaan
+  procedure LoadPemeriksaanRanap(no_rawat, no_rkm_medis: string; tgl_awal, tgl_akhir: TDate);
+  procedure InsertPemeriksaanRanap(
+  no_rawat, tgl_perawatan, jam_rawat,
+  suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  nip: string);
+
+  procedure UpdatePemeriksaanRanap(
+  no_rawat, tgl_perawatan, jam_rawat,
+  suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  nip: string
+  );
+
+  procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
   end;
 
 
@@ -35,6 +54,13 @@ var
 implementation
 
 {$R *.lfm}
+
+/// procedure tidak boleh di hapus
+procedure TDataModuleRanap.DataModuleCreate(Sender: TObject);
+begin
+  // kode inisialisasi disini
+end;
+
 
 {procedure TDataModuleRanap.CariRawatInap(NoRM, Nama, Dokter, Kamar, Status: string);
 begin
@@ -82,10 +108,6 @@ begin
   ZQRRawatInap.Open;
 end;}
 
-procedure TDataModuleRanap.DataModuleCreate(Sender: TObject);
-begin
-
-end;
 
 procedure TDataModuleRanap.CariData(
   NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
@@ -124,7 +146,7 @@ begin
       if NamaDokter <> '' then
         Add('AND dokter.nm_dokter LIKE :nmdokter');
       if KodeKamar <> '' then
-        Add('AND kamar.kd_kamar LIKE :kdkamar');
+        Add('AND bangsal.nm_bangsal LIKE :kdkamar');
       if StatusPulang <> '' then
         Add('AND kamar_inap.stts_pulang LIKE :stts');
 
@@ -170,6 +192,7 @@ begin
   end;
 end;
 
+
 procedure TDataModuleRanap.FilterBangsal(NamaBangsal: string);
 begin
   ZQueryBangsal.Close;
@@ -181,6 +204,202 @@ begin
   ZQueryBangsal.Open;
 end;
 
+/// pemeriksaaan
+
+procedure TDataModuleRanap.LoadPemeriksaanRanap(no_rawat, no_rkm_medis: string; tgl_awal, tgl_akhir: TDate);
+begin
+  with ZQueryPemeriksaanRanap do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT pr.no_rawat, pr.tgl_perawatan, pr.jam_rawat,');
+    SQL.Add('p.nm_pasien, p.no_rkm_medis,');
+    SQL.Add('pr.suhu_tubuh, pr.tensi, pr.nadi, pr.respirasi, pr.berat,');
+    SQL.Add('pr.SpO2, pr.GCS, pr.kesadaran,');
+    SQL.Add('pr.keluhan, pr.pemeriksaan, pr.penilaian, pr.rtl AS plan, pr.instruksi,');
+    SQL.Add('pr.nip, pg.nama AS nama_petugas, pg.`jbtn`');
+    SQL.Add('FROM pemeriksaan_ranap pr');
+    SQL.Add('JOIN reg_periksa rp ON pr.no_rawat = rp.no_rawat');
+    SQL.Add('JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis');
+    SQL.Add('LEFT JOIN pegawai pg ON pr.nip = pg.nik');
+    SQL.Add('WHERE (:no_rawat IS NULL OR :no_rawat = '''' OR pr.no_rawat = :no_rawat)');
+    SQL.Add('AND (:no_rawat IS NOT NULL AND :no_rawat <> '''' OR');
+    SQL.Add('(p.no_rkm_medis = :no_rkm_medis AND pr.tgl_perawatan BETWEEN :tgl_awal AND :tgl_akhir))');
+    SQL.Add('ORDER BY pr.tgl_perawatan DESC, pr.jam_rawat DESC');
+
+    ParamByName('no_rawat').AsString := no_rawat;
+    ParamByName('no_rkm_medis').AsString := no_rkm_medis;
+    ParamByName('tgl_awal').AsDate := tgl_awal;
+    ParamByName('tgl_akhir').AsDate := tgl_akhir;
+    Open;
+  end;
+end;
+
+/// insert pemeriksaan
+procedure TDataModuleRanap.InsertPemeriksaanRanap(
+  no_rawat, tgl_perawatan, jam_rawat,
+  suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  nip: string
+);
+begin
+  try
+    if not DataModuleKoneksi.ZConnectionSimrsERM.Connected then
+      DataModuleKoneksi.ZConnectionSimrsERM.Connect;
+
+    DataModuleKoneksi.ZConnectionSimrsERM.StartTransaction;
+  with ZQueryPemeriksaanRanap do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('INSERT INTO pemeriksaan_ranap (');
+    SQL.Add('no_rawat, tgl_perawatan, jam_rawat,');
+    SQL.Add('suhu_tubuh, tensi, nadi, respirasi, berat,');
+    SQL.Add('SpO2, GCS, kesadaran, keluhan, pemeriksaan, penilaian, rtl, instruksi, nip)');
+    SQL.Add('VALUES (');
+    SQL.Add(':no_rawat, :tgl_perawatan, :jam_rawat,');
+    SQL.Add(':suhu, :tensi, :nadi, :respirasi, :berat,');
+    SQL.Add(':spo2, :gcs, :kesadaran, :keluhan, :pemeriksaan, :penilaian, :rtl, :instruksi, :nip)');
+
+    ParamByName('no_rawat').AsString := no_rawat;
+    ParamByName('tgl_perawatan').AsString := tgl_perawatan;
+    ParamByName('jam_rawat').AsString := jam_rawat;
+    ParamByName('suhu').AsString := suhu;
+    ParamByName('tensi').AsString := tensi;
+    ParamByName('nadi').AsString := nadi;
+    ParamByName('respirasi').AsString := respirasi;
+    ParamByName('berat').AsString := berat;
+    ParamByName('spo2').AsString := spo2;
+    ParamByName('gcs').AsString := gcs;
+    ParamByName('kesadaran').AsString := kesadaran;
+    ParamByName('keluhan').AsString := keluhan;
+    ParamByName('pemeriksaan').AsString := pemeriksaan;
+    ParamByName('penilaian').AsString := penilaian;
+    ParamByName('rtl').AsString := rtl;
+    ParamByName('instruksi').AsString := instruksi;
+    ParamByName('nip').AsString := nip;
+    ExecSQL;
+  end;
+  DataModuleKoneksi.ZConnectionSimrsERM.Commit;
+    ShowMessage('Data pemeriksaan berhasil disimpan.');
+
+  except
+    on E: Exception do
+    begin
+      if DataModuleKoneksi.ZConnectionSimrsERM.InTransaction then
+        DataModuleKoneksi.ZConnectionSimrsERM.Rollback;
+      ShowMessage('Gagal menyimpan data pemeriksaan: ' + E.Message);
+    end;
+  end;
+end;
+
+/// update pemeriksaan
+procedure TDataModuleRanap.UpdatePemeriksaanRanap(
+  no_rawat, tgl_perawatan, jam_rawat,
+  suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  nip: string
+);
+begin
+  try
+    if not DataModuleKoneksi.ZConnectionSimrsERM.Connected then
+      DataModuleKoneksi.ZConnectionSimrsERM.Connect;
+
+    DataModuleKoneksi.ZConnectionSimrsERM.StartTransaction;
+  with ZQueryPemeriksaanRanap` do
+  begin
+    Close;
+    Close;
+      SQL.Clear;
+      SQL.Add('UPDATE pemeriksaan_ranap SET');
+      SQL.Add('suhu_tubuh = :suhu,');
+      SQL.Add('tensi = :tensi,');
+      SQL.Add('nadi = :nadi,');
+      SQL.Add('respirasi = :respirasi,');
+      SQL.Add('berat = :berat,');
+      SQL.Add('SpO2 = :spo2,');
+      SQL.Add('GCS = :gcs,');
+      SQL.Add('kesadaran = :kesadaran,');
+      SQL.Add('keluhan = :keluhan,');
+      SQL.Add('pemeriksaan = :pemeriksaan,');
+      SQL.Add('penilaian = :penilaian,');
+      SQL.Add('rtl = :rtl,');
+      SQL.Add('instruksi = :instruksi,');
+      SQL.Add('nip = :nip');
+      SQL.Add('WHERE no_rawat = :no_rawat AND tgl_perawatan = :tgl_perawatan AND jam_rawat = :jam_rawat');
+
+      ParamByName('suhu').AsString := suhu;
+      ParamByName('tensi').AsString := tensi;
+      ParamByName('nadi').AsString := nadi;
+      ParamByName('respirasi').AsString := respirasi;
+      ParamByName('berat').AsString := berat;
+      ParamByName('spo2').AsString := spo2;
+      ParamByName('gcs').AsString := gcs;
+      ParamByName('kesadaran').AsString := kesadaran;
+      ParamByName('keluhan').AsString := keluhan;
+      ParamByName('pemeriksaan').AsString := pemeriksaan;
+      ParamByName('penilaian').AsString := penilaian;
+      ParamByName('rtl').AsString := rtl;
+      ParamByName('instruksi').AsString := instruksi;
+      ParamByName('nip').AsString := nip;
+      ParamByName('no_rawat').AsString := no_rawat;
+      ParamByName('tgl_perawatan').AsString := tgl_perawatan;
+      ParamByName('jam_rawat').AsString := jam_rawat;
+
+      ExecSQL;
+  end;
+  DataModuleKoneksi.ZConnectionSimrsERM.Commit;
+    ShowMessage('Data pemeriksaan berhasil disimpan.');
+
+  except
+    on E: Exception do
+    begin
+      if DataModuleKoneksi.ZConnectionSimrsERM.InTransaction then
+        DataModuleKoneksi.ZConnectionSimrsERM.Rollback;
+      ShowMessage('Gagal menyimpan data pemeriksaan: ' + E.Message);
+    end;
+  end;
+end;
+
+procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
+begin
+  if MessageDlg('Apakah anda yakin ingin menghapus data pemeriksaan?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    try
+      if not DataModuleKoneksi.ZConnectionSimrsERM.Connected then
+        DataModuleKoneksi.ZConnectionSimrsERM.Connect;
+
+      DataModuleKoneksi.ZConnectionSimrsERM.StartTransaction;
+
+      with ZQueryPemeriksaanRanap do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('DELETE FROM pemeriksaan_ranap');
+        SQL.Add('WHERE no_rawat = :no_rawat AND tgl_perawatan = :tgl_perawatan AND jam_rawat = :jam_rawat');
+        ParamByName('no_rawat').AsString := no_rawat;
+        ParamByName('tgl_perawatan').AsString := tgl_perawatan;
+        ParamByName('jam_rawat').AsString := jam_rawat;
+        ExecSQL;
+      end;
+
+      DataModuleKoneksi.ZConnectionSimrsERM.Commit;
+      ShowMessage('Data pemeriksaan berhasil dihapus.');
+
+    except
+      on E: Exception do
+      begin
+        if DataModuleKoneksi.ZConnectionSimrsERM.InTransaction then
+          DataModuleKoneksi.ZConnectionSimrsERM.Rollback;
+        ShowMessage('Gagal menghapus data pemeriksaan: ' + E.Message);
+      end;
+    end;
+  end
+  else
+  begin
+    ShowMessage('Penghapusan dibatalkan.');
+  end;
+end;
 
 
 

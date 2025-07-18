@@ -7,7 +7,6 @@ object DataModuleRanap: TDataModuleRanap
   Width = 760
   object ZQRRawatInap: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_rawat,'
@@ -63,5 +62,30 @@ object DataModuleRanap: TDataModuleRanap
     DataSet = ZQueryBangsal
     Left = 147
     Top = 152
+  end
+  object ZQueryPemeriksaanRanap: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT pr.no_rawat, pr.tgl_perawatan, pr.jam_rawat,'
+      '       p.nm_pasien,'
+      '       p.no_rkm_medis,'
+      '       pr.suhu_tubuh, pr.tensi, pr.nadi, pr.respirasi, pr.berat,'
+      '       pr.SpO2, pr.GCS, pr.kesadaran,'
+      '       pr.`keluhan`, pr.`pemeriksaan`, pr.`penilaian`, pr.`rtl`plan, pr.`instruksi`,'
+      '       pr.`nip`, pg.nama AS nama_petugas, pg.`jbtn`'
+      'FROM pemeriksaan_ranap pr'
+      'JOIN reg_periksa rp ON pr.no_rawat = rp.no_rawat'
+      'JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis'
+      'LEFT JOIN pegawai pg ON pr.nip = pg.nik'
+      'ORDER BY pr.tgl_perawatan DESC, pr.jam_rawat DESC'
+    )
+    Params = <>
+    Left = 77
+    Top = 204
+  end
+  object DataSourcePemeriksaanRanap: TDataSource
+    DataSet = ZQueryPemeriksaanRanap
+    Left = 164
+    Top = 220
   end
 end
