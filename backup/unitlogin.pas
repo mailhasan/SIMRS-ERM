@@ -5,7 +5,7 @@ unit unitLogin;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,Sockets;
 
 type
 
@@ -38,6 +38,7 @@ uses unitUtama, unitDmKoneksi;
 
 { TFormLogin }
 
+
 procedure TFormLogin.ButtonLoginClick(Sender: TObject);
 begin
   if (EditUsername.Text ='') or (EditPassword.Text='') then
@@ -56,6 +57,9 @@ begin
          if DataModuleKoneksi.ZQueryUser.RecordCount >= 1 then
             begin
              Application.CreateForm(TFormUtama, FormUtama);
+             FormUtama.StatusBarSIMRSERM.Panels.Items[1].Text:= DataModuleKoneksi.ZQueryUser.FieldByName('id_user').AsString;
+             FormUtama.StatusBarSIMRSERM.Panels.Items[2].Text:= FormatDateTime('dd-MM-yyyy',Now);
+             FormUtama.StatusBarSIMRSERM.Panels[3].Text:= GetLocalIP;
              FormUtama.ShowModal;
             end
          else

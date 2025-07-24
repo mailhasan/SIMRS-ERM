@@ -7,7 +7,6 @@ object DataModuleRanap: TDataModuleRanap
   Width = 760
   object ZQRRawatInap: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_rawat,'
@@ -52,7 +51,6 @@ object DataModuleRanap: TDataModuleRanap
   end
   object ZQueryBangsal: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from bangsal'
     )
@@ -67,7 +65,6 @@ object DataModuleRanap: TDataModuleRanap
   end
   object ZQueryPemeriksaanRanap: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT pr.no_rawat, pr.tgl_perawatan, pr.jam_rawat,'
       '       p.nm_pasien,'

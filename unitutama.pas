@@ -20,7 +20,7 @@ type
     PanelTengah: TPanel;
     PanelKiri: TPanel;
     PanelAtas: TPanel;
-    StatusBar1: TStatusBar;
+    StatusBarSIMRSERM: TStatusBar;
     procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);

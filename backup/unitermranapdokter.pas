@@ -216,7 +216,7 @@ DataModuleRanap.UpdatePemeriksaanRanap(
     EditSuhu.Text, EditTensi.Text, EditNadi.Text, EditRR.Text,
     EditBerat.Text, EditSp02.Text, EditGCS.Text, ComboBoxKesadaran.Text,
     MemoSubjek.Text, MemoObjek.Text, MemoAsesmen.Text,
-    MemoRTL.Text, MemoInstruksi.Text,
+    MemoPlan.Text, MemoInstruksi.Text,
     EditNIP.Text
   );
 

@@ -20,6 +20,7 @@ type
     ZQueryPemeriksaanRanap: TZQuery;
     ZQueryBangsal: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
+    procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
   private
 
   public
@@ -44,12 +45,12 @@ type
   nip: string
   );
 
-  procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
   end;
 
 
 var
   DataModuleRanap: TDataModuleRanap;
+  ZQueryPemeriksaanRanap: TZQuery;
 
 implementation
 
@@ -306,7 +307,7 @@ begin
       DataModuleKoneksi.ZConnectionSimrsERM.Connect;
 
     DataModuleKoneksi.ZConnectionSimrsERM.StartTransaction;
-  with ZQueryPemeriksaanRanap` do
+  with ZQueryPemeriksaanRanap do
   begin
     Close;
     Close;

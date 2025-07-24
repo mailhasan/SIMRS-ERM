@@ -918,6 +918,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Width = 83
               Align = alLeft
               Caption = 'SIMPAN'
+              Images = FormUtama.ImageList1
+              ImageIndex = 3
               OnClick = BitBtnSimpanClick
               TabOrder = 0
             end
@@ -928,6 +930,9 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Width = 75
               Align = alLeft
               Caption = 'UBAH'
+              HotImageIndex = 3
+              Images = FormUtama.ImageList1
+              ImageIndex = 3
               OnClick = BitBtnSimpan1Click
               TabOrder = 1
             end
@@ -938,6 +943,9 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Width = 77
               Align = alLeft
               Caption = 'HAPUS'
+              HotImageIndex = 5
+              Images = FormUtama.ImageList1
+              ImageIndex = 5
               OnClick = BitBtnSimpan2Click
               TabOrder = 2
             end
@@ -963,6 +971,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Width = 83
               Align = alLeft
               Caption = 'BARU'
+              Images = FormUtama.ImageList1
+              ImageIndex = 4
               OnClick = BitBtnBaruClick
               TabOrder = 3
             end
@@ -973,6 +983,9 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Width = 129
               Align = alLeft
               Caption = 'DETAIL RIWAYAT'
+              HotImageIndex = 6
+              Images = FormUtama.ImageList1
+              ImageIndex = 6
               OnClick = BitBtnDetailRiwayatClick
               TabOrder = 4
             end

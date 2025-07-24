@@ -20,7 +20,7 @@ type
     PanelTengah: TPanel;
     PanelKiri: TPanel;
     PanelAtas: TPanel;
-    StatusBar1: TStatusBar;
+    StatusBarSIMRSERM: TStatusBar;
     procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -81,7 +81,7 @@ begin
   else
   begin
     PanelKiri.Width := 200;  // Ukuran normal
-    BitBtnTombolMenu.Caption := '<<';  // Tutup
+    Panel1.Caption := '<<';  // Tutup
     SidebarVisible := True;
   end;
 end;
