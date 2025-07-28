@@ -1,28 +1,29 @@
 object FormRawatInap: TFormRawatInap
-  Left = 494
-  Height = 492
-  Top = 255
-  Width = 908
+  Left = 414
+  Height = 615
+  Top = 230
+  Width = 1135
   BorderStyle = bsNone
   Caption = 'Form Rawat Inap'
-  ClientHeight = 492
-  ClientWidth = 908
+  ClientHeight = 615
+  ClientWidth = 1135
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '3.6.0.0'
   object PanelAtas: TPanel
     Left = 0
-    Height = 26
+    Height = 32
     Top = 0
-    Width = 908
+    Width = 1135
     Align = alTop
     Caption = 'DAFTAR PASIEN RAWAT INAP'
-    ClientHeight = 26
-    ClientWidth = 908
+    ClientHeight = 32
+    ClientWidth = 1135
     Color = 2302240
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
-    Font.Height = -16
+    Font.Height = -20
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
@@ -31,10 +32,10 @@ object FormRawatInap: TFormRawatInap
     ParentFont = False
     TabOrder = 0
     object Panel3: TPanel
-      Left = 833
-      Height = 24
+      Left = 1042
+      Height = 30
       Top = 1
-      Width = 74
+      Width = 92
       Align = alRight
       Caption = 'Keluar'
       Color = 3487205
@@ -46,12 +47,12 @@ object FormRawatInap: TFormRawatInap
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 466
-    Top = 26
-    Width = 908
+    Height = 583
+    Top = 32
+    Width = 1135
     Align = alClient
-    ClientHeight = 466
-    ClientWidth = 908
+    ClientHeight = 583
+    ClientWidth = 1135
     Color = clWhite
     Font.Color = 2302240
     ParentBackground = False
@@ -60,16 +61,16 @@ object FormRawatInap: TFormRawatInap
     TabOrder = 1
     object PanelAtas1: TPanel
       Left = 1
-      Height = 95
+      Height = 119
       Top = 1
-      Width = 906
+      Width = 1133
       Align = alTop
-      ClientHeight = 95
-      ClientWidth = 906
+      ClientHeight = 119
+      ClientWidth = 1133
       Color = clWhite
       Font.CharSet = ANSI_CHARSET
       Font.Color = 2696481
-      Font.Height = -16
+      Font.Height = -20
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
@@ -79,26 +80,26 @@ object FormRawatInap: TFormRawatInap
       TabOrder = 0
       object Panel1: TPanel
         Left = 1
-        Height = 47
+        Height = 59
         Top = 1
-        Width = 904
+        Width = 1131
         Align = alTop
-        ClientHeight = 47
-        ClientWidth = 904
+        ClientHeight = 59
+        ClientWidth = 1131
         ParentBackground = False
         TabOrder = 0
         object GroupBox1: TGroupBox
           Left = 1
-          Height = 45
+          Height = 57
           Top = 1
-          Width = 177
+          Width = 221
           Align = alLeft
           Caption = 'Kategori'
-          ClientHeight = 23
-          ClientWidth = 173
+          ClientHeight = 31
+          ClientWidth = 217
           Font.CharSet = ANSI_CHARSET
           Font.Color = 2696481
-          Font.Height = -13
+          Font.Height = -16
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
           Font.Style = [fsBold]
@@ -107,11 +108,11 @@ object FormRawatInap: TFormRawatInap
           TabOrder = 0
           object ComboBoxKategori: TComboBox
             Left = 0
-            Height = 25
+            Height = 29
             Top = 0
-            Width = 173
+            Width = 217
             Align = alClient
-            ItemHeight = 17
+            ItemHeight = 21
             Items.Strings = (
               'BELUM PULANG'
               'TGL MASUK'
@@ -122,17 +123,17 @@ object FormRawatInap: TFormRawatInap
           end
         end
         object GroupBox2: TGroupBox
-          Left = 178
-          Height = 45
+          Left = 222
+          Height = 57
           Top = 1
-          Width = 269
+          Width = 336
           Align = alLeft
           Caption = 'Tanggal'
-          ClientHeight = 23
-          ClientWidth = 265
+          ClientHeight = 31
+          ClientWidth = 332
           Font.CharSet = ANSI_CHARSET
           Font.Color = 2696481
-          Font.Height = -13
+          Font.Height = -16
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
           Font.Style = [fsBold]
@@ -141,17 +142,17 @@ object FormRawatInap: TFormRawatInap
           TabOrder = 1
           object Label1: TLabel
             Left = 0
-            Height = 23
+            Height = 31
             Top = 0
-            Width = 35
+            Width = 44
             Align = alLeft
             Caption = 'Mulai'
           end
           object DateTimePickerMulai: TDateTimePicker
-            Left = 35
-            Height = 23
+            Left = 44
+            Height = 31
             Top = 0
-            Width = 93
+            Width = 115
             CenturyFrom = 1941
             MaxDate = 2958465
             MinDate = -53780
@@ -171,18 +172,18 @@ object FormRawatInap: TFormRawatInap
             MonthNames = 'Long'
           end
           object Label2: TLabel
-            Left = 128
-            Height = 23
+            Left = 159
+            Height = 31
             Top = 0
-            Width = 17
+            Width = 21
             Align = alLeft
             Caption = 'SD'
           end
           object DateTimePickerSelesai: TDateTimePicker
-            Left = 145
-            Height = 23
+            Left = 180
+            Height = 31
             Top = 0
-            Width = 93
+            Width = 115
             CenturyFrom = 1941
             MaxDate = 2958465
             MinDate = -53780
@@ -203,17 +204,17 @@ object FormRawatInap: TFormRawatInap
           end
         end
         object GroupBox3: TGroupBox
-          Left = 447
-          Height = 45
+          Left = 558
+          Height = 57
           Top = 1
-          Width = 208
+          Width = 260
           Align = alLeft
           Caption = 'STATUS'
-          ClientHeight = 23
-          ClientWidth = 204
+          ClientHeight = 31
+          ClientWidth = 256
           Font.CharSet = ANSI_CHARSET
           Font.Color = 2696481
-          Font.Height = -13
+          Font.Height = -16
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
           Font.Style = [fsBold]
@@ -222,11 +223,11 @@ object FormRawatInap: TFormRawatInap
           TabOrder = 2
           object ComboBoxStatus: TComboBox
             Left = 0
-            Height = 25
+            Height = 29
             Top = 0
-            Width = 204
+            Width = 256
             Align = alClient
-            ItemHeight = 17
+            ItemHeight = 21
             Items.Strings = (
               ''
               'Sehat'
@@ -247,20 +248,20 @@ object FormRawatInap: TFormRawatInap
           end
         end
         object EditKamar: TEdit
-          Left = 655
-          Height = 45
+          Left = 818
+          Height = 57
           Top = 1
-          Width = 129
+          Width = 161
           Align = alLeft
           TabOrder = 3
           Text = 'EditKamar'
           TextHint = 'Kamar'
         end
         object SpeedButtonKamar: TSpeedButton
-          Left = 784
-          Height = 45
+          Left = 979
+          Height = 57
           Top = 1
-          Width = 23
+          Width = 29
           Align = alLeft
           Caption = '...'
           OnClick = SpeedButtonKamarClick
@@ -268,77 +269,77 @@ object FormRawatInap: TFormRawatInap
       end
       object Panel2: TPanel
         Left = 1
-        Height = 46
-        Top = 48
-        Width = 904
+        Height = 58
+        Top = 60
+        Width = 1131
         Align = alClient
-        ClientHeight = 46
-        ClientWidth = 904
+        ClientHeight = 58
+        ClientWidth = 1131
         ParentBackground = False
         TabOrder = 1
         object Label3: TLabel
           Left = 1
-          Height = 44
+          Height = 56
           Top = 1
-          Width = 30
+          Width = 37
           Align = alLeft
           Alignment = taCenter
           Caption = 'Cari'
           Layout = tlCenter
         end
         object EditCari: TEdit
-          Left = 31
-          Height = 44
+          Left = 38
+          Height = 56
           Top = 1
-          Width = 145
+          Width = 181
           Align = alLeft
           TabOrder = 0
           Text = 'EditCari'
           TextHint = 'No RM'
         end
         object SpeedButtonDokter: TSpeedButton
-          Left = 632
-          Height = 44
+          Left = 789
+          Height = 56
           Top = 1
-          Width = 23
+          Width = 29
           Align = alLeft
           Caption = '...'
         end
         object EditDokter: TEdit
-          Left = 424
-          Height = 44
+          Left = 529
+          Height = 56
           Top = 1
-          Width = 208
+          Width = 260
           Align = alLeft
           TabOrder = 1
           Text = 'EditDokter'
           TextHint = 'Nama Dokter'
         end
         object ButtonTampil: TButton
-          Left = 655
-          Height = 44
+          Left = 818
+          Height = 56
           Top = 1
-          Width = 75
+          Width = 94
           Align = alLeft
           Caption = 'TAMPIL'
           TabOrder = 2
           OnClick = ButtonTampilClick
         end
         object ButtonTampil1: TButton
-          Left = 730
-          Height = 44
+          Left = 912
+          Height = 56
           Top = 1
-          Width = 78
+          Width = 98
           Align = alLeft
           Caption = 'CARI'
           TabOrder = 3
           OnClick = ButtonTampil1Click
         end
         object EditNama: TEdit
-          Left = 176
-          Height = 44
+          Left = 219
+          Height = 56
           Top = 1
-          Width = 248
+          Width = 310
           Align = alLeft
           TabOrder = 4
           Text = 'EditNama'
@@ -348,16 +349,16 @@ object FormRawatInap: TFormRawatInap
     end
     object PanelTengah1: TPanel
       Left = 1
-      Height = 369
-      Top = 96
-      Width = 906
+      Height = 462
+      Top = 120
+      Width = 1133
       Align = alClient
-      ClientHeight = 369
-      ClientWidth = 906
+      ClientHeight = 462
+      ClientWidth = 1133
       Color = 15131358
       Font.CharSet = ANSI_CHARSET
       Font.Color = 2696481
-      Font.Height = -16
+      Font.Height = -20
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
@@ -367,9 +368,9 @@ object FormRawatInap: TFormRawatInap
       TabOrder = 1
       object DBGridPasienRanap: TDBGrid
         Left = 1
-        Height = 367
+        Height = 460
         Top = 1
-        Width = 904
+        Width = 1131
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -462,6 +463,12 @@ object FormRawatInap: TFormRawatInap
             FieldName = 'agama'
           end>
         DataSource = DataModuleRanap.DsRawatInap
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = 2696481
+        Font.Height = -18
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         PopupMenu = PopupMenu1
         TabOrder = 0
       end
@@ -469,8 +476,8 @@ object FormRawatInap: TFormRawatInap
   end
   object PopupMenu1: TPopupMenu
     Images = FormUtama.ImageList1
-    Left = 475
-    Top = 231
+    Left = 594
+    Top = 289
     object MenuItem1: TMenuItem
       Caption = 'ERM DOKTER'
       ImageIndex = 1

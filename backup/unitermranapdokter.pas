@@ -72,10 +72,9 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
-    Label9: TLabel;
-    MemoInstruksi: TMemo;
-    MemoEvaluasi: TMemo;
     MemoAsesmen: TMemo;
+    MemoEvaluasi: TMemo;
+    MemoInstruksi: TMemo;
     MemoPlan: TMemo;
     MemoSubjek: TMemo;
     MemoObjek: TMemo;
@@ -87,8 +86,6 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
     PanelAtas: TPanel;

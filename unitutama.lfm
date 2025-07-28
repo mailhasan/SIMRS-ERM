@@ -8,21 +8,22 @@ object FormUtama: TFormUtama
   ClientHeight = 552
   ClientWidth = 835
   Color = 16053233
+  DesignTimePPI = 120
   OnActivate = FormActivate
   LCLVersion = '3.6.0.0'
   WindowState = wsFullScreen
   object PanelAtas: TPanel
     Left = 0
-    Height = 34
+    Height = 42
     Top = 0
     Width = 835
     Align = alTop
-    ClientHeight = 34
+    ClientHeight = 42
     ClientWidth = 835
     Color = 2302240
     Font.CharSet = ANSI_CHARSET
     Font.Color = 2696481
-    Font.Height = -16
+    Font.Height = -20
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
@@ -32,17 +33,17 @@ object FormUtama: TFormUtama
     TabOrder = 0
     object PanelKiriAtas: TPanel
       Left = 1
-      Height = 32
+      Height = 40
       Top = 1
-      Width = 170
+      Width = 212
       Align = alLeft
       Caption = 'SIMRS / ERM'
-      ClientHeight = 32
-      ClientWidth = 170
+      ClientHeight = 40
+      ClientWidth = 212
       Color = 2302240
       Font.CharSet = ANSI_CHARSET
       Font.Color = clWhite
-      Font.Height = -16
+      Font.Height = -17
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
@@ -52,9 +53,9 @@ object FormUtama: TFormUtama
       TabOrder = 0
       object Panel1: TPanel
         Left = 1
-        Height = 30
+        Height = 38
         Top = 1
-        Width = 34
+        Width = 42
         Align = alLeft
         Caption = '----'
         ParentBackground = False
@@ -65,26 +66,26 @@ object FormUtama: TFormUtama
   end
   object PanelKiri: TPanel
     Left = 0
-    Height = 495
-    Top = 34
-    Width = 170
+    Height = 482
+    Top = 42
+    Width = 212
     Align = alLeft
-    ClientHeight = 495
-    ClientWidth = 170
+    ClientHeight = 482
+    ClientWidth = 212
     Color = 3879725
     ParentBackground = False
     ParentColor = False
     TabOrder = 1
     object BitBtnRawatInap: TBitBtn
       Left = 1
-      Height = 30
+      Height = 38
       Top = 1
-      Width = 168
+      Width = 210
       Align = alTop
       Caption = 'RAWAT INAP'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
-      Font.Height = -13
+      Font.Height = -16
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
@@ -97,10 +98,10 @@ object FormUtama: TFormUtama
     end
   end
   object PanelTengah: TPanel
-    Left = 170
-    Height = 495
-    Top = 34
-    Width = 665
+    Left = 212
+    Height = 482
+    Top = 42
+    Width = 623
     Align = alClient
     Color = clWhite
     ParentBackground = False
@@ -109,30 +110,30 @@ object FormUtama: TFormUtama
   end
   object StatusBarSIMRSERM: TStatusBar
     Left = 0
-    Height = 23
-    Top = 529
+    Height = 28
+    Top = 524
     Width = 835
     Color = 14737632
     Panels = <    
       item
         Text = 'Username'
-        Width = 100
+        Width = 125
       end    
       item
-        Width = 150
+        Width = 188
       end    
       item
-        Width = 200
+        Width = 250
       end    
       item
-        Width = 200
+        Width = 250
       end>
     ParentColor = False
     SimplePanel = False
   end
   object ImageList1: TImageList
-    Left = 600
-    Top = 109
+    Left = 750
+    Top = 136
     Bitmap = {
       4C7A070000001000000010000000520600000000000078DAED967B5054551CC7
       77C149331D1FE388684A3E472325344761655D17A469CA2693C5051C011FE34C

@@ -231,11 +231,12 @@ if not DataModuleRanap.ZQRRawatInap.IsEmpty then
       noRawat := DataModuleRanap.ZQRRawatInap.FieldByName('no_rawat').AsString;
       //ShowMessage('Data dari grid: ' + DataYangDipilih);
     end;
-with FormERMRanapDokter do
-begin
-EditNoRawat.Text:= noRawat;
-ShowModal;
-///FormERMRanapDokter.ShowModal;
+  with FormERMRanapDokter do
+  begin
+  EditNoRawat.Text:= noRawat;
+  ShowModal;
+  ///FormERMRanapDokter.ShowModal;
+  end;
 end;
 
 procedure TFormRawatInap.MenuItem2Click(Sender: TObject);

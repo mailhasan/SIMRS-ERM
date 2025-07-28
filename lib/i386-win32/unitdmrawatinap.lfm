@@ -1,0 +1,91 @@
+object DataModuleRanap: TDataModuleRanap
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 569
+  HorizontalOffset = 397
+  VerticalOffset = 197
+  Width = 760
+  object ZQRRawatInap: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    reg_periksa.no_rawat,'
+      '    pasien.no_rkm_medis,'
+      '    pasien.nm_pasien,'
+      '    pasien.alamat,'
+      '    reg_periksa.p_jawab,'
+      '    reg_periksa.hubunganpj,'
+      '    penjab.png_jawab,'
+      '    kamar.kd_kamar,'
+      '    kamar.trf_kamar,'
+      '    bangsal.nm_bangsal,'
+      '    kamar_inap.diagnosa_awal,'
+      '    kamar_inap.diagnosa_akhir,'
+      '    kamar_inap.tgl_masuk,'
+      '    kamar_inap.jam_masuk,'
+      '    kamar_inap.tgl_keluar,'
+      '    kamar_inap.jam_keluar,'
+      '    kamar_inap.ttl_biaya,'
+      '    kamar_inap.stts_pulang,'
+      '    kamar_inap.lama,'
+      '    dokter.nm_dokter,'
+      '    reg_periksa.status_bayar,'
+      '    pasien.agama'
+      'FROM '
+      '    kamar_inap'
+      'JOIN reg_periksa ON kamar_inap.no_rawat = reg_periksa.no_rawat'
+      'JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis'
+      'JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj'
+      'JOIN kamar ON kamar_inap.kd_kamar = kamar.kd_kamar'
+      'JOIN bangsal ON kamar.kd_bangsal = bangsal.kd_bangsal'
+      'JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter;'
+    )
+    Params = <>
+    Left = 67
+    Top = 44
+  end
+  object DsRawatInap: TDataSource
+    DataSet = ZQRRawatInap
+    Left = 138
+    Top = 63
+  end
+  object ZQueryBangsal: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from bangsal'
+    )
+    Params = <>
+    Left = 71
+    Top = 126
+  end
+  object DataSourceBangsal: TDataSource
+    DataSet = ZQueryBangsal
+    Left = 147
+    Top = 152
+  end
+  object ZQueryPemeriksaanRanap: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT pr.no_rawat, pr.tgl_perawatan, pr.jam_rawat,'
+      '       p.nm_pasien,'
+      '       p.no_rkm_medis,'
+      '       pr.suhu_tubuh, pr.tensi, pr.nadi, pr.respirasi, pr.berat,'
+      '       pr.SpO2, pr.GCS, pr.kesadaran,'
+      '       pr.`keluhan`, pr.`pemeriksaan`, pr.`penilaian`, pr.`rtl`plan, pr.`instruksi`,'
+      '       pr.`nip`, pg.nama AS nama_petugas, pg.`jbtn`'
+      'FROM pemeriksaan_ranap pr'
+      'JOIN reg_periksa rp ON pr.no_rawat = rp.no_rawat'
+      'JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis'
+      'LEFT JOIN pegawai pg ON pr.nip = pg.nik'
+      'ORDER BY pr.tgl_perawatan DESC, pr.jam_rawat DESC'
+    )
+    Params = <>
+    Left = 77
+    Top = 204
+  end
+  object DataSourcePemeriksaanRanap: TDataSource
+    DataSet = ZQueryPemeriksaanRanap
+    Left = 164
+    Top = 220
+  end
+end

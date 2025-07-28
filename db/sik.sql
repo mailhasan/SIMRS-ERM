@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.5.1 (32 bit)
-MySQL - 10.6.22-MariaDB-0ubuntu0.22.04.1 : Database - sikDrSalim1
+MySQL - 10.6.22-MariaDB-0ubuntu0.22.04.1 : Database - sik
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 10.6.22-MariaDB-0ubuntu0.22.04.1 : Database - sikDrSalim1
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`sikDrSalim1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`sik` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
-USE `sikDrSalim1`;
+USE `sik`;
 
 /*Table structure for table `bayar_operasi_dokter_anak` */
 

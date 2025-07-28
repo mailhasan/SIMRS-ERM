@@ -60,7 +60,11 @@ var
   i: Integer;
 begin
   for i := PanelTengah.ControlCount - 1 downto 0 do
-    PanelTengah.Controls[i].Free;
+  begin
+    // Jangan Free kalau kontrol yang mau dipakai lagi
+    if PanelTengah.Controls[i] <> FormRawatInap then
+      PanelTengah.Controls[i].Free;
+  end;
 end;
 
 procedure TFormUtama.FormActivate(Sender: TObject);

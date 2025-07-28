@@ -5,7 +5,7 @@ unit unitDmKoneksi;
 interface
 
 uses
-  Classes, SysUtils, ZConnection,IniFiles,Dialogs;
+  Classes, SysUtils, ZConnection, ZDataset,IniFiles,Dialogs;
 
 type
 
@@ -13,6 +13,7 @@ type
 
   TDataModuleKoneksi = class(TDataModule)
     ZConnectionSimrsERM: TZConnection;
+    ZQueryUser: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
     function LoadConfigDB: Boolean;
   private
