@@ -20,7 +20,7 @@ object FormUtama: TFormUtama
     Align = alTop
     ClientHeight = 42
     ClientWidth = 835
-    Color = 2302240
+    Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = 2696481
     Font.Height = -20
@@ -40,7 +40,7 @@ object FormUtama: TFormUtama
       Caption = 'SIMRS / ERM'
       ClientHeight = 40
       ClientWidth = 212
-      Color = 2302240
+      Color = 11834940
       Font.CharSet = ANSI_CHARSET
       Font.Color = clWhite
       Font.Height = -17
@@ -72,7 +72,7 @@ object FormUtama: TFormUtama
     Align = alLeft
     ClientHeight = 482
     ClientWidth = 212
-    Color = 3879725
+    Color = 15790320
     ParentBackground = False
     ParentColor = False
     TabOrder = 1

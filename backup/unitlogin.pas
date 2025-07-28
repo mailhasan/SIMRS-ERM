@@ -59,7 +59,6 @@ begin
              Application.CreateForm(TFormUtama, FormUtama);
              FormUtama.StatusBarSIMRSERM.Panels.Items[1].Text:= DataModuleKoneksi.ZQueryUser.FieldByName('id_user').AsString;
              FormUtama.StatusBarSIMRSERM.Panels.Items[2].Text:= FormatDateTime('dd-MM-yyyy',Now);
-             FormUtama.StatusBarSIMRSERM.Panels[3].Text:= GetLocalIP;
              FormUtama.ShowModal;
             end
          else

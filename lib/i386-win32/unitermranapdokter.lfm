@@ -19,7 +19,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
     Caption = 'ERM RAWAT INAP DOKTER'
     ClientHeight = 42
     ClientWidth = 1196
-    Color = 2302240
+    Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -20
@@ -37,7 +37,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Width = 92
       Align = alRight
       Caption = 'Keluar'
-      Color = 3487205
+      Color = 5987327
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
@@ -260,7 +260,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
           Width = 1186
           Align = alTop
           Caption = 'SOAPE / PEMERIKSAAN'
-          Color = 3879725
+          Color = 11834940
           Font.CharSet = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -16
@@ -437,7 +437,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             object Panel9: TPanel
               Left = 0
               Height = 0
-              Top = 464
+              Top = 505
               Width = 1174
               Align = alTop
               ParentBackground = False
@@ -986,7 +986,6 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Top = 320
               Width = 1174
               Align = alTop
-              Caption = 'Panel2'
               ClientHeight = 63
               ClientWidth = 1174
               ParentBackground = False

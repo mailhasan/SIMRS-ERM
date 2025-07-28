@@ -20,7 +20,7 @@ object FormRawatInap: TFormRawatInap
     Caption = 'DAFTAR PASIEN RAWAT INAP'
     ClientHeight = 32
     ClientWidth = 1135
-    Color = 2302240
+    Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -20
@@ -38,7 +38,7 @@ object FormRawatInap: TFormRawatInap
       Width = 92
       Align = alRight
       Caption = 'Keluar'
-      Color = 3487205
+      Color = 5987327
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
