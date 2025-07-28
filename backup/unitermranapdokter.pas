@@ -14,33 +14,33 @@ type
   { TFormERMRanapDokter }
 
   TFormERMRanapDokter = class(TForm)
+    BitBtnBaru: TBitBtn;
+    BitBtnDetailRiwayat: TBitBtn;
     BitBtnSimpan: TBitBtn;
     BitBtnSimpan1: TBitBtn;
     BitBtnSimpan2: TBitBtn;
-    BitBtnBaru: TBitBtn;
-    BitBtnDetailRiwayat: TBitBtn;
     ComboBoxKesadaran: TComboBox;
     DateTimePickerTglPemeriksaan: TDateTimePicker;
     DateTimePickerJamPemeriksaan: TDateTimePicker;
     DBGrid1: TDBGrid;
-    EditNIP: TEdit;
     EditAlergi: TEdit;
+    EditBerat: TEdit;
+    EditGcs: TEdit;
+    EditNadi: TEdit;
+    EditNIP: TEdit;
     EditJABATAN: TEdit;
     EditPELAKSANAN: TEdit;
-    EditSuhu: TEdit;
-    EditTensi: TEdit;
-    EditBerat: TEdit;
-    EditTb: TEdit;
-    EditRR: TEdit;
-    EditNadi: TEdit;
-    EditSp02: TEdit;
-    EditGcs: TEdit;
     EditDIAGNOSA: TEdit;
     EditRANAP: TEdit;
     EditNoRawat: TEdit;
     EditNORM: TEdit;
     EditNAMA: TEdit;
     EditJENISBAYAR: TEdit;
+    EditRR: TEdit;
+    EditSp02: TEdit;
+    EditSuhu: TEdit;
+    EditTb: TEdit;
+    EditTensi: TEdit;
     EditTglJamMasuk: TEdit;
     GroupBox1: TGroupBox;
     GroupBox10: TGroupBox;
@@ -65,7 +65,6 @@ type
     GroupBox8: TGroupBox;
     GroupBox9: TGroupBox;
     Label1: TLabel;
-    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -109,6 +108,7 @@ type
       shared_handle: Pointer);
     procedure GroupBox1Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
+    procedure Panel7Click(Sender: TObject);
   private
    function ValidasiForm: Boolean;
   public
@@ -185,6 +185,11 @@ end;
 procedure TFormERMRanapDokter.Panel3Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFormERMRanapDokter.Panel7Click(Sender: TObject);
+begin
+
 end;
 
 procedure TFormERMRanapDokter.Chromium1AcceleratedPaint(Sender: TObject;
