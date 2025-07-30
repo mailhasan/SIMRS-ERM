@@ -1,7 +1,7 @@
 object FormUtama: TFormUtama
-  Left = 457
+  Left = 451
   Height = 552
-  Top = 208
+  Top = 197
   Width = 835
   Align = alClient
   Caption = 'Form Utama'
@@ -9,6 +9,7 @@ object FormUtama: TFormUtama
   ClientWidth = 835
   Color = 16053233
   OnActivate = FormActivate
+  OnShow = FormShow
   LCLVersion = '3.6.0.0'
   WindowState = wsFullScreen
   object PanelAtas: TPanel
@@ -19,7 +20,7 @@ object FormUtama: TFormUtama
     Align = alTop
     ClientHeight = 34
     ClientWidth = 835
-    Color = 2302240
+    Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = 2696481
     Font.Height = -16
@@ -39,10 +40,10 @@ object FormUtama: TFormUtama
       Caption = 'SIMRS / ERM'
       ClientHeight = 32
       ClientWidth = 170
-      Color = 2302240
+      Color = 11834940
       Font.CharSet = ANSI_CHARSET
       Font.Color = clWhite
-      Font.Height = -16
+      Font.Height = -14
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
@@ -71,7 +72,7 @@ object FormUtama: TFormUtama
     Align = alLeft
     ClientHeight = 495
     ClientWidth = 170
-    Color = 3879725
+    Color = 15790320
     ParentBackground = False
     ParentColor = False
     TabOrder = 1

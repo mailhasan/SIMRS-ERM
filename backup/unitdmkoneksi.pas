@@ -13,6 +13,7 @@ type
 
   TDataModuleKoneksi = class(TDataModule)
     ZConnectionSimrsERM: TZConnection;
+    ZQueryPegawai: TZQuery;
     ZQueryUser: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
     function LoadConfigDB: Boolean;

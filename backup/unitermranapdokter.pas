@@ -103,6 +103,7 @@ type
       const browser: ICefBrowser; type_: TCefPaintElementType;
       dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
       shared_handle: Pointer);
+    procedure FormShow(Sender: TObject);
     procedure GroupBox1Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
@@ -193,6 +194,11 @@ procedure TFormERMRanapDokter.Chromium1AcceleratedPaint(Sender: TObject;
   const browser: ICefBrowser; type_: TCefPaintElementType;
   dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
   shared_handle: Pointer);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.FormShow(Sender: TObject);
 begin
 
 end;

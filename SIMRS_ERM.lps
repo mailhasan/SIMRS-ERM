@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="49" Y="25"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="169"/>
       </Unit>
       <Unit>
         <Filename Value="unitlogin.pas"/>
@@ -19,10 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="31"/>
-        <CursorPos X="18" Y="47"/>
-        <UsageCount Value="159"/>
+        <CursorPos X="65" Y="60"/>
+        <UsageCount Value="169"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,10 +31,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="46"/>
-        <CursorPos X="51" Y="66"/>
-        <UsageCount Value="159"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="50"/>
+        <CursorPos X="72" Y="83"/>
+        <UsageCount Value="169"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmkoneksi.pas"/>
@@ -45,10 +45,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="42"/>
-        <CursorPos X="88" Y="64"/>
-        <UsageCount Value="156"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="19"/>
+        <UsageCount Value="166"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitrawatinap.pas"/>
@@ -57,10 +58,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="182"/>
-        <CursorPos X="72" Y="208"/>
-        <UsageCount Value="148"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="208"/>
+        <CursorPos X="10" Y="225"/>
+        <UsageCount Value="158"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmrawatinap.pas"/>
@@ -68,9 +71,13 @@
         <ComponentName Value="DataModuleRanap"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="83" Y="366"/>
-        <UsageCount Value="145"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="205"/>
+        <CursorPos X="96" Y="235"/>
+        <UsageCount Value="155"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitkamar.pas"/>
@@ -82,7 +89,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="77" Y="68"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="129"/>
       </Unit>
       <Unit>
         <Filename Value="unitermranapdokter.pas"/>
@@ -91,17 +98,19 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="146"/>
-        <CursorPos X="57" Y="177"/>
-        <UsageCount Value="86"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="152"/>
+        <CursorPos X="6" Y="173"/>
+        <UsageCount Value="96"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Users\ADMIN\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZDataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="3" Y="84"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -109,17 +118,78 @@
         <UnitName Value="Sockets"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="56" Y="22"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Users\ADMIN\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcConnection.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="69" Y="23"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="14">
+      <Position>
+        <Filename Value="unitlogin.pas"/>
+        <Caret Line="50" Column="70" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="unitdmkoneksi.pas"/>
+        <Caret Line="54" Column="30" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="81" Column="34" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="45" Column="33" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="50" Column="21" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="32" Column="48" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="50" Column="42" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="93" Column="30" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="66" Column="97" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="65" Column="79" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="207" Column="49" TopLine="188"/>
+      </Position>
+      <Position>
+        <Filename Value="unitrawatinap.pas"/>
+        <Caret Line="208" Column="72" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="22" Column="57"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="173" Column="6" TopLine="152"/>
+      </Position>
+      <Position>
+        <Filename Value="unitdmrawatinap.pas"/>
+        <Caret Line="34" Column="33" TopLine="26"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

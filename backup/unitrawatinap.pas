@@ -222,7 +222,7 @@ end;
 
 procedure TFormRawatInap.MenuItem1Click(Sender: TObject);
 var
-  noRawat: String;
+  noRawat,noRm, byr : String;
 begin
 /// tampil form rawat inap
 Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);

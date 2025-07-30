@@ -18,7 +18,7 @@ object FormLogin: TFormLogin
     Width = 422
     Align = alTop
     Caption = 'Silahkan Login...!'
-    Color = 2302240
+    Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -16
@@ -101,7 +101,7 @@ object FormLogin: TFormLogin
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 422
-    Color = 14737632
+    Color = 15790320
     Font.Color = 14737632
     ParentBackground = False
     ParentColor = False

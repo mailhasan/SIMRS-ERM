@@ -24,11 +24,12 @@ type
     procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
   private
     procedure TampilkanFormDiPanel(AForm: TForm);
     procedure ClearPanel;
-
+    procedure TampilPegawai(const ANik: string);
   public
 
   end;
@@ -41,10 +42,36 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
-uses unitRawatInap;
+uses unitRawatInap,unitDmKoneksi,unitLogin;
 
 var
    SidebarVisible: Boolean = True;
+
+   /// procedure buat tampil data pegawai
+procedure TFormUtama.TampilPegawai(const ANik: string);
+begin
+ with DataModuleKoneksi do
+ begin
+  ZQueryPegawai.Close;
+  ZQueryPegawai.SQL.Clear;
+  ZQueryPegawai.SQL.Add('SELECT * FROM pegawai WHERE nik = :nik');
+  ZQueryPegawai.ParamByName('nik').AsString := ANik;
+  ZQueryPegawai.Open;
+ end;
+ // Jika data ditemukan
+  if not DataModuleKoneksi.ZQueryPegawai.IsEmpty then
+  begin
+    StatusBarSIMRSERM.Panels.Items[0].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
+    StatusBarSIMRSERM.Panels.Items[2].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('jbtn').AsString;
+    // ... tambah edit lain sesuai kolom tabel
+  end
+  else
+  begin
+    StatusBarSIMRSERM.Panels.Items[0].Text := '';
+    StatusBarSIMRSERM.Panels.Items[0].Text := '';
+    ShowMessage('Data pegawai tidak ditemukan.');
+  end;
+end;
 
 procedure TFormUtama.TampilkanFormDiPanel(AForm: TForm);
 begin
@@ -72,6 +99,11 @@ begin
   PanelKiriAtas.Width:=200;
   PanelKiri.Width := 200;     // Saat terbuka
   Panel1.Caption := '<<';  // Tanda tutup
+end;
+
+procedure TFormUtama.FormShow(Sender: TObject);
+begin
+ TampilPegawai(FormLogin.EditUsername.Text);
 end;
 
 procedure TFormUtama.Panel1Click(Sender: TObject);

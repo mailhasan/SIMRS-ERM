@@ -102,7 +102,7 @@ object FormLogin: TFormLogin
     Align = alBottom
     ClientHeight = 62
     ClientWidth = 528
-    Color = 14737632
+    Color = 15790320
     Font.Color = 14737632
     ParentBackground = False
     ParentColor = False

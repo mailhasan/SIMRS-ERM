@@ -31,4 +31,14 @@ object DataModuleKoneksi: TDataModuleKoneksi
     Left = 73
     Top = 135
   end
+  object ZQueryPegawai: TZQuery
+    Connection = ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'select * from pegawai'
+    )
+    Params = <>
+    Left = 68
+    Top = 218
+  end
 end
