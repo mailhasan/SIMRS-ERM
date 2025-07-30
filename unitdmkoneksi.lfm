@@ -1,16 +1,16 @@
 object DataModuleKoneksi: TDataModuleKoneksi
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 569
-  HorizontalOffset = 774
-  VerticalOffset = 212
-  Width = 554
-  PPI = 120
+  Height = 455
+  HorizontalOffset = 619
+  VerticalOffset = 170
+  Width = 443
   object ZConnectionSimrsERM: TZConnection
     ControlsCodePage = cCP_UTF8
     Properties.Strings = (
       'RawStringEncoding=DB_CP'
     )
+    Connected = True
     DisableSavepoints = False
     HostName = '192.168.29.12'
     Port = 3306
@@ -18,9 +18,9 @@ object DataModuleKoneksi: TDataModuleKoneksi
     User = 'admin'
     Password = '1FRQRmYwHqahlRsPgGdNL00g8qICXAQP8ZwFEu0fT3vlp1Xn5M'
     Protocol = 'mysql'
-    LibraryLocation = 'F:\proyek\klinik dokter esti\Klinik Full\dll\libmysql.dll'
-    Left = 80
-    Top = 50
+    LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmariadb.dll'
+    Left = 64
+    Top = 40
   end
   object ZQueryUser: TZQuery
     Connection = ZConnectionSimrsERM
@@ -28,7 +28,7 @@ object DataModuleKoneksi: TDataModuleKoneksi
       'SELECT AES_DECRYPT(id_user,"nur") as id_user, AES_DECRYPT(password,"windi") as password FROM user'
     )
     Params = <>
-    Left = 91
-    Top = 169
+    Left = 73
+    Top = 135
   end
 end

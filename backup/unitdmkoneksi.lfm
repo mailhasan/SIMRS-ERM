@@ -18,7 +18,7 @@ object DataModuleKoneksi: TDataModuleKoneksi
     User = 'admin'
     Password = '1FRQRmYwHqahlRsPgGdNL00g8qICXAQP8ZwFEu0fT3vlp1Xn5M'
     Protocol = 'mysql'
-    LibraryLocation = 'F:\proyek\SIMRS-ERM\dll\libmysql.dll'
+    LibraryLocation = 'F:\proyek\klinik dokter esti\Klinik Full\dll\libmysql.dll'
     Left = 80
     Top = 50
   end

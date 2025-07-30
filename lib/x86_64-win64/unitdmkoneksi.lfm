@@ -2,8 +2,8 @@ object DataModuleKoneksi: TDataModuleKoneksi
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 455
-  HorizontalOffset = 822
-  VerticalOffset = 219
+  HorizontalOffset = 619
+  VerticalOffset = 170
   Width = 443
   object ZConnectionSimrsERM: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -18,13 +18,12 @@ object DataModuleKoneksi: TDataModuleKoneksi
     User = 'admin'
     Password = '1FRQRmYwHqahlRsPgGdNL00g8qICXAQP8ZwFEu0fT3vlp1Xn5M'
     Protocol = 'mysql'
-    LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmysql.dll'
+    LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmariadb.dll'
     Left = 64
     Top = 40
   end
   object ZQueryUser: TZQuery
     Connection = ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT AES_DECRYPT(id_user,"nur") as id_user, AES_DECRYPT(password,"windi") as password FROM user'
     )
