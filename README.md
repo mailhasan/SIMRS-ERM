@@ -1,4 +1,5 @@
 Deskripsi Proyek
+
 Proyek open source ini bertujuan untuk melakukan redesain dan migrasi SIMRS Khanza, sebuah sistem informasi manajemen rumah sakit, dari platform Java ke Free Pascal/Lazarus.
 Fokus utama pengembangan adalah:
 
