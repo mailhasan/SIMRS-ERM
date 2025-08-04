@@ -123,10 +123,18 @@ object FormUtama: TFormUtama
         Width = 150
       end    
       item
+        Text = 'Nama'
         Width = 200
       end    
       item
         Width = 200
+      end    
+      item
+        Text = 'Jabatan'
+        Width = 50
+      end    
+      item
+        Width = 50
       end>
     ParentColor = False
     SimplePanel = False

@@ -31,7 +31,6 @@ type
     Label2: TLabel;
     Label3: TLabel;
     MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -70,7 +69,7 @@ implementation
 {$R *.lfm}
 
 { TFormRawatInap }
-uses unitdmrawatinap,unitKamar,unitERMRanapDokter;
+uses unitdmrawatinap,unitKamar,unitERMRanapDokter,unitUtama;
 
 procedure TFormRawatInap.TerimaKamar(const NamaKamar: string);
 begin
@@ -205,7 +204,7 @@ begin
     //AlternatingRowColor := $00F8F8F8; // Warna selang-seling baris
     TitleFont.Style := [fsBold];      // Judul kolom tebal
     TitleFont.Color:= clWhite;//$00232120;
-    FixedColor := $00232120;          // Warna header
+    FixedColor := $00B4963C;//$00232120;          // Warna header
     GridLineColor := clSilver;
 
     BorderStyle := bsSingle;
@@ -222,21 +221,41 @@ end;
 
 procedure TFormRawatInap.MenuItem1Click(Sender: TObject);
 var
-  noRawat,noRm, byr : String;
+  noRawat,tglMasuk, noRM,nm,CrByr,DgsAwal, ranap: String;
 begin
 /// tampil form rawat inap
 Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
 if not DataModuleRanap.ZQRRawatInap.IsEmpty then
     begin
       noRawat := DataModuleRanap.ZQRRawatInap.FieldByName('no_rawat').AsString;
+      tglMasuk:= DataModuleRanap.ZQRRawatInap.FieldByName('tgl_masuk').AsString + DataModuleRanap.ZQRRawatInap.FieldByName('jam_masuk').AsString;
+      noRM:= DataModuleRanap.ZQRRawatInap.FieldByName('no_rkm_medis').AsString;
+      nm:= DataModuleRanap.ZQRRawatInap.FieldByName('nm_pasien').AsString;
+      CrByr := DataModuleRanap.ZQRRawatInap.FieldByName('png_jawab').AsString;
+      DgsAwal := DataModuleRanap.ZQRRawatInap.FieldByName('diagnosa_awal').AsString;
+      ranap:= DataModuleRanap.ZQRRawatInap.FieldByName('nm_bangsal').AsString ;
+
       //ShowMessage('Data dari grid: ' + DataYangDipilih);
     end;
-  with FormERMRanapDokter do
-  begin
-  EditNoRawat.Text:= noRawat;
-  ShowModal;
-  ///FormERMRanapDokter.ShowModal;
-  end;
+    with FormERMRanapDokter do
+    begin
+    EditNoRawat.Text:= noRawat;
+    EditTglJamMasuk.Text:= tglMasuk;
+    EditNORM.Text:= noRM;
+    EditNAMA.Text:= nm;
+    EditJENISBAYAR.Text:= CrByr;
+    EditDIAGNOSA.Text:= DgsAwal;
+    EditRANAP.Text:= ranap;
+
+    /// tampil data pegawai
+    EditNAMA.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[3].Text;
+    EditNIP.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[1].Text;
+    EditJABATAN.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[5].Text;
+
+    baru;
+    ShowModal;
+    ///FormERMRanapDokter.ShowModal;
+    end;
 end;
 
 procedure TFormRawatInap.MenuItem2Click(Sender: TObject);

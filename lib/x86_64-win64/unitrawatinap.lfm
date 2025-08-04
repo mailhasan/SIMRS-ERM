@@ -478,15 +478,10 @@ object FormRawatInap: TFormRawatInap
     Left = 475
     Top = 231
     object MenuItem1: TMenuItem
-      Caption = 'ERM DOKTER'
+      Caption = 'ERM'
       ImageIndex = 1
       SubMenuImages = FormUtama.ImageList1
       OnClick = MenuItem1Click
-    end
-    object MenuItem2: TMenuItem
-      Caption = 'ERM PERAWAT'
-      ImageIndex = 1
-      OnClick = MenuItem2Click
     end
   end
 end

@@ -61,14 +61,16 @@ begin
  // Jika data ditemukan
   if not DataModuleKoneksi.ZQueryPegawai.IsEmpty then
   begin
-    StatusBarSIMRSERM.Panels.Items[0].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
-    StatusBarSIMRSERM.Panels.Items[2].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('jbtn').AsString;
+    StatusBarSIMRSERM.Panels.Items[1].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
+    StatusBarSIMRSERM.Panels.Items[3].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
+    StatusBarSIMRSERM.Panels.Items[5].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('jbtn').AsString;
     // ... tambah edit lain sesuai kolom tabel
   end
   else
   begin
     StatusBarSIMRSERM.Panels.Items[0].Text := '';
-    StatusBarSIMRSERM.Panels.Items[0].Text := '';
+    StatusBarSIMRSERM.Panels.Items[1].Text := '';
+    StatusBarSIMRSERM.Panels.Items[2].Text := '';
     ShowMessage('Data pegawai tidak ditemukan.');
   end;
 end;

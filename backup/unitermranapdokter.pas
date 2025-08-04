@@ -17,8 +17,9 @@ type
     BitBtnBaru: TBitBtn;
     BitBtnDetailRiwayat: TBitBtn;
     BitBtnSimpan: TBitBtn;
-    BitBtnSimpan1: TBitBtn;
-    BitBtnSimpan2: TBitBtn;
+    BitBtnUbah: TBitBtn;
+    BitBtnHapus: TBitBtn;
+    BitBtnCopy: TBitBtn;
     ComboBoxKesadaran: TComboBox;
     DateTimePickerTglPemeriksaan: TDateTimePicker;
     DateTimePickerJamPemeriksaan: TDateTimePicker;
@@ -83,7 +84,7 @@ type
     Panel10: TPanel;
     Panel11: TPanel;
     Panel2: TPanel;
-    Panel3: TPanel;
+    PanelKeluar: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
     Panel8: TPanel;
@@ -96,16 +97,33 @@ type
     TabSheet4: TTabSheet;
     procedure BitBtnBaruClick(Sender: TObject);
     procedure BitBtnDetailRiwayatClick(Sender: TObject);
-    procedure BitBtnSimpan1Click(Sender: TObject);
-    procedure BitBtnSimpan2Click(Sender: TObject);
+    procedure BitBtnUbahClick(Sender: TObject);
+    procedure BitBtnHapusClick(Sender: TObject);
     procedure BitBtnSimpanClick(Sender: TObject);
     procedure Chromium1AcceleratedPaint(Sender: TObject;
       const browser: ICefBrowser; type_: TCefPaintElementType;
       dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
       shared_handle: Pointer);
+    procedure ComboBoxKesadaranKeyPress(Sender: TObject; var Key: char);
+    procedure EditAlergiKeyPress(Sender: TObject; var Key: char);
+    procedure EditBeratKeyPress(Sender: TObject; var Key: char);
+    procedure EditGcsKeyPress(Sender: TObject; var Key: char);
+    procedure EditNadiKeyPress(Sender: TObject; var Key: char);
+    procedure EditRRKeyPress(Sender: TObject; var Key: char);
+    procedure EditSp02KeyPress(Sender: TObject; var Key: char);
+    procedure EditSuhuKeyPress(Sender: TObject; var Key: char);
+    procedure EditTbKeyPress(Sender: TObject; var Key: char);
+    procedure EditTensiKeyPress(Sender: TObject; var Key: char);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure GroupBox1Click(Sender: TObject);
-    procedure Panel3Click(Sender: TObject);
+    procedure MemoAsesmenKeyPress(Sender: TObject; var Key: char);
+    procedure MemoEvaluasiKeyPress(Sender: TObject; var Key: char);
+    procedure MemoInstruksiKeyPress(Sender: TObject; var Key: char);
+    procedure MemoObjekKeyPress(Sender: TObject; var Key: char);
+    procedure MemoPlanKeyPress(Sender: TObject; var Key: char);
+    procedure MemoSubjekKeyPress(Sender: TObject; var Key: char);
+    procedure PanelKeluarClick(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
   private
    function ValidasiForm: Boolean;
@@ -122,7 +140,7 @@ implementation
 {$R *.lfm}
 
 { TFormERMRanapDokter }
-uses unitdmrawatinap;
+uses unitdmrawatinap,LCLType;
 
 function TFormERMRanapDokter.ValidasiForm: Boolean;
 begin
@@ -139,8 +157,7 @@ procedure TFormERMRanapDokter.baru;
 begin
   // Clear Edit Fields
   EditAlergi.Clear;
-  EditJABATAN.Clear;
-  EditPELAKSANAN.Clear; EditNIP.Clear;
+  //EditJABATAN.Clear; EditPELAKSANAN.Clear; EditNIP.Clear;
   EditSuhu.Clear;
   EditTensi.Clear;
   EditBerat.Clear;
@@ -180,7 +197,7 @@ end;
 
 
 
-procedure TFormERMRanapDokter.Panel3Click(Sender: TObject);
+procedure TFormERMRanapDokter.PanelKeluarClick(Sender: TObject);
 begin
   Close;
 end;
@@ -198,8 +215,151 @@ begin
 
 end;
 
-procedure TFormERMRanapDokter.FormShow(Sender: TObject);
+procedure TFormERMRanapDokter.ComboBoxKesadaranKeyPress(Sender: TObject;
+  var Key: char);
 begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditSuhu.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditAlergiKeyPress(Sender: TObject; var Key: char
+  );
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxKesadaran.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditBeratKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditTb.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditGcsKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    BitBtnSimpan.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditNadiKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditSp02.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditRRKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditNadi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditSp02KeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditGcs.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditSuhuKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditTensi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditTbKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditRR.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditTensiKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditBerat.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    VK_ESCAPE:  // ESC keluar
+      Close;
+
+    VK_F1:      // F1 baru
+      BitBtnBaru.Click;
+
+    VK_F2:      // F2 simpan
+      BitBtnSimpan.Click;
+
+    VK_F3:      // F3 copy
+      BitBtnCopy.Click;
+
+    VK_F4:      // F4 ubah
+      BitBtnUbah.Click;
+
+    VK_F5:      // F5 hapus
+      BitBtnHapus.Click;
+  end;
+end;
+
+procedure TFormERMRanapDokter.FormShow(Sender: TObject);
+var
+  i: Integer;
+begin
+  DBGrid1.DataSource := DataModuleRanap.DataSourcePemeriksaanRanap;
+ // Gaya seperti tabel web modern
+  with DBGrid1 do
+  begin
+    Font.Name := 'Segoe UI';        // Font modern
+    Font.Size := 9;
+    Height := 24;                // Spasi antar baris
+    DefaultRowHeight := 24;
+
+    Options := Options + [
+      dgTitles,         // Tampilkan judul kolom
+      dgColLines,       // Garis antar kolom
+      dgRowLines,       // Garis antar baris
+      dgRowHighlight,   // Highlight baris saat mouse hover
+      dgColumnResize    // Boleh resize kolom
+    ] - [dgEditing];     // Nonaktifkan edit langsung di grid
+
+    //AlternatingRowColor := $00F8F8F8; // Warna selang-seling baris
+    TitleFont.Style := [fsBold];      // Judul kolom tebal
+    TitleFont.Color:= clWhite;//$00232120;
+    FixedColor := $00B4963C;//$00232120;          // Warna header
+    GridLineColor := clSilver;
+
+    BorderStyle := bsSingle;
+  end;
 
 end;
 
@@ -208,12 +368,70 @@ begin
 
 end;
 
+procedure TFormERMRanapDokter.MemoAsesmenKeyPress(Sender: TObject; var Key: char
+  );
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoPlan.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoEvaluasiKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditAlergi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoInstruksiKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoEvaluasi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoObjekKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoAsesmen.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoPlanKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoInstruksi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoSubjekKeyPress(Sender: TObject; var Key: char
+  );
+begin
+if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoObjek.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.BitBtnDetailRiwayatClick(Sender: TObject);
 begin
 
 end;
 
-procedure TFormERMRanapDokter.BitBtnSimpan1Click(Sender: TObject);
+procedure TFormERMRanapDokter.BitBtnUbahClick(Sender: TObject);
 begin
 if not ValidasiForm then Exit;
 
@@ -230,7 +448,7 @@ DataModuleRanap.UpdatePemeriksaanRanap(
 
 end;
 
-procedure TFormERMRanapDokter.BitBtnSimpan2Click(Sender: TObject);
+procedure TFormERMRanapDokter.BitBtnHapusClick(Sender: TObject);
 begin
 
 end;
@@ -250,13 +468,14 @@ begin
     EditNIP.Text
   );
 
-  ShowMessage('Data pemeriksaan berhasil disimpan.');
+  tampilDataPemeriksaan;
 end;
 
 procedure TFormERMRanapDokter.BitBtnBaruClick(Sender: TObject);
 begin
   /// panggil procedure
   baru;
+  tampilDataPemeriksaan;
 end;
 
 end.

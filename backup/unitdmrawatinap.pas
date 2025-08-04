@@ -20,7 +20,7 @@ type
     ZQueryPemeriksaanRanap: TZQuery;
     ZQueryBangsal: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
-    procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
+
   private
 
   public
@@ -45,6 +45,7 @@ type
   nip: string
   );
 
+  function IsPrimaryKeyExists(no_rawat, tgl_perawatan, jam_rawat: string): Boolean;
   end;
 
 
@@ -55,6 +56,24 @@ var
 implementation
 
 {$R *.lfm}
+
+/// pengujian primerykey
+{ Mengecek apakah PK sudah ada }
+function TDataModuleRanap.IsPrimaryKeyExists(no_rawat, tgl_perawatan, jam_rawat: string): Boolean;
+begin
+  ZQueryPemeriksaanRanap.Close;
+  ZQPemeriksaan.SQL.Text :=
+    'SELECT COUNT(*) AS cnt FROM pemeriksaan_ranap '+
+    'WHERE no_rawat=:no_rawat AND tgl_perawatan=:tgl AND jam_rawat=:jam';
+  ZQueryPemeriksaanRanap.ParamByName('no_rawat').AsString := no_rawat;
+  ZQueryPemeriksaanRanap.ParamByName('tgl').AsString := tgl_perawatan;
+  ZQueryPemeriksaanRanap.ParamByName('jam').AsString := jam_rawat;
+  ZQueryPemeriksaanRanap.Open;
+
+  Result := ZQueryPemeriksaanRanap.FieldByName('cnt').AsInteger > 0;
+end;
+
+
 
 /// procedure tidak boleh di hapus
 procedure TDataModuleRanap.DataModuleCreate(Sender: TObject);
@@ -109,7 +128,7 @@ begin
   ZQRRawatInap.Open;
 end;}
 
-
+/// cari data pasien
 procedure TDataModuleRanap.CariData(
   NoRM, NamaPasien, NamaDokter, KodeKamar, StatusPulang: string;
   TglMasukAwal, TglMasukAkhir, TglKeluarAwal, TglKeluarAkhir: TDate
@@ -193,7 +212,7 @@ begin
   end;
 end;
 
-
+/// filter berdasarkan tanggal
 procedure TDataModuleRanap.FilterBangsal(NamaBangsal: string);
 begin
   ZQueryBangsal.Close;
@@ -205,7 +224,7 @@ begin
   ZQueryBangsal.Open;
 end;
 
-/// pemeriksaaan
+/// pemeriksaaan ranap
 
 procedure TDataModuleRanap.LoadPemeriksaanRanap(no_rawat, no_rkm_medis: string; tgl_awal, tgl_akhir: TDate);
 begin
@@ -244,6 +263,12 @@ procedure TDataModuleRanap.InsertPemeriksaanRanap(
   nip: string
 );
 begin
+  if IsPrimaryKeyExists(no_rawat, tgl_perawatan, jam_rawat) then
+  begin
+    ShowMessage('Data sudah ada! (PK duplikat)');
+    Exit;
+  end;
+
   try
     if not DataModuleKoneksi.ZConnectionSimrsERM.Connected then
       DataModuleKoneksi.ZConnectionSimrsERM.Connect;
@@ -362,6 +387,8 @@ begin
   end;
 end;
 
+
+/// delete pemeriksaan ranap
 procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
 begin
   if MessageDlg('Apakah anda yakin ingin menghapus data pemeriksaan?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
