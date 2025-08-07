@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="49" Y="25"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="unitlogin.pas"/>
@@ -19,11 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="63" Y="71"/>
-        <UsageCount Value="190"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="unitutama.pas"/>
@@ -32,9 +31,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="15"/>
-        <UsageCount Value="190"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="114"/>
+        <CursorPos X="86" Y="131"/>
+        <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -45,11 +45,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="19"/>
-        <UsageCount Value="187"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="unitrawatinap.pas"/>
@@ -58,10 +56,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="234"/>
-        <CursorPos X="77" Y="262"/>
-        <UsageCount Value="179"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="213"/>
+        <CursorPos X="6" Y="239"/>
+        <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -71,10 +69,9 @@
         <ComponentName Value="DataModuleRanap"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="295"/>
-        <CursorPos X="36" Y="314"/>
-        <UsageCount Value="176"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="43" Y="20"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -88,7 +85,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="77" Y="68"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="188"/>
       </Unit>
       <Unit>
         <Filename Value="unitermranapdokter.pas"/>
@@ -98,10 +95,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="301"/>
-        <CursorPos X="13" Y="315"/>
-        <UsageCount Value="117"/>
+        <TopLine Value="722"/>
+        <CursorPos X="13" Y="749"/>
+        <UsageCount Value="155"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -110,7 +106,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="3" Y="84"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -118,136 +114,136 @@
         <UnitName Value="Sockets"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="56" Y="22"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Users\ADMIN\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcConnection.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="69" Y="23"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="252" Column="16" TopLine="235"/>
+        <Caret Line="728" Column="29" TopLine="713"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="248" Column="13" TopLine="236"/>
+        <Caret Line="727" Column="29" TopLine="712"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="265" Column="18" TopLine="237"/>
+        <Caret Line="726" Column="29" TopLine="711"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="261" Column="9" TopLine="238"/>
+        <Caret Line="729" Column="22" TopLine="712"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="288" Column="18" TopLine="277"/>
+        <Caret Line="731" Column="22" TopLine="714"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="270" Column="17" TopLine="264"/>
+        <Caret Line="730" Column="22" TopLine="713"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="267" Column="15" TopLine="261"/>
+        <Caret Line="729" Column="22" TopLine="712"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="221" Column="22" TopLine="215"/>
+        <Caret Line="728" Column="22" TopLine="711"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="216" Column="13" TopLine="210"/>
+        <Caret Line="727" Column="22" TopLine="710"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="236" Column="14" TopLine="211"/>
+        <Caret Line="726" Column="22" TopLine="709"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="251" Column="14" TopLine="217"/>
+        <Caret Line="725" Column="22" TopLine="708"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="243" Column="34" TopLine="217"/>
+        <Caret Line="724" Column="22" TopLine="707"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="238" Column="21" TopLine="221"/>
+        <Caret Line="723" Column="22" TopLine="706"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="262" Column="11" TopLine="228"/>
+        <Caret Line="722" Column="22" TopLine="705"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="254" Column="13" TopLine="229"/>
+        <Caret Line="721" Column="22" TopLine="704"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="250" Column="9" TopLine="229"/>
+        <Caret Line="720" Column="22" TopLine="703"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="247" Column="3" TopLine="230"/>
+        <Caret Line="719" Column="22" TopLine="702"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="274" Column="12" TopLine="266"/>
+        <Caret Line="725" Column="89" TopLine="704"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="257" Column="63" TopLine="240"/>
+        <Caret Line="727" Column="89" TopLine="706"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="400" Column="14" TopLine="394"/>
+        <Caret Line="726" Column="89" TopLine="705"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="378" Column="3" TopLine="376"/>
+        <Caret Line="725" Column="89" TopLine="704"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="349" Column="3" TopLine="346"/>
+        <Caret Line="724" Column="89" TopLine="703"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="369" Column="3" TopLine="355"/>
+        <Caret Line="726" Column="89" TopLine="705"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="387" Column="3" TopLine="385"/>
+        <Caret Line="727" Column="57" TopLine="707"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="380" Column="65" TopLine="356"/>
+        <Caret Line="739" Column="61" TopLine="722"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="266" Column="3" TopLine="264"/>
+        <Caret Line="738" Column="61" TopLine="721"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="279" Column="69" TopLine="256"/>
+        <Caret Line="737" Column="61" TopLine="720"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="331" Column="7" TopLine="310"/>
+        <Caret Line="745" Column="33" TopLine="721"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="143" Column="29" TopLine="132"/>
+        <Caret Line="744" Column="33" TopLine="720"/>
       </Position>
       <Position>
         <Filename Value="unitermranapdokter.pas"/>
-        <Caret Line="330" Column="18" TopLine="298"/>
+        <Caret Line="752" Column="20" TopLine="721"/>
       </Position>
     </JumpHistory>
     <RunParams>

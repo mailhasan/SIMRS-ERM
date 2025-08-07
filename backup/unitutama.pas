@@ -62,7 +62,7 @@ begin
   if not DataModuleKoneksi.ZQueryPegawai.IsEmpty then
   begin
     StatusBarSIMRSERM.Panels.Items[1].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
-    StatusBarSIMRSERM.Panels.Items[3].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nik').AsString;
+    StatusBarSIMRSERM.Panels.Items[3].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('nama').AsString;
     StatusBarSIMRSERM.Panels.Items[5].Text := DataModuleKoneksi.ZQueryPegawai.FieldByName('jbtn').AsString;
     // ... tambah edit lain sesuai kolom tabel
   end

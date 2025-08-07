@@ -32,10 +32,11 @@ type
   procedure FilterBangsal(NamaBangsal: string);
   /// pemeriksaaan
   procedure LoadPemeriksaanRanap(no_rawat, no_rkm_medis: string; tgl_awal, tgl_akhir: TDate);
+
   procedure InsertPemeriksaanRanap(
   no_rawat, tgl_perawatan, jam_rawat,
   suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
-  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi, evaluasi,
   nip: string);
 
   procedure UpdatePemeriksaanRanap(
@@ -44,6 +45,8 @@ type
   keluhan, pemeriksaan, penilaian, rtl, instruksi,
   nip: string
   );
+
+  procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
 
   function IsPrimaryKeyExists(no_rawat, tgl_perawatan, jam_rawat: string): Boolean;
   end;
@@ -62,7 +65,7 @@ implementation
 function TDataModuleRanap.IsPrimaryKeyExists(no_rawat, tgl_perawatan, jam_rawat: string): Boolean;
 begin
   ZQueryPemeriksaanRanap.Close;
-  ZQPemeriksaan.SQL.Text :=
+  ZQueryPemeriksaanRanap.SQL.Text :=
     'SELECT COUNT(*) AS cnt FROM pemeriksaan_ranap '+
     'WHERE no_rawat=:no_rawat AND tgl_perawatan=:tgl AND jam_rawat=:jam';
   ZQueryPemeriksaanRanap.ParamByName('no_rawat').AsString := no_rawat;
@@ -236,7 +239,7 @@ begin
     SQL.Add('p.nm_pasien, p.no_rkm_medis,');
     SQL.Add('pr.suhu_tubuh, pr.tensi, pr.nadi, pr.respirasi, pr.berat,');
     SQL.Add('pr.SpO2, pr.GCS, pr.kesadaran,');
-    SQL.Add('pr.keluhan, pr.pemeriksaan, pr.penilaian, pr.rtl AS plan, pr.instruksi,');
+    SQL.Add('pr.keluhan, pr.pemeriksaan, pr.penilaian, pr.rtl AS plan, pr.instruksi,pr.evaluasi,');
     SQL.Add('pr.nip, pg.nama AS nama_petugas, pg.`jbtn`');
     SQL.Add('FROM pemeriksaan_ranap pr');
     SQL.Add('JOIN reg_periksa rp ON pr.no_rawat = rp.no_rawat');
@@ -259,7 +262,7 @@ end;
 procedure TDataModuleRanap.InsertPemeriksaanRanap(
   no_rawat, tgl_perawatan, jam_rawat,
   suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
-  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi, evaluasi,
   nip: string
 );
 begin
@@ -281,11 +284,11 @@ begin
     SQL.Add('INSERT INTO pemeriksaan_ranap (');
     SQL.Add('no_rawat, tgl_perawatan, jam_rawat,');
     SQL.Add('suhu_tubuh, tensi, nadi, respirasi, berat,');
-    SQL.Add('SpO2, GCS, kesadaran, keluhan, pemeriksaan, penilaian, rtl, instruksi, nip)');
+    SQL.Add('SpO2, GCS, kesadaran, keluhan, pemeriksaan, penilaian, rtl, instruksi,evaluasi, nip)');
     SQL.Add('VALUES (');
     SQL.Add(':no_rawat, :tgl_perawatan, :jam_rawat,');
     SQL.Add(':suhu, :tensi, :nadi, :respirasi, :berat,');
-    SQL.Add(':spo2, :gcs, :kesadaran, :keluhan, :pemeriksaan, :penilaian, :rtl, :instruksi, :nip)');
+    SQL.Add(':spo2, :gcs, :kesadaran, :keluhan, :pemeriksaan, :penilaian, :rtl, :instruksi, :evaluasi, :nip)');
 
     ParamByName('no_rawat').AsString := no_rawat;
     ParamByName('tgl_perawatan').AsString := tgl_perawatan;
@@ -303,6 +306,7 @@ begin
     ParamByName('penilaian').AsString := penilaian;
     ParamByName('rtl').AsString := rtl;
     ParamByName('instruksi').AsString := instruksi;
+    ParamByName('evaluasi').AsString := evaluasi;
     ParamByName('nip').AsString := nip;
     ExecSQL;
   end;
@@ -323,7 +327,7 @@ end;
 procedure TDataModuleRanap.UpdatePemeriksaanRanap(
   no_rawat, tgl_perawatan, jam_rawat,
   suhu, tensi, nadi, respirasi, berat, spo2, gcs, kesadaran,
-  keluhan, pemeriksaan, penilaian, rtl, instruksi,
+  keluhan, pemeriksaan, penilaian, rtl, instruksi,evaluasi,
   nip: string
 );
 begin
@@ -351,6 +355,7 @@ begin
       SQL.Add('penilaian = :penilaian,');
       SQL.Add('rtl = :rtl,');
       SQL.Add('instruksi = :instruksi,');
+      SQL.Add('evaluasi = :evaluasi,');
       SQL.Add('nip = :nip');
       SQL.Add('WHERE no_rawat = :no_rawat AND tgl_perawatan = :tgl_perawatan AND jam_rawat = :jam_rawat');
 
@@ -367,6 +372,7 @@ begin
       ParamByName('penilaian').AsString := penilaian;
       ParamByName('rtl').AsString := rtl;
       ParamByName('instruksi').AsString := instruksi;
+      ParamByName('evaluasi').AsString := evaluasi;
       ParamByName('nip').AsString := nip;
       ParamByName('no_rawat').AsString := no_rawat;
       ParamByName('tgl_perawatan').AsString := tgl_perawatan;
@@ -389,7 +395,7 @@ end;
 
 
 /// delete pemeriksaan ranap
-procedure DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
+procedure TDataModuleRanap.DeletePemeriksaanRanap(no_rawat, tgl_perawatan, jam_rawat: string);
 begin
   if MessageDlg('Apakah anda yakin ingin menghapus data pemeriksaan?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin

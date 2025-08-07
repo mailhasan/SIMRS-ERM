@@ -26,6 +26,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
+    procedure PanelTengahClick(Sender: TObject);
   private
     procedure TampilkanFormDiPanel(AForm: TForm);
     procedure ClearPanel;
@@ -122,6 +123,11 @@ begin
     Panel1.Caption := '<<';  // Tutup
     SidebarVisible := True;
   end;
+end;
+
+procedure TFormUtama.PanelTengahClick(Sender: TObject);
+begin
+
 end;
 
 procedure TFormUtama.BitBtnTombolMenuClick(Sender: TObject);
