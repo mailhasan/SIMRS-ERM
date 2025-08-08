@@ -6,14 +6,17 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Buttons, DBGrids, ActnList, ZDataset, DateTimePicker, uCEFChromium,
-  uCEFTypes, uCEFInterfaces, uCEFChromiumEvents, Types;
+  StdCtrls, Buttons, DBGrids, ActnList, ZDataset, DateTimePicker,
+  AnchorDockPanel, uCEFChromium, uCEFTypes, uCEFInterfaces, uCEFChromiumEvents,
+  Types;
 
 type
 
   { TFormERMRanapDokter }
 
   TFormERMRanapDokter = class(TForm)
+    ActionSimpanMsumum: TAction;
+    ActionBaruMsUmum: TAction;
     Action1KELUAR: TAction;
     ActionBARU: TAction;
     ActionSIMPAN: TAction;
@@ -22,54 +25,66 @@ type
     ActionHAPUS: TAction;
     ActionList1: TActionList;
     BitBtnBaru: TBitBtn;
+    BitBtnBaru1: TBitBtn;
+    BitBtnCopy1: TBitBtn;
     BitBtnDetailRiwayat: TBitBtn;
+    BitBtnDetailRiwayat1: TBitBtn;
+    BitBtnHapus1: TBitBtn;
     BitBtnSimpan: TBitBtn;
+    BitBtnSimpan1: TBitBtn;
     BitBtnUbah: TBitBtn;
     BitBtnHapus: TBitBtn;
     BitBtnCopy: TBitBtn;
-    ComboBox1: TComboBox;
-    ComboBox10: TComboBox;
-    ComboBox11: TComboBox;
-    ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
-    ComboBox4: TComboBox;
-    ComboBox5: TComboBox;
-    ComboBox6: TComboBox;
-    ComboBox7: TComboBox;
-    ComboBox8: TComboBox;
-    ComboBox9: TComboBox;
+    BitBtnUbah1: TBitBtn;
+    ComboBoxKepala: TComboBox;
+    ComboBoxEkstremitas: TComboBox;
+    ComboBox1Kulit: TComboBox;
+    ComboBoxMata: TComboBox;
+    ComboBoxGigi: TComboBox;
+    ComboBoxTht: TComboBox;
+    ComboBoxThoraks: TComboBox;
+    ComboBoxJantung: TComboBox;
+    ComboBoxParu: TComboBox;
+    ComboBoxAbdomen: TComboBox;
+    ComboBoxGerital: TComboBox;
     ComboBoxKeadaanUmum: TComboBox;
     ComboBoxKesadaranAwalMediUmum: TComboBox;
     ComboBoxKesadaran: TComboBox;
+    DateTimePickerJamPemeriksaan1: TDateTimePicker;
     DateTimePickerTglPemeriksaan: TDateTimePicker;
     DateTimePickerJamPemeriksaan: TDateTimePicker;
+    DateTimePickerTglPemeriksaan1: TDateTimePicker;
     DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     EditAlergi: TEdit;
     EditBerat: TEdit;
-    EditBerat1: TEdit;
+    EditBeratPk: TEdit;
     EditGcs: TEdit;
-    EditGcs1: TEdit;
+    EditGcsPk: TEdit;
+    EditJABATAN1: TEdit;
     EditNadi: TEdit;
-    EditNadi1: TEdit;
+    EditNadiPk: TEdit;
     EditNIP: TEdit;
     EditJABATAN: TEdit;
+    EditNIP1: TEdit;
     EditPELAKSANAN: TEdit;
     EditDIAGNOSA: TEdit;
+    EditPELAKSANAN1: TEdit;
     EditRANAP: TEdit;
     EditNoRawat: TEdit;
     EditNORM: TEdit;
     EditNAMA: TEdit;
     EditJENISBAYAR: TEdit;
     EditRR: TEdit;
-    EditRR1: TEdit;
+    EditRRpk: TEdit;
     EditSp02: TEdit;
-    EditSp3: TEdit;
+    EditSpPk: TEdit;
     EditSuhu: TEdit;
-    EditSuhu1: TEdit;
+    EditSuhuPk: TEdit;
     EditTb: TEdit;
-    EditTb1: TEdit;
+    EditTbPk: TEdit;
     EditTensi: TEdit;
-    EditTensi1: TEdit;
+    EditTensiPk: TEdit;
     EditTglJamMasuk: TEdit;
     GroupBox1: TGroupBox;
     GroupBox10: TGroupBox;
@@ -116,11 +131,23 @@ type
     GroupBox48: TGroupBox;
     GroupBox49: TGroupBox;
     GroupBox5: TGroupBox;
+    GroupBox50: TGroupBox;
+    GroupBox51: TGroupBox;
+    GroupBox52: TGroupBox;
+    GroupBox53: TGroupBox;
+    GroupBox54: TGroupBox;
+    GroupBox55: TGroupBox;
+    GroupBox56: TGroupBox;
+    GroupBox57: TGroupBox;
     GroupBox6: TGroupBox;
     GroupBox7: TGroupBox;
     GroupBox8: TGroupBox;
     GroupBox9: TGroupBox;
+    Image1: TImage;
     Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -129,6 +156,14 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    MemoStatusLokasi: TMemo;
+    MemoLabPk: TMemo;
+    MemoRadiologiPk: TMemo;
+    MemoPenunjangLainyaPk: TMemo;
+    MemoDiagnosaPk: TMemo;
+    MemoTatalaksanaPk: TMemo;
+    MemoEdukasiPk: TMemo;
+    MemoKETERANGAN: TMemo;
     MemoRwytAlergi: TMemo;
     MemoRwytPenggunaObat: TMemo;
     MemoRwytPenyakitDahulu: TMemo;
@@ -152,7 +187,10 @@ type
     Panel15: TPanel;
     Panel16: TPanel;
     Panel17: TPanel;
+    Panel18: TPanel;
+    Panel19: TPanel;
     Panel2: TPanel;
+    Panel20: TPanel;
     Panel3: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
@@ -163,23 +201,25 @@ type
     Panel9: TPanel;
     PanelAtas: TPanel;
     PanelTengah: TPanel;
-    TabSheet1: TTabSheet;
+    TabSheetPemeriksaan: TTabSheet;
     TabSheet10: TTabSheet;
     TabSheet11: TTabSheet;
     TabSheet12: TTabSheet;
     TabSheet13: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
+    TabSheetAwalMedisUmum: TTabSheet;
+    TabSheetObat: TTabSheet;
+    TabSheetResume: TTabSheet;
+    TabSheetRiwayat: TTabSheet;
     TabSheet6: TTabSheet;
     TabSheet7: TTabSheet;
     TabSheet8: TTabSheet;
     procedure Action1KELUARExecute(Sender: TObject);
     procedure ActionBARUExecute(Sender: TObject);
+    procedure ActionBaruMsUmumExecute(Sender: TObject);
     procedure ActionCOPYExecute(Sender: TObject);
     procedure ActionHAPUSExecute(Sender: TObject);
     procedure ActionSIMPANExecute(Sender: TObject);
+    procedure ActionSimpanMsumumExecute(Sender: TObject);
     procedure ActionUBAHExecute(Sender: TObject);
     procedure BitBtnBaruClick(Sender: TObject);
     procedure BitBtnDetailRiwayatClick(Sender: TObject);
@@ -216,11 +256,17 @@ type
     procedure Panel7Click(Sender: TObject);
     procedure TabSheet6ContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
+    procedure TabSheet8ContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
   private
    function ValidasiForm: Boolean;
+   function ValidasiAwalMedis:boolean;
+
   public
    procedure baru;
    procedure tampilDataPemeriksaan;
+
+   procedure baruPk;
   end;
 
 var
@@ -244,6 +290,19 @@ begin
   end;
   Result := True;
 end;
+
+function TFormERMRanapDokter.ValidasiAwalMedis: Boolean;
+begin
+  Result := False;
+  if (Trim(MemoKeluhanUtama.Text) = '') or (Trim(MemoRwytPenykaitSekarang.Text) = '') or (Trim(MemoRwyPenyakitKlrg.Text) = '') or
+     (Trim(MemoRwytPenyakitDahulu.Text) = '') or (Trim(MemoRwytPenggunaObat.Text) = '') or (Trim(MemoRwytAlergi.Text) = '') then
+  begin
+    ShowMessage('Tanda * Harap lengkapi data pemeriksaan terlebih dahulu!');
+    Exit;
+  end;
+  Result := True;
+end;
+
 
 procedure TFormERMRanapDokter.baru;
 begin
@@ -280,6 +339,61 @@ begin
   ComboBoxKesadaran.ItemIndex:=0;
 end;
 
+
+/// procedure baru pemeriksaan
+procedure TFormERMRanapDokter.baruPk;
+begin
+  /// riwayat kesehatan
+ MemoKeluhanUtama.Clear;
+ MemoRwytPenykaitSekarang.Clear;
+ MemoRwyPenyakitKlrg.Clear;
+ MemoRwytPenyakitDahulu.Clear;
+ MemoRwytPenggunaObat.Clear;
+ MemoRwytAlergi.Clear;
+
+  /// pemeriksaan fisik
+ ComboBoxKeadaanUmum.ItemIndex:= 0;
+ ComboBoxKesadaranAwalMediUmum.ItemIndex:= 0;
+ EditSuhuPk.Clear;
+ EditTensiPk.Clear;
+ EditBeratPk.Clear;
+ EditTbPk.Clear;
+ EditRRpk.Clear;
+ EditRR.Clear;
+ EditNadiPk.Clear;
+ EditSpPk.Clear;
+ EditGcsPk.Clear;
+
+ ComboBoxKepala.ItemIndex:=0;
+ ComboBoxMata.ItemIndex:=0;
+ ComboBoxGigi.ItemIndex:=0;
+ ComboBoxTht.ItemIndex:=0;
+ ComboBoxThoraks.ItemIndex:=0;
+ ComboBoxJantung.ItemIndex:=0;
+ ComboBoxParu.ItemIndex:=0;
+ ComboBoxAbdomen.ItemIndex:=0;
+ ComboBoxGerital.ItemIndex:=0;
+ ComboBoxEkstremitas.ItemIndex:=0;
+ ComboBox1Kulit.ItemIndex:=0;
+ MemoKETERANGAN.Clear;
+
+ /// status lokalis
+ MemoStatusLokasi.Clear;
+ ///diagnosa
+ MemoDiagnosaPk.Clear;
+
+ /// pemeriksaan penunjang
+ MemoLabPk.Clear;
+ MemoRadiologiPk.Clear;
+ MemoPenunjangLainyaPk.Clear;
+
+ /// tatalaksana
+ MemoTatalaksanaPk.Clear;
+ ///edukasi
+ MemoEdukasiPk.Clear;
+
+end;
+
 procedure TFormERMRanapDokter.tampilDataPemeriksaan;
 begin
  ///
@@ -300,6 +414,12 @@ begin
 end;
 
 procedure TFormERMRanapDokter.TabSheet6ContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.TabSheet8ContextPopup(Sender: TObject;
   MousePos: TPoint; var Handled: Boolean);
 begin
 
@@ -681,6 +801,12 @@ begin
   tampilDataPemeriksaan;
 end;
 
+procedure TFormERMRanapDokter.ActionBaruMsUmumExecute(Sender: TObject);
+begin
+ /// panggil procedure baru pk
+ baruPk;
+end;
+
 procedure TFormERMRanapDokter.Action1KELUARExecute(Sender: TObject);
 begin
   Close;
@@ -731,6 +857,12 @@ begin
   );
 
   tampilDataPemeriksaan;
+end;
+
+procedure TFormERMRanapDokter.ActionSimpanMsumumExecute(Sender: TObject);
+begin
+  if not ValidasiAwalMedis then Exit;
+
 end;
 
 procedure TFormERMRanapDokter.ActionUBAHExecute(Sender: TObject);

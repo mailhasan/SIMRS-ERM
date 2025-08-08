@@ -28,6 +28,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="AnchorDocking"/>
+      </Item>
+      <Item>
         <PackageName Value="CEF4Delphi_Lazarus"/>
       </Item>
       <Item>
