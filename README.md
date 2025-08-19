@@ -57,3 +57,11 @@ Email: mail.hasan06@gmail.com
 ✨ Mari bersama digitalisasi layanan kesehatan Indonesia dengan teknologi terbuka!
 
 <img width="1919" height="1070" alt="image" src="https://github.com/user-attachments/assets/f1f8444b-7ef7-440a-8a3a-d8c7df20625e" />
+
+Tools pengembangan yang digunakan (Lazarus 3.6 + Free Pascal).
+
+link download lazarus 3.6
+
+Windows https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/Lazarus%203.6/
+
+Linux https://sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20amd64%20DEB/Lazarus%203.6/
