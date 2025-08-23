@@ -28,6 +28,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="FrameViewer09"/>
+      </Item>
+      <Item>
         <PackageName Value="AnchorDocking"/>
       </Item>
       <Item>

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Buttons, DBGrids, ActnList, ZDataset, DateTimePicker,
+  StdCtrls, Buttons, DBGrids, ActnList, HtmlView, ZDataset, DateTimePicker,
   AnchorDockPanel, uCEFChromium, uCEFTypes, uCEFInterfaces, uCEFChromiumEvents,
   Types;
 
@@ -15,6 +15,8 @@ type
   { TFormERMRanapDokter }
 
   TFormERMRanapDokter = class(TForm)
+    ActionHapusMsumum: TAction;
+    ActionUbahMsumum: TAction;
     ActionSimpanMsumum: TAction;
     ActionBaruMsUmum: TAction;
     Action1KELUAR: TAction;
@@ -26,7 +28,6 @@ type
     ActionList1: TActionList;
     BitBtnBaru: TBitBtn;
     BitBtnBaru1: TBitBtn;
-    BitBtnCopy1: TBitBtn;
     BitBtnDetailRiwayat: TBitBtn;
     BitBtnHapus1: TBitBtn;
     BitBtnSimpan: TBitBtn;
@@ -35,6 +36,7 @@ type
     BitBtnHapus: TBitBtn;
     BitBtnCopy: TBitBtn;
     BitBtnUbah1: TBitBtn;
+    ComboBoxAnamnesis: TComboBox;
     ComboBoxKepala: TComboBox;
     ComboBoxEkstremitas: TComboBox;
     ComboBox1Kulit: TComboBox;
@@ -54,7 +56,8 @@ type
     DateTimePickerJamPemeriksaan: TDateTimePicker;
     DateTimePickerTglPemeriksaan1: TDateTimePicker;
     DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
+    DBGridAwalMedisUmum: TDBGrid;
+    EditHubungan: TEdit;
     EditAlergi: TEdit;
     EditBerat: TEdit;
     EditBeratPk: TEdit;
@@ -138,6 +141,8 @@ type
     GroupBox55: TGroupBox;
     GroupBox56: TGroupBox;
     GroupBox57: TGroupBox;
+    GroupBox58: TGroupBox;
+    GroupBox59: TGroupBox;
     GroupBox6: TGroupBox;
     GroupBox7: TGroupBox;
     GroupBox8: TGroupBox;
@@ -201,25 +206,27 @@ type
     PanelAtas: TPanel;
     PanelTengah: TPanel;
     TabSheetPemeriksaan: TTabSheet;
-    TabSheet10: TTabSheet;
-    TabSheet11: TTabSheet;
-    TabSheet12: TTabSheet;
-    TabSheet13: TTabSheet;
+    TabSheetPemeriksaanPenunjang: TTabSheet;
+    TabSheetDiagnosaAsesmen: TTabSheet;
+    TabSheetTatalaksana: TTabSheet;
+    TabSheetEdukasi: TTabSheet;
     TabSheetAwalMedisUmum: TTabSheet;
     TabSheetObat: TTabSheet;
     TabSheetResume: TTabSheet;
     TabSheetRiwayat: TTabSheet;
-    TabSheet6: TTabSheet;
-    TabSheet7: TTabSheet;
-    TabSheet8: TTabSheet;
+    TabSheetRiwayatKesehatan: TTabSheet;
+    TabSheetPemeriksaanFisik: TTabSheet;
+    TabSheetStatusLokasi: TTabSheet;
     procedure Action1KELUARExecute(Sender: TObject);
     procedure ActionBARUExecute(Sender: TObject);
     procedure ActionBaruMsUmumExecute(Sender: TObject);
     procedure ActionCOPYExecute(Sender: TObject);
     procedure ActionHAPUSExecute(Sender: TObject);
+    procedure ActionHapusMsumumExecute(Sender: TObject);
     procedure ActionSIMPANExecute(Sender: TObject);
     procedure ActionSimpanMsumumExecute(Sender: TObject);
     procedure ActionUBAHExecute(Sender: TObject);
+    procedure ActionUbahMsumumExecute(Sender: TObject);
     procedure BitBtnBaruClick(Sender: TObject);
     procedure BitBtnDetailRiwayatClick(Sender: TObject);
     procedure BitBtnUbahClick(Sender: TObject);
@@ -229,33 +236,88 @@ type
       const browser: ICefBrowser; type_: TCefPaintElementType;
       dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
       shared_handle: Pointer);
+    procedure ComboBox1KulitKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxAbdomenKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxEkstremitasKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxGeritalKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxGigiKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxJantungKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxKeadaanUmumKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxKepalaKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxKesadaranAwalMediUmumKeyPress(Sender: TObject;
+      var Key: char);
     procedure ComboBoxKesadaranKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxMataKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxParuKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxThoraksKeyPress(Sender: TObject; var Key: char);
+    procedure ComboBoxThtKeyPress(Sender: TObject; var Key: char);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure DBGridAwalMedisUmumCellClick(Column: TColumn);
+    procedure DBGridAwalMedisUmumKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure EditAlergiKeyPress(Sender: TObject; var Key: char);
     procedure EditBeratKeyPress(Sender: TObject; var Key: char);
+    procedure EditBeratPkKeyPress(Sender: TObject; var Key: char);
     procedure EditGcsKeyPress(Sender: TObject; var Key: char);
+    procedure EditGcsPkKeyPress(Sender: TObject; var Key: char);
     procedure EditNadiKeyPress(Sender: TObject; var Key: char);
+    procedure EditNadiPkKeyPress(Sender: TObject; var Key: char);
     procedure EditRRKeyPress(Sender: TObject; var Key: char);
+    procedure EditRRpkKeyPress(Sender: TObject; var Key: char);
     procedure EditSp02KeyPress(Sender: TObject; var Key: char);
+    procedure EditSpPkKeyPress(Sender: TObject; var Key: char);
     procedure EditSuhuKeyPress(Sender: TObject; var Key: char);
+    procedure EditSuhuPkKeyPress(Sender: TObject; var Key: char);
     procedure EditTbKeyPress(Sender: TObject; var Key: char);
+    procedure EditTbPkKeyPress(Sender: TObject; var Key: char);
     procedure EditTensiKeyPress(Sender: TObject; var Key: char);
+    procedure EditTensiPkKeyPress(Sender: TObject; var Key: char);
+    procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure GroupBox12KeyPress(Sender: TObject; var Key: char);
     procedure GroupBox1Click(Sender: TObject);
+    procedure MemoAsesmenKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MemoAsesmenKeyPress(Sender: TObject; var Key: char);
+    procedure MemoEvaluasiKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MemoEvaluasiKeyPress(Sender: TObject; var Key: char);
+    procedure MemoInstruksiKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MemoInstruksiKeyPress(Sender: TObject; var Key: char);
+    procedure MemoKeluhanUtamaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoObjekKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MemoObjekKeyPress(Sender: TObject; var Key: char);
+    procedure MemoPlanKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
     procedure MemoPlanKeyPress(Sender: TObject; var Key: char);
+    procedure MemoRwyPenyakitKlrgKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoRwyPenyakitKlrgKeyPress(Sender: TObject; var Key: char);
+    procedure MemoRwytAlergiKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoRwytAlergiKeyPress(Sender: TObject; var Key: char);
+    procedure MemoRwytPenggunaObatKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoRwytPenyakitDahuluKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoRwytPenykaitSekarangKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure MemoSubjekChange(Sender: TObject);
+    procedure MemoSubjekKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MemoSubjekKeyPress(Sender: TObject; var Key: char);
+    procedure MemoSubjekMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure PageControlAwalMedisUmumChange(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
-    procedure TabSheet6ContextPopup(Sender: TObject; MousePos: TPoint;
+    procedure TabSheetRiwayatKesehatanContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
-    procedure TabSheet8ContextPopup(Sender: TObject; MousePos: TPoint;
+    procedure TabSheetStatusLokasiContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
   private
    function ValidasiForm: Boolean;
@@ -264,6 +326,10 @@ type
   public
    procedure baru;
    procedure tampilDataPemeriksaan;
+   procedure tampilDataPemeriksaanAwalMedisUmum;
+
+   // procedure dari dbgrid pemeriksaan
+   procedure LoadDataToForm;
 
    procedure baruPk;
   end;
@@ -276,7 +342,8 @@ implementation
 {$R *.lfm}
 
 { TFormERMRanapDokter }
-uses unitdmrawatinap,DateUtils;
+uses unitdmrawatinap,DateUtils,LCLType;
+
 
 function TFormERMRanapDokter.ValidasiForm: Boolean;
 begin
@@ -342,6 +409,10 @@ end;
 /// procedure baru pemeriksaan
 procedure TFormERMRanapDokter.baruPk;
 begin
+ DateTimePickerTglPemeriksaan1.Date:= Now;
+ DateTimePickerJamPemeriksaan1.Time:=Now;
+ ComboBoxAnamnesis.ItemIndex:= 0;
+ EditHubungan.Clear;
   /// riwayat kesehatan
  MemoKeluhanUtama.Clear;
  MemoRwytPenykaitSekarang.Clear;
@@ -390,9 +461,11 @@ begin
  MemoTatalaksanaPk.Clear;
  ///edukasi
  MemoEdukasiPk.Clear;
-
+ /// procedure tampil awal medis
+ tampilDataPemeriksaanAwalMedisUmum;
 end;
 
+/// panggil procedure soape
 procedure TFormERMRanapDokter.tampilDataPemeriksaan;
 begin
  ///
@@ -400,7 +473,79 @@ begin
   // Misal DataSource1.DataSet := unit_moduleranap.zquerypemeriksaan;
 end;
 
+/// panggil procedure awal medis umum
+procedure TFormERMRanapDokter.tampilDataPemeriksaanAwalMedisUmum;
+begin
+ ///
+  DataModuleRanap.LoadPenilaianMedisRanap(EditNoRawat.Text, '', 0, 0);
+  // Misal DataSource1.DataSet := unit_moduleranap.zquerypemeriksaan;
+end;
 
+procedure TFormERMRanapDokter.LoadDataToForm;
+begin
+  try
+    with DataModuleRanap.ZQueryPenilaian_medis_ranap do
+    begin
+      if not IsEmpty then
+      begin
+        // Data dasar
+        EditNoRawat.Text := FieldByName('no_rawat').AsString;
+        DateTimePickerTglPemeriksaan1.Date := StrToDate(FieldByName('tanggal').AsString);
+        EditNIP1.Text := FieldByName('kd_dokter').AsString;
+
+        // Anamnesis dan identifikasi
+        ComboBoxAnamnesis.Text := FieldByName('anamnesis').AsString;
+        EditHubungan.Text := FieldByName('hubungan').AsString;
+        MemoKeluhanUtama.Text := FieldByName('keluhan_utama').AsString;
+        MemoRwytPenykaitSekarang.Text := FieldByName('rps').AsString;
+        MemoRwyPenyakitKlrg.Text := FieldByName('rpk').AsString;
+        MemoRwytPenyakitDahulu.Text := FieldByName('rpd').AsString;
+        MemoRwytPenggunaObat.Text := FieldByName('rpo').AsString;
+        MemoRwytAlergi.Text := FieldByName('alergi').AsString;
+
+        // Status umum
+        ComboBoxKeadaanUmum.Text := FieldByName('keadaan').AsString;
+        EditGcsPk.Text := FieldByName('gcs').AsString;
+        ComboBoxKesadaranAwalMediUmum.Text := FieldByName('kesadaran').AsString;
+        EditTensiPk.Text := FieldByName('td').AsString;
+        EditNadiPk.Text := FieldByName('nadi').AsString;
+        EditRRpk.Text := FieldByName('rr').AsString;
+        EditSuhuPk.Text := FieldByName('suhu').AsString;
+        EditSp02.Text := FieldByName('spo').AsString;
+        EditBeratPk.Text := FieldByName('bb').AsString;
+        EditTbPk.Text := FieldByName('tb').AsString;
+
+        // Pemeriksaan fisik
+        ComboBoxKepala.Text := FieldByName('kepala').AsString;
+        ComboBoxMata.Text := FieldByName('mata').AsString;
+        ComboBoxGigi.Text := FieldByName('gigi').AsString;
+        ComboBoxTht.Text := FieldByName('tht').AsString;
+        ComboBoxThoraks.Text := FieldByName('thoraks').AsString;
+        ComboBoxJantung.Text := FieldByName('jantung').AsString;
+        ComboBoxParu.Text := FieldByName('paru').AsString;
+        ComboBoxAbdomen.Text := FieldByName('abdomen').AsString;
+        ComboBoxEkstremitas.Text := FieldByName('ekstremitas').AsString;
+        ComboBoxGerital.Text := FieldByName('genital').AsString;
+        ComboBox1Kulit.Text := FieldByName('kulit').AsString;
+        MemoKETERANGAN.Text := FieldByName('ket_fisik').AsString;
+        MemoStatusLokasi.Text := FieldByName('ket_lokalis').AsString;
+
+        // Penunjang dan diagnosis
+        MemoLabPk.Text := FieldByName('lab').AsString;
+        MemoRadiologiPk.Text := FieldByName('rad').AsString;
+        MemoPenunjangLainyaPk.Text := FieldByName('penunjang').AsString;
+        MemoDiagnosaPk.Text := FieldByName('diagnosis').AsString;
+        MemoTatalaksanaPk.Text := FieldByName('tata').AsString;
+        MemoEdukasiPk.Text := FieldByName('edukasi').AsString;
+      end;
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Error loading data: ' + E.Message);
+    end;
+  end;
+end;
 
 procedure TFormERMRanapDokter.PanelKeluarClick(Sender: TObject);
 begin
@@ -412,13 +557,13 @@ begin
 
 end;
 
-procedure TFormERMRanapDokter.TabSheet6ContextPopup(Sender: TObject;
+procedure TFormERMRanapDokter.TabSheetRiwayatKesehatanContextPopup(Sender: TObject;
   MousePos: TPoint; var Handled: Boolean);
 begin
 
 end;
 
-procedure TFormERMRanapDokter.TabSheet8ContextPopup(Sender: TObject;
+procedure TFormERMRanapDokter.TabSheetStatusLokasiContextPopup(Sender: TObject;
   MousePos: TPoint; var Handled: Boolean);
 begin
 
@@ -432,6 +577,96 @@ begin
 
 end;
 
+procedure TFormERMRanapDokter.ComboBox1KulitKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    MemoKETERANGAN.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxAbdomenKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxGerital.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxEkstremitasKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBox1Kulit.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxGeritalKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxEkstremitas.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxGigiKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxTht.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxJantungKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxParu.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxKeadaanUmumKeyPress(Sender: TObject;
+  var Key: char);
+begin
+ if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxKesadaranAwalMediUmum.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxKepalaKeyPress(Sender: TObject;
+  var Key: char);
+begin
+if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxMata.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxKesadaranAwalMediUmumKeyPress(
+  Sender: TObject; var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditSuhuPk.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.ComboBoxKesadaranKeyPress(Sender: TObject;
   var Key: char);
 begin
@@ -439,6 +674,46 @@ begin
   begin
     Key := #0;
     EditSuhu.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxMataKeyPress(Sender: TObject;
+  var Key: char);
+begin
+ if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxGigi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxParuKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxAbdomen.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxThoraksKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxJantung.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.ComboBoxThtKeyPress(Sender: TObject; var Key: char
+  );
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxThoraks.SetFocus;
   end;
 end;
 
@@ -461,7 +736,7 @@ begin
    plan := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('plan').AsString;
    intruksi := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('instruksi').AsString;
    evaluasi := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('evaluasi').AsString;
-   alergi := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('nama_petugas').AsString;
+   alergi := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('alergi').AsString;
    kesadaran := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('kesadaran').AsString;
    suhu := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('suhu_tubuh').AsString;
    tensi := DataModuleRanap.ZQueryPemeriksaanRanap.FieldByName('tensi').AsString;
@@ -492,6 +767,18 @@ begin
    EditNadi.Text:= nadi;
    EditGcs.Text:= gcs;
   end;
+end;
+
+procedure TFormERMRanapDokter.DBGridAwalMedisUmumCellClick(Column: TColumn);
+begin
+  LoadDataToForm;
+end;
+
+procedure TFormERMRanapDokter.DBGridAwalMedisUmumKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+   if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then
+    LoadDataToForm;
 end;
 
 procedure TFormERMRanapDokter.EditAlergiKeyPress(Sender: TObject; var Key: char
@@ -537,12 +824,31 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.EditBeratPkKeyPress(Sender: TObject; var Key: char
+  );
+begin
+if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditTbPk.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.EditGcsKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then  // jika Enter ditekan
   begin
     Key := #0;
     BitBtnSimpan.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditGcsPkKeyPress(Sender: TObject; var Key: char);
+begin
+   if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    ComboBoxKepala.SetFocus;
   end;
 end;
 
@@ -555,6 +861,16 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.EditNadiPkKeyPress(Sender: TObject; var Key: char
+  );
+begin
+   if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditSpPk.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.EditRRKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then  // jika Enter ditekan
@@ -564,12 +880,30 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.EditRRpkKeyPress(Sender: TObject; var Key: char);
+begin
+   if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditNadiPk.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.EditSp02KeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then  // jika Enter ditekan
   begin
     Key := #0;
     EditGcs.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditSpPkKeyPress(Sender: TObject; var Key: char);
+begin
+if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditGcsPk.SetFocus;
   end;
 end;
 
@@ -595,12 +929,31 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.EditSuhuPkKeyPress(Sender: TObject; var Key: char
+  );
+begin
+  if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditTensiPk.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.EditTbKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then  // jika Enter ditekan
   begin
     Key := #0;
     EditRR.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.EditTbPkKeyPress(Sender: TObject; var Key: char);
+begin
+   if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditRRpk.SetFocus;
   end;
 end;
 
@@ -656,6 +1009,21 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.EditTensiPkKeyPress(Sender: TObject; var Key: char
+  );
+begin
+if Key = #13 then  // jika Enter ditekan
+  begin
+    Key := #0;
+    EditBeratPk.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.FormCreate(Sender: TObject);
+begin
+
+end;
+
 procedure TFormERMRanapDokter.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -664,11 +1032,38 @@ end;
 
 procedure TFormERMRanapDokter.FormShow(Sender: TObject);
 var
-  i: Integer;
+  i,i1: Integer;
 begin
   DBGrid1.DataSource := DataModuleRanap.DataSourcePemeriksaanRanap;
  // Gaya seperti tabel web modern
   with DBGrid1 do
+  begin
+    Font.Name := 'Segoe UI';        // Font modern
+    Font.Size := 9;
+    Height := 24;                // Spasi antar baris
+    DefaultRowHeight := 24;
+
+    Options := Options + [
+      dgTitles,         // Tampilkan judul kolom
+      dgColLines,       // Garis antar kolom
+      dgRowLines,       // Garis antar baris
+      dgRowHighlight,   // Highlight baris saat mouse hover
+      dgColumnResize    // Boleh resize kolom
+    ] - [dgEditing];     // Nonaktifkan edit langsung di grid
+
+    //AlternatingRowColor := $00F8F8F8; // Warna selang-seling baris
+    TitleFont.Style := [fsBold];      // Judul kolom tebal
+    TitleFont.Color:= clWhite;//$00232120;
+    FixedColor := $00B4963C;//$00232120;          // Warna header
+    GridLineColor := clSilver;
+
+    BorderStyle := bsSingle;
+  end;
+
+  /// grid pemeriksaan awal medis umum
+  DBGridAwalMedisUmum.DataSource := DataModuleRanap.DataSourcePenilaian_medis_ranap;
+ // Gaya seperti tabel web modern
+  with DBGridAwalMedisUmum do
   begin
     Font.Name := 'Segoe UI';        // Font modern
     Font.Size := 9;
@@ -705,6 +1100,24 @@ begin
 
 end;
 
+procedure TFormERMRanapDokter.MemoAsesmenKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoAsesmen.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoPlan.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.MemoAsesmenKeyPress(Sender: TObject; var Key: char
   );
 begin
@@ -712,6 +1125,24 @@ begin
   begin
     Key := #0;
     MemoPlan.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoEvaluasiKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoEvaluasi.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    EditAlergi.SetFocus;
   end;
 end;
 
@@ -725,6 +1156,24 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.MemoInstruksiKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoInstruksi.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoEvaluasi.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.MemoInstruksiKeyPress(Sender: TObject;
   var Key: char);
 begin
@@ -732,6 +1181,42 @@ begin
   begin
     Key := #0;
     MemoEvaluasi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoKeluhanUtamaKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+   if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoKeluhanUtama.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoRwytPenykaitSekarang.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoObjekKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoObjek.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoAsesmen.SetFocus;
   end;
 end;
 
@@ -744,12 +1229,156 @@ begin
   end;
 end;
 
+procedure TFormERMRanapDokter.MemoPlanKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoPlan.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoInstruksi.SetFocus;
+  end;
+end;
+
 procedure TFormERMRanapDokter.MemoPlanKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then  // jika Enter ditekan
   begin
     Key := #0;
     MemoInstruksi.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoRwyPenyakitKlrgKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoRwyPenyakitKlrg.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoRwytPenyakitDahulu.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoRwyPenyakitKlrgKeyPress(Sender: TObject;
+  var Key: char);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.MemoRwytAlergiKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  {if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoRwytAlergi.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    TabSheetPemeriksaanFisik.TabIndex;
+  end;}
+end;
+
+procedure TFormERMRanapDokter.MemoRwytAlergiKeyPress(Sender: TObject;
+  var Key: char);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.MemoRwytPenggunaObatKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoRwytPenggunaObat.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoRwytAlergi.SetFocus;
+  end;
+
+end;
+
+procedure TFormERMRanapDokter.MemoRwytPenyakitDahuluKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoRwytPenyakitDahulu.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoRwytPenggunaObat.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoRwytPenykaitSekarangKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoRwytPenykaitSekarang.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoRwyPenyakitKlrg.SetFocus;
+  end;
+end;
+
+procedure TFormERMRanapDokter.MemoSubjekChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.MemoSubjekKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) and (Shift = [ssShift]) then
+  begin
+    // SHIFT+Enter = baris baru
+    MemoSubjek.Lines.Add('');
+    Key := 0; // cegah bunyi beep
+  end
+  else if (Key = VK_RETURN) and (Shift = []) then
+  begin
+    // Enter biasa = pindah ke kontrol berikutnya
+    Key := 0;
+    //SelectNext(ActiveControl, True, True);
+    MemoObjek.SetFocus;
   end;
 end;
 
@@ -761,6 +1390,12 @@ if Key = #13 then  // jika Enter ditekan
     Key := #0;
     MemoObjek.SetFocus;
   end;
+end;
+
+procedure TFormERMRanapDokter.MemoSubjekMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+
 end;
 
 procedure TFormERMRanapDokter.PageControlAwalMedisUmumChange(Sender: TObject);
@@ -822,7 +1457,7 @@ begin
     EditSuhu.Text, EditTensi.Text, EditNadi.Text, EditRR.Text,
     EditBerat.Text, EditSp02.Text, EditGCS.Text, ComboBoxKesadaran.Text,
     MemoSubjek.Text, MemoObjek.Text, MemoAsesmen.Text,
-    MemoPlan.Text, MemoInstruksi.Text, MemoEvaluasi.Text,
+    MemoPlan.Text, MemoInstruksi.Text, MemoEvaluasi.Text,EditAlergi.Text,
     EditNIP.Text
   );
 
@@ -840,6 +1475,12 @@ begin
    tampilDataPemeriksaan;
 end;
 
+procedure TFormERMRanapDokter.ActionHapusMsumumExecute(Sender: TObject);
+begin
+  DataModuleRanap.DeletePenilaianMedisRanap(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date));
+  tampilDataPemeriksaanAwalMedisUmum;
+end;
+
 procedure TFormERMRanapDokter.ActionSIMPANExecute(Sender: TObject);
 begin
  if not ValidasiForm then Exit;
@@ -851,7 +1492,7 @@ begin
     EditSuhu.Text, EditTensi.Text, EditNadi.Text, EditRR.Text,
     EditBerat.Text, EditSp02.Text, EditGCS.Text, ComboBoxKesadaran.Text,
     MemoSubjek.Text, MemoObjek.Text, MemoAsesmen.Text,
-    MemoPlan.Text, MemoInstruksi.Text,MemoEvaluasi.Text,
+    MemoPlan.Text, MemoInstruksi.Text,MemoEvaluasi.Text,EditAlergi.Text,
     EditNIP.Text
   );
 
@@ -862,6 +1503,51 @@ procedure TFormERMRanapDokter.ActionSimpanMsumumExecute(Sender: TObject);
 begin
   if not ValidasiAwalMedis then Exit;
 
+  /// proses simpan berdasarkan dari dmrawatinap
+  DataModuleRanap.InsertPenilaianMedisRanap(
+  EditNoRawat.Text,                         // no_rawat
+  FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date),                     // tanggal
+  EditNIP1.Text,                          // kd_dokter
+  ComboBoxAnamnesis.Text,                  // anamnesis
+  EditHubungan.Text,                 // hubungan
+  MemoKeluhanUtama.Text,                   // keluhan_utama
+  MemoRwytPenykaitSekarang.Text,                            // rps
+  MemoRwyPenyakitKlrg.Text,                            // rpk
+  MemoRwytPenyakitDahulu.Text,                            // rpd
+  MemoRwytPenggunaObat.Text,                            // rpo
+  MemoRwytAlergi.Text,                      // alergi
+  ComboBoxKeadaanUmum.Text,                         // keadaan
+  EditGcsPk.Text,                             // gcs
+  ComboBoxKesadaranAwalMediUmum.Text,                  // kesadaran
+  EditTensiPk.Text,                         // td (tensi)
+  EditNadiPk.Text,                             // nadi
+  EditRRpk.Text,                             // rr
+  EditSuhuPk.Text,                           // suhu
+  EditSp02.Text,                             // spo
+  EditBeratPk.Text,                             // bb
+  EditTbPk.Text,                            // tb
+  ComboBoxKepala.Text,                     // kepala
+  ComboBoxMata.Text,                            // mata
+  ComboBoxGigi.Text,                            // gigi
+  ComboBoxTht.Text,                            // tht
+  ComboBoxThoraks.Text,                            // thoraks
+  ComboBoxJantung.Text,                            // jantung
+  ComboBoxParu.Text,                            // paru
+  ComboBoxAbdomen.Text,                            // abdomen
+  ComboBoxEkstremitas.Text,                            // ekstremitas
+  ComboBoxGerital.Text,                            // genital
+  ComboBox1Kulit.Text,                            // kulit
+  MemoKETERANGAN.Text,                            // ket_fisik
+  MemoStatusLokasi.Text,                            // ket_lokalis
+  MemoLabPk.Text,                            // lab
+  MemoRadiologiPk.Text,                            // rad
+  MemoPenunjangLainyaPk.Text,                            // penunjang
+  MemoDiagnosaPk.Text,                   // diagnosis
+  MemoTatalaksanaPk.Text,                            // tata
+  MemoEdukasiPk.Text                             // edukasi
+  );
+
+  tampilDataPemeriksaanAwalMedisUmum;
 end;
 
 procedure TFormERMRanapDokter.ActionUBAHExecute(Sender: TObject);
@@ -875,11 +1561,65 @@ begin
     EditSuhu.Text, EditTensi.Text, EditNadi.Text, EditRR.Text,
     EditBerat.Text, EditSp02.Text, EditGCS.Text, ComboBoxKesadaran.Text,
     MemoSubjek.Text, MemoObjek.Text, MemoAsesmen.Text,
-    MemoPlan.Text, MemoInstruksi.Text,MemoEvaluasi.Text,
+    MemoPlan.Text, MemoInstruksi.Text,MemoEvaluasi.Text,EditAlergi.Text,
     EditNIP.Text
   );
 
   tampilDataPemeriksaan;
+end;
+
+procedure TFormERMRanapDokter.ActionUbahMsumumExecute(Sender: TObject);
+begin
+  if not ValidasiAwalMedis then Exit;
+
+  if DataModuleRanap.IsPenilaianMedisExists(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date)) then
+  begin
+    DataModuleRanap.UpdatePenilaianMedisRanap(
+      EditNoRawat.Text,                         // no_rawat
+      FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date),                     // tanggal
+      EditNIP1.Text,                          // kd_dokter
+      ComboBoxAnamnesis.Text,                  // anamnesis
+      EditHubungan.Text,                 // hubungan
+      MemoKeluhanUtama.Text,                   // keluhan_utama
+      MemoRwytPenykaitSekarang.Text,                            // rps
+      MemoRwyPenyakitKlrg.Text,                            // rpk
+      MemoRwytPenyakitDahulu.Text,                            // rpd
+      MemoRwytPenggunaObat.Text,                            // rpo
+      MemoRwytAlergi.Text,                      // alergi
+      ComboBoxKeadaanUmum.Text,                         // keadaan
+      EditGcsPk.Text,                             // gcs
+      ComboBoxKesadaranAwalMediUmum.Text,                  // kesadaran
+      EditTensiPk.Text,                         // td (tensi)
+      EditNadiPk.Text,                             // nadi
+      EditRRpk.Text,                             // rr
+      EditSuhuPk.Text,                           // suhu
+      EditSp02.Text,                             // spo
+      EditBeratPk.Text,                             // bb
+      EditTbPk.Text,                            // tb
+      ComboBoxKepala.Text,                     // kepala
+      ComboBoxMata.Text,                            // mata
+      ComboBoxGigi.Text,                            // gigi
+      ComboBoxTht.Text,                            // tht
+      ComboBoxThoraks.Text,                            // thoraks
+      ComboBoxJantung.Text,                            // jantung
+      ComboBoxParu.Text,                            // paru
+      ComboBoxAbdomen.Text,                            // abdomen
+      ComboBoxEkstremitas.Text,                            // ekstremitas
+      ComboBoxGerital.Text,                            // genital
+      ComboBox1Kulit.Text,                            // kulit
+      MemoKETERANGAN.Text,                            // ket_fisik
+      MemoStatusLokasi.Text,                            // ket_lokalis
+      MemoLabPk.Text,                            // lab
+      MemoRadiologiPk.Text,                            // rad
+      MemoPenunjangLainyaPk.Text,                            // penunjang
+      MemoDiagnosaPk.Text,                   // diagnosis
+      MemoTatalaksanaPk.Text,                            // tata
+      MemoEdukasiPk.Text                             // edukasi
+    );
+    tampilDataPemeriksaanAwalMedisUmum;
+  end
+  else
+    ShowMessage('Data tidak ditemukan!');
 end;
 
 end.

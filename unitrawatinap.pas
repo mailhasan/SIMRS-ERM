@@ -248,11 +248,23 @@ if not DataModuleRanap.ZQRRawatInap.IsEmpty then
     EditRANAP.Text:= ranap;
 
     /// tampil data pegawai
+
+    /// tampil di pemeriksaan
     EditPELAKSANAN.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[3].Text;
     EditNIP.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[1].Text;
     EditJABATAN.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[5].Text;
 
+
+    /// tampil di awal medis
+    EditPELAKSANAN1.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[3].Text;
+    EditNIP1.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[1].Text;
+    EditJABATAN1.Text:= FormUtama.StatusBarSIMRSERM.Panels.Items[5].Text;
+
+
+    /// panggil procedure
     baru;
+    baruPk;
+
     ShowModal;
     ///FormERMRanapDokter.ShowModal;
     end;

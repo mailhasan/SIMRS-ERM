@@ -57,7 +57,7 @@ begin
     ZConnectionSimrsERM.Disconnect;
     ZConnectionSimrsERM.HostName := ini.ReadString('Database', 'Host', 'localhost');
     ZConnectionSimrsERM.LibraryLocation := ini.ReadString('Database', 'lib', 'libmysql.dll');
-    ZConnectionSimrsERM.Port     := ini.ReadInteger('Database', 'Port', 3306);
+    ZConnectionSimrsERM.Port     := ini.ReadInteger('Database', 'Port', 3307);
     ZConnectionSimrsERM.Database := ini.ReadString('Database', 'Nama', '');
     ZConnectionSimrsERM.User     := ini.ReadString('Database', 'User', '');
     ZConnectionSimrsERM.Password := ini.ReadString('Database', 'Pass', '');

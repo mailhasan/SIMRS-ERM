@@ -68,7 +68,7 @@ end;
 
 procedure TFormLogin.FormCreate(Sender: TObject);
 begin
-  EditUsername.Text:= 'D000004'; EditPassword.Text:= 'D000004';
+  EditUsername.Text:= 'DRFERDY'; EditPassword.Text:= 'DRFERDY123';
 end;
 
 end.
