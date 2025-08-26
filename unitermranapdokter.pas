@@ -51,7 +51,6 @@ type
     ComboBoxKeadaanUmum: TComboBox;
     ComboBoxKesadaranAwalMediUmum: TComboBox;
     ComboBoxKesadaran: TComboBox;
-    DateTimePickerJamPemeriksaan1: TDateTimePicker;
     DateTimePickerTglPemeriksaan: TDateTimePicker;
     DateTimePickerJamPemeriksaan: TDateTimePicker;
     DateTimePickerTglPemeriksaan1: TDateTimePicker;
@@ -409,8 +408,8 @@ end;
 /// procedure baru pemeriksaan
 procedure TFormERMRanapDokter.baruPk;
 begin
- DateTimePickerTglPemeriksaan1.Date:= Now;
- DateTimePickerJamPemeriksaan1.Time:=Now;
+ DateTimePickerTglPemeriksaan1.DateTime:= Now;
+ //DateTimePickerJamPemeriksaan1.Time:=Now;
  ComboBoxAnamnesis.ItemIndex:= 0;
  EditHubungan.Clear;
   /// riwayat kesehatan
@@ -490,7 +489,8 @@ begin
       begin
         // Data dasar
         EditNoRawat.Text := FieldByName('no_rawat').AsString;
-        DateTimePickerTglPemeriksaan1.Date := StrToDate(FieldByName('tanggal').AsString);
+        DateTimePickerTglPemeriksaan1.DateTime := FieldByName('tanggal').AsDateTime;
+        //DateTimePickerJamPemeriksaan1.Time := FieldByName('tanggal').AsDateTime;
         EditNIP1.Text := FieldByName('kd_dokter').AsString;
 
         // Anamnesis dan identifikasi
@@ -1477,7 +1477,7 @@ end;
 
 procedure TFormERMRanapDokter.ActionHapusMsumumExecute(Sender: TObject);
 begin
-  DataModuleRanap.DeletePenilaianMedisRanap(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date));
+  DataModuleRanap.DeletePenilaianMedisRanap(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd hh:mm:ss', DateTimePickerTglPemeriksaan1.DateTime));
   tampilDataPemeriksaanAwalMedisUmum;
 end;
 
@@ -1506,7 +1506,7 @@ begin
   /// proses simpan berdasarkan dari dmrawatinap
   DataModuleRanap.InsertPenilaianMedisRanap(
   EditNoRawat.Text,                         // no_rawat
-  FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date),                     // tanggal
+  FormatDateTime('yyyy-MM-dd hh:mm:ss', DateTimePickerTglPemeriksaan1.DateTime),                     // tanggal
   EditNIP1.Text,                          // kd_dokter
   ComboBoxAnamnesis.Text,                  // anamnesis
   EditHubungan.Text,                 // hubungan
@@ -1572,11 +1572,11 @@ procedure TFormERMRanapDokter.ActionUbahMsumumExecute(Sender: TObject);
 begin
   if not ValidasiAwalMedis then Exit;
 
-  if DataModuleRanap.IsPenilaianMedisExists(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date)) then
+  if DataModuleRanap.IsPenilaianMedisExists(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd hh:mm:ss', DateTimePickerTglPemeriksaan1.DateTime)) then
   begin
     DataModuleRanap.UpdatePenilaianMedisRanap(
       EditNoRawat.Text,                         // no_rawat
-      FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date),                     // tanggal
+      FormatDateTime('yyyy-MM-dd hh:mm:ss', DateTimePickerTglPemeriksaan1.DateTime),                     // tanggal
       EditNIP1.Text,                          // kd_dokter
       ComboBoxAnamnesis.Text,                  // anamnesis
       EditHubungan.Text,                 // hubungan

@@ -5156,8 +5156,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Height = 31
             Top = 1
             Width = 102
+            Action = ActionUbahMsumum
             Align = alLeft
-            Caption = 'UBAH'
             HotImageIndex = 3
             Images = FormUtama.ImageList1
             ImageIndex = 3
@@ -5169,8 +5169,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Height = 31
             Top = 1
             Width = 104
+            Action = ActionHapusMsumum
             Align = alLeft
-            Caption = 'HAPUS'
             HotImageIndex = 5
             Images = FormUtama.ImageList1
             ImageIndex = 5
@@ -5293,7 +5293,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Left = 0
                 Height = 27
                 Top = 0
-                Width = 81
+                Width = 155
                 CenturyFrom = 1941
                 MaxDate = 2958465
                 MinDate = -53780
@@ -5301,31 +5301,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 TrailingSeparator = False
                 TextForNullDate = 'NULL'
                 LeadingZeros = True
-                Align = alLeft
-                Kind = dtkDate
-                TimeFormat = tf24
-                TimeDisplay = tdHMS
-                DateMode = dmComboBox
-                Date = 45856
-                Time = 0.378050532410271
-                UseDefaultSeparators = True
-                HideDateTimeParts = []
-                MonthNames = 'Long'
-              end
-              object DateTimePickerJamPemeriksaan1: TDateTimePicker
-                Left = 81
-                Height = 27
-                Top = 0
-                Width = 74
-                CenturyFrom = 1941
-                MaxDate = 2958465
-                MinDate = -53780
-                TabOrder = 1
-                TrailingSeparator = False
-                TextForNullDate = 'NULL'
-                LeadingZeros = True
                 Align = alClient
-                Kind = dtkTime
+                Kind = dtkDateTime
                 TimeFormat = tf24
                 TimeDisplay = tdHMS
                 DateMode = dmComboBox
