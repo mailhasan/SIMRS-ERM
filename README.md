@@ -1,67 +1,78 @@
-SIMRS-ERM: Redesain & Migrasi SIMRS Khanza ke Free Pascal/Lazarus
+# SIMRS-ERM: Redesain & Migrasi SIMRS Khanza ke Free Pascal/Lazarus
 
-🚀 Proyek open-source untuk memodernisasi SIMRS Khanza (Sistem Informasi Manajemen Rumah Sakit) dengan migrasi dari Java ke Free Pascal/Lazarus, menjadikannya lebih ringan, modular, dan mudah dikembangkan.
+🚀 Proyek ini merupakan **redesign & migrasi** dari [SIMRS Khanza] (https://www.yaski.or.id/) 
+(Sistem Informasi Manajemen Rumah Sakit) yang awalnya dikembangkan dengan Java,  
+kemudian dimodernisasi menggunakan **Free Pascal/Lazarus** agar lebih ringan, modular,  
+dan mudah dikembangkan.
 
+---
 
-🔍 Latar Belakang
+## 🔍 Latar Belakang
+**SIMRS Khanza** adalah salah satu solusi EMR (Electronic Medical Record) populer di Indonesia,  
+namun menghadapi beberapa tantangan teknis:
+- Ketergantungan pada Java yang berat.
+- Antarmuka (UI/UX) kurang intuitif bagi tenaga kesehatan.
 
-SIMRS Khanza adalah solusi EMR (Electronic Medical Record) populer di Indonesia, namun memiliki tantangan teknis:
+**SIMRS-ERM** hadir sebagai turunan dari Khanza dengan tujuan:
+- Memperbarui dengan teknologi lebih efisien (Free Pascal/Lazarus).
+- Tetap kompatibel dengan database dan alur kerja versi asli.
 
-    Ketergantungan pada Java yang berat.
+---
 
-    Antarmuka (UI/UX) kurang intuitif bagi tenaga kesehatan.
+## 🎯 Tujuan Pengembangan
 
-Proyek ini bertujuan memperbarui Khanza dengan teknologi yang lebih efisien (Free Pascal/Lazarus), tetap mempertahankan kompatibilitas dengan database dan alur kerja versi asli.
+### 🛠️ Optimalisasi Performa
+- Aplikasi lebih ringan dan cepat di berbagai OS (Windows/Linux).
+- Penggunaan sumber daya (RAM/CPU) lebih efisien.
 
-🎯 Tujuan Pengembangan
+### ✨ Penyederhanaan UI/UX
+- Antarmuka responsif dan mudah dipelajari oleh dokter/perawat.
+- Desain berbasis kebutuhan pengguna (user research sederhana).
 
-    🛠️ Optimalisasi Performa
+### 🧩 Integrasi Modular
+- Struktur kode terorganisir untuk memudahkan pengembangan modul baru.
+- Dukungan plugin/ekstensi sesuai kebutuhan rumah sakit.
 
-        Aplikasi lebih ringan dan cepat di berbagai OS (Windows/Linux).
+### 📊 Kompatibilitas
+- Tetap mendukung database existing (MySQL).
+- Migrasi data mulus dari versi Khanza lama.
 
-        Penggunaan sumber daya (RAM/CPU) lebih efisien.
+---
 
-    ✨ Penyederhanaan UI/UX
+## 🤝 Kolaborasi & Kontribusi
+Proyek ini **gratis** dan terbuka untuk kontribusi:
 
-        Antarmuka yang responsif, intuitif, dan mudah dipelajari oleh dokter/perawat.
+- **Developer**: bantu migrasi kode, perbaiki bug, atau bangun modul baru.
+- **Tenaga Kesehatan**: beri masukan untuk UI/UX dan alur kerja.
 
-        Desain berbasis kebutuhan pengguna (user research sederhana).
+---
 
-    🧩 Integrasi Modular
+## 📜 Lisensi
+Proyek ini merupakan *pengembangan turunan* dari **SIMRS Khanza**  
+yang dirilis dengan **Aladdin Free Public License (AFPL)**.  
 
-        Struktur kode terorganisir untuk memudahkan pengembangan modul baru.
+Sesuai ketentuan AFPL:
+- Gratis digunakan, dimodifikasi, dan dibagikan ulang.
+- Tidak boleh diperjualbelikan atau diambil keuntungan komersial tanpa izin dari pembuat asli (**Khanza.Soft Media**).
+- Distribusi ulang harus tetap mencantumkan lisensi AFPL dan kredit kepada Khanza.Soft Media.
 
-        Dukungan plugin/ekstensi sesuai kebutuhan rumah sakit.
+👉 SIMRS-ERM hanya merupakan migrasi dan redesain teknis, semua hak cipta asli tetap milik **Khanza.Soft Media**.
 
-    📊 Kompatibilitas
+---
 
-        Tetap mendukung database existing (MySQL).
+## 📥 Tools Pengembangan
+- **Lazarus 3.6 + Free Pascal**  
 
-        Migrasi data mulus dari versi Khanza lama.
+Download Lazarus 3.6:
+- Windows: [Lazarus 3.6 (Win64)](https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/Lazarus%203.6/)  
+- Linux (Debian/Ubuntu 64bit): [Lazarus 3.6 (Linux)](https://sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20amd64%20DEB/Lazarus%203.6/)
 
-🤝 Kolaborasi & Kontribusi
+---
 
-Proyek ini 100% open-source dan mengundang berbagai pihak untuk berkontribusi:
+## 📧 Kontak
+- Email: **mail.hasan06@gmail.com**  
+- Repo: [SIMRS-ERM](https://github.com/mailhasan/SIMRS-ERM)
 
-    Developer: Bantu migrasi kode, perbaiki bug, atau bangun modul baru.
-
-    Tenaga Kesehatan: Beri masukan untuk UI/UX dan alur kerja.
-    
-Lisensi
-Proyek ini berlisensi GPL-3.0 (bebas digunakan, dimodifikasi, dan didistribusikan).
-
-Kontak
-
-Email: mail.hasan06@gmail.com
-
-✨ Mari bersama digitalisasi layanan kesehatan Indonesia dengan teknologi terbuka!
+✨ Mari bersama digitalisasi layanan kesehatan Indonesia dengan teknologi terbuka (Free Pascal/Lazarus + AFPL)!
 
 <img width="1919" height="1070" alt="image" src="https://github.com/user-attachments/assets/f1f8444b-7ef7-440a-8a3a-d8c7df20625e" />
-
-Tools pengembangan yang digunakan (Lazarus 3.6 + Free Pascal).
-
-link download lazarus 3.6
-
-Windows https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/Lazarus%203.6/
-
-Linux https://sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20amd64%20DEB/Lazarus%203.6/
