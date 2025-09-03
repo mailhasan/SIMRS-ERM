@@ -1,0 +1,27 @@
+object DataModuleFarmasi: TDataModuleFarmasi
+  OldCreateOrder = False
+  Height = 608
+  HorizontalOffset = 480
+  VerticalOffset = 177
+  Width = 822
+  object ZQueryResep: TZQuery
+    Params = <>
+    Left = 94
+    Top = 48
+  end
+  object ZQueryResepDetail: TZQuery
+    Params = <>
+    Left = 95
+    Top = 119
+  end
+  object ZQueryResepRacikan: TZQuery
+    Params = <>
+    Left = 98
+    Top = 200
+  end
+  object ZQueryResepRacikanDetail: TZQuery
+    Params = <>
+    Left = 98
+    Top = 282
+  end
+end

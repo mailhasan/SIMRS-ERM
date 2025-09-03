@@ -12,7 +12,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, FrameViewer09, datetimectrls, anchordockpkg, unitLogin, unitUtama,
   unitDmKoneksi, zcomponent, unitRawatInap, unitdmrawatinap, unitKamar,
-  unitERMRanapDokter;
+  unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd;
 
 {$R *.res}
 
@@ -25,6 +25,9 @@ begin
   Application.CreateForm(TDataModuleRanap, DataModuleRanap);
   Application.CreateForm(TFormKamar, FormKamar);
   Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
+  Application.CreateForm(TDataModuleFarmasi, DataModuleFarmasi);
+  Application.CreateForm(TFormIGD, FormIGD);
+  Application.CreateForm(TDataModuleIgd, DataModuleIgd);
   Application.Run;
 end.
 

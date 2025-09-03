@@ -237,21 +237,22 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Height = 685
       Top = 80
       Width = 1398
-      ActivePage = TabSheetAwalMedisUmum
+      ActivePage = TabSheetPemeriksaan
       Align = alClient
       Font.CharSet = ANSI_CHARSET
-      Font.Height = -13
+      Font.Height = -16
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
       ParentFont = False
       ScrollOpposite = True
+      ShowTabs = False
       Style = tsButtons
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 1
       object TabSheetPemeriksaan: TTabSheet
         Caption = 'Pemeriksaan'
-        ClientHeight = 655
+        ClientHeight = 677
         ClientWidth = 1390
         Font.Height = -21
         Font.Style = [fsBold]
@@ -277,14 +278,14 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object Panel5: TPanel
           Left = 0
-          Height = 639
+          Height = 661
           Top = 16
           Width = 1390
           Align = alClient
           BevelColor = clHotLight
           BevelInner = bvRaised
           BorderStyle = bsSingle
-          ClientHeight = 635
+          ClientHeight = 657
           ClientWidth = 1386
           Font.CharSet = ANSI_CHARSET
           Font.Height = -19
@@ -426,12 +427,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
           end
           object GroupBox2: TGroupBox
             Left = 2
-            Height = 568
+            Height = 590
             Top = 65
             Width = 1382
             Align = alClient
             Caption = 'SOAPE'
-            ClientHeight = 548
+            ClientHeight = 570
             ClientWidth = 1378
             Font.CharSet = ANSI_CHARSET
             Font.Pitch = fpVariable
@@ -930,7 +931,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object DBGrid1: TDBGrid
               Left = 0
-              Height = 144
+              Height = 166
               Top = 404
               Width = 1378
               Align = alClient
@@ -1110,7 +1111,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetAwalMedisUmum: TTabSheet
         Caption = 'Awal Medis Umum'
-        ClientHeight = 655
+        ClientHeight = 677
         ClientWidth = 1390
         Font.Height = -21
         Font.Style = [fsBold]
@@ -1155,16 +1156,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Height = 350
             Top = 1
             Width = 1388
-            ActivePage = TabSheetPemeriksaanFisik
+            ActivePage = TabSheetRiwayatKesehatan
             Align = alClient
             Font.CharSet = ANSI_CHARSET
+            Font.Height = -16
             Font.Pitch = fpVariable
             Font.Quality = fqDraft
             Font.Style = [fsBold]
             Images = FormUtama.ImageList1
             ParentFont = False
             ParentShowHint = False
-            TabIndex = 1
+            TabIndex = 0
             TabOrder = 0
             OnChange = PageControlAwalMedisUmumChange
             object TabSheetRiwayatKesehatan: TTabSheet
@@ -1376,17 +1378,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 143
                   Align = alLeft
                   Caption = 'Keadaan Umum'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 139
                   ParentBackground = False
                   TabOrder = 0
                   object ComboBoxKeadaanUmum: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 139
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Sehat'
                       'Sakit Ringan'
@@ -1405,17 +1407,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 136
                   Align = alLeft
                   Caption = 'Kesadaraan'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 132
                   ParentBackground = False
                   TabOrder = 1
                   object ComboBoxKesadaranAwalMediUmum: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 132
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Compos Mentis'
                       'Somnolence'
@@ -1441,13 +1443,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 90
                   Align = alLeft
                   Caption = 'SUHU (0c)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 86
                   ParentBackground = False
                   TabOrder = 2
                   object EditSuhuPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 86
                     Align = alClient
@@ -1463,14 +1465,14 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 98
                   Align = alLeft
                   Caption = 'TENSI (mm-Hg)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 94
                   ParentBackground = False
                   TabOrder = 3
                   OnKeyPress = GroupBox12KeyPress
                   object EditTensiPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 94
                     Align = alClient
@@ -1486,13 +1488,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 78
                   Align = alLeft
                   Caption = 'BERAT (Kg)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 74
                   ParentBackground = False
                   TabOrder = 4
                   object EditBeratPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 74
                     Align = alClient
@@ -1508,13 +1510,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 62
                   Align = alLeft
                   Caption = 'TB (Cm)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 58
                   ParentBackground = False
                   TabOrder = 5
                   object EditTbPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 58
                     Align = alClient
@@ -1530,13 +1532,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 78
                   Align = alLeft
                   Caption = 'RR (/Menit)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 74
                   ParentBackground = False
                   TabOrder = 6
                   object EditRRpk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 74
                     Align = alClient
@@ -1552,13 +1554,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 94
                   Align = alLeft
                   Caption = 'NADI (/Menit)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 90
                   ParentBackground = False
                   TabOrder = 7
                   object EditNadiPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 90
                     Align = alClient
@@ -1574,13 +1576,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 62
                   Align = alLeft
                   Caption = 'SP02 (%)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 58
                   ParentBackground = False
                   TabOrder = 8
                   object EditSpPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 58
                     Align = alClient
@@ -1596,13 +1598,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 85
                   Align = alLeft
                   Caption = 'GCS (E,V,M)'
-                  ClientHeight = 34
+                  ClientHeight = 28
                   ClientWidth = 81
                   ParentBackground = False
                   TabOrder = 9
                   object EditGcsPk: TEdit
                     Left = 0
-                    Height = 34
+                    Height = 28
                     Top = 0
                     Width = 81
                     Align = alClient
@@ -1629,17 +1631,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'KEPALA'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 0
                   object ComboBoxKepala: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1657,17 +1659,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'MATA'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 1
                   object ComboBoxMata: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1685,17 +1687,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'GIGI / MULUT'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 2
                   object ComboBoxGigi: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1713,17 +1715,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'THT'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 3
                   object ComboBoxTht: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1741,17 +1743,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'THORAKS'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 4
                   object ComboBoxThoraks: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1769,17 +1771,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 113
                   Align = alLeft
                   Caption = 'JANTUNG'
-                  ClientHeight = 26
+                  ClientHeight = 20
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 5
                   object ComboBoxJantung: TComboBox
                     Left = 0
-                    Height = 23
+                    Height = 29
                     Top = 0
                     Width = 109
                     Align = alClient
-                    ItemHeight = 15
+                    ItemHeight = 21
                     Items.Strings = (
                       'Normal'
                       'Abnormal'
@@ -1818,17 +1820,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     Width = 113
                     Align = alLeft
                     Caption = 'PARU'
-                    ClientHeight = 26
+                    ClientHeight = 20
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 0
                     object ComboBoxParu: TComboBox
                       Left = 0
-                      Height = 23
+                      Height = 29
                       Top = 0
                       Width = 109
                       Align = alClient
-                      ItemHeight = 15
+                      ItemHeight = 21
                       Items.Strings = (
                         'Normal'
                         'Abnormal'
@@ -1846,17 +1848,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     Width = 113
                     Align = alLeft
                     Caption = 'ABDOMEN'
-                    ClientHeight = 26
+                    ClientHeight = 20
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 1
                     object ComboBoxAbdomen: TComboBox
                       Left = 0
-                      Height = 23
+                      Height = 29
                       Top = 0
                       Width = 109
                       Align = alClient
-                      ItemHeight = 15
+                      ItemHeight = 21
                       Items.Strings = (
                         'Normal'
                         'Abnormal'
@@ -1874,17 +1876,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     Width = 113
                     Align = alLeft
                     Caption = 'GERITAL / ANUS'
-                    ClientHeight = 26
+                    ClientHeight = 20
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 2
                     object ComboBoxGerital: TComboBox
                       Left = 0
-                      Height = 23
+                      Height = 29
                       Top = 0
                       Width = 109
                       Align = alClient
-                      ItemHeight = 15
+                      ItemHeight = 21
                       Items.Strings = (
                         'Normal'
                         'Abnormal'
@@ -1902,17 +1904,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     Width = 113
                     Align = alLeft
                     Caption = 'EKSTREMITAS'
-                    ClientHeight = 26
+                    ClientHeight = 20
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 3
                     object ComboBoxEkstremitas: TComboBox
                       Left = 0
-                      Height = 23
+                      Height = 29
                       Top = 0
                       Width = 109
                       Align = alClient
-                      ItemHeight = 15
+                      ItemHeight = 21
                       Items.Strings = (
                         'Normal'
                         'Abnormal'
@@ -1930,17 +1932,17 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     Width = 113
                     Align = alLeft
                     Caption = 'KULIT'
-                    ClientHeight = 26
+                    ClientHeight = 20
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 4
                     object ComboBox1Kulit: TComboBox
                       Left = 0
-                      Height = 23
+                      Height = 29
                       Top = 0
                       Width = 109
                       Align = alClient
-                      ItemHeight = 15
+                      ItemHeight = 21
                       Items.Strings = (
                         'Normal'
                         'Abnormal'
@@ -4952,13 +4954,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Width = 602
                   Align = alClient
                   Caption = 'Keterangan'
-                  ClientHeight = 300
+                  ClientHeight = 294
                   ClientWidth = 598
                   ParentBackground = False
                   TabOrder = 0
                   object MemoStatusLokasi: TMemo
                     Left = 0
-                    Height = 300
+                    Height = 294
                     Top = 0
                     Width = 598
                     Align = alClient
@@ -4982,13 +4984,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Width = 384
                 Align = alLeft
                 Caption = 'LABORATORIUM'
-                ClientHeight = 302
+                ClientHeight = 296
                 ClientWidth = 380
                 ParentBackground = False
                 TabOrder = 0
                 object MemoLabPk: TMemo
                   Left = 0
-                  Height = 302
+                  Height = 296
                   Top = 0
                   Width = 380
                   Align = alClient
@@ -5005,13 +5007,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Width = 612
                 Align = alClient
                 Caption = 'RADIOLOGI'
-                ClientHeight = 302
+                ClientHeight = 296
                 ClientWidth = 608
                 ParentBackground = False
                 TabOrder = 1
                 object MemoRadiologiPk: TMemo
                   Left = 0
-                  Height = 302
+                  Height = 296
                   Top = 0
                   Width = 608
                   Align = alClient
@@ -5028,13 +5030,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Width = 384
                 Align = alRight
                 Caption = 'PENUNJANG LAINYA'
-                ClientHeight = 302
+                ClientHeight = 296
                 ClientWidth = 380
                 ParentBackground = False
                 TabOrder = 2
                 object MemoPenunjangLainyaPk: TMemo
                   Left = 0
-                  Height = 302
+                  Height = 296
                   Top = 0
                   Width = 380
                   Align = alClient
@@ -5052,8 +5054,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
               ImageIndex = 10
               object MemoDiagnosaPk: TMemo
                 Left = 0
-                Height = 307
-                Top = 15
+                Height = 301
+                Top = 21
                 Width = 1380
                 Align = alClient
                 Lines.Strings = (
@@ -5063,7 +5065,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Label10: TLabel
                 Left = 0
-                Height = 15
+                Height = 21
                 Top = 0
                 Width = 1380
                 Align = alTop
@@ -5077,8 +5079,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
               ImageIndex = 10
               object MemoTatalaksanaPk: TMemo
                 Left = 0
-                Height = 307
-                Top = 15
+                Height = 301
+                Top = 21
                 Width = 1380
                 Align = alClient
                 Lines.Strings = (
@@ -5088,7 +5090,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Label11: TLabel
                 Left = 0
-                Height = 15
+                Height = 21
                 Top = 0
                 Width = 1380
                 Align = alTop
@@ -5102,8 +5104,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
               ImageIndex = 10
               object MemoEdukasiPk: TMemo
                 Left = 0
-                Height = 307
-                Top = 15
+                Height = 301
+                Top = 21
                 Width = 1380
                 Align = alClient
                 Lines.Strings = (
@@ -5113,7 +5115,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Label12: TLabel
                 Left = 0
-                Height = 15
+                Height = 21
                 Top = 0
                 Width = 1380
                 Align = alTop
@@ -5364,7 +5366,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object DBGridAwalMedisUmum: TDBGrid
           Left = 0
-          Height = 190
+          Height = 212
           Top = 465
           Width = 1390
           Align = alClient

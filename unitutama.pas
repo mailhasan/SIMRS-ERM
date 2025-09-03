@@ -13,6 +13,7 @@ type
   { TFormUtama }
 
   TFormUtama = class(TForm)
+    BitBtnIGD: TBitBtn;
     BitBtnRawatInap: TBitBtn;
     ImageList1: TImageList;
     Panel1: TPanel;
@@ -21,11 +22,13 @@ type
     PanelKiri: TPanel;
     PanelAtas: TPanel;
     StatusBarSIMRSERM: TStatusBar;
+    procedure BitBtnIGDClick(Sender: TObject);
     procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
+    procedure PanelKiriClick(Sender: TObject);
     procedure PanelTengahClick(Sender: TObject);
   private
     procedure TampilkanFormDiPanel(AForm: TForm);
@@ -43,7 +46,7 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
-uses unitRawatInap,unitDmKoneksi,unitLogin;
+uses unitRawatInap,unitDmKoneksi,unitLogin,unitIGD;
 
 var
    SidebarVisible: Boolean = True;
@@ -125,6 +128,11 @@ begin
   end;
 end;
 
+procedure TFormUtama.PanelKiriClick(Sender: TObject);
+begin
+
+end;
+
 procedure TFormUtama.PanelTengahClick(Sender: TObject);
 begin
 
@@ -142,6 +150,11 @@ begin
 
  /// tampil form
   TampilkanFormDiPanel(FormRawatInap);
+end;
+
+procedure TFormUtama.BitBtnIGDClick(Sender: TObject);
+begin
+ FormIGD.ShowModal;
 end;
 
 end.

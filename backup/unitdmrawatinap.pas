@@ -81,6 +81,8 @@ type
 
   function IsPrimaryKeyExistsPenilaian(no_rawat, tanggal: string): Boolean;
 
+  function IsPenilaianMedisExistsPrimay(no_rawat: string): Boolean;
+
   end;
 
 
@@ -556,6 +558,12 @@ begin
     Exit;
   end;
 
+  if IsPenilaianMedisExistsPrimay(no_rawat, tanggal) then
+  begin
+    ShowMessage('Data penilaian medis sudah ada untuk nomor rawat tersebut!');
+    Exit;
+  end;
+
   try
     if not DataModuleKoneksi.ZConnectionSimrsERM.Connected then
       DataModuleKoneksi.ZConnectionSimrsERM.Connect;
@@ -821,6 +829,25 @@ begin
     Close;
   end;
 end;
+
+// Fungsi untuk mengecek apakah data ada sebelum operasi
+function TDataModuleRanap.IsPenilaianMedisExistsPrimay(no_rawat: string): Boolean;
+begin
+  Result := False;
+  with ZQueryCekPenilaian do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT COUNT(*) AS jumlah FROM penilaian_medis_ranap');
+    SQL.Add('WHERE no_rawat = :no_rawat');
+    ParamByName('no_rawat').AsString := no_rawat;
+    Open;
+    Result := FieldByName('jumlah').AsInteger > 0;
+    Close;
+  end;
+end;
+
+
 
 end.
 

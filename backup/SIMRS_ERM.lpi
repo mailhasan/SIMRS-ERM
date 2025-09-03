@@ -115,6 +115,29 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
       </Unit>
+      <Unit>
+        <Filename Value="unitdmfarmasi.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModuleFarmasi"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="unitDmFarmasi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitigd.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormIGD"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitIGD"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitdmigd.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModuleIgd"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="unitDmIgd"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

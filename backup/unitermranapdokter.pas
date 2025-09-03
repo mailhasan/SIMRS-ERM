@@ -1477,7 +1477,7 @@ end;
 
 procedure TFormERMRanapDokter.ActionHapusMsumumExecute(Sender: TObject);
 begin
-  DataModuleRanap.DeletePenilaianMedisRanap(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd', DateTimePickerTglPemeriksaan1.Date));
+  DataModuleRanap.DeletePenilaianMedisRanap(EditNoRawat.Text, FormatDateTime('yyyy-MM-dd hh:mm:ss', DateTimePickerTglPemeriksaan1.DateTime));
   tampilDataPemeriksaanAwalMedisUmum;
 end;
 
