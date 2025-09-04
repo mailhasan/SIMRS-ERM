@@ -135,6 +135,7 @@
         <Filename Value="unitdmigd.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModuleIgd"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
       </Unit>

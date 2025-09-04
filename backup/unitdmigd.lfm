@@ -6,7 +6,6 @@ object DataModuleIgd: TDataModuleIgd
   Width = 539
   object ZQuerydata_triase_igd: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from data_triase_igd'
     )
@@ -16,7 +15,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerydata_triase_igdprimer: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from data_triase_igdprimer'
     )
@@ -26,7 +24,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerydata_triase_igdsekunder: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from data_triase_igdsekunder'
     )
@@ -36,7 +33,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_macam_kasus: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from master_triase_macam_kasus'
     )
@@ -46,7 +42,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_pemeriksaan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from master_triase_pemeriksaan'
     )
@@ -56,7 +51,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_skala1: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from master_triase_skala1'
     )
@@ -66,7 +60,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_skala5: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from master_triase_skala5'
     )
@@ -76,7 +69,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerydata_triase_igddetail_skala1: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from data_triase_igddetail_skala1'
     )
@@ -86,7 +78,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerydata_triase_igddetail_skala5: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from data_triase_igddetail_skala5'
     )
@@ -96,7 +87,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQueryTampilDaftarPxIgd: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_reg,'
@@ -131,5 +121,10 @@ object DataModuleIgd: TDataModuleIgd
     Params = <>
     Left = 292
     Top = 41
+  end
+  object DataSourceTampilDaftarPxIgd: TDataSource
+    DataSet = ZQueryTampilDaftarPxIgd
+    Left = 376
+    Top = 64
   end
 end

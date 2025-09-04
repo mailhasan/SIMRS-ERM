@@ -5,13 +5,14 @@ unit unitDmIgd;
 interface
 
 uses
-  Classes, SysUtils, ZDataset;
+  Classes, SysUtils, DB, ZDataset;
 
 type
 
   { TDataModuleIgd }
 
   TDataModuleIgd = class(TDataModule)
+    DataSourceTampilDaftarPxIgd: TDataSource;
     ZQueryTampilDaftarPxIgd: TZQuery;
     ZQuerydata_triase_igddetail_skala5: TZQuery;
     ZQuerydata_triase_igddetail_skala1: TZQuery;
@@ -54,6 +55,7 @@ uses unitDmKoneksi;
 
   data_triase_igddetail_skala1 sampai data_triase_igddetail_skala5 - Detail skala triase}
 
+/// query tampil cari poli
 procedure TDataModuleIgd.CariDataPoli(
   NoRM, NamaPasien, NamaDokter, KodePoli, StatusDaftar: string;
   TglRegAwal, TglRegAkhir: TDate

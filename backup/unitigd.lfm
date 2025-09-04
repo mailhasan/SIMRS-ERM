@@ -1,12 +1,12 @@
 object FormIGD: TFormIGD
-  Left = 306
+  Left = 342
   Height = 800
   Top = 97
-  Width = 1400
+  Width = 1364
   BorderStyle = bsNone
   Caption = 'FormIGD'
   ClientHeight = 800
-  ClientWidth = 1400
+  ClientWidth = 1364
   OnShow = FormShow
   LCLVersion = '3.6.0.0'
   WindowState = wsFullScreen
@@ -14,11 +14,11 @@ object FormIGD: TFormIGD
     Left = 0
     Height = 34
     Top = 0
-    Width = 1400
+    Width = 1364
     Align = alTop
     Caption = 'IGD'
     ClientHeight = 34
-    ClientWidth = 1400
+    ClientWidth = 1364
     Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
@@ -31,7 +31,7 @@ object FormIGD: TFormIGD
     ParentFont = False
     TabOrder = 0
     object PanelKeluar: TPanel
-      Left = 1325
+      Left = 1289
       Height = 32
       Top = 1
       Width = 74
@@ -48,25 +48,25 @@ object FormIGD: TFormIGD
     Left = 0
     Height = 766
     Top = 34
-    Width = 1400
+    Width = 1364
     Align = alClient
     ClientHeight = 766
-    ClientWidth = 1400
+    ClientWidth = 1364
     TabOrder = 1
     object PanelKiri: TPanel
       Left = 1
       Height = 764
       Top = 1
-      Width = 423
+      Width = 551
       Align = alLeft
       ClientHeight = 764
-      ClientWidth = 423
+      ClientWidth = 551
       TabOrder = 0
       object PanelAtas1: TPanel
         Left = 1
         Height = 23
         Top = 1
-        Width = 421
+        Width = 549
         Align = alTop
         Caption = 'DAFTAR DATA PASIEN'
         Color = 11834940
@@ -84,12 +84,12 @@ object FormIGD: TFormIGD
       object GroupBox1: TGroupBox
         Left = 1
         Height = 56
-        Top = 24
-        Width = 421
+        Top = 136
+        Width = 549
         Align = alTop
         Caption = 'Filter'
         ClientHeight = 36
-        ClientWidth = 417
+        ClientWidth = 545
         TabOrder = 1
         object Label1: TLabel
           Left = 9
@@ -98,7 +98,7 @@ object FormIGD: TFormIGD
           Width = 42
           Caption = 'Tanggal'
         end
-        object DateTimePicker1: TDateTimePicker
+        object DateTimePickerTglDaftar: TDateTimePicker
           Left = 64
           Height = 23
           Top = 2
@@ -145,31 +145,91 @@ object FormIGD: TFormIGD
           TabOrder = 2
         end
       end
-      object HtmlViewer1: THtmlViewer
+      object GroupBoxDaftarDataPasien: TGroupBox
         Left = 1
-        Height = 683
-        Top = 80
-        Width = 421
-        BorderStyle = htFocused
-        HistoryMaxCount = 0
-        NoSelect = False
-        PrintMarginBottom = 2
-        PrintMarginLeft = 2
-        PrintMarginRight = 2
-        PrintMarginTop = 2
-        PrintScale = 1
+        Height = 571
+        Top = 192
+        Width = 549
         Align = alClient
+        Caption = 'Daftar Data Pasien'
+        ClientHeight = 551
+        ClientWidth = 545
         TabOrder = 2
+        object DBGrid1: TDBGrid
+          Left = 0
+          Height = 551
+          Top = 0
+          Width = 545
+          Align = alClient
+          Color = clWindow
+          Columns = <          
+            item
+              Title.Caption = 'JAM'
+              FieldName = 'jam_reg'
+            end          
+            item
+              Title.Caption = 'No Rawat'
+              Width = 110
+              FieldName = 'no_rawat'
+            end          
+            item
+              Title.Caption = 'NO RM'
+              Width = 110
+              FieldName = 'no_rkm_medis'
+            end          
+            item
+              Title.Caption = 'NAMA PASIEN'
+              Width = 200
+              FieldName = 'nm_pasien'
+            end>
+          DataSource = DataModuleIgd.DataSourceTampilDaftarPxIgd
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          PopupMenu = PopupMenuIgd
+          TabOrder = 0
+          OnCellClick = DBGrid1CellClick
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 1
+        Height = 112
+        Top = 24
+        Width = 549
+        Align = alTop
+        Caption = 'DATA PASIEN'
+        ClientHeight = 92
+        ClientWidth = 545
+        TabOrder = 3
+        object MemoDataPasien: TMemo
+          Left = 0
+          Height = 92
+          Top = 0
+          Width = 545
+          Align = alClient
+          Lines.Strings = (
+            'MemoDataPasien'
+          )
+          TabOrder = 0
+        end
       end
     end
     object Panel1: TPanel
-      Left = 424
+      Left = 552
       Height = 764
       Top = 1
-      Width = 975
+      Width = 811
       Align = alClient
       Caption = 'Panel1'
       TabOrder = 1
+    end
+  end
+  object PopupMenuIgd: TPopupMenu
+    Images = FormUtama.ImageList1
+    Left = 260
+    Top = 358
+    object MenuItem1: TMenuItem
+      Caption = 'PEMERIKSAAN'
+      ImageIndex = 1
+      OnClick = MenuItem1Click
     end
   end
 end

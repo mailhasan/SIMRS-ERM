@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="40"/>
-        <CursorPos X="48" Y="49"/>
+        <TopLine Value="30"/>
+        <CursorPos X="88" Y="58"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -48,7 +48,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
         <EditorIndex Value="8"/>
-        <CursorPos X="19"/>
+        <TopLine Value="25"/>
+        <CursorPos X="69" Y="22"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -61,8 +62,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="13"/>
-        <CursorPos X="53" Y="10"/>
+        <TopLine Value="136"/>
+        <CursorPos X="19" Y="191"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -74,7 +75,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="229"/>
+        <TopLine Value="187"/>
         <CursorPos X="93" Y="249"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -99,8 +100,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
-        <TopLine Value="1501"/>
-        <CursorPos X="44" Y="1518"/>
+        <TopLine Value="728"/>
+        <CursorPos X="3" Y="726"/>
         <UsageCount Value="223"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -115,7 +116,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="5"/>
         <CursorPos X="61" Y="10"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -128,9 +129,9 @@
         <UnitName Value="unitIGD"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="91"/>
-        <CursorPos X="33" Y="69"/>
-        <UsageCount Value="59"/>
+        <TopLine Value="176"/>
+        <CursorPos X="83" Y="196"/>
+        <UsageCount Value="68"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -138,12 +139,13 @@
         <Filename Value="unitdmigd.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModuleIgd"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="52"/>
-        <CursorPos X="16" Y="129"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="66"/>
+        <CursorPos X="38" Y="75"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -151,123 +153,123 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="26" Column="73" TopLine="9"/>
+        <Caret Line="40" Column="41" TopLine="24"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="27" Column="73" TopLine="9"/>
+        <Caret Line="120" Column="67" TopLine="103"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="61" Column="68" TopLine="36"/>
+        <Caret Line="129" Column="78" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1061" Column="18" TopLine="1041"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="66" Column="2" TopLine="36"/>
+        <Caret Line="107" Column="80" TopLine="93"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="65" Column="2" TopLine="35"/>
+        <Caret Line="103" Column="4" TopLine="99"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="66" Column="2" TopLine="36"/>
+        <Caret Line="108" Column="89" TopLine="94"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="55" Column="90" TopLine="37"/>
+        <Caret Line="107" Column="89" TopLine="93"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="54" Column="90" TopLine="36"/>
+        <Caret Line="113" Column="60" TopLine="12"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="55" Column="90" TopLine="37"/>
+        <Caret Line="124" Column="52" TopLine="102"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="63" Column="3" TopLine="38"/>
+        <Caret Line="125" Column="52" TopLine="103"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="69" Column="2" TopLine="38"/>
+        <Caret Line="121" Column="78" TopLine="105"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="55" Column="34" TopLine="39"/>
+        <Caret Line="171" Column="83" TopLine="143"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="98" Column="7" TopLine="64"/>
+        <Caret Line="163" Column="47" TopLine="146"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="89" Column="21" TopLine="61"/>
+        <Caret Line="162" Column="57" TopLine="146"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="79" Column="28" TopLine="62"/>
+        <Caret Line="203" Column="42" TopLine="172"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="113" Column="5" TopLine="43"/>
+        <Caret Line="192" Column="37" TopLine="169"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="52" Column="17" TopLine="37"/>
+        <Caret Line="186" Column="46" TopLine="169"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="70" Column="3" TopLine="37"/>
+        <Caret Line="210" Column="42" TopLine="177"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="69" Column="3" TopLine="36"/>
+        <Caret Line="187" Column="26" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="130" Column="7" TopLine="106"/>
+        <Caret Line="188" Column="25" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="91" Column="28" TopLine="74"/>
+        <Caret Line="184" Column="81" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="97" Column="22" TopLine="80"/>
+        <Caret Line="197" Column="35" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="98" Column="22" TopLine="81"/>
+        <Caret Line="184" Column="46" TopLine="166"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="103" Column="22" TopLine="86"/>
+        <Caret Line="198" Column="37" TopLine="172"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="107" Column="22" TopLine="90"/>
+        <Caret Line="184" Column="29" TopLine="167"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="111" Column="51" TopLine="94"/>
+        <Caret Line="209" Column="34" TopLine="185"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="115" Column="32" TopLine="98"/>
+        <Caret Line="193" Column="37" TopLine="173"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="122" Column="20" TopLine="105"/>
+        <Caret Line="204" Column="15" TopLine="186"/>
       </Position>
       <Position>
         <Filename Value="unitigd.pas"/>
-        <Caret Line="126" Column="36" TopLine="105"/>
-      </Position>
-      <Position>
-        <Filename Value="unitigd.pas"/>
-        <Caret Line="124" Column="33" TopLine="60"/>
+        <Caret Line="191" Column="40" TopLine="166"/>
       </Position>
     </JumpHistory>
     <RunParams>

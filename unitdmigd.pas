@@ -5,13 +5,14 @@ unit unitDmIgd;
 interface
 
 uses
-  Classes, SysUtils, ZDataset;
+  Classes, SysUtils, DB, ZDataset;
 
 type
 
   { TDataModuleIgd }
 
   TDataModuleIgd = class(TDataModule)
+    DataSourceTampilDaftarPxIgd: TDataSource;
     ZQueryTampilDaftarPxIgd: TZQuery;
     ZQuerydata_triase_igddetail_skala5: TZQuery;
     ZQuerydata_triase_igddetail_skala1: TZQuery;
