@@ -105,6 +105,7 @@ object FormUtama: TFormUtama
       Align = alTop
       Caption = 'IGD'
       Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]

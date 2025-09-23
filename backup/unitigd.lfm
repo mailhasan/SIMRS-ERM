@@ -7,6 +7,9 @@ object FormIGD: TFormIGD
   Caption = 'FormIGD'
   ClientHeight = 800
   ClientWidth = 1364
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '3.6.0.0'
   WindowState = wsFullScreen
@@ -127,22 +130,34 @@ object FormIGD: TFormIGD
           Width = 21
           Caption = 'Cari'
         end
-        object EditCari: TEdit
+        object EditCariNoRm: TEdit
           Left = 184
           Height = 23
           Top = 2
-          Width = 159
+          Width = 103
           TabOrder = 1
-          Text = 'EditCari'
+          Text = 'EditCariNoRm'
+          TextHint = 'No RM'
+          OnClick = EditCariNoRmClick
         end
         object BitBtnTampil: TBitBtn
-          Left = 352
+          Left = 440
           Height = 30
           Top = -5
           Width = 56
           Caption = 'Tampil'
           OnClick = BitBtnTampilClick
           TabOrder = 2
+        end
+        object EditCariNama: TEdit
+          Left = 290
+          Height = 23
+          Top = 2
+          Width = 144
+          TabOrder = 3
+          Text = 'EditCariNama'
+          TextHint = 'Nama'
+          OnClick = EditCariNamaClick
         end
       end
       object GroupBoxDaftarDataPasien: TGroupBox
@@ -219,7 +234,18 @@ object FormIGD: TFormIGD
       Width = 811
       Align = alClient
       Caption = 'Panel1'
+      ClientHeight = 764
+      ClientWidth = 811
       TabOrder = 1
+      object PageControl1: TPageControl
+        Left = 1
+        Height = 762
+        Top = 1
+        Width = 809
+        Align = alClient
+        TabOrder = 0
+        OnChange = PageControl1Change
+      end
     end
   end
   object PopupMenuIgd: TPopupMenu

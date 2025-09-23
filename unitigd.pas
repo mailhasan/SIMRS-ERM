@@ -18,7 +18,8 @@ type
     Chromium1: TChromium;
     DateTimePickerTglDaftar: TDateTimePicker;
     DBGrid1: TDBGrid;
-    EditCari: TEdit;
+    EditCariNama: TEdit;
+    EditCariNoRm: TEdit;
     GroupBox1: TGroupBox;
     GroupBoxDaftarDataPasien: TGroupBox;
     GroupBox3: TGroupBox;
@@ -40,13 +41,19 @@ type
       dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
       shared_handle: Pointer);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure EditCariNamaClick(Sender: TObject);
+    procedure EditCariNoRmClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure PageControlPasienChange(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
   private
-
+   procedure CloseTabClick(Sender: TObject);
+   procedure TutupSemuaTab;
   public
 
   end;
@@ -59,7 +66,7 @@ implementation
 {$R *.lfm}
 
 { TFormIGD }
-uses unitDmIgd;
+uses unitDmIgd,unitPemeriksaanIGD;
 
 {
 NoRM → filter berdasarkan Nomor Rekam Medis pasien.
@@ -83,9 +90,19 @@ Jika mau pakai, isi dengan EncodeDate(2025,5,1) sampai EncodeDate(2025,5,31).
 Jika tidak mau filter tanggal, cukup isi 0,0 (seperti contoh Anda).
 }
 
+/// tutup semua tab
+procedure TFormIGD.TutupSemuaTab;
+var
+  i: Integer;
+begin
+ // Tutup semua Tab yang ada di PageControl
+  for i := PageControl1.PageCount - 1 downto 0 do
+    PageControl1.Pages[i].Free;
+end;
+
 procedure TFormIGD.PanelKeluarClick(Sender: TObject);
 begin
-  Close;
+ Close;
 end;
 
 procedure TFormIGD.Chromium1AcceleratedPaint(Sender: TObject;
@@ -111,6 +128,43 @@ begin
    DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('tgl_registrasi').AsString]);
 end;
 
+procedure TFormIGD.EditCariNamaClick(Sender: TObject);
+begin
+  EditCariNoRm.Clear;
+end;
+
+procedure TFormIGD.EditCariNoRmClick(Sender: TObject);
+begin
+  EditCariNama.Clear;
+end;
+
+procedure TFormIGD.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+
+end;
+
+procedure TFormIGD.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if MessageDlg('Konfirmasi', 'Tutup form ini?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+    CanClose := True;
+    TutupSemuaTab;
+    end
+  else
+    CanClose := False;
+end;
+
+procedure TFormIGD.FormCreate(Sender: TObject);
+var
+  iform: Integer;
+begin
+  {for iForm := PageControl1.PageCount - 1 downto 0 do
+  begin
+    PageControl1.Pages[iform].PageControl := nil; // Lepas dari PageControl
+    PageControl1.Pages[iform].Free;               // Bebaskan memory
+  end;}
+end;
+
 procedure TFormIGD.BitBtnTampilClick(Sender: TObject);
 var
   Tgl1, Tgl2: TDate;
@@ -121,8 +175,8 @@ begin
 
   // Panggil procedure dengan parameter tanggal
   DataModuleIgd.CariDataPoli(
-    EditCari.Text,        // NoRM
-    '',        // NamaPasien
+    EditCariNoRm.Text,        // NoRM
+    EditCariNama.Text,        // NamaPasien
     '',        // NamaDokter
     'IGD',        // KodePoli
     '',        // StatusDaftar
@@ -137,8 +191,9 @@ end;
 
 procedure TFormIGD.FormShow(Sender: TObject);
 var
-  i: Integer;
+  i,iform: Integer;
 begin
+
    DBGrid1.DataSource := DataModuleIgd.DataSourceTampilDaftarPxIgd;
  // Gaya seperti tabel web modern
   with DBGrid1 do
@@ -165,19 +220,58 @@ begin
     BorderStyle := bsSingle;
   end;
 
+  /// bersihkan data
   MemoDataPasien.Text:= '';
-  DateTimePickerTglDaftar.Date:= Now; EditCari.Text:='';
+  DateTimePickerTglDaftar.Date:= Now; EditCariNoRm.Text:=''; EditCariNama.Text:='';
 
+  /// panggil procedure tombol tampil pencarian
+  BitBtnTampilClick(Nil);
+
+  /// tutup semua tab form
+  // Hapus semua tab yang ada (dari belakang ke depan agar index tidak kacau)
+
+  for iForm := PageControl1.PageCount - 1 downto 0 do
+  begin
+    PageControl1.Pages[iform].PageControl := nil; // Lepas dari PageControl
+    PageControl1.Pages[iform].Free;               // Bebaskan memory
+  end;
+
+end;
+
+/// procedure untuk tutup close on tab
+procedure TFormIGD.CloseTabClick(Sender: TObject);
+var
+  Btn: TButton;
+  Tab: TTabSheet;
+begin
+  if Sender is TButton then
+  begin
+    Btn := TButton(Sender);
+    Tab := TTabSheet(Btn.Parent.Parent);
+
+    if MessageDlg('Konfirmasi', 'Tutup tab ini?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      Tab.PageControl := nil;
+      Tab.Free;
+    end;
+  end;
 end;
 
 procedure TFormIGD.MenuItem1Click(Sender: TObject);
 var
-  NoRawat, NamaPasien,noRM: string;
+  {NoRawat, NamaPasien,noRM: string;
+  i: Integer;
+  NewTab: TTabSheet;
+  NewMemo: TMemo;}
+  NoRawat, NamaPasien, noRM: string;
   i: Integer;
   NewTab: TTabSheet;
   NewMemo: TMemo;
+  CloseButton: TButton;
+  TabPanel: TPanel;
+  ChildForm: TFormPemeriksaanIgd;
 begin
-  NoRawat := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rawat').AsString;
+  {NoRawat := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rawat').AsString;
   NamaPasien := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('nm_pasien').AsString;
   noRM := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rkm_medis').AsString;
   // Cek apakah tab dengan pasien ini sudah ada
@@ -200,6 +294,72 @@ begin
   NewMemo.Align := alClient;
   NewMemo.Lines.Add('No Rawat : ' + NoRawat);
   NewMemo.Lines.Add('Nama Pasien : ' + NamaPasien);
+
+  PageControl1.ActivePage := NewTab;}
+  NoRawat := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rawat').AsString;
+  NamaPasien := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('nm_pasien').AsString;
+  noRM := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rkm_medis').AsString;
+
+  // Cek apakah tab dengan pasien ini sudah ada
+  for i := 0 to PageControl1.PageCount - 1 do
+  begin
+    if PageControl1.Pages[i].Name = 'Tab_' + noRM then
+    begin
+      PageControl1.ActivePage := PageControl1.Pages[i];
+      Exit; // sudah ada, langsung keluar
+    end;
+  end;
+
+  // Buat tab baru
+  NewTab := TTabSheet.Create(PageControl1);
+  NewTab.PageControl := PageControl1;
+  NewTab.Name := 'Tab_' + noRM; // unik
+  NewTab.Caption := '   ' + NamaPasien + '   '; // Beri spasi untuk tombol close
+
+  // Buat panel untuk header tab
+  TabPanel := TPanel.Create(NewTab);
+  TabPanel.Parent := NewTab;
+  TabPanel.Align := alTop;
+  TabPanel.Height := 30;
+  TabPanel.BevelOuter := bvNone;
+  TabPanel.Caption := '';
+
+  // Tambahkan label untuk judul
+  with TLabel.Create(TabPanel) do
+  begin
+    Parent := TabPanel;
+    Align := alLeft;
+    Alignment := taCenter;
+    Layout := tlCenter;
+    Caption := '  ' + NamaPasien;
+    Width := TabPanel.Width - 30;
+  end;
+
+  // Tambahkan tombol close
+  CloseButton := TButton.Create(TabPanel);
+  CloseButton.Parent := TabPanel;
+  CloseButton.Align := alRight;
+  CloseButton.Width := 25;
+  CloseButton.Caption := 'X';
+  CloseButton.Hint := 'Tutup tab';
+  CloseButton.ShowHint := True;
+  CloseButton.Tag := PageControl1.PageCount - 1; // Simpan index tab
+  CloseButton.OnClick := @CloseTabClick;
+
+  // Tambahkan komponen di tab (contoh pakai Memo)
+  NewMemo := TMemo.Create(NewTab);
+  NewMemo.Parent := NewTab;
+  NewMemo.Align := alClient;
+  NewMemo.Lines.Add('No Rawat : ' + NoRawat);
+  NewMemo.Lines.Add('Nama Pasien : ' + NamaPasien);
+
+  // Form pemeriksaan embed ke tab
+  ChildForm := TFormPemeriksaanIgd.Create(NewTab);
+  ChildForm.Parent := NewTab;
+  ChildForm.Align := alClient;
+  ChildForm.BorderStyle := bsNone;
+  ChildForm.Visible := True;
+  //ChildForm.SetPasien(NoRawat, NamaPasien, NoRM);
 
   PageControl1.ActivePage := NewTab;
 end;

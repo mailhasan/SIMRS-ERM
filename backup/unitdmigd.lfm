@@ -124,7 +124,7 @@ object DataModuleIgd: TDataModuleIgd
   end
   object DataSourceTampilDaftarPxIgd: TDataSource
     DataSet = ZQueryTampilDaftarPxIgd
-    Left = 376
+    Left = 384
     Top = 64
   end
 end

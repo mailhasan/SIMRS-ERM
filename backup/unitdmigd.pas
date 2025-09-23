@@ -86,9 +86,9 @@ begin
       Add('WHERE 1=1');
 
       if NoRM <> '' then
-        Add('AND pasien.no_rkm_medis LIKE :norm');
+        Add('or pasien.no_rkm_medis LIKE :norm');
       if NamaPasien <> '' then
-        Add('AND pasien.nm_pasien LIKE :nmpasien');
+        Add('or pasien.nm_pasien LIKE :nmpasien');
       if NamaDokter <> '' then
         Add('AND dokter.nm_dokter LIKE :nmdokter');
       if KodePoli <> '' then

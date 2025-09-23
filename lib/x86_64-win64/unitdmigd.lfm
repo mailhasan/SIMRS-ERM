@@ -87,7 +87,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQueryTampilDaftarPxIgd: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT '
       '    reg_periksa.no_reg,'

@@ -154,11 +154,7 @@ end;
 
 procedure TFormUtama.BitBtnIGDClick(Sender: TObject);
 begin
-  if not Assigned(FormIGD) then
-  FormRawatInap := TFormIGD.Create(Self);
-
- /// tampil form
-  TampilkanFormDiPanel(FormIGD);
+ FormIGD.ShowModal;
 end;
 
 end.
