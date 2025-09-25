@@ -46,6 +46,17 @@ object FormIGD: TFormIGD
       TabOrder = 0
       OnClick = PanelKeluarClick
     end
+    object Panel2: TPanel
+      Left = 1
+      Height = 32
+      Top = 1
+      Width = 34
+      Align = alLeft
+      Caption = '----'
+      ParentBackground = False
+      TabOrder = 1
+      OnClick = Panel2Click
+    end
   end
   object PanelTengah: TPanel
     Left = 0
@@ -60,16 +71,16 @@ object FormIGD: TFormIGD
       Left = 1
       Height = 764
       Top = 1
-      Width = 551
+      Width = 511
       Align = alLeft
       ClientHeight = 764
-      ClientWidth = 551
+      ClientWidth = 511
       TabOrder = 0
       object PanelAtas1: TPanel
         Left = 1
         Height = 23
         Top = 1
-        Width = 549
+        Width = 509
         Align = alTop
         Caption = 'DAFTAR DATA PASIEN'
         Color = 11834940
@@ -88,11 +99,11 @@ object FormIGD: TFormIGD
         Left = 1
         Height = 56
         Top = 136
-        Width = 549
+        Width = 509
         Align = alTop
         Caption = 'Filter'
         ClientHeight = 36
-        ClientWidth = 545
+        ClientWidth = 505
         TabOrder = 1
         object Label1: TLabel
           Left = 9
@@ -164,17 +175,17 @@ object FormIGD: TFormIGD
         Left = 1
         Height = 571
         Top = 192
-        Width = 549
+        Width = 509
         Align = alClient
         Caption = 'Daftar Data Pasien'
         ClientHeight = 551
-        ClientWidth = 545
+        ClientWidth = 505
         TabOrder = 2
         object DBGrid1: TDBGrid
           Left = 0
           Height = 551
           Top = 0
-          Width = 545
+          Width = 505
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -189,7 +200,7 @@ object FormIGD: TFormIGD
             end          
             item
               Title.Caption = 'NO RM'
-              Width = 110
+              Width = 90
               FieldName = 'no_rkm_medis'
             end          
             item
@@ -208,17 +219,17 @@ object FormIGD: TFormIGD
         Left = 1
         Height = 112
         Top = 24
-        Width = 549
+        Width = 509
         Align = alTop
         Caption = 'DATA PASIEN'
         ClientHeight = 92
-        ClientWidth = 545
+        ClientWidth = 505
         TabOrder = 3
         object MemoDataPasien: TMemo
           Left = 0
           Height = 92
           Top = 0
-          Width = 545
+          Width = 505
           Align = alClient
           Lines.Strings = (
             'MemoDataPasien'
@@ -228,20 +239,20 @@ object FormIGD: TFormIGD
       end
     end
     object Panel1: TPanel
-      Left = 552
+      Left = 512
       Height = 764
       Top = 1
-      Width = 811
+      Width = 851
       Align = alClient
       Caption = 'Panel1'
       ClientHeight = 764
-      ClientWidth = 811
+      ClientWidth = 851
       TabOrder = 1
       object PageControl1: TPageControl
         Left = 1
         Height = 762
         Top = 1
-        Width = 809
+        Width = 849
         Align = alClient
         TabOrder = 0
         OnChange = PageControl1Change

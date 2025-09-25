@@ -146,6 +146,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitPemeriksaanIGD"/>
       </Unit>
+      <Unit>
+        <Filename Value="unittriaseigd.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTriaseIgd"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitTriaseIgd"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -143,8 +143,17 @@
         <Filename Value="unitpemeriksaanigd.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormPemeriksaanIgd"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitPemeriksaanIGD"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unittriaseigd.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTriaseIgd"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitTriaseIgd"/>
       </Unit>
     </Units>
   </ProjectOptions>

@@ -29,6 +29,7 @@ type
     MenuItem1: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
+    Panel2: TPanel;
     PanelAtas1: TPanel;
     PanelTengah: TPanel;
     PanelKiri: TPanel;
@@ -50,6 +51,7 @@ type
     procedure MenuItem1Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure PageControlPasienChange(Sender: TObject);
+    procedure Panel2Click(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
   private
    procedure CloseTabClick(Sender: TObject);
@@ -60,6 +62,7 @@ type
 
 var
   FormIGD: TFormIGD;
+  SidebarVisible: Boolean = True;
 
 implementation
 
@@ -360,6 +363,10 @@ begin
   ChildForm.BorderStyle := bsNone;
   ChildForm.Visible := True;
   //ChildForm.SetPasien(NoRawat, NamaPasien, NoRM);
+  ChildForm.EditNoRawat.Text:= NoRawat;
+  ChildForm.EditNoRm.Text:= noRM;
+  ChildForm.EditNama.Text:= NamaPasien;
+
 
   PageControl1.ActivePage := NewTab;
 end;
@@ -372,6 +379,22 @@ end;
 procedure TFormIGD.PageControlPasienChange(Sender: TObject);
 begin
 
+end;
+
+procedure TFormIGD.Panel2Click(Sender: TObject);
+begin
+  if SidebarVisible then
+  begin
+    PanelKiri.Width := 0;
+    Panel1.Caption := '☰';  // Buka
+    SidebarVisible := False;
+  end
+  else
+  begin
+    PanelKiri.Width := 511;  // Ukuran normal
+    Panel1.Caption := '<<';  // Tutup
+    SidebarVisible := True;
+  end;
 end;
 
 
