@@ -266,13 +266,14 @@ var
   i: Integer;
   NewTab: TTabSheet;
   NewMemo: TMemo;}
-  NoRawat, NamaPasien, noRM: string;
+  NoRawat, NamaPasien, noRM,CleanNoRM: string;
   i: Integer;
   NewTab: TTabSheet;
   NewMemo: TMemo;
   CloseButton: TButton;
   TabPanel: TPanel;
   ChildForm: TFormPemeriksaanIgd;
+
 begin
   {NoRawat := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rawat').AsString;
   NamaPasien := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('nm_pasien').AsString;
@@ -303,10 +304,24 @@ begin
   NamaPasien := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('nm_pasien').AsString;
   noRM := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rkm_medis').AsString;
 
+    // Bersihkan noRM dari karakter yang tidak valid untuk nama komponen
+  CleanNoRM := '';
+  for j := 1 to Length(noRM) do
+  begin
+    if noRM[j] in ['A'..'Z', 'a'..'z', '0'..'9', '_'] then
+      CleanNoRM := CleanNoRM + noRM[j]
+    else
+      CleanNoRM := CleanNoRM + '_'; // Ganti karakter invalid dengan underscore
+  end;
+
+  // Pastikan nama tidak kosong setelah dibersihkan
+  if CleanNoRM = '' then
+    CleanNoRM := 'TabEmpty';
+
   // Cek apakah tab dengan pasien ini sudah ada
   for i := 0 to PageControl1.PageCount - 1 do
   begin
-    if PageControl1.Pages[i].Name = 'Tab_' + noRM then
+    if PageControl1.Pages[i].Name = 'Tab_' + CleanNoRM then
     begin
       PageControl1.ActivePage := PageControl1.Pages[i];
       Exit; // sudah ada, langsung keluar
@@ -316,7 +331,7 @@ begin
   // Buat tab baru
   NewTab := TTabSheet.Create(PageControl1);
   NewTab.PageControl := PageControl1;
-  NewTab.Name := 'Tab_' + noRM; // unik
+  NewTab.Name := 'Tab_' + CleanNoRM; // unik
   NewTab.Caption := '   ' + NamaPasien + '   '; // Beri spasi untuk tombol close
 
   // Buat panel untuk header tab
@@ -365,7 +380,10 @@ begin
   //ChildForm.SetPasien(NoRawat, NamaPasien, NoRM);
   ChildForm.EditNoRawat.Text:= NoRawat;
   ChildForm.EditNoRm.Text:= noRM;
-  ChildForm.EditNama.Text:= noRM;
+  ChildForm.EditNama.Text:= NamaPasien;
+
+  /// panggil procedure
+  ChildForm.baruTriase;
 
 
   PageControl1.ActivePage := NewTab;

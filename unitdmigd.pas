@@ -38,7 +38,7 @@ var
 implementation
 
 {$R *.lfm}
-uses unitDmKoneksi;
+uses unitDmKoneksi,unitPemeriksaanIGD;
 
   {struktur tabel
    data_triase_igd - Tabel utama triase IGD
@@ -128,7 +128,6 @@ begin
     FilterSQL.Free;
   end;
 end;
-
 
 
 end.

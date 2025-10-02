@@ -42,6 +42,7 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_pemeriksaan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
     SQL.Strings = (
       'select * from master_triase_pemeriksaan'
     )

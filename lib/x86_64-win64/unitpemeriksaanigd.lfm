@@ -6,6 +6,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
   Caption = 'Form Pemeriksaan IGD'
   ClientHeight = 659
   ClientWidth = 951
+  OnShow = FormShow
   LCLVersion = '3.6.0.0'
   object PanelAtas: TPanel
     Left = 0
@@ -129,6 +130,12 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 8
               Width = 208
               ItemHeight = 15
+              Items.Strings = (
+                '-'
+                'AGD'
+                'Sendiri'
+                'Swasta'
+              )
               TabOrder = 0
               Text = 'ComboBoxTransportasi'
             end
@@ -146,8 +153,8 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Width = 62
               Caption = 'Cara Masuk'
             end
-            object DateTimePicker1: TDateTimePicker
-              Left = 424
+            object DateTimePickerKunjungan: TDateTimePicker
+              Left = 426
               Height = 23
               Top = 8
               Width = 137
@@ -174,6 +181,12 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 8
               Width = 100
               ItemHeight = 15
+              Items.Strings = (
+                'Jalan'
+                'Brankar'
+                'Kursi Roda'
+                'Digendong'
+              )
               TabOrder = 2
               Text = 'ComboBoxCaraMasuk'
             end
@@ -190,6 +203,17 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 39
               Width = 208
               ItemHeight = 15
+              Items.Strings = (
+                'Datang Sendiri'
+                'Polisi'
+                'Rujukan'
+                'Bidan'
+                'Puskesmas'
+                'Rumah Sakit'
+                'Poliklinik'
+                'Faskes Lain'
+                '-'
+              )
               TabOrder = 3
               Text = 'ComboBoxAlasanKedatangan'
             end
@@ -412,6 +436,12 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
                 Top = 24
                 Width = 104
                 ItemHeight = 13
+                Items.Strings = (
+                  '-'
+                  'UPPA'
+                  'Airborne'
+                  'Dekontaminan'
+                )
                 TabOrder = 6
                 Text = 'ComboBoxKebutuhanKhusus'
               end
@@ -439,8 +469,13 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 5
               Width = 100
               ItemHeight = 15
+              Items.Strings = (
+                'Triase Primer'
+                'Triase Sekunder'
+              )
               TabOrder = 0
               Text = 'ComboBoxJenisTriase'
+              OnChange = ComboBoxJenisTriaseChange
             end
             object Label10: TLabel
               Left = 184
@@ -455,6 +490,13 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 5
               Width = 100
               ItemHeight = 15
+              Items.Strings = (
+                'Skala 1'
+                'Skala 2'
+                'Skala 3'
+                'Skala 4'
+                'Skala 5'
+              )
               TabOrder = 1
               Text = 'ComboBoxSkala'
             end
@@ -471,6 +513,12 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 5
               Width = 153
               ItemHeight = 15
+              Items.Strings = (
+                'Ruang Resusitasi'
+                'Ruang Kritis'
+                'Zona Kuning'
+                'Zona Hijau'
+              )
               TabOrder = 2
               Text = 'ComboBoxPlan'
             end
@@ -495,13 +543,14 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               ClientHeight = 281
               ClientWidth = 259
               TabOrder = 0
-              object StringGrid1: TStringGrid
+              object StringGridMasterPemeriksaan: TStringGrid
                 Left = 0
                 Height = 281
                 Top = 0
                 Width = 259
                 Align = alClient
                 TabOrder = 0
+                OnDrawCell = StringGridMasterPemeriksaanDrawCell
               end
             end
             object GroupBox4: TGroupBox
@@ -616,6 +665,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Align = alLeft
               Caption = 'SIMPAN'
               TabOrder = 2
+              OnClick = Button1Click
             end
             object GroupBox8: TGroupBox
               Left = 409
@@ -627,23 +677,23 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               ClientHeight = 28
               ClientWidth = 205
               TabOrder = 3
-              object Edit1: TEdit
+              object EditKodePetugas: TEdit
                 Left = 0
                 Height = 28
                 Top = 0
                 Width = 56
                 Align = alLeft
                 TabOrder = 0
-                Text = 'Edit1'
+                Text = 'EditKodePetugas'
               end
-              object Edit2: TEdit
+              object EditNamaPetugas: TEdit
                 Left = 56
                 Height = 28
                 Top = 0
                 Width = 149
                 Align = alClient
                 TabOrder = 1
-                Text = 'Edit2'
+                Text = 'EditNamaPetugas'
               end
             end
           end

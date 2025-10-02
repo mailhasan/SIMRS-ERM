@@ -30,6 +30,7 @@ type
               NoRM, NamaPasien, NamaDokter, KodePoli, StatusDaftar: string;
               TglRegAwal, TglRegAkhir: TDate
               );
+     procedure TampilDataKeGridPemeriksaan(KodePemeriksaan, NamaPemeriksaan: string);
   end;
 
 var
@@ -38,7 +39,7 @@ var
 implementation
 
 {$R *.lfm}
-uses unitDmKoneksi;
+uses unitDmKoneksi,unitPemeriksaanIGD;
 
   {struktur tabel
    data_triase_igd - Tabel utama triase IGD
@@ -86,9 +87,9 @@ begin
       Add('WHERE 1=1');
 
       if NoRM <> '' then
-        Add('or pasien.no_rkm_medis LIKE :norm');
+        Add('AND pasien.no_rkm_medis LIKE :norm');
       if NamaPasien <> '' then
-        Add('or pasien.nm_pasien LIKE :nmpasien');
+        Add('AND pasien.nm_pasien LIKE :nmpasien');
       if NamaDokter <> '' then
         Add('AND dokter.nm_dokter LIKE :nmdokter');
       if KodePoli <> '' then
@@ -128,7 +129,6 @@ begin
     FilterSQL.Free;
   end;
 end;
-
 
 
 end.
