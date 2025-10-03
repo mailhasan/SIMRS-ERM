@@ -55,6 +55,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
+    LabelMasterPemeriksaan: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -76,7 +77,7 @@ type
     PanelTengah: TPanel;
     PanelAtas: TPanel;
     StringGridMasterPemeriksaan: TStringGrid;
-    StringGrid2: TStringGrid;
+    StringGridSkala: TStringGrid;
     StringGrid3: TStringGrid;
     TabSheetTriase: TTabSheet;
     TabSheet2: TTabSheet;
@@ -84,7 +85,9 @@ type
     procedure ButtonTriaseClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ComboBoxJenisTriaseChange(Sender: TObject);
+    procedure ComboBoxSkalaChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure StringGridMasterPemeriksaanClick(Sender: TObject);
     procedure StringGridMasterPemeriksaanDrawCell(Sender: TObject; aCol,
       aRow: Integer; aRect: TRect; aState: TGridDrawState);
     procedure TabControl1Change(Sender: TObject);
@@ -95,7 +98,9 @@ type
   public
     procedure baruTriase;
     procedure cbbmaster_triase_macam_kasus;
-
+    procedure masterPemeriksaan;
+    procedure CariDataMaterPemeriksaan(const KataKunci: string);
+    procedure TampilSkala(const kodePemeriksaan, skala: string);
   end;
 
 var
@@ -168,6 +173,9 @@ begin
  MemoCatatan.Clear; DateTimePickerTriase.Date:= Now;
  EditKodePetugas.Clear; EditNamaPetugas.Clear;
 
+ /// panggil procedure
+ masterPemeriksaan;
+
 end;
 
 procedure TFormPemeriksaanIgd.cbbmaster_triase_macam_kasus;
@@ -218,18 +226,273 @@ begin
   else if ComboBoxJenisTriase.Text = 'Triase Sekunder' then
   begin
     // Tambahkan isi untuk Triase Sekunder
-    ComboBoxSkala.Items.Add('Skala 2');
     ComboBoxSkala.Items.Add('Skala 3');
     ComboBoxSkala.Items.Add('Skala 4');
+    ComboBoxSkala.Items.Add('Skala 5');
 
     ComboBoxPlan.Items.Add('Zona Kuning');
     ComboBoxPlan.Items.Add('Zona Hijau');
   end;
 end;
 
+procedure TFormPemeriksaanIgd.ComboBoxSkalaChange(Sender: TObject);
+var
+  kodePemeriksaan,namaPemeriksaan: string;
+begin
+  if StringGridMasterPemeriksaan.Row > 0 then
+  begin
+    kodePemeriksaan := StringGridMasterPemeriksaan.Cells[0, StringGridMasterPemeriksaan.Row];
+    namaPemeriksaan := StringGridMasterPemeriksaan.Cells[1, StringGridMasterPemeriksaan.Row];
+    // panggil prosedur tampil skala
+    TampilSkala(kodePemeriksaan, ComboBoxSkala.Text);
+    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan '+namaPemeriksaan;
+  end;
+end;
+
+/// tampil master pemeriksaan
+procedure TFormPemeriksaanIGD.masterPemeriksaan;
+var
+  i: Integer;
+begin
+  with DataModuleIgd.ZQuerymaster_triase_pemeriksaan do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM master_triase_pemeriksaan order by nama_pemeriksaan asc';
+    Open;
+  end;
+
+  // Inisialisasi header kolom StringGrid
+  StringGridMasterPemeriksaan.RowCount := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.RecordCount + 1;
+  StringGridMasterPemeriksaan.ColCount := 2; // kode + nama
+  StringGridMasterPemeriksaan.Cells[0,0] := 'Kode';
+  StringGridMasterPemeriksaan.Cells[1,0] := 'Nama Pemeriksaan';
+  StringGridMasterPemeriksaan.ColWidths[0] := 50; // kode_pemeriksaan
+  StringGridMasterPemeriksaan.ColWidths[1] := 200; // nama_pemeriksaan
+
+  // Tampilkan data ke StringGrid
+  i := 1;
+  while not DataModuleIgd.ZQuerymaster_triase_pemeriksaan.EOF do
+  begin
+    StringGridMasterPemeriksaan.Cells[0, i] := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.FieldByName('kode_pemeriksaan').AsString;
+    StringGridMasterPemeriksaan.Cells[1, i] := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.FieldByName('nama_pemeriksaan').AsString;
+    DataModuleIgd.ZQuerymaster_triase_pemeriksaan.Next;
+    Inc(i);
+  end;
+end;
+
+procedure TFormPemeriksaanIGD.CariDataMaterPemeriksaan(const KataKunci: string);
+var
+  i: Integer;
+begin
+  with DataModuleIgd.ZQuerymaster_triase_pemeriksaan do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM master_triase_pemeriksaan ' +
+                'WHERE kode_pemeriksaan LIKE :kata OR nama_pemeriksaan LIKE :kata';
+    ParamByName('kata').AsString := '%' + KataKunci + '%';
+    Open;
+  end;
+
+  // Inisialisasi header
+  StringGridMasterPemeriksaan.RowCount := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.RecordCount + 1;
+  StringGridMasterPemeriksaan.ColCount := 2;
+  StringGridMasterPemeriksaan.Cells[0,0] := 'Kode Pemeriksaan';
+  StringGridMasterPemeriksaan.Cells[1,0] := 'Nama Pemeriksaan';
+  StringGridMasterPemeriksaan.ColWidths[0] := 50; // kode_pemeriksaan
+  StringGridMasterPemeriksaan.ColWidths[1] := 200; // nama_pemeriksaan
+
+  i := 1;
+  while not DataModuleIgd.ZQuerymaster_triase_pemeriksaan.EOF do
+  begin
+    StringGridMasterPemeriksaan.Cells[0, i] := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.FieldByName('kode_pemeriksaan').AsString;
+    StringGridMasterPemeriksaan.Cells[1, i] := DataModuleIgd.ZQuerymaster_triase_pemeriksaan.FieldByName('nama_pemeriksaan').AsString;
+    DataModuleIgd.ZQuerymaster_triase_pemeriksaan.Next;
+    Inc(i);
+  end;
+end;
+
+/// tampil data skala
+procedure TFormPemeriksaanIGD.TampilSkala(const kodePemeriksaan, skala: string);
+var
+  i:Integer;
+begin
+  with StringGridSkala do
+  begin
+    RowCount := 1; // reset data
+    ColCount := 4; // default minimal
+    Cells[0,0] := 'Kode';
+    Cells[1,0] := 'Pengkajian SKALA';
+    ColWidths[0] := 50; // kode_pemeriksaan
+    ColWidths[1] := 200; // nama_pemeriksaan
+  end;
+
+  if skala = 'Skala 1' then
+  begin
+    with DataModuleIgd.ZQuerymaster_triase_skala1 do
+    begin
+      Close;
+      SQL.Text := 'SELECT a.kode_skala1, a.pengkajian_skala1, b.kode_pemeriksaan '+
+                  'FROM master_triase_skala1 a '+
+                  'LEFT JOIN master_triase_pemeriksaan b ON b.kode_pemeriksaan=a.kode_pemeriksaan '+
+                  'WHERE a.kode_pemeriksaan=:kode';
+      ParamByName('kode').AsString := kodePemeriksaan;
+      Open;
+    end;
+
+    // isi grid
+    StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala1.RecordCount + 1;
+    StringGridSkala.ColCount := 2;
+    StringGridSkala.Cells[0,0] := 'Kode';
+    StringGridSkala.Cells[1,0] := 'Pengkajian SKALA';
+    StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
+    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+
+    i:=1;
+    while not DataModuleIgd.ZQuerymaster_triase_skala1.EOF do
+    begin
+      StringGridSkala.Cells[0,i] := DataModuleIgd.ZQuerymaster_triase_skala1.FieldByName('kode_skala1').AsString;
+      StringGridSkala.Cells[1,i] := DataModuleIgd.ZQuerymaster_triase_skala1.FieldByName('pengkajian_skala1').AsString;
+      Inc(i);
+      DataModuleIgd.ZQuerymaster_triase_skala1.Next;
+    end;
+  end
+  else if skala = 'Skala 2' then
+  begin
+    with DataModuleIgd.ZQuerymaster_triase_skala2 do
+    begin
+      Close;
+      SQL.Text := 'SELECT  a.kode_pemeriksaan, a.kode_skala2, '+
+                  '        a.pengkajian_skala2, b.nama_pemeriksaan '+
+                  'FROM master_triase_skala2 a '+
+                  'LEFT JOIN master_triase_pemeriksaan b ON b.kode_pemeriksaan=a.kode_pemeriksaan '+
+                  'WHERE a.kode_pemeriksaan=:kode';
+      ParamByName('kode').AsString := kodePemeriksaan;
+      Open;
+    end;
+
+    StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala2.RecordCount + 1;
+    StringGridSkala.ColCount := 2;
+    StringGridSkala.Cells[0,0] := 'Kode';
+    StringGridSkala.Cells[1,0] := 'Pengkajian Skala2';
+    StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
+    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+
+    i:=1;
+    while not DataModuleIgd.ZQuerymaster_triase_skala2.EOF do
+    begin
+      StringGridSkala.Cells[0,i] := DataModuleIgd.ZQuerymaster_triase_skala2.FieldByName('kode_skala2').AsString;
+      StringGridSkala.Cells[1,i] := DataModuleIgd.ZQuerymaster_triase_skala2.FieldByName('pengkajian_skala2').AsString;
+      Inc(i);
+      DataModuleIgd.ZQuerymaster_triase_skala2.Next;
+    end;
+  end
+  else if skala = 'Skala 3' then
+  begin
+    with DataModuleIgd.ZQuerymaster_triase_skala3 do
+    begin
+      Close;
+      SQL.Text := 'SELECT a.kode_pemeriksaan, a.kode_skala3, a.pengkajian_skala3, b.nama_pemeriksaan '+
+                  'FROM master_triase_skala3 a '+
+                  'LEFT JOIN master_triase_pemeriksaan b ON b.kode_pemeriksaan=a.kode_pemeriksaan '+
+                  'WHERE a.kode_pemeriksaan=:kode';
+      ParamByName('kode').AsString := kodePemeriksaan;
+      Open;
+    end;
+
+    StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala3.RecordCount + 1;
+    StringGridSkala.ColCount := 2;
+    StringGridSkala.Cells[0,0] := 'Kode Skala3';
+    StringGridSkala.Cells[1,0] := 'Pengkajian Skala3';
+    StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
+    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+
+    i:=1;
+    while not DataModuleIgd.ZQuerymaster_triase_skala3.EOF do
+    begin
+      StringGridSkala.Cells[0,i] := DataModuleIgd.ZQuerymaster_triase_skala3.FieldByName('kode_skala3').AsString;
+      StringGridSkala.Cells[1,i] := DataModuleIgd.ZQuerymaster_triase_skala3.FieldByName('pengkajian_skala3').AsString;
+      Inc(i);
+      DataModuleIgd.ZQuerymaster_triase_skala3.Next;
+    end;
+  end
+  else if skala = 'Skala 4' then
+  begin
+    with DataModuleIgd.ZQuerymaster_triase_skala4 do
+    begin
+      Close;
+      SQL.Text := 'SELECT a.kode_pemeriksaan, a.kode_skala4, a.pengkajian_skala4, b.nama_pemeriksaan '+
+                  'FROM master_triase_skala4 a '+
+                  'LEFT JOIN master_triase_pemeriksaan b ON b.kode_pemeriksaan=a.kode_pemeriksaan '+
+                  'WHERE a.kode_pemeriksaan=:kode';
+      ParamByName('kode').AsString := kodePemeriksaan;
+      Open;
+    end;
+
+    StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala4.RecordCount + 1;
+    StringGridSkala.ColCount := 3;
+    StringGridSkala.Cells[0,0] := 'Kode Skala4';
+    StringGridSkala.Cells[1,0] := 'Pengkajian Skala4';
+    StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
+    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+
+    i:=1;
+    while not DataModuleIgd.ZQuerymaster_triase_skala4.EOF do
+    begin
+      StringGridSkala.Cells[0,i] := DataModuleIgd.ZQuerymaster_triase_skala4.FieldByName('kode_skala4').AsString;
+      StringGridSkala.Cells[1,i] := DataModuleIgd.ZQuerymaster_triase_skala4.FieldByName('pengkajian_skala4').AsString;
+      Inc(i);
+      DataModuleIgd.ZQuerymaster_triase_skala4.Next;
+    end;
+  end
+  else if skala = 'Skala 5' then
+  begin
+    with DataModuleIgd.ZQuerymaster_triase_skala5 do
+    begin
+      Close;
+      SQL.Text := 'SELECT a.kode_pemeriksaan, a.kode_skala5, a.pengkajian_skala5, b.nama_pemeriksaan '+
+                  'FROM master_triase_skala5 a '+
+                  'LEFT JOIN master_triase_pemeriksaan b ON b.kode_pemeriksaan=a.kode_pemeriksaan '+
+                  'WHERE a.kode_pemeriksaan=:kode';
+      ParamByName('kode').AsString := kodePemeriksaan;
+      Open;
+    end;
+
+    StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala5.RecordCount + 1;
+    StringGridSkala.ColCount := 3;
+    StringGridSkala.Cells[0,0] := 'Kode Skala5';
+    StringGridSkala.Cells[1,0] := 'Pengkajian Skala5';
+    StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
+    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+
+    i:=1;
+    while not DataModuleIgd.ZQuerymaster_triase_skala5.EOF do
+    begin
+      StringGridSkala.Cells[0,i] := DataModuleIgd.ZQuerymaster_triase_skala5.FieldByName('kode_skala5').AsString;
+      StringGridSkala.Cells[1,i] := DataModuleIgd.ZQuerymaster_triase_skala5.FieldByName('pengkajian_skala5').AsString;
+      Inc(i);
+      DataModuleIgd.ZQuerymaster_triase_skala5.Next;
+    end;
+  end;
+end;
+
+
 procedure TFormPemeriksaanIgd.FormShow(Sender: TObject);
 begin
   /// panggil procedure
+end;
+
+procedure TFormPemeriksaanIgd.StringGridMasterPemeriksaanClick(Sender: TObject);
+var
+  kodePemeriksaan,namaPemeriksaan: string;
+begin
+   if StringGridMasterPemeriksaan.Row > 0 then
+  begin
+    kodePemeriksaan := StringGridMasterPemeriksaan.Cells[0, StringGridMasterPemeriksaan.Row];
+    namaPemeriksaan := StringGridMasterPemeriksaan.Cells[1, StringGridMasterPemeriksaan.Row];
+    // panggil prosedur tampil skala
+    TampilSkala(kodePemeriksaan, ComboBoxSkala.Text);
+    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan '+namaPemeriksaan;
+  end;
 end;
 
 procedure TFormPemeriksaanIgd.StringGridMasterPemeriksaanDrawCell(

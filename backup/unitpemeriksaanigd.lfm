@@ -499,6 +499,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               )
               TabOrder = 1
               Text = 'ComboBoxSkala'
+              OnChange = ComboBoxSkalaChange
             end
             object Label11: TLabel
               Left = 324
@@ -539,7 +540,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Top = 1
               Width = 263
               Align = alLeft
-              Caption = 'Pemeriksaan'
+              Caption = 'Master Pemeriksaan'
               ClientHeight = 281
               ClientWidth = 259
               TabOrder = 0
@@ -550,6 +551,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
                 Width = 259
                 Align = alClient
                 TabOrder = 0
+                OnClick = StringGridMasterPemeriksaanClick
                 OnDrawCell = StringGridMasterPemeriksaanDrawCell
               end
             end
@@ -557,36 +559,44 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Left = 264
               Height = 301
               Top = 1
-              Width = 272
+              Width = 344
               Align = alLeft
-              Caption = 'Detail Pemeriksaan'
+              Caption = 'Skala Pemeriksaan'
               ClientHeight = 281
-              ClientWidth = 268
+              ClientWidth = 340
               TabOrder = 1
-              object StringGrid2: TStringGrid
+              object StringGridSkala: TStringGrid
                 Left = 0
-                Height = 281
-                Top = 0
-                Width = 268
+                Height = 266
+                Top = 15
+                Width = 340
                 Align = alClient
                 TabOrder = 0
               end
+              object LabelMasterPemeriksaan: TLabel
+                Left = 0
+                Height = 15
+                Top = 0
+                Width = 340
+                Align = alTop
+                Caption = 'LabelMasterPemeriksaan'
+              end
             end
             object GroupBox5: TGroupBox
-              Left = 536
+              Left = 608
               Height = 301
               Top = 1
-              Width = 402
+              Width = 330
               Align = alClient
               Caption = 'Hasil Pemeriksaan'
               ClientHeight = 281
-              ClientWidth = 398
+              ClientWidth = 326
               TabOrder = 2
               object StringGrid3: TStringGrid
                 Left = 0
                 Height = 281
                 Top = 0
-                Width = 398
+                Width = 326
                 Align = alClient
                 TabOrder = 0
               end

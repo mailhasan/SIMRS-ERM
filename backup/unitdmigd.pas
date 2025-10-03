@@ -13,6 +13,9 @@ type
 
   TDataModuleIgd = class(TDataModule)
     DataSourceTampilDaftarPxIgd: TDataSource;
+    ZQuerymaster_triase_skala2: TZQuery;
+    ZQuerymaster_triase_skala3: TZQuery;
+    ZQuerymaster_triase_skala4: TZQuery;
     ZQueryTampilDaftarPxIgd: TZQuery;
     ZQuerydata_triase_igddetail_skala5: TZQuery;
     ZQuerydata_triase_igddetail_skala1: TZQuery;
@@ -30,7 +33,6 @@ type
               NoRM, NamaPasien, NamaDokter, KodePoli, StatusDaftar: string;
               TglRegAwal, TglRegAkhir: TDate
               );
-     procedure TampilDataKeGridPemeriksaan(KodePemeriksaan, NamaPemeriksaan: string);
   end;
 
 var

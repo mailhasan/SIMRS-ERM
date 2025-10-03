@@ -1,6 +1,6 @@
 object DataModuleIgd: TDataModuleIgd
   OldCreateOrder = False
-  Height = 656
+  Height = 731
   HorizontalOffset = 437
   VerticalOffset = 209
   Width = 539
@@ -42,7 +42,6 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_pemeriksaan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'select * from master_triase_pemeriksaan'
     )
@@ -52,6 +51,7 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_skala1: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
     SQL.Strings = (
       'select * from master_triase_skala1'
     )
@@ -61,12 +61,13 @@ object DataModuleIgd: TDataModuleIgd
   end
   object ZQuerymaster_triase_skala5: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
     SQL.Strings = (
       'select * from master_triase_skala5'
     )
     Params = <>
     Left = 106
-    Top = 376
+    Top = 576
   end
   object ZQuerydata_triase_igddetail_skala1: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -74,8 +75,8 @@ object DataModuleIgd: TDataModuleIgd
       'select * from data_triase_igddetail_skala1'
     )
     Params = <>
-    Left = 106
-    Top = 440
+    Left = 298
+    Top = 136
   end
   object ZQuerydata_triase_igddetail_skala5: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -83,8 +84,8 @@ object DataModuleIgd: TDataModuleIgd
       'select * from data_triase_igddetail_skala5'
     )
     Params = <>
-    Left = 106
-    Top = 504
+    Left = 296
+    Top = 200
   end
   object ZQueryTampilDaftarPxIgd: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -127,5 +128,35 @@ object DataModuleIgd: TDataModuleIgd
     DataSet = ZQueryTampilDaftarPxIgd
     Left = 384
     Top = 64
+  end
+  object ZQuerymaster_triase_skala2: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'select * from master_triase_skala2'
+    )
+    Params = <>
+    Left = 106
+    Top = 376
+  end
+  object ZQuerymaster_triase_skala3: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'select * from master_triase_skala3'
+    )
+    Params = <>
+    Left = 104
+    Top = 440
+  end
+  object ZQuerymaster_triase_skala4: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'select * from master_triase_skala4'
+    )
+    Params = <>
+    Left = 106
+    Top = 504
   end
 end
