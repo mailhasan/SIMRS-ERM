@@ -14,6 +14,7 @@ type
 
   TFormPemeriksaanIgd = class(TForm)
     Button1: TButton;
+    ButtonInputPemeriksaan: TButton;
     ComboBoxAlasanKedatangan: TComboBox;
     ComboBoxKebutuhanKhusus: TComboBox;
     ComboBoxMacamKasus: TComboBox;
@@ -236,6 +237,8 @@ begin
 end;
 
 procedure TFormPemeriksaanIgd.ComboBoxSkalaChange(Sender: TObject);
+var
+  kodePemeriksaan,namaPemeriksaan: string;
 begin
   if StringGridMasterPemeriksaan.Row > 0 then
   begin
@@ -343,7 +346,7 @@ begin
     StringGridSkala.Cells[0,0] := 'Kode';
     StringGridSkala.Cells[1,0] := 'Pengkajian SKALA';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
-    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+    StringGridSkala. ColWidths[1] := 250; // nama_pemeriksaan
 
     i:=1;
     while not DataModuleIgd.ZQuerymaster_triase_skala1.EOF do
@@ -373,7 +376,7 @@ begin
     StringGridSkala.Cells[0,0] := 'Kode';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala2';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
-    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+    StringGridSkala. ColWidths[1] := 250; // nama_pemeriksaan
 
     i:=1;
     while not DataModuleIgd.ZQuerymaster_triase_skala2.EOF do
@@ -402,7 +405,7 @@ begin
     StringGridSkala.Cells[0,0] := 'Kode Skala3';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala3';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
-    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+    StringGridSkala. ColWidths[1] := 250; // nama_pemeriksaan
 
     i:=1;
     while not DataModuleIgd.ZQuerymaster_triase_skala3.EOF do
@@ -431,7 +434,7 @@ begin
     StringGridSkala.Cells[0,0] := 'Kode Skala4';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala4';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
-    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+    StringGridSkala. ColWidths[1] := 250; // nama_pemeriksaan
 
     i:=1;
     while not DataModuleIgd.ZQuerymaster_triase_skala4.EOF do
@@ -460,7 +463,7 @@ begin
     StringGridSkala.Cells[0,0] := 'Kode Skala5';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala5';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
-    StringGridSkala. ColWidths[1] := 350; // nama_pemeriksaan
+    StringGridSkala. ColWidths[1] := 250; // nama_pemeriksaan
 
     i:=1;
     while not DataModuleIgd.ZQuerymaster_triase_skala5.EOF do
@@ -489,7 +492,7 @@ begin
     namaPemeriksaan := StringGridMasterPemeriksaan.Cells[1, StringGridMasterPemeriksaan.Row];
     // panggil prosedur tampil skala
     TampilSkala(kodePemeriksaan, ComboBoxSkala.Text);
-    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan '+namaPemeriksaan;
+    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan : '+ namaPemeriksaan;
   end;
 end;
 

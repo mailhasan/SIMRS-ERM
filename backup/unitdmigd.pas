@@ -13,6 +13,9 @@ type
 
   TDataModuleIgd = class(TDataModule)
     DataSourceTampilDaftarPxIgd: TDataSource;
+    ZQuerydata_triase_igddetail_skala2: TZQuery;
+    ZQuerydata_triase_igddetail_skala3: TZQuery;
+    ZQuerydata_triase_igddetail_skala4: TZQuery;
     ZQuerymaster_triase_skala2: TZQuery;
     ZQuerymaster_triase_skala3: TZQuery;
     ZQuerymaster_triase_skala4: TZQuery;
