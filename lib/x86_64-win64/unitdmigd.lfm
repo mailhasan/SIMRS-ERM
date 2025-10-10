@@ -73,8 +73,8 @@ object DataModuleIgd: TDataModuleIgd
       'select * from data_triase_igddetail_skala1'
     )
     Params = <>
-    Left = 312
-    Top = 120
+    Left = 336
+    Top = 128
   end
   object ZQuerydata_triase_igddetail_skala5: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -82,8 +82,8 @@ object DataModuleIgd: TDataModuleIgd
       'select * from data_triase_igddetail_skala5'
     )
     Params = <>
-    Left = 320
-    Top = 184
+    Left = 336
+    Top = 352
   end
   object ZQueryTampilDaftarPxIgd: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -153,5 +153,32 @@ object DataModuleIgd: TDataModuleIgd
     Params = <>
     Left = 106
     Top = 504
+  end
+  object ZQuerydata_triase_igddetail_skala2: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala2'
+    )
+    Params = <>
+    Left = 336
+    Top = 184
+  end
+  object ZQuerydata_triase_igddetail_skala3: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala3'
+    )
+    Params = <>
+    Left = 336
+    Top = 240
+  end
+  object ZQuerydata_triase_igddetail_skala4: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala4'
+    )
+    Params = <>
+    Left = 336
+    Top = 296
   end
 end

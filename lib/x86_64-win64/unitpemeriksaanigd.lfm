@@ -1,18 +1,18 @@
 object FormPemeriksaanIgd: TFormPemeriksaanIgd
-  Left = 428
-  Height = 659
-  Top = 162
-  Width = 951
+  Left = 394
+  Height = 720
+  Top = 151
+  Width = 1366
   Caption = 'Form Pemeriksaan IGD'
-  ClientHeight = 659
-  ClientWidth = 951
+  ClientHeight = 720
+  ClientWidth = 1366
   OnShow = FormShow
   LCLVersion = '3.6.0.0'
   object PanelAtas: TPanel
     Left = 0
     Height = 16
     Top = 0
-    Width = 951
+    Width = 1366
     Align = alTop
     Caption = 'PEMERIKSAAN IGD'
     Color = 11834940
@@ -29,21 +29,21 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 643
+    Height = 704
     Top = 16
-    Width = 951
+    Width = 1366
     Align = alClient
-    ClientHeight = 643
-    ClientWidth = 951
+    ClientHeight = 704
+    ClientWidth = 1366
     TabOrder = 1
     object Panel1: TPanel
       Left = 1
       Height = 50
       Top = 1
-      Width = 949
+      Width = 1364
       Align = alTop
       ClientHeight = 50
-      ClientWidth = 949
+      ClientWidth = 1364
       TabOrder = 0
       object Label1: TLabel
         Left = 10
@@ -87,35 +87,35 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
     end
     object PanelKonten: TPanel
       Left = 1
-      Height = 591
+      Height = 652
       Top = 51
-      Width = 949
+      Width = 1364
       Align = alClient
       Caption = 'PanelKonten'
-      ClientHeight = 591
-      ClientWidth = 949
+      ClientHeight = 652
+      ClientWidth = 1364
       TabOrder = 1
       object PageControl1: TPageControl
         Left = 1
-        Height = 589
+        Height = 650
         Top = 1
-        Width = 947
+        Width = 1362
         ActivePage = TabSheetTriase
         Align = alClient
         TabIndex = 0
         TabOrder = 0
         object TabSheetTriase: TTabSheet
           Caption = 'TRIASE'
-          ClientHeight = 561
-          ClientWidth = 939
+          ClientHeight = 622
+          ClientWidth = 1354
           object Panel2: TPanel
             Left = 0
             Height = 95
             Top = 0
-            Width = 939
+            Width = 1354
             Align = alTop
             ClientHeight = 95
-            ClientWidth = 939
+            ClientWidth = 1354
             TabOrder = 0
             object Label2: TLabel
               Left = 8
@@ -253,10 +253,10 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
             Left = 0
             Height = 73
             Top = 95
-            Width = 939
+            Width = 1354
             Align = alTop
             ClientHeight = 73
-            ClientWidth = 939
+            ClientWidth = 1354
             TabOrder = 1
             object GroupBox1: TGroupBox
               Left = 1
@@ -284,11 +284,11 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               Left = 216
               Height = 71
               Top = 1
-              Width = 722
+              Width = 1137
               Align = alClient
               Caption = 'PEMERIKSAAN FISIK'
               ClientHeight = 53
-              ClientWidth = 718
+              ClientWidth = 1133
               Font.CharSet = ANSI_CHARSET
               Font.Height = -11
               Font.Pitch = fpVariable
@@ -451,10 +451,10 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
             Left = 0
             Height = 40
             Top = 168
-            Width = 939
+            Width = 1354
             Align = alTop
             ClientHeight = 40
-            ClientWidth = 939
+            ClientWidth = 1354
             TabOrder = 2
             object Label9: TLabel
               Left = 8
@@ -526,99 +526,123 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
           end
           object Panel5: TPanel
             Left = 0
-            Height = 303
+            Height = 364
             Top = 208
-            Width = 939
+            Width = 1354
             Align = alClient
             Caption = 'Panel5'
-            ClientHeight = 303
-            ClientWidth = 939
+            ClientHeight = 364
+            ClientWidth = 1354
             TabOrder = 3
-            object GroupBox2: TGroupBox
-              Left = 1
-              Height = 301
+            object GroupBox5: TGroupBox
+              Left = 456
+              Height = 362
               Top = 1
-              Width = 263
-              Align = alLeft
-              Caption = 'Master Pemeriksaan'
-              ClientHeight = 281
-              ClientWidth = 259
+              Width = 897
+              Align = alClient
+              Caption = 'Hasil Pemeriksaan'
+              ClientHeight = 342
+              ClientWidth = 893
               TabOrder = 0
-              object StringGridMasterPemeriksaan: TStringGrid
+              object StringGridHasilPemeriksaan: TStringGrid
                 Left = 0
-                Height = 281
+                Height = 312
                 Top = 0
-                Width = 259
+                Width = 893
                 Align = alClient
                 TabOrder = 0
-                OnClick = StringGridMasterPemeriksaanClick
-                OnDrawCell = StringGridMasterPemeriksaanDrawCell
+                OnDrawCell = StringGridHasilPemeriksaanDrawCell
               end
-            end
-            object GroupBox4: TGroupBox
-              Left = 264
-              Height = 301
-              Top = 1
-              Width = 392
-              Align = alLeft
-              Caption = 'Skala Pemeriksaan'
-              ClientHeight = 281
-              ClientWidth = 388
-              TabOrder = 1
-              object StringGridSkala: TStringGrid
+              object BitBtn1: TBitBtn
                 Left = 0
-                Height = 241
-                Top = 15
-                Width = 388
-                Align = alClient
-                TabOrder = 0
-              end
-              object LabelMasterPemeriksaan: TLabel
-                Left = 0
-                Height = 15
-                Top = 0
-                Width = 388
-                Align = alTop
-                Caption = 'LabelMasterPemeriksaan'
-              end
-              object ButtonInputPemeriksaan: TButton
-                Left = 0
-                Height = 25
-                Top = 256
-                Width = 388
+                Height = 30
+                Top = 312
+                Width = 893
                 Align = alBottom
-                Caption = 'INPUT PEMERIKSAAN'
+                Caption = 'HAPUS HASIL PEMERIKSAAN'
+                OnClick = BitBtn1Click
                 TabOrder = 1
               end
             end
-            object GroupBox5: TGroupBox
-              Left = 656
-              Height = 301
+            object Panel7: TPanel
+              Left = 1
+              Height = 362
               Top = 1
-              Width = 282
-              Align = alClient
-              Caption = 'Hasil Pemeriksaan'
-              ClientHeight = 281
-              ClientWidth = 278
-              TabOrder = 2
-              object StringGridHasilPemeriksaan: TStringGrid
-                Left = 0
-                Height = 281
-                Top = 0
-                Width = 278
-                Align = alClient
+              Width = 455
+              Align = alLeft
+              Caption = 'Panel7'
+              ClientHeight = 362
+              ClientWidth = 455
+              TabOrder = 1
+              object GroupBox2: TGroupBox
+                Left = 1
+                Height = 207
+                Top = 1
+                Width = 453
+                Align = alTop
+                Caption = 'Master Pemeriksaan'
+                ClientHeight = 187
+                ClientWidth = 449
                 TabOrder = 0
+                object StringGridMasterPemeriksaan: TStringGrid
+                  Left = 0
+                  Height = 187
+                  Top = 0
+                  Width = 449
+                  Align = alClient
+                  TabOrder = 0
+                  OnClick = StringGridMasterPemeriksaanClick
+                  OnDrawCell = StringGridMasterPemeriksaanDrawCell
+                end
+              end
+              object GroupBox4: TGroupBox
+                Left = 1
+                Height = 153
+                Top = 208
+                Width = 453
+                Align = alClient
+                Caption = 'Skala Pemeriksaan'
+                ClientHeight = 133
+                ClientWidth = 449
+                TabOrder = 1
+                object StringGridSkala: TStringGrid
+                  Left = 0
+                  Height = 93
+                  Top = 15
+                  Width = 449
+                  Align = alClient
+                  TabOrder = 0
+                end
+                object LabelMasterPemeriksaan: TLabel
+                  Left = 0
+                  Height = 15
+                  Top = 0
+                  Width = 449
+                  Align = alTop
+                  Caption = 'LabelMasterPemeriksaan'
+                end
+                object ButtonInputPemeriksaan: TButton
+                  Left = 0
+                  Height = 25
+                  Top = 108
+                  Width = 449
+                  Align = alBottom
+                  Caption = 'INPUT PEMERIKSAAN'
+                  Color = clHighlight
+                  TabOrder = 1
+                  OnClick = ButtonInputPemeriksaanClick
+                end
               end
             end
           end
           object Panel6: TPanel
             Left = 0
             Height = 50
-            Top = 511
-            Width = 939
+            Top = 572
+            Width = 1354
             Align = alBottom
             ClientHeight = 50
-            ClientWidth = 939
+            ClientWidth = 1354
             TabOrder = 4
             object GroupBox6: TGroupBox
               Left = 1

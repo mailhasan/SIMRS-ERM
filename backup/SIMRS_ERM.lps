@@ -31,10 +31,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="115"/>
-        <CursorPos X="16" Y="128"/>
+        <CursorPos X="55" Y="133"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmkoneksi.pas"/>
@@ -105,7 +107,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="61" Y="10"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="165"/>
       </Unit>
       <Unit>
         <Filename Value="unitigd.pas"/>
@@ -115,9 +117,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitIGD"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="358"/>
+        <TopLine Value="356"/>
         <CursorPos X="3" Y="278"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -129,9 +131,9 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="55"/>
-        <CursorPos X="45" Y="128"/>
-        <UsageCount Value="98"/>
+        <TopLine Value="91"/>
+        <CursorPos X="90" Y="114"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -144,9 +146,9 @@
         <UnitName Value="unitPemeriksaanIGD"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="476"/>
-        <CursorPos X="61" Y="494"/>
-        <UsageCount Value="68"/>
+        <TopLine Value="179"/>
+        <CursorPos X="36" Y="201"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -158,7 +160,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitTriaseIgd"/>
         <CursorPos X="17" Y="9"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -182,118 +184,130 @@
         <EditorIndex Value="2"/>
         <TopLine Value="10317"/>
         <CursorPos X="64" Y="10341"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="26">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="101" Column="38" TopLine="80"/>
-      </Position>
-      <Position>
-        <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="312" Column="43" TopLine="296"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmigd.pas"/>
-        <Caret Line="100" Column="57" TopLine="76"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmigd.pas"/>
-        <Caret Line="102" Column="67" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmigd.pas"/>
-        <Caret Line="104" Column="75" TopLine="78"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmigd.pas"/>
-        <Caret Line="102" Column="78" TopLine="79"/>
+        <Caret Line="557" Column="7" TopLine="540"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="297" Column="53" TopLine="290"/>
+        <Caret Line="558" Column="36" TopLine="541"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="440" Column="78" TopLine="409"/>
+        <Caret Line="557" Column="7" TopLine="540"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="434" Column="5" TopLine="411"/>
+        <Caret Line="558" Column="9" TopLine="541"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="101" Column="15" TopLine="84"/>
+        <Caret Line="9" Column="75"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="323" Column="62" TopLine="300"/>
+        <Caret Line="569" Column="85" TopLine="550"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="316" Column="15" TopLine="299"/>
+        <Caret Line="563" Column="24" TopLine="545"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="300" Column="41" TopLine="280"/>
+        <Caret Line="551" Column="67" TopLine="531"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="317" Column="11" TopLine="297"/>
+        <Caret Line="260" Column="62" TopLine="235"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="372" Column="11" TopLine="348"/>
+        <Caret Line="181" Column="46" TopLine="155"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="424" Column="11" TopLine="402"/>
+        <Caret Line="177" Column="80" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="326" Column="73" TopLine="304"/>
+        <Caret Line="274" Column="16" TopLine="259"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="319" Column="11" TopLine="304"/>
+        <Caret Line="183" Column="62" TopLine="154"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="299" Column="82" TopLine="282"/>
+        <Caret Line="618" Column="70" TopLine="591"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="101" Column="66" TopLine="85"/>
+        <Caret Line="202" Column="7" TopLine="163"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="451" Column="67" TopLine="451"/>
+        <Caret Line="161" Column="12" TopLine="144"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="450" Column="67" TopLine="450"/>
+        <Caret Line="191" Column="27" TopLine="178"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="466" Column="43" TopLine="450"/>
+        <Caret Line="192" Column="27" TopLine="179"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="479" Column="58" TopLine="450"/>
+        <Caret Line="191" Column="27" TopLine="178"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="481" Column="10" TopLine="456"/>
+        <Caret Line="194" Column="35" TopLine="178"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="483" TopLine="469"/>
+        <Caret Line="200" Column="35" TopLine="179"/>
       </Position>
       <Position>
         <Filename Value="unitpemeriksaanigd.pas"/>
-        <Caret Line="258" Column="90" TopLine="292"/>
+        <Caret Line="202" Column="35" TopLine="181"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="201" Column="35" TopLine="180"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="200" Column="35" TopLine="179"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="199" Column="35" TopLine="178"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="198" Column="38" TopLine="179"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="197" Column="38" TopLine="178"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="196" Column="38" TopLine="177"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="195" Column="38" TopLine="176"/>
+      </Position>
+      <Position>
+        <Filename Value="unitpemeriksaanigd.pas"/>
+        <Caret Line="194" Column="38" TopLine="175"/>
       </Position>
     </JumpHistory>
     <RunParams>

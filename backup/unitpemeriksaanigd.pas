@@ -6,13 +6,15 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  ComCtrls, Grids,DateTimePicker, AnchorDockPanel, Types;
+  ComCtrls, Grids, DateTimePicker, AnchorDockPanel, Types, LCLIntf, LCLType,
+  Buttons;
 
 type
 
   { TFormPemeriksaanIgd }
 
   TFormPemeriksaanIgd = class(TForm)
+    BitBtn1: TBitBtn;
     Button1: TButton;
     ButtonInputPemeriksaan: TButton;
     ComboBoxAlasanKedatangan: TComboBox;
@@ -56,7 +58,6 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
-    LabelMasterPemeriksaan: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -65,6 +66,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    LabelMasterPemeriksaan: TLabel;
     MemoCatatan: TMemo;
     MemoKeluhanAnamesa: TMemo;
     PageControl1: TPageControl;
@@ -74,20 +76,25 @@ type
     Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
+    Panel7: TPanel;
     PanelKonten: TPanel;
     PanelTengah: TPanel;
     PanelAtas: TPanel;
     StringGridMasterPemeriksaan: TStringGrid;
+    StringGridHasilPemeriksaan: TStringGrid;
     StringGridSkala: TStringGrid;
-    StringGrid3: TStringGrid;
     TabSheetTriase: TTabSheet;
     TabSheet2: TTabSheet;
+    procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure ButtonInputPemeriksaanClick(Sender: TObject);
     procedure ButtonTriaseClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ComboBoxJenisTriaseChange(Sender: TObject);
     procedure ComboBoxSkalaChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure StringGridHasilPemeriksaanDrawCell(Sender: TObject; aCol,
+      aRow: Integer; aRect: TRect; aState: TGridDrawState);
     procedure StringGridMasterPemeriksaanClick(Sender: TObject);
     procedure StringGridMasterPemeriksaanDrawCell(Sender: TObject; aCol,
       aRow: Integer; aRect: TRect; aState: TGridDrawState);
@@ -102,6 +109,7 @@ type
     procedure masterPemeriksaan;
     procedure CariDataMaterPemeriksaan(const KataKunci: string);
     procedure TampilSkala(const kodePemeriksaan, skala: string);
+    procedure settingGridHasil;
   end;
 
 var
@@ -145,6 +153,97 @@ end;
 
 procedure TFormPemeriksaanIgd.Button1Click(Sender: TObject);
 begin
+
+end;
+
+procedure TFormPemeriksaanIgd.BitBtn1Click(Sender: TObject);
+var
+  i, row: Integer;
+begin
+ row := StringGridHasilPemeriksaan.Row;
+
+  // Pastikan bukan baris header
+  if row < 1 then
+  begin
+    ShowMessage('Pilih baris data yang akan dihapus!');
+    Exit;
+  end;
+
+  // Pastikan ada data lebih dari header
+  if StringGridHasilPemeriksaan.RowCount <= 1 then
+  begin
+    ShowMessage('Tidak ada data untuk dihapus!');
+    Exit;
+  end;
+
+  // Konfirmasi
+  if MessageDlg('Konfirmasi', 'Hapus data pemeriksaan ini?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrNo then
+    Exit;
+
+  // Geser baris ke atas untuk menutupi baris yang dihapus
+  for i := row to StringGridHasilPemeriksaan.RowCount - 2 do
+    StringGridHasilPemeriksaan.Rows[i].Assign(StringGridHasilPemeriksaan.Rows[i + 1]);
+
+  // Kurangi jumlah baris
+  StringGridHasilPemeriksaan.RowCount := StringGridHasilPemeriksaan.RowCount - 1;
+
+  // Jika semua baris habis, sisakan header
+  if StringGridHasilPemeriksaan.RowCount < 2 then
+    StringGridHasilPemeriksaan.RowCount := 2;
+
+  // Set fokus kembali ke baris pertama data
+  StringGridHasilPemeriksaan.Row := 1;
+end;
+
+procedure TFormPemeriksaanIgd.ButtonInputPemeriksaanClick(Sender: TObject);
+var
+  rowS, newRow: Integer;
+  kodeP, namaP, kodeS, skalaS: string;
+begin
+  // --- Pastikan Label Pemeriksaan tidak kosong ---
+  if Trim(LabelMasterPemeriksaan.Caption) = '' then
+  begin
+    ShowMessage('Nama Pemeriksaan belum dipilih!');
+    Exit;
+  end;
+
+  // --- Ambil nama pemeriksaan dari Label ---
+  namaP := LabelMasterPemeriksaan.Caption;
+
+  // --- Ambil kode pemeriksaan dari grid master jika perlu ---
+  if StringGridMasterPemeriksaan.Row >= 1 then
+    kodeP := StringGridMasterPemeriksaan.Cells[0, StringGridMasterPemeriksaan.Row]
+  else
+    kodeP := '';
+
+  // --- Ambil baris aktif di StringGridSkala ---
+  rowS := StringGridSkala.Row;
+  if (rowS < 1) or (rowS >= StringGridSkala.RowCount) then
+  begin
+    ShowMessage('Pilih salah satu skala terlebih dahulu!');
+    Exit;
+  end;
+
+  // --- Pastikan jumlah kolom cukup ---
+  if StringGridHasilPemeriksaan.ColCount < 5 then
+    StringGridHasilPemeriksaan.ColCount := 5;
+
+  // --- Ambil data skala ---
+  kodeS := StringGridSkala.Cells[0, rowS];
+  skalaS := StringGridSkala.Cells[1, rowS];
+
+  // --- Tambahkan ke grid hasil ---
+  newRow := StringGridHasilPemeriksaan.RowCount;
+  StringGridHasilPemeriksaan.RowCount := newRow + 1;
+
+  with StringGridHasilPemeriksaan do
+  begin
+    Cells[0, newRow] := IntToStr(newRow); // No
+    Cells[1, newRow] := namaP;            // Nama Pemeriksaan dari Label
+    Cells[2, newRow] := kodeS;            // Kode Skala
+    Cells[3, newRow] := skalaS;           // Skala
+  end;
 
 end;
 
@@ -202,6 +301,34 @@ begin
   end;
 end;
 
+/// stringrid hasil
+procedure TFormPemeriksaanIgd.settingGridHasil;
+begin
+ // Kolom dan header StringGridHasil
+  with StringGridHasilPemeriksaan do
+  begin
+    RowCount := 1;
+    ColCount := 4;
+    FixedRows := 1; // header
+    Options := Options + [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine];
+
+    Cells[0,0] := 'No';
+    Cells[1,0] := 'Nama Pemeriksaan';
+    Cells[2,0] := 'Kode Skala';
+    Cells[3,0] := 'Skala';
+
+    DefaultRowHeight := 26;
+    ColWidths[0] := 40;
+    ColWidths[1] := 280;
+    ColWidths[2] := 120;
+    ColWidths[3] := 300;
+
+    // Style header
+    FixedColor := RGBToColor(0, 120, 215);  // biru modern
+    Font.Color := clBlack;
+    Font.Style := [];
+  end;
+end;
 
 
 procedure TFormPemeriksaanIgd.Button2Click(Sender: TObject);
@@ -480,6 +607,43 @@ end;
 procedure TFormPemeriksaanIgd.FormShow(Sender: TObject);
 begin
   /// panggil procedure
+ settingGridHasil;
+end;
+
+procedure TFormPemeriksaanIgd.StringGridHasilPemeriksaanDrawCell(
+  Sender: TObject; aCol, aRow: Integer; aRect: TRect; aState: TGridDrawState);
+begin
+  with (Sender as TStringGrid) do
+  begin
+    // Header Row
+    if ARow = 0 then
+    begin
+      Canvas.Brush.Color := RGBToColor(0, 120, 215); // biru
+      Canvas.Font.Color := clWhite;
+      Canvas.Font.Style := [fsBold];
+      Canvas.FillRect(ARect);
+      DrawText(Canvas.Handle, PChar(Cells[ACol, ARow]), -1, ARect,
+        DT_CENTER or DT_VCENTER or DT_SINGLELINE);
+    end
+    else
+    begin
+      // Sel biasa (baris data)
+      if gdSelected in aState then
+      begin
+        Canvas.Brush.Color := RGBToColor(220, 240, 255);
+        Canvas.Font.Color := clBlack;
+      end
+      else
+      begin
+        Canvas.Brush.Color := clWhite;
+        Canvas.Font.Color := clBlack;
+      end;
+
+      Canvas.FillRect(ARect);
+      DrawText(Canvas.Handle, PChar(Cells[ACol, ARow]), -1, ARect,
+        DT_LEFT or DT_VCENTER or DT_SINGLELINE);
+    end;
+  end;
 end;
 
 procedure TFormPemeriksaanIgd.StringGridMasterPemeriksaanClick(Sender: TObject);
@@ -492,7 +656,7 @@ begin
     namaPemeriksaan := StringGridMasterPemeriksaan.Cells[1, StringGridMasterPemeriksaan.Row];
     // panggil prosedur tampil skala
     TampilSkala(kodePemeriksaan, ComboBoxSkala.Text);
-    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan : '+ namaPemeriksaan;
+    LabelMasterPemeriksaan.Caption:= namaPemeriksaan;
   end;
 end;
 
