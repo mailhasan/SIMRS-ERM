@@ -36,6 +36,42 @@ type
               NoRM, NamaPasien, NamaDokter, KodePoli, StatusDaftar: string;
               TglRegAwal, TglRegAkhir: TDate
               );
+     // === CRUD Triase Utama ===
+    procedure SimpanTriaseUtama(
+      ANoRawat, AKodeKasus, ACaraMasuk, ATransportasi,
+      AAlasan, AKet, ATD, ANadi, APernapasan, ASuhu, ASaturasi, ANyeri: string;
+      ATanggal: TDateTime);
+    procedure EditTriaseUtama(
+      ANoRawat, AKodeKasus, ACaraMasuk, ATransportasi,
+      AAlasan, AKet, ATD, ANadi, APernapasan, ASuhu, ASaturasi, ANyeri: string;
+      ATanggal: TDateTime);
+    procedure HapusTriaseUtama(ANoRawat: string);
+    function LoadTriaseUtama(ANoRawat: string): TDataSet;
+
+    // === CRUD Triase Primer ===
+    procedure SimpanTriasePrimer(
+      ANoRawat, AKeluhan, AKebutuhan, ACatatan, APlan, ANik: string;
+      ATanggal: TDateTime);
+    procedure EditTriasePrimer(
+      ANoRawat, AKeluhan, AKebutuhan, ACatatan, APlan, ANik: string;
+      ATanggal: TDateTime);
+    procedure HapusTriasePrimer(ANoRawat: string);
+    function LoadTriasePrimer(ANoRawat: string): TDataSet;
+
+    // === CRUD Triase Sekunder ===
+    procedure SimpanTriaseSekunder(
+      ANoRawat, AAnamnesa, ACatatan, APlan, ANik: string;
+      ATanggal: TDateTime);
+    procedure EditTriaseSekunder(
+      ANoRawat, AAnamnesa, ACatatan, APlan, ANik: string;
+      ATanggal: TDateTime);
+    procedure HapusTriaseSekunder(ANoRawat: string);
+    function LoadTriaseSekunder(ANoRawat: string): TDataSet;
+
+    // === CRUD Skala Dinamis (Skala 1–5) ===
+    procedure SimpanDetailSkala(ANoRawat, AKodeSkala, ASkalaKe: string);
+    procedure HapusDetailSkala(ANoRawat, ASkalaKe: string);
+    function LoadDetailSkala(ANoRawat, ASkalaKe: string): TDataSet;
   end;
 
 var
@@ -132,6 +168,270 @@ begin
     ZQueryTampilDaftarPxIgd.Open;
   finally
     FilterSQL.Free;
+  end;
+end;
+
+{======================== TRIAGE UTAMA ========================}
+
+procedure TDataModuleIgd.SimpanTriaseUtama(
+  ANoRawat, AKodeKasus, ACaraMasuk, ATransportasi,
+  AAlasan, AKet, ATD, ANadi, APernapasan, ASuhu, ASaturasi, ANyeri: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igd do
+  begin
+    Close;
+    SQL.Text := 'INSERT INTO data_triase_igd ' +
+      '(no_rawat, tgl_kunjungan, cara_masuk, alat_transportasi, alasan_kedatangan, ' +
+      'keterangan_kedatangan, kode_kasus, tekanan_darah, nadi, pernapasan, suhu, saturasi_o2, nyeri) ' +
+      'VALUES (:no_rawat, :tgl, :cara, :alat, :alasan, :ket, :kode, :td, :nadi, :napas, :suhu, :o2, :nyeri)';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('cara').AsString := ACaraMasuk;
+    ParamByName('alat').AsString := ATransportasi;
+    ParamByName('alasan').AsString := AAlasan;
+    ParamByName('ket').AsString := AKet;
+    ParamByName('kode').AsString := AKodeKasus;
+    ParamByName('td').AsString := ATD;
+    ParamByName('nadi').AsString := ANadi;
+    ParamByName('napas').AsString := APernapasan;
+    ParamByName('suhu').AsString := ASuhu;
+    ParamByName('o2').AsString := ASaturasi;
+    ParamByName('nyeri').AsString := ANyeri;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.EditTriaseUtama(
+  ANoRawat, AKodeKasus, ACaraMasuk, ATransportasi,
+  AAlasan, AKet, ATD, ANadi, APernapasan, ASuhu, ASaturasi, ANyeri: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igd do
+  begin
+    Close;
+    SQL.Text := 'UPDATE data_triase_igd SET ' +
+      'tgl_kunjungan=:tgl, cara_masuk=:cara, alat_transportasi=:alat, alasan_kedatangan=:alasan, ' +
+      'keterangan_kedatangan=:ket, kode_kasus=:kode, tekanan_darah=:td, nadi=:nadi, ' +
+      'pernapasan=:napas, suhu=:suhu, saturasi_o2=:o2, nyeri=:nyeri WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('cara').AsString := ACaraMasuk;
+    ParamByName('alat').AsString := ATransportasi;
+    ParamByName('alasan').AsString := AAlasan;
+    ParamByName('ket').AsString := AKet;
+    ParamByName('kode').AsString := AKodeKasus;
+    ParamByName('td').AsString := ATD;
+    ParamByName('nadi').AsString := ANadi;
+    ParamByName('napas').AsString := APernapasan;
+    ParamByName('suhu').AsString := ASuhu;
+    ParamByName('o2').AsString := ASaturasi;
+    ParamByName('nyeri').AsString := ANyeri;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.HapusTriaseUtama(ANoRawat: string);
+begin
+  with ZQuerydata_triase_igd do
+  begin
+    Close;
+    SQL.Text := 'DELETE FROM data_triase_igd WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ExecSQL;
+  end;
+end;
+
+function TDataModuleIgd.LoadTriaseUtama(ANoRawat: string): TDataSet;
+begin
+  with ZQuerydata_triase_igd do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM data_triase_igd WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    Open;
+    Result := ZQuerydata_triase_igd;
+  end;
+end;
+
+{======================== TRIAGE PRIMER ========================}
+
+procedure TDataModuleIgd.SimpanTriasePrimer(
+  ANoRawat, AKeluhan, AKebutuhan, ACatatan, APlan, ANik: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igdprimer do
+  begin
+    Close;
+    SQL.Text := 'INSERT INTO data_triase_igdprimer ' +
+      '(no_rawat, keluhan_utama, kebutuhan_khusus, catatan, plan, tanggaltriase, nik) ' +
+      'VALUES (:no_rawat, :keluhan, :kebutuhan, :catatan, :plan, :tgl, :nik)';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('keluhan').AsString := AKeluhan;
+    ParamByName('kebutuhan').AsString := AKebutuhan;
+    ParamByName('catatan').AsString := ACatatan;
+    ParamByName('plan').AsString := APlan;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('nik').AsString := ANik;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.EditTriasePrimer(
+  ANoRawat, AKeluhan, AKebutuhan, ACatatan, APlan, ANik: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igdprimer do
+  begin
+    Close;
+    SQL.Text := 'UPDATE data_triase_igdprimer SET ' +
+      'keluhan_utama=:keluhan, kebutuhan_khusus=:kebutuhan, catatan=:catatan, ' +
+      'plan=:plan, tanggaltriase=:tgl, nik=:nik WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('keluhan').AsString := AKeluhan;
+    ParamByName('kebutuhan').AsString := AKebutuhan;
+    ParamByName('catatan').AsString := ACatatan;
+    ParamByName('plan').AsString := APlan;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('nik').AsString := ANik;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.HapusTriasePrimer(ANoRawat: string);
+begin
+  with ZQuerydata_triase_igdprimer do
+  begin
+    Close;
+    SQL.Text := 'DELETE FROM data_triase_igdprimer WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ExecSQL;
+  end;
+end;
+
+function TDataModuleIgd.LoadTriasePrimer(ANoRawat: string): TDataSet;
+begin
+  with ZQuerydata_triase_igdprimer do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM data_triase_igdprimer WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    Open;
+    Result := ZQuerydata_triase_igdprimer;
+  end;
+end;
+
+{======================== TRIAGE SEKUNDER ========================}
+
+procedure TDataModuleIgd.SimpanTriaseSekunder(
+  ANoRawat, AAnamnesa, ACatatan, APlan, ANik: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igdsekunder do
+  begin
+    Close;
+    SQL.Text := 'INSERT INTO data_triase_igdsekunder ' +
+      '(no_rawat, anamnesa_singkat, catatan, plan, tanggaltriase, nik) ' +
+      'VALUES (:no_rawat, :anamnesa, :catatan, :plan, :tgl, :nik)';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('anamnesa').AsString := AAnamnesa;
+    ParamByName('catatan').AsString := ACatatan;
+    ParamByName('plan').AsString := APlan;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('nik').AsString := ANik;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.EditTriaseSekunder(
+  ANoRawat, AAnamnesa, ACatatan, APlan, ANik: string;
+  ATanggal: TDateTime);
+begin
+  with ZQuerydata_triase_igdsekunder do
+  begin
+    Close;
+    SQL.Text := 'UPDATE data_triase_igdsekunder SET ' +
+      'anamnesa_singkat=:anamnesa, catatan=:catatan, plan=:plan, tanggaltriase=:tgl, nik=:nik ' +
+      'WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('anamnesa').AsString := AAnamnesa;
+    ParamByName('catatan').AsString := ACatatan;
+    ParamByName('plan').AsString := APlan;
+    ParamByName('tgl').AsDateTime := ATanggal;
+    ParamByName('nik').AsString := ANik;
+    ExecSQL;
+  end;
+end;
+
+procedure TDataModuleIgd.HapusTriaseSekunder(ANoRawat: string);
+begin
+  with ZQuerydata_triase_igdsekunder do
+  begin
+    Close;
+    SQL.Text := 'DELETE FROM data_triase_igdsekunder WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ExecSQL;
+  end;
+end;
+
+function TDataModuleIgd.LoadTriaseSekunder(ANoRawat: string): TDataSet;
+begin
+  with ZQuerydata_triase_igdsekunder do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM data_triase_igdsekunder WHERE no_rawat=:no_rawat';
+    ParamByName('no_rawat').AsString := ANoRawat;
+    Open;
+    Result := ZQuerydata_triase_igdsekunder;
+  end;
+end;
+
+{======================== DETAIL SKALA (DINAMIS) ========================}
+
+procedure TDataModuleIgd.SimpanDetailSkala(ANoRawat, AKodeSkala, ASkalaKe: string);
+var tbl: string;
+begin
+  tbl := 'data_triase_igddetail_skala' + ASkalaKe;
+  with TZQuery.Create(nil) do
+  try
+    Connection := ZConn;
+    Close;
+    SQL.Text := Format('REPLACE INTO %s (no_rawat, kode_skala%s) VALUES (:no_rawat, :kode)',
+      [tbl, ASkalaKe]);
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ParamByName('kode').AsString := AKodeSkala;
+    ExecSQL;
+  finally
+    Free;
+  end;
+end;
+
+procedure TDataModuleIgd.HapusDetailSkala(ANoRawat, ASkalaKe: string);
+var tbl: string;
+begin
+  tbl := 'data_triase_igddetail_skala' + ASkalaKe;
+  with TZQuery.Create(nil) do
+  try
+    Connection := ZConn;
+    SQL.Text := Format('DELETE FROM %s WHERE no_rawat=:no_rawat', [tbl]);
+    ParamByName('no_rawat').AsString := ANoRawat;
+    ExecSQL;
+  finally
+    Free;
+  end;
+end;
+
+function TDataModuleIgd.LoadDetailSkala(ANoRawat, ASkalaKe: string): TDataSet;
+var tbl: string;
+begin
+  tbl := 'data_triase_igddetail_skala' + ASkalaKe;
+  with TZQuery.Create(nil) do
+  begin
+    Connection := ZConn;
+    SQL.Text := Format('SELECT * FROM %s WHERE no_rawat=:no_rawat', [tbl]);
+    ParamByName('no_rawat').AsString := ANoRawat;
+    Open;
+    Result := TDataSet(Self); // hanya untuk compile
   end;
 end;
 

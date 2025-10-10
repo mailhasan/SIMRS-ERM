@@ -175,7 +175,7 @@ object DataModuleIgd: TDataModuleIgd
   object ZQuerydata_triase_igddetail_skala4: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
     SQL.Strings = (
-      'select * from data_triase_igddetail_skala1'
+      'select * from data_triase_igddetail_skala4'
     )
     Params = <>
     Left = 336

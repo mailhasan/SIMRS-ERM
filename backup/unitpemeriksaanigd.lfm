@@ -500,6 +500,8 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
               TabOrder = 1
               Text = 'ComboBoxSkala'
               OnChange = ComboBoxSkalaChange
+              OnClick = ComboBoxSkalaClick
+              OnSelect = ComboBoxSkalaSelect
             end
             object Label11: TLabel
               Left = 324
@@ -604,6 +606,8 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
                 Caption = 'Skala Pemeriksaan'
                 ClientHeight = 133
                 ClientWidth = 449
+                ParentBackground = False
+                ParentColor = False
                 TabOrder = 1
                 object StringGridSkala: TStringGrid
                   Left = 0
@@ -620,6 +624,11 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
                   Width = 449
                   Align = alTop
                   Caption = 'LabelMasterPemeriksaan'
+                  Font.CharSet = ANSI_CHARSET
+                  Font.Color = clWhite
+                  Font.Pitch = fpVariable
+                  Font.Quality = fqDraft
+                  ParentFont = False
                 end
                 object ButtonInputPemeriksaan: TButton
                   Left = 0

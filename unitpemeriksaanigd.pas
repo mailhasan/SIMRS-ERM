@@ -92,6 +92,8 @@ type
     procedure Button2Click(Sender: TObject);
     procedure ComboBoxJenisTriaseChange(Sender: TObject);
     procedure ComboBoxSkalaChange(Sender: TObject);
+    procedure ComboBoxSkalaClick(Sender: TObject);
+    procedure ComboBoxSkalaSelect(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure StringGridHasilPemeriksaanDrawCell(Sender: TObject; aCol,
       aRow: Integer; aRect: TRect; aState: TGridDrawState);
@@ -308,7 +310,7 @@ begin
   with StringGridHasilPemeriksaan do
   begin
     RowCount := 1;
-    ColCount := 3;
+    ColCount := 4;
     FixedRows := 1; // header
     Options := Options + [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine];
 
@@ -373,8 +375,21 @@ begin
     namaPemeriksaan := StringGridMasterPemeriksaan.Cells[1, StringGridMasterPemeriksaan.Row];
     // panggil prosedur tampil skala
     TampilSkala(kodePemeriksaan, ComboBoxSkala.Text);
-    LabelMasterPemeriksaan.Caption:= 'Nama Pemeriksaan '+namaPemeriksaan;
+    LabelMasterPemeriksaan.Caption:= namaPemeriksaan;
   end;
+end;
+
+procedure TFormPemeriksaanIgd.ComboBoxSkalaClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFormPemeriksaanIgd.ComboBoxSkalaSelect(Sender: TObject);
+begin
+  if ComboBoxSkala.ItemIndex =0 then
+     GroupBox4.Color:= clRed
+  else
+     GroupBox4.Color:= clDefault;
 end;
 
 /// tampil master pemeriksaan
