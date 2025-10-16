@@ -21,12 +21,12 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModuleKoneksi, DataModuleKoneksi);
   Application.CreateForm(TDataModuleRanap, DataModuleRanap);
+  Application.CreateForm(TDataModuleFarmasi, DataModuleFarmasi);
+  Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormKamar, FormKamar);
   Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
-  Application.CreateForm(TDataModuleFarmasi, DataModuleFarmasi);
   Application.CreateForm(TFormIGD, FormIGD);
   Application.CreateForm(TDataModuleIgd, DataModuleIgd);
   Application.CreateForm(TFormPemeriksaanIgd, FormPemeriksaanIgd);

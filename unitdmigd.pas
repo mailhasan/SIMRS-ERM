@@ -389,15 +389,17 @@ end;
 {======================== DETAIL SKALA (DINAMIS) ========================}
 
 procedure TDataModuleIgd.SimpanDetailSkala(ANoRawat, AKodeSkala, ASkalaKe: string);
-var tbl: string;
+var
+  tbl: string;
 begin
   tbl := 'data_triase_igddetail_skala' + ASkalaKe;
   with TZQuery.Create(nil) do
   try
-    Connection := ZConn;
-    Close;
-    SQL.Text := Format('REPLACE INTO %s (no_rawat, kode_skala%s) VALUES (:no_rawat, :kode)',
-      [tbl, ASkalaKe]);
+    Connection := DataModuleKoneksi.ZConnectionSimrsERM; // ✅ gunakan koneksi global
+    SQL.Text := Format(
+      'REPLACE INTO %s (no_rawat, kode_skala%s) VALUES (:no_rawat, :kode)',
+      [tbl, ASkalaKe]
+    );
     ParamByName('no_rawat').AsString := ANoRawat;
     ParamByName('kode').AsString := AKodeSkala;
     ExecSQL;
@@ -407,12 +409,13 @@ begin
 end;
 
 procedure TDataModuleIgd.HapusDetailSkala(ANoRawat, ASkalaKe: string);
-var tbl: string;
+var
+  tbl: string;
 begin
   tbl := 'data_triase_igddetail_skala' + ASkalaKe;
   with TZQuery.Create(nil) do
   try
-    Connection := ZConn;
+    Connection := DataModuleKoneksi.ZConnectionSimrsERM; // ✅ gunakan koneksi global
     SQL.Text := Format('DELETE FROM %s WHERE no_rawat=:no_rawat', [tbl]);
     ParamByName('no_rawat').AsString := ANoRawat;
     ExecSQL;
@@ -422,19 +425,18 @@ begin
 end;
 
 function TDataModuleIgd.LoadDetailSkala(ANoRawat, ASkalaKe: string): TDataSet;
-var tbl: string;
+var
+  tbl: string;
+  Q: TZQuery;
 begin
   tbl := 'data_triase_igddetail_skala' + ASkalaKe;
-  with TZQuery.Create(nil) do
-  begin
-    Connection := ZConn;
-    SQL.Text := Format('SELECT * FROM %s WHERE no_rawat=:no_rawat', [tbl]);
-    ParamByName('no_rawat').AsString := ANoRawat;
-    Open;
-    Result := TDataSet(Self); // hanya untuk compile
-  end;
+  Q := TZQuery.Create(nil);
+  Q.Connection := DataModuleKoneksi.ZConnectionSimrsERM; // ✅ gunakan koneksi global
+  Q.SQL.Text := Format('SELECT * FROM %s WHERE no_rawat=:no_rawat', [tbl]);
+  Q.ParamByName('no_rawat').AsString := ANoRawat;
+  Q.Open;
+  Result := Q; // ✅ kembalikan dataset hasil query
 end;
-
 
 end.
 

@@ -10,8 +10,10 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, datetimectrls, unitLogin, unitUtama, unitDmKoneksi, zcomponent,
-  unitRawatInap, unitdmrawatinap;
+  Forms, FrameViewer09, datetimectrls, anchordockpkg, unitLogin, unitUtama,
+  unitDmKoneksi, zcomponent, unitRawatInap, unitdmrawatinap, unitKamar,
+  unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd, unitPemeriksaanIGD,
+  unitTriaseIgd;
 
 {$R *.res}
 
@@ -22,6 +24,13 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModuleKoneksi, DataModuleKoneksi);
   Application.CreateForm(TDataModuleRanap, DataModuleRanap);
+  Application.CreateForm(TFormKamar, FormKamar);
+  Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
+  Application.CreateForm(TDataModuleFarmasi, DataModuleFarmasi);
+  Application.CreateForm(TFormIGD, FormIGD);
+  Application.CreateForm(TDataModuleIgd, DataModuleIgd);
+  Application.CreateForm(TFormPemeriksaanIgd, FormPemeriksaanIgd);
+  Application.CreateForm(TFormTriaseIgd, FormTriaseIgd);
   Application.Run;
 end.
 

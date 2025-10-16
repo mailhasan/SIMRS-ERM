@@ -1,11 +1,11 @@
 object FormTriaseIgd: TFormTriaseIgd
   Left = 492
-  Height = 612
+  Height = 641
   Top = 190
   Width = 915
   BorderStyle = bsNone
   Caption = 'FormTriaseIgd'
-  ClientHeight = 612
+  ClientHeight = 641
   ClientWidth = 915
   LCLVersion = '3.6.0.0'
   object PanelAtas: TPanel
@@ -41,11 +41,11 @@ object FormTriaseIgd: TFormTriaseIgd
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 588
+    Height = 617
     Top = 24
     Width = 915
     Align = alClient
-    ClientHeight = 588
+    ClientHeight = 617
     ClientWidth = 915
     TabOrder = 1
     object Panel1: TPanel
@@ -402,7 +402,7 @@ object FormTriaseIgd: TFormTriaseIgd
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Height = 347
+      Height = 376
       Top = 240
       Width = 279
       Align = alLeft
@@ -411,7 +411,7 @@ object FormTriaseIgd: TFormTriaseIgd
     end
     object GroupBox4: TGroupBox
       Left = 280
-      Height = 347
+      Height = 376
       Top = 240
       Width = 279
       Align = alLeft
@@ -420,7 +420,7 @@ object FormTriaseIgd: TFormTriaseIgd
     end
     object Panel4: TPanel
       Left = 559
-      Height = 347
+      Height = 376
       Top = 240
       Width = 51
       Align = alLeft
@@ -429,7 +429,7 @@ object FormTriaseIgd: TFormTriaseIgd
     end
     object GroupBox5: TGroupBox
       Left = 610
-      Height = 347
+      Height = 376
       Top = 240
       Width = 304
       Align = alClient

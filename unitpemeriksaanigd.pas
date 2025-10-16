@@ -15,7 +15,8 @@ type
 
   TFormPemeriksaanIgd = class(TForm)
     BitBtn1: TBitBtn;
-    Button1: TButton;
+    BitBtnHapusTriase: TBitBtn;
+    ButtonSimpanTriase: TButton;
     ButtonInputPemeriksaan: TButton;
     ComboBoxAlasanKedatangan: TComboBox;
     ComboBoxKebutuhanKhusus: TComboBox;
@@ -86,7 +87,8 @@ type
     TabSheetTriase: TTabSheet;
     TabSheet2: TTabSheet;
     procedure BitBtn1Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure BitBtnHapusTriaseClick(Sender: TObject);
+    procedure ButtonSimpanTriaseClick(Sender: TObject);
     procedure ButtonInputPemeriksaanClick(Sender: TObject);
     procedure ButtonTriaseClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -112,6 +114,7 @@ type
     procedure CariDataMaterPemeriksaan(const KataKunci: string);
     procedure TampilSkala(const kodePemeriksaan, skala: string);
     procedure settingGridHasil;
+    procedure KirimTriaseLengkap;
   end;
 
 var
@@ -153,9 +156,81 @@ if not Assigned(FormTriaseIgd) then
   TampilkanFormDiPanel(FormTriaseIgd);
 end;
 
-procedure TFormPemeriksaanIgd.Button1Click(Sender: TObject);
+/// procedure crud pemeriksaan
+procedure TFormPemeriksaanIgd.KirimTriaseLengkap;
+var
+  NoRawat, KodeKasus, CaraMasuk, Transportasi, Alasan, Ket, TD, Nadi,
+  Napas, Suhu, Saturasi, Nyeri, Keluhan, Kebutuhan, Catatan, Plan, Nik,
+  Anamnesa, SkalaKe, KodeSkala: string;
+  i: Integer;
+  Tgl: TDateTime;
 begin
+  // Ambil data umum dari form
+  NoRawat := EditNoRawat.Text;
+  KodeKasus := '';//edtKodeKasus.Text;
+  CaraMasuk := ComboBoxCaraMasuk.Text;
+  Transportasi := ComboBoxTransportasi.Text;
+  Alasan := ComboBoxAlasanKedatangan.Text;
+  Ket := EditKeterangan.Text;
+  TD := EditTensi.Text;
+  Nadi := EditNadi.Text;
+  Napas := EditRespirasi.Text;
+  Suhu := EditSuhu.Text;
+  Saturasi := EditSaturasi.Text;
+  Nyeri := EditNyeri.Text;
+  Tgl := Now;
 
+  // Simpan Triase Utama
+  DataModuleIgd.HapusTriaseUtama(NoRawat);
+  DataModuleIgd.SimpanTriaseUtama(NoRawat, KodeKasus, CaraMasuk, Transportasi,
+    Alasan, Ket, TD, Nadi, Napas, Suhu, Saturasi, Nyeri, Tgl);
+
+  // Simpan berdasarkan jenis triase
+  if ComboBoxJenisTriase.Text = 'Triase Primer' then
+  begin
+    Keluhan := MemoKeluhanAnamesa.Text;
+    Kebutuhan := ComboBoxKebutuhanKhusus.Text;
+    Catatan := MemoCatatan.Text;
+    Plan := ComboBoxJenisTriase.Text;
+    Nik := EditKodePetugas.Text;
+
+    DataModuleIgd.HapusTriasePrimer(NoRawat);
+    DataModuleIgd.SimpanTriasePrimer(NoRawat, Keluhan, Kebutuhan, Catatan, Plan, Nik, Tgl);
+  end
+  else if ComboBoxJenisTriase.Text = 'Triase Sekunder' then
+  begin
+    Anamnesa := MemoKeluhanAnamesa.Text;
+    Catatan := MemoCatatan.Text;
+    Plan := ComboBoxJenisTriase.Text;
+    Nik := EditKodePetugas.Caption;
+
+    DataModuleIgd.HapusTriaseSekunder(NoRawat);
+    DataModuleIgd.SimpanTriaseSekunder(NoRawat, Anamnesa, Catatan, Plan, Nik, Tgl);
+  end;
+
+  // Kirim detail skala (berdasarkan combobox)
+  SkalaKe := Copy(ComboBoxSkala.Text, 7, 1); // contoh: "Skala 3" → "3"
+
+  // Hapus data skala lama
+  DataModuleIgd.HapusDetailSkala(NoRawat, SkalaKe);
+
+  // Loop StringGrid
+  for i := 1 to StringGridHasilPemeriksaan.RowCount - 1 do
+  begin
+    // Asumsikan StringGrid: Col[0]=No, Col[1]=KodeSkala, Col[2]=Nama Pemeriksaan
+    KodeSkala := StringGridHasilPemeriksaan.Cells[1, i];
+
+    if Trim(KodeSkala) <> '' then
+      DataModuleIgd.SimpanDetailSkala(NoRawat, KodeSkala, SkalaKe);
+  end;
+
+  ShowMessage('Data Triase berhasil dikirim ke database.');
+end;
+
+procedure TFormPemeriksaanIgd.ButtonSimpanTriaseClick(Sender: TObject);
+begin
+  /// proses crud
+  KirimTriaseLengkap;
 end;
 
 procedure TFormPemeriksaanIgd.BitBtn1Click(Sender: TObject);
@@ -196,6 +271,60 @@ begin
 
   // Set fokus kembali ke baris pertama data
   StringGridHasilPemeriksaan.Row := 1;
+end;
+
+procedure TFormPemeriksaanIgd.BitBtnHapusTriaseClick(Sender: TObject);
+var
+  NoRawat, SkalaKe: string;
+begin
+  NoRawat := EditNoRawat.Text;
+  if Trim(NoRawat) = '' then
+  begin
+    ShowMessage('Nomor rawat belum dipilih!');
+    Exit;
+  end;
+
+  if MessageDlg('Yakin ingin menghapus semua data triase untuk No. Rawat: ' + NoRawat + '?',
+    mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    Exit;
+
+  try
+    // Hapus data utama triase
+    DataModuleIgd.HapusTriaseUtama(NoRawat);
+
+    // Hapus Triase Primer atau Sekunder
+    if ComboBoxJenisTriase.Text = 'Triase Primer' then
+      DataModuleIgd.HapusTriasePrimer(NoRawat)
+    else if ComboBoxJenisTriase.Text = 'Triase Sekunder' then
+      DataModuleIgd.HapusTriaseSekunder(NoRawat);
+
+    // Hapus detail skala
+    SkalaKe := Copy(ComboBoxSkala.Text, 7, 1); // contoh: "Skala 3" → "3"
+    if (SkalaKe <> '') then
+      DataModuleIgd.HapusDetailSkala(NoRawat, SkalaKe);
+
+    // Bersihkan tampilan form
+    MemoKeluhanAnamesa.Clear;
+    MemoCatatan.Clear;
+    ComboBoxCaraMasuk.Text := '';
+    ComboBoxTransportasi.Text := '';
+    ComboBoxAlasanKedatangan.Text := '';
+    EditKeterangan.Text := '';
+    EditTensi.Text := '';
+    EditNadi.Text := '';
+    EditRespirasi.Text := '';
+    EditSuhu.Text := '';
+    EditSaturasi.Text := '';
+    EditNyeri.Text := '';
+
+    StringGridHasilPemeriksaan.RowCount := 1;
+
+    ShowMessage('Data triase berhasil dihapus dari database.');
+
+  except
+    on E: Exception do
+      ShowMessage('Gagal menghapus data triase: ' + E.Message);
+  end;
 end;
 
 procedure TFormPemeriksaanIgd.ButtonInputPemeriksaanClick(Sender: TObject);
