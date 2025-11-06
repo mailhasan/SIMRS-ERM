@@ -1,7 +1,7 @@
 object FormPemeriksaanIgd: TFormPemeriksaanIgd
-  Left = 394
+  Left = 366
   Height = 720
-  Top = 151
+  Top = 126
   Width = 1366
   Caption = 'Form Pemeriksaan IGD'
   ClientHeight = 720
@@ -100,9 +100,9 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
         Height = 650
         Top = 1
         Width = 1362
-        ActivePage = TabSheetTriase
+        ActivePage = TabSheet2
         Align = alClient
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         object TabSheetTriase: TTabSheet
           Caption = 'TRIASE'
@@ -227,7 +227,7 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
             object ComboBoxMacamKasus: TComboBox
               Left = 426
               Height = 23
-              Top = 41
+              Top = 40
               Width = 314
               ItemHeight = 15
               TabOrder = 4
@@ -762,6 +762,116 @@ object FormPemeriksaanIgd: TFormPemeriksaanIgd
         end
         object TabSheet2: TTabSheet
           Caption = 'DATA TRIASE'
+          ClientHeight = 622
+          ClientWidth = 1354
+          OnShow = TabSheet2Show
+          object Panel8: TPanel
+            Left = 0
+            Height = 42
+            Top = 0
+            Width = 1354
+            Align = alTop
+            Caption = 'Panel8'
+            ClientHeight = 42
+            ClientWidth = 1354
+            TabOrder = 0
+            object ButtonTampilDataTriase: TButton
+              Left = 288
+              Height = 25
+              Top = 8
+              Width = 75
+              Caption = 'ButtonTampilDataTriase'
+              TabOrder = 0
+              OnClick = ButtonTampilDataTriaseClick
+            end
+            object DateTimePickerMulaiTriase: TDateTimePicker
+              Left = 8
+              Height = 23
+              Top = 8
+              Width = 83
+              CenturyFrom = 1941
+              MaxDate = 2958465
+              MinDate = -53780
+              TabOrder = 1
+              TrailingSeparator = False
+              TextForNullDate = 'NULL'
+              LeadingZeros = True
+              Kind = dtkDate
+              TimeFormat = tf24
+              TimeDisplay = tdHMS
+              DateMode = dmComboBox
+              Date = 45967
+              Time = 0.651443125003425
+              UseDefaultSeparators = True
+              HideDateTimeParts = []
+              MonthNames = 'Long'
+            end
+            object DateTimePickerSampaiTriase: TDateTimePicker
+              Left = 104
+              Height = 23
+              Top = 8
+              Width = 83
+              CenturyFrom = 1941
+              MaxDate = 2958465
+              MinDate = -53780
+              TabOrder = 2
+              TrailingSeparator = False
+              TextForNullDate = 'NULL'
+              LeadingZeros = True
+              Kind = dtkDate
+              TimeFormat = tf24
+              TimeDisplay = tdHMS
+              DateMode = dmComboBox
+              Date = 45967
+              Time = 0.651443125003425
+              UseDefaultSeparators = True
+              HideDateTimeParts = []
+              MonthNames = 'Long'
+            end
+            object EditCariTriase: TEdit
+              Left = 200
+              Height = 23
+              Top = 8
+              Width = 80
+              TabOrder = 3
+              Text = 'EditCariTriase'
+            end
+            object LabelJumlah: TLabel
+              Left = 402
+              Height = 15
+              Top = 16
+              Width = 66
+              Caption = 'LabelJumlah'
+            end
+          end
+          object Panel9: TPanel
+            Left = 0
+            Height = 580
+            Top = 42
+            Width = 1354
+            Align = alClient
+            Caption = 'Panel9'
+            ClientHeight = 580
+            ClientWidth = 1354
+            TabOrder = 1
+            object Panel10: TPanel
+              Left = 856
+              Height = 578
+              Top = 1
+              Width = 497
+              Align = alRight
+              Caption = 'Panel10'
+              TabOrder = 0
+            end
+            object StringGridTriaseIgd: TStringGrid
+              Left = 1
+              Height = 578
+              Top = 1
+              Width = 855
+              Align = alClient
+              TabOrder = 1
+            end
+          end
         end
       end
     end

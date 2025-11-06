@@ -261,8 +261,8 @@ object FormIGD: TFormIGD
   end
   object PopupMenuIgd: TPopupMenu
     Images = FormUtama.ImageList1
-    Left = 260
-    Top = 358
+    Left = 264
+    Top = 360
     object MenuItem1: TMenuItem
       Caption = 'PEMERIKSAAN'
       ImageIndex = 1

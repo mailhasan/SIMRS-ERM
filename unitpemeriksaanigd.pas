@@ -16,6 +16,7 @@ type
   TFormPemeriksaanIgd = class(TForm)
     BitBtn1: TBitBtn;
     BitBtnHapusTriase: TBitBtn;
+    ButtonTampilDataTriase: TButton;
     ButtonSimpanTriase: TButton;
     ButtonInputPemeriksaan: TButton;
     ComboBoxAlasanKedatangan: TComboBox;
@@ -27,8 +28,11 @@ type
     ComboBoxCaraMasuk: TComboBox;
     ComboBoxTransportasi: TComboBox;
     DateTimePicker: TDateTimePicker;
+    DateTimePickerMulaiTriase: TDateTimePicker;
     DateTimePickerKunjungan: TDateTimePicker;
+    DateTimePickerSampaiTriase: TDateTimePicker;
     DateTimePickerTriase: TDateTimePicker;
+    EditCariTriase: TEdit;
     EditKodePetugas: TEdit;
     EditNamaPetugas: TEdit;
     EditKeterangan: TEdit;
@@ -59,6 +63,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
+    LabelJumlah: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -72,15 +77,19 @@ type
     MemoKeluhanAnamesa: TMemo;
     PageControl1: TPageControl;
     Panel1: TPanel;
+    Panel10: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
     PanelKonten: TPanel;
     PanelTengah: TPanel;
     PanelAtas: TPanel;
+    StringGridTriaseIgd: TStringGrid;
     StringGridMasterPemeriksaan: TStringGrid;
     StringGridHasilPemeriksaan: TStringGrid;
     StringGridSkala: TStringGrid;
@@ -90,6 +99,7 @@ type
     procedure BitBtnHapusTriaseClick(Sender: TObject);
     procedure ButtonSimpanTriaseClick(Sender: TObject);
     procedure ButtonInputPemeriksaanClick(Sender: TObject);
+    procedure ButtonTampilDataTriaseClick(Sender: TObject);
     procedure ButtonTriaseClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ComboBoxJenisTriaseChange(Sender: TObject);
@@ -103,6 +113,7 @@ type
     procedure StringGridMasterPemeriksaanDrawCell(Sender: TObject; aCol,
       aRow: Integer; aRect: TRect; aState: TGridDrawState);
     procedure TabControl1Change(Sender: TObject);
+    procedure TabSheet2Show(Sender: TObject);
   private
    procedure TampilkanFormDiPanel(AForm: TForm);
    procedure ClearPanel;
@@ -115,6 +126,10 @@ type
     procedure TampilSkala(const kodePemeriksaan, skala: string);
     procedure settingGridHasil;
     procedure KirimTriaseLengkap;
+    // tampil data triase
+    procedure InisialisasiGrid;
+    procedure TampilDataTriase;
+    procedure BersihkanGridTriase;
   end;
 
 var
@@ -162,12 +177,26 @@ var
   NoRawat, KodeKasus, CaraMasuk, Transportasi, Alasan, Ket, TD, Nadi,
   Napas, Suhu, Saturasi, Nyeri, Keluhan, Kebutuhan, Catatan, Plan, Nik,
   Anamnesa, SkalaKe, KodeSkala: string;
-  i: Integer;
+  i,PosStrip: Integer;
   Tgl: TDateTime;
 begin
+  // Ambil nilai kode_kasus dari ComboBox
+  if ComboBoxMacamKasus.ItemIndex = -1 then
+  begin
+    ShowMessage('Pilih macam kasus dulu!');
+    Exit;
+  end;
+
+  // Pisahkan teks sebelum tanda ' - '
+  PosStrip := Pos(' - ', ComboBoxMacamKasus.Text);
+  if PosStrip > 0 then
+    KodeKasus := Copy(ComboBoxMacamKasus.Text, 1, PosStrip - 1)
+  else
+    KodeKasus := ComboBoxMacamKasus.Text; // fallback kalau tidak ada strip
+
   // Ambil data umum dari form
   NoRawat := EditNoRawat.Text;
-  KodeKasus := '';//edtKodeKasus.Text;
+  //KodeKasus := '';//edtKodeKasus.Text;
   CaraMasuk := ComboBoxCaraMasuk.Text;
   Transportasi := ComboBoxTransportasi.Text;
   Alasan := ComboBoxAlasanKedatangan.Text;
@@ -178,7 +207,7 @@ begin
   Suhu := EditSuhu.Text;
   Saturasi := EditSaturasi.Text;
   Nyeri := EditNyeri.Text;
-  Tgl := Now;
+  Tgl := DateTimePickerTriase.DateTime;
 
   // Simpan Triase Utama
   DataModuleIgd.HapusTriaseUtama(NoRawat);
@@ -208,8 +237,16 @@ begin
     DataModuleIgd.SimpanTriaseSekunder(NoRawat, Anamnesa, Catatan, Plan, Nik, Tgl);
   end;
 
-  // Kirim detail skala (berdasarkan combobox)
-  SkalaKe := Copy(ComboBoxSkala.Text, 7, 1); // contoh: "Skala 3" → "3"
+  // --- Skala ---
+  // Pastikan ComboBoxSkala sudah diisi (contoh: 'Skala 1', 'Skala 2', dst)
+  if ComboBoxSkala.ItemIndex = -1 then
+  begin
+   ShowMessage('Pilih skala pemeriksaan terlebih dahulu.');
+   Exit;
+  end;
+
+  // Ambil angka skala dari teks: 'Skala 3' -> '3'
+  SkalaKe := Trim(StringReplace(ComboBoxSkala.Text, 'Skala ', '', [rfIgnoreCase]));
 
   // Hapus data skala lama
   DataModuleIgd.HapusDetailSkala(NoRawat, SkalaKe);
@@ -277,8 +314,9 @@ procedure TFormPemeriksaanIgd.BitBtnHapusTriaseClick(Sender: TObject);
 var
   NoRawat, SkalaKe: string;
 begin
-  NoRawat := EditNoRawat.Text;
-  if Trim(NoRawat) = '' then
+  NoRawat := Trim(EditNoRawat.Text);
+
+  if NoRawat = '' then
   begin
     ShowMessage('Nomor rawat belum dipilih!');
     Exit;
@@ -289,41 +327,58 @@ begin
     Exit;
 
   try
-    // Hapus data utama triase
+    // --- Hapus Triase Utama ---
     DataModuleIgd.HapusTriaseUtama(NoRawat);
 
-    // Hapus Triase Primer atau Sekunder
+    // --- Hapus Triase Primer / Sekunder sesuai pilihan ---
     if ComboBoxJenisTriase.Text = 'Triase Primer' then
       DataModuleIgd.HapusTriasePrimer(NoRawat)
     else if ComboBoxJenisTriase.Text = 'Triase Sekunder' then
-      DataModuleIgd.HapusTriaseSekunder(NoRawat);
+      DataModuleIgd.HapusTriaseSekunder(NoRawat)
+    else
+      ShowMessage('Jenis triase belum dipilih, hanya menghapus data utama.');
 
-    // Hapus detail skala
-    SkalaKe := Copy(ComboBoxSkala.Text, 7, 1); // contoh: "Skala 3" → "3"
-    if (SkalaKe <> '') then
-      DataModuleIgd.HapusDetailSkala(NoRawat, SkalaKe);
+    // --- Hapus Detail Skala ---
+    if ComboBoxSkala.ItemIndex <> -1 then
+    begin
+      // "Skala 3" → "3"
+      SkalaKe := Trim(StringReplace(ComboBoxSkala.Text, 'Skala ', '', [rfIgnoreCase]));
+      if SkalaKe <> '' then
+        DataModuleIgd.HapusDetailSkala(NoRawat, SkalaKe);
+    end;
 
-    // Bersihkan tampilan form
+    // --- Bersihkan Tampilan Form ---
+    ComboBoxMacamKasus.ItemIndex := -1;
+    ComboBoxCaraMasuk.ItemIndex := -1;
+    ComboBoxTransportasi.ItemIndex := -1;
+    ComboBoxAlasanKedatangan.ItemIndex := -1;
+    ComboBoxKebutuhanKhusus.ItemIndex := -1;
+    ComboBoxSkala.ItemIndex := -1;
+    ComboBoxJenisTriase.ItemIndex := -1;
+
+    EditKeterangan.Clear;
+    EditTensi.Clear;
+    EditNadi.Clear;
+    EditRespirasi.Clear;
+    EditSuhu.Clear;
+    EditSaturasi.Clear;
+    EditNyeri.Clear;
+
     MemoKeluhanAnamesa.Clear;
     MemoCatatan.Clear;
-    ComboBoxCaraMasuk.Text := '';
-    ComboBoxTransportasi.Text := '';
-    ComboBoxAlasanKedatangan.Text := '';
-    EditKeterangan.Text := '';
-    EditTensi.Text := '';
-    EditNadi.Text := '';
-    EditRespirasi.Text := '';
-    EditSuhu.Text := '';
-    EditSaturasi.Text := '';
-    EditNyeri.Text := '';
 
+    // Kosongkan StringGrid
     StringGridHasilPemeriksaan.RowCount := 1;
+    StringGridHasilPemeriksaan.Rows[0].Clear;
+    StringGridHasilPemeriksaan.Cells[0, 0] := 'No';
+    StringGridHasilPemeriksaan.Cells[1, 0] := 'Kode Skala';
+    StringGridHasilPemeriksaan.Cells[2, 0] := 'Nama Pemeriksaan';
 
-    ShowMessage('Data triase berhasil dihapus dari database.');
+    ShowMessage('✅ Data triase berhasil dihapus dari database.');
 
   except
     on E: Exception do
-      ShowMessage('Gagal menghapus data triase: ' + E.Message);
+      ShowMessage('⚠️ Gagal menghapus data triase: ' + E.Message);
   end;
 end;
 
@@ -378,6 +433,10 @@ begin
 
 end;
 
+procedure TFormPemeriksaanIgd.ButtonTampilDataTriaseClick(Sender: TObject);
+begin
+  TampilDataTriase;
+end;
 
 
 /// procedure baru triase
@@ -405,6 +464,7 @@ begin
  EditKodePetugas.Clear; EditNamaPetugas.Clear;
 
  /// panggil procedure
+
  masterPemeriksaan;
 
 end;
@@ -452,7 +512,7 @@ begin
     ColWidths[0] := 40;
     ColWidths[1] := 280;
     ColWidths[2] := 120;
-    ColWidths[3] := 300;
+    ColWidths[3] := 400;
 
     // Style header
     FixedColor := RGBToColor(0, 120, 215);  // biru modern
@@ -515,10 +575,27 @@ end;
 
 procedure TFormPemeriksaanIgd.ComboBoxSkalaSelect(Sender: TObject);
 begin
-  if ComboBoxSkala.ItemIndex =0 then
-     GroupBox4.Color:= clRed
-  else
-     GroupBox4.Color:= clDefault;
+ if ComboBoxSkala.Text = 'Skala 1' then
+begin
+  LabelMasterPemeriksaan.Font.Color := clWhite;
+  GroupBox4.Color := clRed;
+end
+else if (ComboBoxSkala.Text = 'Skala 2') or (ComboBoxSkala.Text = 'Skala 3') then
+begin
+  LabelMasterPemeriksaan.Font.Color := clBlack;
+  GroupBox4.Color := clYellow;
+end
+else if (ComboBoxSkala.Text = 'Skala 4') or (ComboBoxSkala.Text = 'Skala 5') then
+begin
+  LabelMasterPemeriksaan.Font.Color := clBlack;
+  GroupBox4.Color := clGreen;
+end
+else
+begin
+  LabelMasterPemeriksaan.Font.Color := clWhite;
+  GroupBox4.Color := clBtnFace;  // warna default GroupBox
+end;
+
 end;
 
 /// tampil master pemeriksaan
@@ -591,11 +668,11 @@ begin
   with StringGridSkala do
   begin
     RowCount := 1; // reset data
-    ColCount := 4; // default minimal
+    ColCount := 2; // default minimal
     Cells[0,0] := 'Kode';
     Cells[1,0] := 'Pengkajian SKALA';
     ColWidths[0] := 50; // kode_pemeriksaan
-    ColWidths[1] := 200; // nama_pemeriksaan
+    ColWidths[1] := 350; // nama_pemeriksaan
   end;
 
   if skala = 'Skala 1' then
@@ -701,7 +778,7 @@ begin
     end;
 
     StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala4.RecordCount + 1;
-    StringGridSkala.ColCount := 3;
+    StringGridSkala.ColCount := 2;
     StringGridSkala.Cells[0,0] := 'Kode Skala4';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala4';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
@@ -730,7 +807,7 @@ begin
     end;
 
     StringGridSkala.RowCount := DataModuleIgd.ZQuerymaster_triase_skala5.RecordCount + 1;
-    StringGridSkala.ColCount := 3;
+    StringGridSkala.ColCount := 2;
     StringGridSkala.Cells[0,0] := 'Kode Skala5';
     StringGridSkala.Cells[1,0] := 'Pengkajian Skala5';
     StringGridSkala.ColWidths[0] := 50; // kode_pemeriksaan
@@ -814,6 +891,143 @@ procedure TFormPemeriksaanIgd.TabControl1Change(Sender: TObject);
 begin
 
 end;
+
+procedure TFormPemeriksaanIgd.TabSheet2Show(Sender: TObject);
+begin
+  InisialisasiGrid;
+
+  // Tampil data awal
+  TampilDataTriase;
+end;
+
+/// tampil data triase
+procedure TFormPemeriksaanIgd.InisialisasiGrid;
+begin
+ with StringGridTriaseIgd do
+  begin
+    // Clear existing data tapi pertahankan struktur
+    RowCount := 1; // Hanya header
+    ColCount := 10; // Pastikan ada 10 kolom
+
+    // Set header
+    Cells[0,0] := 'No. Rawat';
+    Cells[1,0] := 'No. RM';
+    Cells[2,0] := 'Nama Pasien';
+    Cells[3,0] := 'Tgl Kunjungan';
+    Cells[4,0] := 'Cara Masuk';
+    Cells[5,0] := 'Alat Transport';
+    Cells[6,0] := 'Alasan Kedatangan';
+    Cells[7,0] := 'Keterangan';
+    Cells[8,0] := 'Kode Kasus';
+    Cells[9,0] := 'Macam Kasus';
+
+    // Set column widths
+    ColWidths[0] := 100;
+    ColWidths[1] := 70;
+    ColWidths[2] := 150;
+    ColWidths[3] := 120;
+    ColWidths[4] := 100;
+    ColWidths[5] := 100;
+    ColWidths[6] := 120;
+    ColWidths[7] := 150;
+    ColWidths[8] := 80;
+    ColWidths[9] := 120;
+
+    FixedRows := 1;
+    FixedCols := 0;
+
+    // Pastikan grid dalam keadaan bersih
+    BersihkanGridTriase;
+  end;
+end;
+
+procedure TFormPemeriksaanIgd.BersihkanGridTriase;
+var
+  i, j: Integer;
+begin
+  with StringGridTriaseIgd do
+  begin
+    // Bersihkan semua cell kecuali header
+    for i := 1 to RowCount - 1 do
+      for j := 0 to ColCount - 1 do
+        Cells[j, i] := '';
+
+    // Set ke hanya header
+    if RowCount > 1 then
+      RowCount := 1;
+  end;
+end;
+
+procedure TFormPemeriksaanIgd.TampilDataTriase;
+var
+  i: Integer;
+begin
+  // Panggil procedure dari DataModule
+  DataModuleIgd.CariDataTriaseSemua(
+    DateTimePickerMulaiTriase.Date,
+    DateTimePickerSampaiTriase.Date + 1, // Tambah 1 hari untuk sampai jam 23:59:59
+    Trim(EditCariTriase.Text)
+  );
+
+   // Bersihkan grid sebelum isi data baru
+    BersihkanGridTriase;
+
+    // Isi data ke grid
+    i := 1;
+    with DataModuleIgd.ZQueryTriase do
+    begin
+      if not IsEmpty then
+      begin
+        First;
+        while not Eof do
+        begin
+          // Pastikan grid punya cukup row
+          if StringGridTriaseIgd.RowCount <= i then
+            StringGridTriaseIgd.RowCount := StringGridTriaseIgd.RowCount + 1;
+
+          // Isi data dengan pengecekan field
+          if FindField('no_rawat') <> nil then
+            StringGridTriaseIgd.Cells[0, i] := FieldByName('no_rawat').AsString;
+
+          if FindField('no_rkm_medis') <> nil then
+            StringGridTriaseIgd.Cells[1, i] := FieldByName('no_rkm_medis').AsString;
+
+          if FindField('nm_pasien') <> nil then
+            StringGridTriaseIgd.Cells[2, i] := FieldByName('nm_pasien').AsString;
+
+          if FindField('tgl_kunjungan') <> nil then
+            StringGridTriaseIgd.Cells[3, i] := FormatDateTime('dd/mm/yyyy HH:nn', FieldByName('tgl_kunjungan').AsDateTime);
+
+          if FindField('cara_masuk') <> nil then
+            StringGridTriaseIgd.Cells[4, i] := FieldByName('cara_masuk').AsString;
+
+          if FindField('alat_transportasi') <> nil then
+            StringGridTriaseIgd.Cells[5, i] := FieldByName('alat_transportasi').AsString;
+
+          if FindField('alasan_kedatangan') <> nil then
+            StringGridTriaseIgd.Cells[6, i] := FieldByName('alasan_kedatangan').AsString;
+
+          if FindField('keterangan_kedatangan') <> nil then
+            StringGridTriaseIgd.Cells[7, i] := FieldByName('keterangan_kedatangan').AsString;
+
+          if FindField('kode_kasus') <> nil then
+            StringGridTriaseIgd.Cells[8, i] := FieldByName('kode_kasus').AsString;
+
+          if FindField('macam_kasus') <> nil then
+            StringGridTriaseIgd.Cells[9, i] := FieldByName('macam_kasus').AsString;
+
+          Next;
+          Inc(i);
+        end;
+      end;
+    end;
+
+    // Update label jumlah data
+    LabelJumlah.Caption := 'Jumlah Data: ' + IntToStr(StringGridTriaseIgd.RowCount - 1);
+
+end;
+
+
 
 end.
 

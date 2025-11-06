@@ -304,6 +304,7 @@ begin
   NamaPasien := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('nm_pasien').AsString;
   noRM := DataModuleIgd.ZQueryTampilDaftarPxIgd.FieldByName('no_rkm_medis').AsString;
 
+
     // Bersihkan noRM dari karakter yang tidak valid untuk nama komponen
   CleanNoRM := '';
   for j := 1 to Length(noRM) do

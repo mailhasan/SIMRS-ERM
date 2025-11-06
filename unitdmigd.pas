@@ -13,6 +13,7 @@ type
 
   TDataModuleIgd = class(TDataModule)
     DataSourceTampilDaftarPxIgd: TDataSource;
+    ZQueryTriase: TZQuery;
     ZQuerydata_triase_igddetail_skala2: TZQuery;
     ZQuerydata_triase_igddetail_skala3: TZQuery;
     ZQuerydata_triase_igddetail_skala4: TZQuery;
@@ -29,6 +30,7 @@ type
     ZQuerydata_triase_igdsekunder: TZQuery;
     ZQuerydata_triase_igd: TZQuery;
     ZQuerydata_triase_igdprimer: TZQuery;
+     // Procedure untuk pencarian data triase
   private
 
   public
@@ -72,6 +74,14 @@ type
     procedure SimpanDetailSkala(ANoRawat, AKodeSkala, ASkalaKe: string);
     procedure HapusDetailSkala(ANoRawat, ASkalaKe: string);
     function LoadDetailSkala(ANoRawat, ASkalaKe: string): TDataSet;
+
+    /// procedure tampil data triase
+    procedure CariDataTriase(
+              TglAwal, TglAkhir: TDateTime;
+              NoRawat, NoRM, NamaPasien, CaraMasuk, AlatTransportasi,
+              AlasanKedatangan, KeteranganKedatangan, MacamKasus: string
+              );
+    procedure CariDataTriaseSemua(TglAwal, TglAkhir: TDateTime; Keyword: string);
   end;
 
 var
@@ -436,6 +446,130 @@ begin
   Q.ParamByName('no_rawat').AsString := ANoRawat;
   Q.Open;
   Result := Q; // ✅ kembalikan dataset hasil query
+end;
+
+
+// Di unit DataModuleIgd
+procedure TDataModuleIgd.CariDataTriase(
+  TglAwal, TglAkhir: TDateTime;
+  NoRawat, NoRM, NamaPasien, CaraMasuk, AlatTransportasi,
+  AlasanKedatangan, KeteranganKedatangan, MacamKasus: string
+);
+var
+  FilterSQL: TStringList;
+begin
+  ZQueryTriase.Close;
+  ZQueryTriase.SQL.Clear;
+  FilterSQL := TStringList.Create;
+  try
+    with FilterSQL do
+    begin
+      Add('SELECT');
+      Add('  reg_periksa.no_rawat,');
+      Add('  pasien.no_rkm_medis,');
+      Add('  pasien.nm_pasien,');
+      Add('  data_triase_igd.tgl_kunjungan,');
+      Add('  data_triase_igd.cara_masuk,');
+      Add('  data_triase_igd.alat_transportasi,');
+      Add('  data_triase_igd.alasan_kedatangan,');
+      Add('  data_triase_igd.keterangan_kedatangan,');
+      Add('  data_triase_igd.kode_kasus,');
+      Add('  master_triase_macam_kasus.macam_kasus');
+      Add('FROM reg_periksa');
+      Add('INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis');
+      Add('INNER JOIN data_triase_igd ON reg_periksa.no_rawat = data_triase_igd.no_rawat');
+      Add('INNER JOIN master_triase_macam_kasus ON data_triase_igd.kode_kasus = master_triase_macam_kasus.kode_kasus');
+      Add('WHERE data_triase_igd.tgl_kunjungan BETWEEN :tgl_awal AND :tgl_akhir');
+
+      // Filter tambahan
+      if NoRawat <> '' then
+        Add('AND reg_periksa.no_rawat LIKE :no_rawat');
+      if NoRM <> '' then
+        Add('AND pasien.no_rkm_medis LIKE :no_rm');
+      if NamaPasien <> '' then
+        Add('AND pasien.nm_pasien LIKE :nm_pasien');
+      if CaraMasuk <> '' then
+        Add('AND data_triase_igd.cara_masuk LIKE :cara_masuk');
+      if AlatTransportasi <> '' then
+        Add('AND data_triase_igd.alat_transportasi LIKE :alat_transportasi');
+      if AlasanKedatangan <> '' then
+        Add('AND data_triase_igd.alasan_kedatangan LIKE :alasan_kedatangan');
+      if KeteranganKedatangan <> '' then
+        Add('AND data_triase_igd.keterangan_kedatangan LIKE :keterangan_kedatangan');
+      if MacamKasus <> '' then
+        Add('AND master_triase_macam_kasus.macam_kasus LIKE :macam_kasus');
+
+      Add('ORDER BY data_triase_igd.tgl_kunjungan');
+    end;
+
+    ZQueryTriase.SQL.Text := FilterSQL.Text;
+
+    // Binding parameter utama
+    ZQueryTriase.ParamByName('tgl_awal').AsDateTime := TglAwal;
+    ZQueryTriase.ParamByName('tgl_akhir').AsDateTime := TglAkhir;
+
+    // Binding parameter filter
+    if NoRawat <> '' then
+      ZQueryTriase.ParamByName('no_rawat').AsString := '%' + NoRawat + '%';
+    if NoRM <> '' then
+      ZQueryTriase.ParamByName('no_rm').AsString := '%' + NoRM + '%';
+    if NamaPasien <> '' then
+      ZQueryTriase.ParamByName('nm_pasien').AsString := '%' + NamaPasien + '%';
+    if CaraMasuk <> '' then
+      ZQueryTriase.ParamByName('cara_masuk').AsString := '%' + CaraMasuk + '%';
+    if AlatTransportasi <> '' then
+      ZQueryTriase.ParamByName('alat_transportasi').AsString := '%' + AlatTransportasi + '%';
+    if AlasanKedatangan <> '' then
+      ZQueryTriase.ParamByName('alasan_kedatangan').AsString := '%' + AlasanKedatangan + '%';
+    if KeteranganKedatangan <> '' then
+      ZQueryTriase.ParamByName('keterangan_kedatangan').AsString := '%' + KeteranganKedatangan + '%';
+    if MacamKasus <> '' then
+      ZQueryTriase.ParamByName('macam_kasus').AsString := '%' + MacamKasus + '%';
+
+    ZQueryTriase.Open;
+
+  finally
+    FilterSQL.Free;
+  end;
+end;
+
+// Procedure untuk pencarian dengan satu parameter (seperti di kode Java original)
+procedure TDataModuleIgd.CariDataTriaseSemua(TglAwal, TglAkhir: TDateTime; Keyword: string);
+begin
+  ZQueryTriase.Close;
+  ZQueryTriase.SQL.Clear;
+  ZQueryTriase.SQL.Text :=
+    'SELECT ' +
+    '  reg_periksa.no_rawat, ' +
+    '  pasien.no_rkm_medis, ' +
+    '  pasien.nm_pasien, ' +
+    '  data_triase_igd.tgl_kunjungan, ' +
+    '  data_triase_igd.cara_masuk, ' +
+    '  data_triase_igd.alat_transportasi, ' +
+    '  data_triase_igd.alasan_kedatangan, ' +
+    '  data_triase_igd.keterangan_kedatangan, ' +
+    '  data_triase_igd.kode_kasus, ' +
+    '  master_triase_macam_kasus.macam_kasus ' +
+    'FROM reg_periksa ' +
+    'INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis ' +
+    'INNER JOIN data_triase_igd ON reg_periksa.no_rawat = data_triase_igd.no_rawat ' +
+    'INNER JOIN master_triase_macam_kasus ON data_triase_igd.kode_kasus = master_triase_macam_kasus.kode_kasus ' +
+    'WHERE (data_triase_igd.tgl_kunjungan BETWEEN :tgl_awal AND :tgl_akhir) AND ' +
+    '      (reg_periksa.no_rawat LIKE :keyword OR ' +
+    '       pasien.no_rkm_medis LIKE :keyword OR ' +
+    '       pasien.nm_pasien LIKE :keyword OR ' +
+    '       data_triase_igd.cara_masuk LIKE :keyword OR ' +
+    '       data_triase_igd.alat_transportasi LIKE :keyword OR ' +
+    '       data_triase_igd.alasan_kedatangan LIKE :keyword OR ' +
+    '       data_triase_igd.keterangan_kedatangan LIKE :keyword OR ' +
+    '       master_triase_macam_kasus.macam_kasus LIKE :keyword) ' +
+    'ORDER BY data_triase_igd.tgl_kunjungan';
+
+  ZQueryTriase.ParamByName('tgl_awal').AsDateTime := TglAwal;
+  ZQueryTriase.ParamByName('tgl_akhir').AsDateTime := TglAkhir;
+  ZQueryTriase.ParamByName('keyword').AsString := '%' + Keyword + '%';
+
+  ZQueryTriase.Open;
 end;
 
 end.

@@ -267,7 +267,7 @@ var
   NewTab: TTabSheet;
   NewMemo: TMemo;}
   NoRawat, NamaPasien, noRM,CleanNoRM: string;
-  i: Integer;
+  i,j: Integer;
   NewTab: TTabSheet;
   NewMemo: TMemo;
   CloseButton: TButton;

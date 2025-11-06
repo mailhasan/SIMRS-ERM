@@ -181,4 +181,10 @@ object DataModuleIgd: TDataModuleIgd
     Left = 336
     Top = 296
   end
+  object ZQueryTriase: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Params = <>
+    Left = 316
+    Top = 466
+  end
 end
