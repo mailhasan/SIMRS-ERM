@@ -120,7 +120,7 @@ object DataModuleIgd: TDataModuleIgd
     )
     Params = <>
     Left = 292
-    Top = 41
+    Top = 40
   end
   object DataSourceTampilDaftarPxIgd: TDataSource
     DataSet = ZQueryTampilDaftarPxIgd

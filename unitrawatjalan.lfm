@@ -1,0 +1,409 @@
+object FormRawatJalan: TFormRawatJalan
+  Left = 465
+  Height = 606
+  Top = 186
+  Width = 996
+  Align = alClient
+  BorderIcons = [biMinimize, biMaximize]
+  Caption = 'Form Rawat Jalan'
+  ClientHeight = 606
+  ClientWidth = 996
+  OnShow = FormShow
+  LCLVersion = '3.6.0.0'
+  WindowState = wsFullScreen
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 996
+    Align = alTop
+    Caption = 'DAFTAR PASIEN RAWAT JALAN'
+    ClientHeight = 26
+    ClientWidth = 996
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 921
+      Height = 24
+      Top = 1
+      Width = 74
+      Align = alRight
+      Caption = 'Keluar'
+      Color = 5987327
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      OnClick = Panel3Click
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 580
+    Top = 26
+    Width = 996
+    Align = alClient
+    ClientHeight = 580
+    ClientWidth = 996
+    TabOrder = 1
+    object Panel2: TPanel
+      Left = 1
+      Height = 119
+      Top = 1
+      Width = 994
+      Align = alTop
+      ClientHeight = 119
+      ClientWidth = 994
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 1
+        Height = 15
+        Top = 1
+        Width = 992
+        Align = alTop
+        Caption = 'Filter'
+        Font.CharSet = ANSI_CHARSET
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsItalic]
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 8
+        Height = 15
+        Top = 32
+        Width = 49
+        Caption = 'Tgl Mulai'
+      end
+      object DateTimePickerMulai: TDateTimePicker
+        Left = 64
+        Height = 23
+        Top = 24
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 45999
+        Time = 0.466733645836939
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+      end
+      object Label3: TLabel
+        Left = 152
+        Height = 15
+        Top = 32
+        Width = 14
+        Caption = 'SD'
+      end
+      object DateTimePickerSelesai: TDateTimePicker
+        Left = 176
+        Height = 23
+        Top = 24
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 1
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 45999
+        Time = 0.466733645836939
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+      end
+      object EditNoRm: TEdit
+        Left = 64
+        Height = 23
+        Top = 88
+        Width = 244
+        TabOrder = 2
+        Text = 'EditNoRm'
+      end
+      object Label4: TLabel
+        Left = 11
+        Height = 15
+        Top = 96
+        Width = 46
+        Caption = 'Keyword'
+      end
+      object Label5: TLabel
+        Left = 11
+        Height = 15
+        Top = 64
+        Width = 25
+        Caption = 'POLI'
+      end
+      object EditPoli: TEdit
+        Left = 120
+        Height = 23
+        Top = 55
+        Width = 113
+        TabOrder = 3
+        Text = 'EditPoli'
+        OnChange = EditPoliChange
+        OnDblClick = EditPoliDblClick
+      end
+      object Label6: TLabel
+        Left = 264
+        Height = 15
+        Top = 63
+        Width = 44
+        Caption = 'DOKTER'
+      end
+      object EditDokter: TEdit
+        Left = 384
+        Height = 23
+        Top = 56
+        Width = 268
+        TabOrder = 4
+        Text = 'EditDokter'
+      end
+      object Label7: TLabel
+        Left = 264
+        Height = 15
+        Top = 32
+        Width = 37
+        Caption = 'Periksa'
+      end
+      object ButtonCari: TButton
+        Left = 320
+        Height = 25
+        Top = 88
+        Width = 75
+        Caption = 'Cari'
+        TabOrder = 5
+        OnClick = ButtonCariClick
+      end
+      object Label8: TLabel
+        Left = 472
+        Height = 15
+        Top = 32
+        Width = 29
+        Caption = 'Bayar'
+      end
+      object ComboBoxPeriksa: TComboBox
+        Left = 320
+        Height = 23
+        Top = 24
+        Width = 140
+        ItemHeight = 15
+        TabOrder = 6
+        Text = 'ComboBoxPeriksa'
+      end
+      object ComboBoxBayar: TComboBox
+        Left = 512
+        Height = 23
+        Top = 24
+        Width = 140
+        ItemHeight = 15
+        TabOrder = 7
+        Text = 'ComboBoxBayar'
+      end
+      object SpeedButtonDokter: TSpeedButton
+        Left = 658
+        Height = 22
+        Top = 57
+        Width = 23
+        Caption = '...'
+      end
+      object SpeedButtonPoli: TSpeedButton
+        Left = 236
+        Height = 22
+        Top = 55
+        Width = 23
+        Caption = '...'
+        OnClick = SpeedButtonPoliClick
+      end
+      object EditKodePoli: TEdit
+        Left = 64
+        Height = 23
+        Top = 56
+        Width = 52
+        Enabled = False
+        TabOrder = 8
+        Text = 'EditKodePoli'
+      end
+      object EditKodeDokter: TEdit
+        Left = 320
+        Height = 23
+        Top = 57
+        Width = 64
+        TabOrder = 9
+        Text = 'EditKodeDokter'
+      end
+    end
+    object Panel4: TPanel
+      Left = 1
+      Height = 409
+      Top = 170
+      Width = 994
+      Align = alClient
+      ClientHeight = 409
+      ClientWidth = 994
+      TabOrder = 1
+      object DBGridRawatJalan: TDBGrid
+        Left = 1
+        Height = 407
+        Top = 1
+        Width = 992
+        Align = alClient
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'NO REG'
+            FieldName = 'no_reg'
+          end        
+          item
+            Title.Caption = 'NO RAWAT'
+            FieldName = 'no_rawat'
+          end        
+          item
+            Title.Caption = 'TGL REGIS'
+            FieldName = 'tgl_registrasi'
+          end        
+          item
+            Title.Caption = 'JAM REG'
+            FieldName = 'jam_reg'
+          end        
+          item
+            Title.Caption = 'DOKTER'
+            Width = 200
+            FieldName = 'nm_dokter'
+          end        
+          item
+            Title.Caption = 'NO RM'
+            Width = 100
+            FieldName = 'no_rkm_medis'
+          end        
+          item
+            Title.Caption = 'NAMA'
+            Width = 250
+            FieldName = 'nm_pasien'
+          end        
+          item
+            Title.Caption = 'JK'
+            FieldName = 'jk'
+          end        
+          item
+            Title.Caption = 'UMUR'
+            FieldName = 'umur'
+          end        
+          item
+            Title.Caption = 'POLI'
+            Width = 200
+            FieldName = 'nm_poli'
+          end        
+          item
+            Title.Caption = 'p_jawab'
+            Width = 200
+            FieldName = 'p_jawab'
+          end        
+          item
+            Title.Caption = 'biaya_reg'
+            FieldName = 'biaya_reg'
+          end        
+          item
+            Title.Caption = 'stts_daftar'
+            FieldName = 'stts_daftar'
+          end        
+          item
+            Title.Caption = 'png_jawab'
+            FieldName = 'png_jawab'
+          end        
+          item
+            Title.Caption = 'no_tlp'
+            FieldName = 'no_tlp'
+          end        
+          item
+            Title.Caption = 'stts'
+            FieldName = 'stts'
+          end        
+          item
+            Title.Caption = 'status_poli'
+            FieldName = 'status_poli'
+          end        
+          item
+            Title.Caption = 'kd_poli'
+            FieldName = 'kd_poli'
+          end        
+          item
+            Title.Caption = 'kd_pj'
+            FieldName = 'kd_pj'
+          end>
+        DataSource = DataModuleRawatJalan.DataSourceTampilPxRawatJalan
+        TabOrder = 0
+      end
+    end
+    object Panel5: TPanel
+      Left = 1
+      Height = 50
+      Top = 120
+      Width = 994
+      Align = alTop
+      ClientHeight = 50
+      ClientWidth = 994
+      TabOrder = 2
+      object Label9: TLabel
+        Left = 11
+        Height = 15
+        Top = 16
+        Width = 51
+        Caption = 'No Rawat'
+      end
+      object Label10: TLabel
+        Left = 208
+        Height = 15
+        Top = 16
+        Width = 38
+        Caption = 'No SEP'
+      end
+      object EditNoRawat: TEdit
+        Left = 64
+        Height = 23
+        Top = 8
+        Width = 136
+        TabOrder = 0
+        Text = 'EditNoRawat'
+      end
+      object EditNoSep: TEdit
+        Left = 256
+        Height = 23
+        Top = 8
+        Width = 157
+        TabOrder = 1
+        Text = 'EditNoSep'
+      end
+      object EditKeterangan: TEdit
+        Left = 424
+        Height = 23
+        Top = 8
+        Width = 560
+        TabOrder = 2
+        Text = 'EditKeterangan'
+      end
+    end
+  end
+end

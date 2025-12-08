@@ -1,0 +1,68 @@
+object DataModuleRawatJalan: TDataModuleRawatJalan
+  OldCreateOrder = False
+  Height = 456
+  HorizontalOffset = 454
+  VerticalOffset = 201
+  Width = 656
+  object ZQueryTampilPxRawatJalan: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    reg_periksa.no_reg,'
+      '    reg_periksa.no_rawat,'
+      '    reg_periksa.tgl_registrasi,'
+      '    reg_periksa.jam_reg,'
+      '    reg_periksa.kd_dokter,'
+      '    dokter.nm_dokter,'
+      '    reg_periksa.no_rkm_medis,'
+      '    pasien.nm_pasien,'
+      '    pasien.jk,'
+      '    CONCAT(reg_periksa.umurdaftar, '' '', reg_periksa.sttsumur) AS umur,'
+      '    poliklinik.nm_poli,'
+      '    reg_periksa.p_jawab,'
+      '    reg_periksa.almt_pj,'
+      '    reg_periksa.hubunganpj,'
+      '    reg_periksa.biaya_reg,'
+      '    reg_periksa.stts_daftar,'
+      '    penjab.png_jawab,'
+      '    pasien.no_tlp,'
+      '    reg_periksa.stts,'
+      '    reg_periksa.status_poli,'
+      '    reg_periksa.kd_poli,'
+      '    reg_periksa.kd_pj'
+      'FROM '
+      '    reg_periksa '
+      '    INNER JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter '
+      '    INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis '
+      '    INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli '
+      '    INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj'
+      'WHERE 1=1'
+    )
+    Params = <>
+    Left = 104
+    Top = 32
+  end
+  object DataSourceTampilPxRawatJalan: TDataSource
+    DataSet = ZQueryTampilPxRawatJalan
+    Left = 224
+    Top = 51
+  end
+  object ZQueryPoli: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT kd_poli, nm_poli, registrasi, registrasilama, status '
+      'FROM poliklinik '
+      'WHERE status = ''1'''
+      'ORDER BY nm_poli'
+    )
+    Params = <>
+    Left = 96
+    Top = 120
+  end
+  object DataSourcePoli: TDataSource
+    DataSet = ZQueryPoli
+    Left = 169
+    Top = 145
+  end
+end

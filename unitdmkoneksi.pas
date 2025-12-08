@@ -37,6 +37,7 @@ begin
   if not LoadConfigDB then
     ShowMessage('❌ Gagal memuat konfigurasi koneksi database!');
 end;
+
 function TDataModuleKoneksi.LoadConfigDB: Boolean;
 var
   ini: TIniFile;

@@ -6,16 +6,20 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, ComCtrls;
+  StdCtrls, ComCtrls, Menus;
 
 type
 
   { TFormUtama }
 
   TFormUtama = class(TForm)
+    BitBtnRawatJalan: TBitBtn;
     BitBtnIGD: TBitBtn;
     BitBtnRawatInap: TBitBtn;
     ImageList1: TImageList;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     Panel1: TPanel;
     PanelKiriAtas: TPanel;
     PanelTengah: TPanel;
@@ -24,6 +28,7 @@ type
     StatusBarSIMRSERM: TStatusBar;
     procedure BitBtnIGDClick(Sender: TObject);
     procedure BitBtnRawatInapClick(Sender: TObject);
+    procedure BitBtnRawatJalanClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -46,7 +51,7 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
-uses unitRawatInap,unitDmKoneksi,unitLogin,unitIGD;
+uses unitRawatInap,unitDmKoneksi,unitLogin,unitIGD, unitRawatJalan;
 
 var
    SidebarVisible: Boolean = True;
@@ -152,8 +157,16 @@ begin
   TampilkanFormDiPanel(FormRawatInap);
 end;
 
+procedure TFormUtama.BitBtnRawatJalanClick(Sender: TObject);
+begin
+ /// RAWAT JALAN
+ Application.CreateForm(TFormRawatJalan, FormRawatJalan);
+ FormRawatJalan.ShowModal;
+end;
+
 procedure TFormUtama.BitBtnIGDClick(Sender: TObject);
 begin
+ Application.CreateForm(TFormIGD, FormIGD);
  FormIGD.ShowModal;
 end;
 

@@ -237,7 +237,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Height = 685
       Top = 80
       Width = 1398
-      ActivePage = TabSheetPemeriksaan
+      ActivePage = TabSheetAwalMedisUmum
       Align = alClient
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -247,7 +247,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       ParentFont = False
       ScrollOpposite = True
       Style = tsButtons
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 1
       object TabSheetPemeriksaan: TTabSheet
         Caption = 'Pemeriksaan'
@@ -1155,7 +1155,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Height = 350
             Top = 1
             Width = 1388
-            ActivePage = TabSheetRiwayatKesehatan
+            ActivePage = TabSheetPemeriksaanFisik
             Align = alClient
             Font.CharSet = ANSI_CHARSET
             Font.Height = -16
@@ -1165,13 +1165,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Images = FormUtama.ImageList1
             ParentFont = False
             ParentShowHint = False
-            TabIndex = 0
+            TabIndex = 1
             TabOrder = 0
             OnChange = PageControlAwalMedisUmumChange
             object TabSheetRiwayatKesehatan: TTabSheet
               AutoSize = True
               Caption = 'Riwayat Kesehatan'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               Font.CharSet = ANSI_CHARSET
               Font.Height = -16
@@ -1269,28 +1269,28 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Panel13: TPanel
                 Left = 0
-                Height = 176
+                Height = 170
                 Top = 146
                 Width = 1380
                 Align = alClient
-                ClientHeight = 176
+                ClientHeight = 170
                 ClientWidth = 1380
                 ParentBackground = False
                 TabOrder = 1
                 object GroupBox25: TGroupBox
                   Left = 1
-                  Height = 174
+                  Height = 168
                   Top = 1
                   Width = 390
                   Align = alLeft
                   Caption = 'RIWAYAT PENYAKIT DAHULU *'
-                  ClientHeight = 148
+                  ClientHeight = 142
                   ClientWidth = 386
                   ParentBackground = False
                   TabOrder = 0
                   object MemoRwytPenyakitDahulu: TMemo
                     Left = 0
-                    Height = 148
+                    Height = 142
                     Top = 0
                     Width = 386
                     Align = alClient
@@ -1304,18 +1304,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox26: TGroupBox
                   Left = 391
-                  Height = 174
+                  Height = 168
                   Top = 1
                   Width = 598
                   Align = alClient
                   Caption = 'RIWAYAT PENGGUNAAN OBAT *'
-                  ClientHeight = 148
+                  ClientHeight = 142
                   ClientWidth = 594
                   ParentBackground = False
                   TabOrder = 1
                   object MemoRwytPenggunaObat: TMemo
                     Left = 0
-                    Height = 148
+                    Height = 142
                     Top = 0
                     Width = 594
                     Align = alClient
@@ -1329,18 +1329,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox29: TGroupBox
                   Left = 989
-                  Height = 174
+                  Height = 168
                   Top = 1
                   Width = 390
                   Align = alRight
                   Caption = 'RIWAYAT ALERGI *'
-                  ClientHeight = 148
+                  ClientHeight = 142
                   ClientWidth = 386
                   ParentBackground = False
                   TabOrder = 2
                   object MemoRwytAlergi: TMemo
                     Left = 0
-                    Height = 148
+                    Height = 142
                     Top = 0
                     Width = 386
                     Align = alClient
@@ -1357,27 +1357,27 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetPemeriksaanFisik: TTabSheet
               Caption = 'Pemeriksaan Fisik'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               object Panel14: TPanel
                 Left = 0
-                Height = 56
+                Height = 64
                 Top = 0
                 Width = 1380
                 Align = alTop
-                ClientHeight = 56
+                ClientHeight = 64
                 ClientWidth = 1380
                 ParentBackground = False
                 TabOrder = 0
                 object GroupBox27: TGroupBox
                   Left = 1
-                  Height = 54
+                  Height = 62
                   Top = 1
                   Width = 143
                   Align = alLeft
                   Caption = 'Keadaan Umum'
-                  ClientHeight = 28
+                  ClientHeight = 36
                   ClientWidth = 139
                   ParentBackground = False
                   TabOrder = 0
@@ -1401,20 +1401,20 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox30: TGroupBox
                   Left = 144
-                  Height = 54
+                  Height = 62
                   Top = 1
-                  Width = 136
+                  Width = 168
                   Align = alLeft
                   Caption = 'Kesadaraan'
-                  ClientHeight = 28
-                  ClientWidth = 132
+                  ClientHeight = 36
+                  ClientWidth = 164
                   ParentBackground = False
                   TabOrder = 1
                   object ComboBoxKesadaranAwalMediUmum: TComboBox
                     Left = 0
                     Height = 29
                     Top = 0
-                    Width = 132
+                    Width = 164
                     Align = alClient
                     ItemHeight = 21
                     Items.Strings = (
@@ -1436,21 +1436,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox31: TGroupBox
-                  Left = 280
-                  Height = 54
+                  Left = 312
+                  Height = 62
                   Top = 1
-                  Width = 90
+                  Width = 112
                   Align = alLeft
                   Caption = 'SUHU (0c)'
-                  ClientHeight = 28
-                  ClientWidth = 86
+                  ClientHeight = 36
+                  ClientWidth = 108
                   ParentBackground = False
                   TabOrder = 2
                   object EditSuhuPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 86
+                    Width = 108
                     Align = alClient
                     TabOrder = 0
                     Text = 'EditSuhu'
@@ -1458,22 +1458,22 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox32: TGroupBox
-                  Left = 370
-                  Height = 54
+                  Left = 424
+                  Height = 62
                   Top = 1
-                  Width = 98
+                  Width = 138
                   Align = alLeft
                   Caption = 'TENSI (mm-Hg)'
-                  ClientHeight = 28
-                  ClientWidth = 94
+                  ClientHeight = 36
+                  ClientWidth = 134
                   ParentBackground = False
                   TabOrder = 3
                   OnKeyPress = GroupBox12KeyPress
                   object EditTensiPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 94
+                    Width = 134
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1481,21 +1481,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox33: TGroupBox
-                  Left = 468
-                  Height = 54
+                  Left = 562
+                  Height = 62
                   Top = 1
-                  Width = 78
+                  Width = 102
                   Align = alLeft
                   Caption = 'BERAT (Kg)'
-                  ClientHeight = 28
-                  ClientWidth = 74
+                  ClientHeight = 36
+                  ClientWidth = 98
                   ParentBackground = False
                   TabOrder = 4
                   object EditBeratPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 74
+                    Width = 98
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1503,21 +1503,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox34: TGroupBox
-                  Left = 546
-                  Height = 54
+                  Left = 664
+                  Height = 62
                   Top = 1
-                  Width = 62
+                  Width = 78
                   Align = alLeft
                   Caption = 'TB (Cm)'
-                  ClientHeight = 28
-                  ClientWidth = 58
+                  ClientHeight = 36
+                  ClientWidth = 74
                   ParentBackground = False
                   TabOrder = 5
                   object EditTbPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 58
+                    Width = 74
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1525,21 +1525,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox35: TGroupBox
-                  Left = 608
-                  Height = 54
+                  Left = 742
+                  Height = 62
                   Top = 1
-                  Width = 78
+                  Width = 98
                   Align = alLeft
                   Caption = 'RR (/Menit)'
-                  ClientHeight = 28
-                  ClientWidth = 74
+                  ClientHeight = 36
+                  ClientWidth = 94
                   ParentBackground = False
                   TabOrder = 6
                   object EditRRpk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 74
+                    Width = 94
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1547,21 +1547,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox36: TGroupBox
-                  Left = 686
-                  Height = 54
+                  Left = 840
+                  Height = 62
                   Top = 1
-                  Width = 94
+                  Width = 120
                   Align = alLeft
                   Caption = 'NADI (/Menit)'
-                  ClientHeight = 28
-                  ClientWidth = 90
+                  ClientHeight = 36
+                  ClientWidth = 116
                   ParentBackground = False
                   TabOrder = 7
                   object EditNadiPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 90
+                    Width = 116
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1569,21 +1569,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox37: TGroupBox
-                  Left = 780
-                  Height = 54
+                  Left = 960
+                  Height = 62
                   Top = 1
-                  Width = 62
+                  Width = 88
                   Align = alLeft
                   Caption = 'SP02 (%)'
-                  ClientHeight = 28
-                  ClientWidth = 58
+                  ClientHeight = 36
+                  ClientWidth = 84
                   ParentBackground = False
                   TabOrder = 8
                   object EditSpPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 58
+                    Width = 84
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1591,21 +1591,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                 end
                 object GroupBox38: TGroupBox
-                  Left = 842
-                  Height = 54
+                  Left = 1048
+                  Height = 62
                   Top = 1
-                  Width = 85
+                  Width = 104
                   Align = alLeft
                   Caption = 'GCS (E,V,M)'
-                  ClientHeight = 28
-                  ClientWidth = 81
+                  ClientHeight = 36
+                  ClientWidth = 100
                   ParentBackground = False
                   TabOrder = 9
                   object EditGcsPk: TEdit
                     Left = 0
-                    Height = 28
+                    Height = 36
                     Top = 0
-                    Width = 81
+                    Width = 100
                     Align = alClient
                     TabOrder = 0
                     Text = 'Edit2'
@@ -1615,22 +1615,22 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Panel15: TPanel
                 Left = 0
-                Height = 48
-                Top = 56
+                Height = 56
+                Top = 64
                 Width = 1380
                 Align = alTop
-                ClientHeight = 48
+                ClientHeight = 56
                 ClientWidth = 1380
                 ParentBackground = False
                 TabOrder = 1
                 object GroupBox39: TGroupBox
                   Left = 1
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'KEPALA'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 0
@@ -1653,12 +1653,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox40: TGroupBox
                   Left = 114
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'MATA'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 1
@@ -1681,12 +1681,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox41: TGroupBox
                   Left = 227
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'GIGI / MULUT'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 2
@@ -1709,12 +1709,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox42: TGroupBox
                   Left = 340
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'THT'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 3
@@ -1737,12 +1737,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox43: TGroupBox
                   Left = 453
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'THORAKS'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 4
@@ -1765,12 +1765,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object GroupBox44: TGroupBox
                   Left = 566
-                  Height = 46
+                  Height = 54
                   Top = 1
                   Width = 113
                   Align = alLeft
                   Caption = 'JANTUNG'
-                  ClientHeight = 20
+                  ClientHeight = 28
                   ClientWidth = 109
                   ParentBackground = False
                   TabOrder = 5
@@ -1794,32 +1794,32 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Panel16: TPanel
                 Left = 0
-                Height = 218
-                Top = 104
+                Height = 196
+                Top = 120
                 Width = 1380
                 Align = alClient
-                ClientHeight = 218
+                ClientHeight = 196
                 ClientWidth = 1380
                 ParentBackground = False
                 TabOrder = 2
                 object Panel17: TPanel
                   Left = 1
-                  Height = 48
+                  Height = 71
                   Top = 1
                   Width = 1378
                   Align = alTop
-                  ClientHeight = 48
+                  ClientHeight = 71
                   ClientWidth = 1378
                   ParentBackground = False
                   TabOrder = 0
                   object GroupBox45: TGroupBox
                     Left = 1
-                    Height = 46
+                    Height = 69
                     Top = 1
                     Width = 113
                     Align = alLeft
                     Caption = 'PARU'
-                    ClientHeight = 20
+                    ClientHeight = 43
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 0
@@ -1842,12 +1842,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                   object GroupBox46: TGroupBox
                     Left = 114
-                    Height = 46
+                    Height = 69
                     Top = 1
                     Width = 113
                     Align = alLeft
                     Caption = 'ABDOMEN'
-                    ClientHeight = 20
+                    ClientHeight = 43
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 1
@@ -1870,20 +1870,20 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   end
                   object GroupBox47: TGroupBox
                     Left = 227
-                    Height = 46
+                    Height = 69
                     Top = 1
-                    Width = 113
+                    Width = 157
                     Align = alLeft
                     Caption = 'GERITAL / ANUS'
-                    ClientHeight = 20
-                    ClientWidth = 109
+                    ClientHeight = 43
+                    ClientWidth = 153
                     ParentBackground = False
                     TabOrder = 2
                     object ComboBoxGerital: TComboBox
                       Left = 0
                       Height = 29
                       Top = 0
-                      Width = 109
+                      Width = 153
                       Align = alClient
                       ItemHeight = 21
                       Items.Strings = (
@@ -1897,21 +1897,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     end
                   end
                   object GroupBox48: TGroupBox
-                    Left = 340
-                    Height = 46
+                    Left = 384
+                    Height = 69
                     Top = 1
-                    Width = 113
+                    Width = 129
                     Align = alLeft
                     Caption = 'EKSTREMITAS'
-                    ClientHeight = 20
-                    ClientWidth = 109
+                    ClientHeight = 43
+                    ClientWidth = 125
                     ParentBackground = False
                     TabOrder = 3
                     object ComboBoxEkstremitas: TComboBox
                       Left = 0
                       Height = 29
                       Top = 0
-                      Width = 109
+                      Width = 125
                       Align = alClient
                       ItemHeight = 21
                       Items.Strings = (
@@ -1925,13 +1925,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
                     end
                   end
                   object GroupBox49: TGroupBox
-                    Left = 453
-                    Height = 46
+                    Left = 513
+                    Height = 69
                     Top = 1
                     Width = 113
                     Align = alLeft
                     Caption = 'KULIT'
-                    ClientHeight = 20
+                    ClientHeight = 43
                     ClientWidth = 109
                     ParentBackground = False
                     TabOrder = 4
@@ -1956,7 +1956,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 object Label9: TLabel
                   Left = 1
                   Height = 15
-                  Top = 49
+                  Top = 72
                   Width = 1378
                   Align = alTop
                   Caption = 'KETERANGAN'
@@ -1968,8 +1968,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 end
                 object MemoKETERANGAN: TMemo
                   Left = 1
-                  Height = 153
-                  Top = 64
+                  Height = 108
+                  Top = 87
                   Width = 1378
                   Align = alClient
                   Lines.Strings = (
@@ -1981,24 +1981,24 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetStatusLokasi: TTabSheet
               Caption = 'Status Lokasi'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               OnContextPopup = TabSheetStatusLokasiContextPopup
               object Panel19: TPanel
                 Left = 0
-                Height = 322
+                Height = 316
                 Top = 0
                 Width = 776
                 Align = alLeft
                 Caption = 'Panel19'
-                ClientHeight = 322
+                ClientHeight = 316
                 ClientWidth = 776
                 ParentBackground = False
                 TabOrder = 0
                 object Image1: TImage
                   Left = 1
-                  Height = 320
+                  Height = 314
                   Top = 1
                   Width = 774
                   Align = alClient
@@ -4937,29 +4937,29 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object Panel18: TPanel
                 Left = 776
-                Height = 322
+                Height = 316
                 Top = 0
                 Width = 604
                 Align = alClient
                 Caption = 'Panel18'
-                ClientHeight = 322
+                ClientHeight = 316
                 ClientWidth = 604
                 ParentBackground = False
                 TabOrder = 1
                 object GroupBox53: TGroupBox
                   Left = 1
-                  Height = 320
+                  Height = 314
                   Top = 1
                   Width = 602
                   Align = alClient
                   Caption = 'Keterangan'
-                  ClientHeight = 294
+                  ClientHeight = 288
                   ClientWidth = 598
                   ParentBackground = False
                   TabOrder = 0
                   object MemoStatusLokasi: TMemo
                     Left = 0
-                    Height = 294
+                    Height = 288
                     Top = 0
                     Width = 598
                     Align = alClient
@@ -4973,23 +4973,23 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetPemeriksaanPenunjang: TTabSheet
               Caption = 'Pemeriksaan Penunjang'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               object GroupBox50: TGroupBox
                 Left = 0
-                Height = 322
+                Height = 316
                 Top = 0
                 Width = 384
                 Align = alLeft
                 Caption = 'LABORATORIUM'
-                ClientHeight = 296
+                ClientHeight = 290
                 ClientWidth = 380
                 ParentBackground = False
                 TabOrder = 0
                 object MemoLabPk: TMemo
                   Left = 0
-                  Height = 296
+                  Height = 290
                   Top = 0
                   Width = 380
                   Align = alClient
@@ -5001,18 +5001,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object GroupBox51: TGroupBox
                 Left = 384
-                Height = 322
+                Height = 316
                 Top = 0
                 Width = 612
                 Align = alClient
                 Caption = 'RADIOLOGI'
-                ClientHeight = 296
+                ClientHeight = 290
                 ClientWidth = 608
                 ParentBackground = False
                 TabOrder = 1
                 object MemoRadiologiPk: TMemo
                   Left = 0
-                  Height = 296
+                  Height = 290
                   Top = 0
                   Width = 608
                   Align = alClient
@@ -5024,18 +5024,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
               end
               object GroupBox52: TGroupBox
                 Left = 996
-                Height = 322
+                Height = 316
                 Top = 0
                 Width = 384
                 Align = alRight
                 Caption = 'PENUNJANG LAINYA'
-                ClientHeight = 296
+                ClientHeight = 290
                 ClientWidth = 380
                 ParentBackground = False
                 TabOrder = 2
                 object MemoPenunjangLainyaPk: TMemo
                   Left = 0
-                  Height = 296
+                  Height = 290
                   Top = 0
                   Width = 380
                   Align = alClient
@@ -5048,12 +5048,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetDiagnosaAsesmen: TTabSheet
               Caption = 'Diagnosa / Asesmen'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               object MemoDiagnosaPk: TMemo
                 Left = 0
-                Height = 301
+                Height = 295
                 Top = 21
                 Width = 1380
                 Align = alClient
@@ -5073,12 +5073,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetTatalaksana: TTabSheet
               Caption = 'Tatalaksana'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               object MemoTatalaksanaPk: TMemo
                 Left = 0
-                Height = 301
+                Height = 295
                 Top = 21
                 Width = 1380
                 Align = alClient
@@ -5098,12 +5098,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object TabSheetEdukasi: TTabSheet
               Caption = 'Edukasi'
-              ClientHeight = 322
+              ClientHeight = 316
               ClientWidth = 1380
               ImageIndex = 10
               object MemoEdukasiPk: TMemo
                 Left = 0
-                Height = 301
+                Height = 295
                 Top = 21
                 Width = 1380
                 Align = alClient

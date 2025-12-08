@@ -81,6 +81,7 @@ type
               NoRawat, NoRM, NamaPasien, CaraMasuk, AlatTransportasi,
               AlasanKedatangan, KeteranganKedatangan, MacamKasus: string
               );
+    procedure CariDataTriaseSemua(TglAwal, TglAkhir: TDateTime; Keyword: string);
   end;
 
 var

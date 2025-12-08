@@ -11,10 +11,11 @@ object DataModuleKoneksi: TDataModuleKoneksi
       'RawStringEncoding=DB_CP'
     )
     DisableSavepoints = False
-    HostName = '127.0.0.1'
+    HostName = '192.168.200.201'
     Port = 3306
     Database = 'sik'
-    User = 'root'
+    User = 'simrs'
+    Password = '5tronG!-V3rY-P4ssW0rd@1113!'
     Protocol = 'mysql'
     LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmariadb.dll'
     Left = 64

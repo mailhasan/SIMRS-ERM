@@ -1,0 +1,43 @@
+object FormCariPoli: TFormCariPoli
+  Left = 668
+  Height = 501
+  Top = 186
+  Width = 407
+  Caption = 'Form Cari Poli'
+  ClientHeight = 501
+  ClientWidth = 407
+  Position = poDesktopCenter
+  LCLVersion = '3.6.0.0'
+  object DBGridPoli: TDBGrid
+    Left = 0
+    Height = 478
+    Top = 23
+    Width = 407
+    Align = alClient
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'kd_poli'
+        FieldName = 'kd_poli'
+      end    
+      item
+        Title.Caption = 'nm_poli'
+        Width = 300
+        FieldName = 'nm_poli'
+      end>
+    DataSource = DataModuleRawatJalan.DataSourcePoli
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 0
+    OnDblClick = DBGridPoliDblClick
+  end
+  object EditCari: TEdit
+    Left = 0
+    Height = 23
+    Top = 0
+    Width = 407
+    Align = alTop
+    TabOrder = 1
+    Text = 'EditCari'
+    OnChange = EditCariChange
+  end
+end
