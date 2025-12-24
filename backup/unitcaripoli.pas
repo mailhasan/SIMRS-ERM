@@ -42,7 +42,7 @@ begin
   FormRawatJalan.EditPoli.Text :=
     DataModuleRawatJalan.ZQueryPoli.FieldByName('nm_poli').AsString;
 
-  FormRawatJalan.EditKodePoli :=
+  FormRawatJalan.EditKodePoli.Text :=
     DataModuleRawatJalan.ZQueryPoli.FieldByName('kd_poli').AsString;
 
   Close;

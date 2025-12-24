@@ -13,7 +13,7 @@ uses
   Forms, FrameViewer09, datetimectrls, anchordockpkg, unitLogin, unitUtama,
   unitDmKoneksi, zcomponent, unitRawatInap, unitdmrawatinap, unitKamar,
   unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd, unitPemeriksaanIGD,
-  unitTriaseIgd, unitdmrawatjalan, unitRawatJalan;
+  unitTriaseIgd, unitdmrawatjalan, unitRawatJalan, unitCariPoli;
 
 {$R *.res}
 
@@ -33,6 +33,7 @@ begin
   Application.CreateForm(TFormTriaseIgd, FormTriaseIgd);
   Application.CreateForm(TDataModuleRawatJalan, DataModuleRawatJalan);
   Application.CreateForm(TFormRawatJalan, FormRawatJalan);
+  Application.CreateForm(TFormCariPoli, FormCariPoli);
   Application.Run;
 end.
 

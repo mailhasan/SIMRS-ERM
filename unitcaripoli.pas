@@ -16,6 +16,7 @@ type
     EditCari: TEdit;
     procedure DBGridPoliDblClick(Sender: TObject);
     procedure EditCariChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
 
   public
@@ -35,6 +36,11 @@ begin
   if Trim(EditCari.Text) = '' then Exit;
 
   CariPoli(EditCari.Text);
+end;
+
+procedure TFormCariPoli.FormShow(Sender: TObject);
+begin
+  EditCari.Clear;
 end;
 
 procedure TFormCariPoli.DBGridPoliDblClick(Sender: TObject);

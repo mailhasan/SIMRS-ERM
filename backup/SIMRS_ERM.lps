@@ -8,11 +8,10 @@
       <Unit>
         <Filename Value="SIMRS_ERM.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="45" Y="30"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="63" Y="38"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitlogin.pas"/>
@@ -21,12 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
-        <CursorPos X="26" Y="43"/>
+        <CursorPos X="103" Y="60"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitutama.pas"/>
@@ -35,8 +32,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <TopLine Value="140"/>
-        <CursorPos X="44" Y="169"/>
+        <TopLine Value="128"/>
+        <CursorPos X="77" Y="149"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -48,11 +45,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
-        <EditorIndex Value="9"/>
-        <CursorPos X="85" Y="11"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="52" Y="48"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitrawatinap.pas"/>
@@ -61,9 +57,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="55"/>
-        <CursorPos X="12" Y="85"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="219"/>
+        <CursorPos Y="226"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -74,12 +70,10 @@
         <ComponentName Value="DataModuleRanap"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="3" Y="90"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitkamar.pas"/>
@@ -100,8 +94,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="88" Y="20"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1401"/>
+        <CursorPos X="65" Y="1426"/>
         <UsageCount Value="223"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -113,12 +109,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmFarmasi"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="122" Y="21"/>
         <UsageCount Value="236"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitigd.pas"/>
@@ -139,11 +133,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="88" Y="18"/>
         <UsageCount Value="221"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitpemeriksaanigd.pas"/>
@@ -174,12 +166,10 @@
         <ComponentName Value="DataModuleRawatJalan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="88"/>
-        <CursorPos X="103" Y="99"/>
-        <UsageCount Value="32"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="112"/>
+        <CursorPos X="31" Y="131"/>
+        <UsageCount Value="69"/>
       </Unit>
       <Unit>
         <Filename Value="unitrawatjalan.pas"/>
@@ -188,13 +178,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatJalan"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="175"/>
-        <CursorPos X="47" Y="209"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="116"/>
+        <CursorPos X="63" Y="193"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="unitcaripoli.pas"/>
@@ -203,26 +190,36 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitCariPoli"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="29"/>
-        <CursorPos X="94" Y="45"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="37"/>
+        <CursorPos X="75" Y="61"/>
+        <UsageCount Value="58"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitttdsoaprehab.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTtdSoapRehab"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitTtdSoapRehab"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="75"/>
+        <CursorPos X="81" Y="100"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2829"/>
         <CursorPos X="43" Y="2849"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\customnotebook.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="59"/>
         <CursorPos X="85" Y="83"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\grids.pas"/>
@@ -230,136 +227,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10317"/>
         <CursorPos X="46" Y="10339"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="config.ini"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="0"/>
         <DefaultSyntaxHighlighter Value="Ini"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="2">
       <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="175" Column="91" TopLine="156"/>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="143" Column="112" TopLine="125"/>
       </Position>
       <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="167" Column="65" TopLine="157"/>
+        <Filename Value="unitrawatinap.pas"/>
+        <Caret Line="77" Column="118" TopLine="55"/>
       </Position>
       <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="166" Column="65" TopLine="156"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="167" Column="65" TopLine="157"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="181" Column="78" TopLine="157"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="180" Column="78" TopLine="156"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="179" Column="78" TopLine="155"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="184" Column="73" TopLine="162"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="139" Column="82" TopLine="116"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmrawatjalan.pas"/>
-        <Caret Line="22" Column="76" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="16" Column="111"/>
-      </Position>
-      <Position>
-        <Filename Value="unitdmrawatjalan.pas"/>
-        <Caret Line="101" Column="55" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="28" Column="22"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="30" Column="5"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Column="18"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="66" Column="35" TopLine="49"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="33" Column="3" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="39" Column="43" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="21" Column="33" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="36" Column="40" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="119" Column="53" TopLine="103"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="123" Column="45" TopLine="104"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="126" Column="54" TopLine="104"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="34" Column="105" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="47" Column="29" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="48" Column="9" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcaripoli.pas"/>
-        <Caret Line="46" Column="36" TopLine="29"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="86" Column="61" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="92" Column="74" TopLine="67"/>
-      </Position>
-      <Position>
-        <Filename Value="unitrawatjalan.pas"/>
-        <Caret Line="207" Column="3" TopLine="173"/>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="21" Column="67"/>
       </Position>
     </JumpHistory>
     <RunParams>

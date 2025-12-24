@@ -161,7 +161,7 @@ procedure TFormUtama.BitBtnRawatJalanClick(Sender: TObject);
 begin
  /// RAWAT JALAN
  Application.CreateForm(TFormRawatJalan, FormRawatJalan);
- FormIGD.ShowModal;
+ FormRawatJalan.ShowModal;
 end;
 
 procedure TFormUtama.BitBtnIGDClick(Sender: TObject);

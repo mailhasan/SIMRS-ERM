@@ -6,6 +6,7 @@ object FormCariPoli: TFormCariPoli
   Caption = 'Form Cari Poli'
   ClientHeight = 501
   ClientWidth = 407
+  OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '3.6.0.0'
   object DBGridPoli: TDBGrid

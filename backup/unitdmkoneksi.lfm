@@ -15,6 +15,7 @@ object DataModuleKoneksi: TDataModuleKoneksi
     Port = 3306
     Database = 'sik'
     User = 'simrs'
+    Password = '5tronG!-V3rY-P4ssW0rd@1113!'
     Protocol = 'mysql'
     LibraryLocation = 'D:\erm\erm\SIMRS-ERM\dll\libmariadb.dll'
     Left = 64

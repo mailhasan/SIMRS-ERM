@@ -152,9 +152,9 @@ procedure TFormUtama.BitBtnRawatInapClick(Sender: TObject);
 begin
   if not Assigned(FormRawatInap) then
   FormRawatInap := TFormRawatInap.Create(Self);
-
+  FormRawatInap.ShowModal;
  /// tampil form
-  TampilkanFormDiPanel(FormRawatInap);
+  //TampilkanFormDiPanel(FormRawatInap);
 end;
 
 procedure TFormUtama.BitBtnRawatJalanClick(Sender: TObject);

@@ -1,0 +1,206 @@
+object FormTtdSoapRehab: TFormTtdSoapRehab
+  Left = 564
+  Height = 501
+  Top = 233
+  Width = 799
+  Caption = 'Form Ttd Soap Rehab'
+  ClientHeight = 501
+  ClientWidth = 799
+  LCLVersion = '3.6.0.0'
+  WindowState = wsFullScreen
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 799
+    Align = alTop
+    Caption = 'TTD SOAP REHAB PERAWAT'
+    ClientHeight = 26
+    ClientWidth = 799
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 724
+      Height = 24
+      Top = 1
+      Width = 74
+      Align = alRight
+      Caption = 'Keluar'
+      Color = 5987327
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      OnClick = Panel3Click
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 26
+    Width = 799
+    Align = alTop
+    ClientHeight = 50
+    ClientWidth = 799
+    TabOrder = 1
+    object DateTimePicker1: TDateTimePicker
+      Left = 15
+      Height = 23
+      Top = 9
+      Width = 83
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 0
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDate
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 46001
+      Time = 0.639889351848979
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
+    end
+    object ButtonTampil: TButton
+      Left = 104
+      Height = 25
+      Top = 8
+      Width = 75
+      Caption = 'Tampil'
+      TabOrder = 1
+      OnClick = ButtonTampilClick
+    end
+    object ButtonPdf: TButton
+      Left = 184
+      Height = 25
+      Top = 8
+      Width = 112
+      Caption = 'Generation Pdf'
+      TabOrder = 2
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 425
+    Top = 76
+    Width = 799
+    Align = alClient
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'tgl_perawatan'
+        Width = 110
+        FieldName = 'tgl_perawatan'
+      end    
+      item
+        Title.Caption = 'jam_rawat'
+        FieldName = 'jam_rawat'
+      end    
+      item
+        Title.Caption = 'suhu_tubuh'
+        FieldName = 'suhu_tubuh'
+      end    
+      item
+        Title.Caption = 'tensi'
+        FieldName = 'tensi'
+      end    
+      item
+        Title.Caption = 'nadi'
+        FieldName = 'nadi'
+      end    
+      item
+        Title.Caption = 'respirasi'
+        FieldName = 'respirasi'
+      end    
+      item
+        Title.Caption = 'tinggi'
+        FieldName = 'tinggi'
+      end    
+      item
+        Title.Caption = 'berat'
+        FieldName = 'berat'
+      end    
+      item
+        Title.Caption = 'gcs'
+        FieldName = 'gcs'
+      end    
+      item
+        Title.Caption = 'spo2'
+        FieldName = 'spo2'
+      end    
+      item
+        Title.Caption = 'kesadaran'
+        FieldName = 'kesadaran'
+      end    
+      item
+        Title.Caption = 'keluhan'
+        Width = 200
+        FieldName = 'keluhan'
+      end    
+      item
+        Title.Caption = 'pemeriksaan'
+        Width = 200
+        FieldName = 'pemeriksaan'
+      end    
+      item
+        Title.Caption = 'alergi'
+        Width = 200
+        FieldName = 'alergi'
+      end    
+      item
+        Title.Caption = 'lingkar_perut'
+        FieldName = 'lingkar_perut'
+      end    
+      item
+        Title.Caption = 'rtl'
+        Width = 200
+        FieldName = 'rtl'
+      end    
+      item
+        Title.Caption = 'penilaian'
+        Width = 200
+        FieldName = 'penilaian'
+      end    
+      item
+        Title.Caption = 'instruksi'
+        Width = 200
+        FieldName = 'instruksi'
+      end    
+      item
+        Title.Caption = 'evaluasi'
+        Width = 200
+        FieldName = 'evaluasi'
+      end    
+      item
+        Title.Caption = 'nip'
+        FieldName = 'nip'
+      end    
+      item
+        Title.Caption = 'nama'
+        Width = 200
+        FieldName = 'nama'
+      end    
+      item
+        Title.Caption = 'jbtn'
+        Width = 120
+        FieldName = 'jbtn'
+      end>
+    DataSource = DataModuleRawatJalan.DataSourcePemeriksaan
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
+    TabOrder = 2
+    OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnDrawColumnTitle = DBGrid1DrawColumnTitle
+  end
+end

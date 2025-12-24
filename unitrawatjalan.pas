@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, DBGrids,
-  StdCtrls, Buttons, DateTimePicker;
+  StdCtrls, Buttons, Menus, DateTimePicker;
 
 type
 
@@ -37,6 +37,9 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -49,6 +52,7 @@ type
     procedure EditPoliChange(Sender: TObject);
     procedure EditPoliDblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure SpeedButtonPoliClick(Sender: TObject);
   private
@@ -67,7 +71,7 @@ implementation
 {$R *.lfm}
 
 { TFormRawatJalan }
-uses unitdmrawatjalan,unitCariPoli;
+uses unitdmrawatjalan,unitCariPoli,unitTtdSoapRehab;
 
 procedure TFormRawatJalan.baru;
 begin
@@ -104,9 +108,9 @@ begin
   if ComboBoxBayar.Text = 'Semua' then
     Result := ''        // kosong = tidak difilter
   else if ComboBoxBayar.Text = 'Sudah Bayar' then
-    Result := 'Yes'
+    Result := 'Sudah Bayar'
   else if ComboBoxBayar.Text = 'Belum Bayar' then
-    Result := 'No'
+    Result := 'Belum Bayar'
   else
     Result := '';
 end;
@@ -182,6 +186,12 @@ begin
   // Set tanggal hari ini
   DateTimePickerMulai.Date := Date;
   DateTimePickerSelesai.Date := Date;
+end;
+
+procedure TFormRawatJalan.MenuItem2Click(Sender: TObject);
+begin
+  Application.CreateForm(TFormTtdSoapRehab, FormTtdSoapRehab);
+  FormTtdSoapRehab.ShowModal;
 end;
 
 procedure TFormRawatJalan.ButtonCariClick(Sender: TObject);

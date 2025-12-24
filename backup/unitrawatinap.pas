@@ -264,6 +264,7 @@ if not DataModuleRanap.ZQRRawatInap.IsEmpty then
     /// panggil procedure
     baru;
     baruPk;
+
     ShowModal;
     ///FormERMRanapDokter.ShowModal;
     end;
