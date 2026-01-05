@@ -36,18 +36,18 @@ type
     BitBtnHapus: TBitBtn;
     BitBtnCopy: TBitBtn;
     BitBtnUbah1: TBitBtn;
-    ComboBoxAnamnesis: TComboBox;
-    ComboBoxKepala: TComboBox;
-    ComboBoxEkstremitas: TComboBox;
     ComboBox1Kulit: TComboBox;
+    ComboBoxAbdomen: TComboBox;
+    ComboBoxAnamnesis: TComboBox;
+    ComboBoxEkstremitas: TComboBox;
+    ComboBoxGerital: TComboBox;
+    ComboBoxKepala: TComboBox;
     ComboBoxMata: TComboBox;
     ComboBoxGigi: TComboBox;
+    ComboBoxParu: TComboBox;
     ComboBoxTht: TComboBox;
     ComboBoxThoraks: TComboBox;
     ComboBoxJantung: TComboBox;
-    ComboBoxParu: TComboBox;
-    ComboBoxAbdomen: TComboBox;
-    ComboBoxGerital: TComboBox;
     ComboBoxKeadaanUmum: TComboBox;
     ComboBoxKesadaranAwalMediUmum: TComboBox;
     ComboBoxKesadaran: TComboBox;
@@ -189,7 +189,6 @@ type
     Panel14: TPanel;
     Panel15: TPanel;
     Panel16: TPanel;
-    Panel17: TPanel;
     Panel18: TPanel;
     Panel19: TPanel;
     Panel2: TPanel;
@@ -311,6 +310,7 @@ type
     procedure MemoSubjekKeyPress(Sender: TObject; var Key: char);
     procedure MemoSubjekMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure PageControl1Change(Sender: TObject);
     procedure PageControlAwalMedisUmumChange(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
@@ -1396,6 +1396,15 @@ procedure TFormERMRanapDokter.MemoSubjekMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 
+end;
+
+procedure TFormERMRanapDokter.PageControl1Change(Sender: TObject);
+begin
+   case PageControl1.ActivePageIndex of
+    0: PanelHeader.Color := $00E3F2FD;
+    1: PanelHeader.Color := $00E8F5E9;
+    2: PanelHeader.Color := $00FFFDE7;
+  end;
 end;
 
 procedure TFormERMRanapDokter.PageControlAwalMedisUmumChange(Sender: TObject);
