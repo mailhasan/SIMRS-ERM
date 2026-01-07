@@ -1,0 +1,190 @@
+object DataModuleIgd: TDataModuleIgd
+  OldCreateOrder = False
+  Height = 731
+  HorizontalOffset = 437
+  VerticalOffset = 209
+  Width = 539
+  object ZQuerydata_triase_igd: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igd'
+    )
+    Params = <>
+    Left = 106
+    Top = 32
+  end
+  object ZQuerydata_triase_igdprimer: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igdprimer'
+    )
+    Params = <>
+    Left = 104
+    Top = 88
+  end
+  object ZQuerydata_triase_igdsekunder: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igdsekunder'
+    )
+    Params = <>
+    Left = 106
+    Top = 144
+  end
+  object ZQuerymaster_triase_macam_kasus: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_macam_kasus'
+    )
+    Params = <>
+    Left = 106
+    Top = 200
+  end
+  object ZQuerymaster_triase_pemeriksaan: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_pemeriksaan'
+    )
+    Params = <>
+    Left = 106
+    Top = 256
+  end
+  object ZQuerymaster_triase_skala1: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_skala1'
+    )
+    Params = <>
+    Left = 104
+    Top = 320
+  end
+  object ZQuerymaster_triase_skala5: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_skala5'
+    )
+    Params = <>
+    Left = 106
+    Top = 576
+  end
+  object ZQuerydata_triase_igddetail_skala1: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala1'
+    )
+    Params = <>
+    Left = 336
+    Top = 128
+  end
+  object ZQuerydata_triase_igddetail_skala5: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala5'
+    )
+    Params = <>
+    Left = 336
+    Top = 352
+  end
+  object ZQueryTampilDaftarPxIgd: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    reg_periksa.no_reg,'
+      '    reg_periksa.no_rawat,'
+      '    reg_periksa.tgl_registrasi,'
+      '    reg_periksa.jam_reg,'
+      '    reg_periksa.kd_dokter,'
+      '    dokter.nm_dokter,'
+      '    reg_periksa.no_rkm_medis,'
+      '    pasien.nm_pasien,'
+      '    pasien.jk,'
+      '    CONCAT(reg_periksa.umurdaftar, '' '', reg_periksa.sttsumur) AS umur,'
+      '    poliklinik.nm_poli,'
+      '    reg_periksa.p_jawab,'
+      '    reg_periksa.almt_pj,'
+      '    reg_periksa.hubunganpj,'
+      '    reg_periksa.biaya_reg,'
+      '    reg_periksa.stts_daftar,'
+      '    penjab.png_jawab,'
+      '    pasien.no_tlp,'
+      '    reg_periksa.stts,'
+      '    reg_periksa.status_poli,'
+      '    reg_periksa.kd_poli,'
+      '    reg_periksa.kd_pj'
+      'FROM '
+      '    reg_periksa '
+      '    INNER JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter '
+      '    INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis '
+      '    INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli '
+      '    INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj'
+    )
+    Params = <>
+    Left = 292
+    Top = 40
+  end
+  object DataSourceTampilDaftarPxIgd: TDataSource
+    DataSet = ZQueryTampilDaftarPxIgd
+    Left = 384
+    Top = 64
+  end
+  object ZQuerymaster_triase_skala2: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_skala2'
+    )
+    Params = <>
+    Left = 106
+    Top = 376
+  end
+  object ZQuerymaster_triase_skala3: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_skala3'
+    )
+    Params = <>
+    Left = 104
+    Top = 440
+  end
+  object ZQuerymaster_triase_skala4: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from master_triase_skala4'
+    )
+    Params = <>
+    Left = 106
+    Top = 504
+  end
+  object ZQuerydata_triase_igddetail_skala2: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala2'
+    )
+    Params = <>
+    Left = 336
+    Top = 184
+  end
+  object ZQuerydata_triase_igddetail_skala3: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala3'
+    )
+    Params = <>
+    Left = 336
+    Top = 240
+  end
+  object ZQuerydata_triase_igddetail_skala4: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'select * from data_triase_igddetail_skala4'
+    )
+    Params = <>
+    Left = 336
+    Top = 296
+  end
+  object ZQueryTriase: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Params = <>
+    Left = 316
+    Top = 466
+  end
+end

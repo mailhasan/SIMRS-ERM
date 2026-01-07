@@ -24,4 +24,35 @@ object DataModuleFarmasi: TDataModuleFarmasi
     Left = 98
     Top = 282
   end
+  object zqResepHeader: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      '-- Dengan filter tanggal'
+      'SELECT '
+      '    ro.no_resep, '
+      '    ro.tgl_peresepan, '
+      '    ro.jam_peresepan,'
+      '    ro.no_rawat, '
+      '    p.no_rkm_medis, '
+      '    p.nm_pasien, '
+      '    ro.kd_dokter,'
+      '    d.nm_dokter,'
+      '    IF(ro.tgl_perawatan = ''0000-00-00'', ''Belum Terlayani'', ''Sudah Terlayani'') as status,'
+      '    ro.status as status_asal'
+      'FROM resep_obat ro'
+      'INNER JOIN reg_periksa rp ON ro.no_rawat = rp.no_rawat'
+      'INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis'
+      'INNER JOIN dokter d ON ro.kd_dokter = d.kd_dokter'
+      'WHERE ro.tgl_peresepan <> ''0000-00-00'''
+      '    AND ro.tgl_peresepan BETWEEN ? AND ?'
+      '    AND p.no_rkm_medis = ?'
+      '    -- Kondisi dokter (jika TAMPILKANCOPYRESEPDOKTERLAIN = ''no'')'
+      '    AND ro.kd_dokter = ?'
+      'ORDER BY ro.tgl_perawatan, ro.jam DESC'
+    )
+    Params = <>
+    Left = 100
+    Top = 354
+  end
 end

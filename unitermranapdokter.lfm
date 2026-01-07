@@ -7,11 +7,11 @@ object FormERMRanapDokter: TFormERMRanapDokter
   Caption = 'FormERMRanapDokter'
   ClientHeight = 800
   ClientWidth = 1400
+  LCLVersion = '4.4.0.0'
+  WindowState = wsFullScreen
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '3.6.0.0'
-  WindowState = wsFullScreen
   object PanelAtas: TPanel
     Left = 0
     Height = 34
@@ -120,6 +120,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
         Height = 21
         Top = 24
         Width = 192
+        Enabled = False
         TabOrder = 0
         Text = 'EditNoRawat'
       end
@@ -237,7 +238,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Height = 685
       Top = 80
       Width = 1398
-      ActivePage = TabSheetPemeriksaan
+      ActivePage = TabSheetObat
       Align = alClient
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
@@ -246,8 +247,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Font.Style = [fsBold]
       ParentFont = False
       ScrollOpposite = True
-      Style = tsButtons
-      TabIndex = 0
+      Style = tsFlatButtons
+      TabIndex = 2
       TabOrder = 1
       OnChange = PageControl1Change
       object TabSheetPemeriksaan: TTabSheet
@@ -861,8 +862,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Align = alLeft
                 Images = FormUtama.ImageList1
                 ImageIndex = 3
-                OnClick = BitBtnSimpanClick
                 TabOrder = 0
+                OnClick = BitBtnSimpanClick
               end
               object BitBtnUbah: TBitBtn
                 Left = 308
@@ -874,8 +875,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 HotImageIndex = 3
                 Images = FormUtama.ImageList1
                 ImageIndex = 3
-                OnClick = BitBtnUbahClick
                 TabOrder = 1
+                OnClick = BitBtnUbahClick
               end
               object BitBtnHapus: TBitBtn
                 Left = 411
@@ -887,8 +888,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 HotImageIndex = 5
                 Images = FormUtama.ImageList1
                 ImageIndex = 5
-                OnClick = BitBtnHapusClick
                 TabOrder = 2
+                OnClick = BitBtnHapusClick
               end
               object BitBtnBaru: TBitBtn
                 Left = 1
@@ -899,8 +900,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 Align = alLeft
                 Images = FormUtama.ImageList1
                 ImageIndex = 4
-                OnClick = BitBtnBaruClick
                 TabOrder = 3
+                OnClick = BitBtnBaruClick
               end
               object BitBtnDetailRiwayat: TBitBtn
                 Left = 516
@@ -912,8 +913,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 HotImageIndex = 6
                 Images = FormUtama.ImageList1
                 ImageIndex = 6
-                OnClick = BitBtnDetailRiwayatClick
                 TabOrder = 4
+                OnClick = BitBtnDetailRiwayatClick
               end
               object BitBtnCopy: TBitBtn
                 Left = 203
@@ -925,8 +926,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
                 HotImageIndex = 3
                 Images = FormUtama.ImageList1
                 ImageIndex = 3
-                OnClick = BitBtnUbahClick
                 TabOrder = 5
+                OnClick = BitBtnUbahClick
               end
             end
             object DBGrid1: TDBGrid
@@ -1171,7 +1172,6 @@ object FormERMRanapDokter: TFormERMRanapDokter
             ParentShowHint = False
             TabIndex = 0
             TabOrder = 0
-            TabPosition = tpBottom
             OnChange = PageControlAwalMedisUmumChange
             object TabSheetRiwayatKesehatan: TTabSheet
               AutoSize = True
@@ -1184,11 +1184,11 @@ object FormERMRanapDokter: TFormERMRanapDokter
               Font.Quality = fqDraft
               Font.Style = [fsBold]
               ImageIndex = 10
-              OnContextPopup = TabSheetRiwayatKesehatanContextPopup
               ParentBiDiMode = False
               ParentFont = False
               ParentShowHint = False
               ShowHint = True
+              OnContextPopup = TabSheetRiwayatKesehatanContextPopup
               object Panel12: TPanel
                 Left = 0
                 Height = 146
@@ -2114,6 +2114,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
                   Lines.Strings = (
                     'MemoKETERANGAN'
                   )
+                  ScrollBars = ssAutoBoth
                   TabOrder = 0
                 end
               end
@@ -5293,8 +5294,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Align = alLeft
             Images = FormUtama.ImageList1
             ImageIndex = 3
-            OnClick = BitBtnSimpanClick
             TabOrder = 0
+            OnClick = BitBtnSimpanClick
           end
           object BitBtnUbah1: TBitBtn
             Left = 202
@@ -5306,8 +5307,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             HotImageIndex = 3
             Images = FormUtama.ImageList1
             ImageIndex = 3
-            OnClick = BitBtnUbahClick
             TabOrder = 1
+            OnClick = BitBtnUbahClick
           end
           object BitBtnHapus1: TBitBtn
             Left = 304
@@ -5319,8 +5320,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             HotImageIndex = 5
             Images = FormUtama.ImageList1
             ImageIndex = 5
-            OnClick = BitBtnHapusClick
             TabOrder = 2
+            OnClick = BitBtnHapusClick
           end
           object BitBtnBaru1: TBitBtn
             Left = 1
@@ -5331,8 +5332,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Align = alLeft
             Images = FormUtama.ImageList1
             ImageIndex = 4
-            OnClick = BitBtnBaruClick
             TabOrder = 3
+            OnClick = BitBtnBaruClick
           end
         end
         object Panel3: TPanel
@@ -5360,11 +5361,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Caption = 'PELAKSANA'
             ClientHeight = 45
             ClientWidth = 1384
+            Color = clWindow
             Font.CharSet = ANSI_CHARSET
             Font.Height = -11
             Font.Pitch = fpVariable
             Font.Quality = fqDraft
             ParentBackground = False
+            ParentColor = False
             ParentFont = False
             ParentShowHint = False
             TabOrder = 0
@@ -5728,9 +5731,193 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetObat: TTabSheet
         Caption = 'Obat'
+        ClientHeight = 652
+        ClientWidth = 1390
         Font.Height = -16
         Font.Style = [fsBold]
         ParentFont = False
+        OnShow = TabSheetObatShow
+        object Panel17: TPanel
+          Left = 0
+          Height = 16
+          Top = 0
+          Width = 1390
+          Align = alTop
+          Caption = 'RIWAYAT RESEP OBAT'
+          Color = 11834940
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Panel21: TPanel
+          Left = 0
+          Height = 50
+          Top = 16
+          Width = 1390
+          Align = alTop
+          ClientHeight = 50
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 1
+          OnClick = Panel21Click
+          object BitBtnObat: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 11
+            Width = 75
+            Caption = 'OBAT'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            TabOrder = 0
+            OnClick = BitBtnObatClick
+          end
+          object BitBtnRacikan: TBitBtn
+            Left = 88
+            Height = 30
+            Top = 11
+            Width = 104
+            Caption = 'RACIKAN'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            TabOrder = 1
+            OnClick = BitBtnRacikanClick
+          end
+          object BitBtnCopyResep: TBitBtn
+            Left = 200
+            Height = 30
+            Top = 11
+            Width = 96
+            Caption = 'COPY'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            TabOrder = 2
+            OnClick = BitBtnCopyResepClick
+          end
+        end
+        object Panel22: TPanel
+          Left = 0
+          Height = 50
+          Top = 66
+          Width = 1390
+          Align = alTop
+          ClientHeight = 50
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 2
+          object DateTimePickerMulaiResep: TDateTimePicker
+            Left = 208
+            Height = 29
+            Top = 8
+            Width = 111
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 0
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 46028
+            Time = 0.545111319443095
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            OnChange = DateTimePickerMulaiResepChange
+          end
+          object Label13: TLabel
+            Left = 120
+            Height = 21
+            Top = 16
+            Width = 71
+            Caption = 'Tgl Mulai'
+          end
+          object Label14: TLabel
+            Left = 328
+            Height = 21
+            Top = 16
+            Width = 21
+            Caption = 'SD'
+          end
+          object CheckBoxByTgl: TCheckBox
+            Left = 8
+            Height = 25
+            Top = 16
+            Width = 103
+            Caption = 'By Tanggal'
+            TabOrder = 1
+          end
+          object DateTimePickerSampaiResep: TDateTimePicker
+            Left = 360
+            Height = 29
+            Top = 8
+            Width = 111
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 2
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 46028
+            Time = 0.545111319443095
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            OnChange = DateTimePickerMulaiResepChange
+          end
+          object BitBtnTampilResep: TBitBtn
+            Left = 480
+            Height = 30
+            Top = 8
+            Width = 75
+            Caption = 'Tampil'
+            TabOrder = 3
+            OnClick = BitBtnTampilResepClick
+          end
+        end
+        object Panel23: TPanel
+          Left = 0
+          Height = 536
+          Top = 116
+          Width = 1390
+          Align = alClient
+          Caption = 'Panel23'
+          ClientHeight = 536
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 3
+          object LazVirtualStringTree1: TLazVirtualStringTree
+            Left = 1
+            Height = 534
+            Top = 1
+            Width = 1388
+            Align = alClient
+            DefaultNodeHeight = 21
+            DefaultText = 'Node'
+            Header.AutoSizeIndex = 0
+            Header.Columns = <>
+            Header.MainColumn = -1
+            TabOrder = 0
+            OnBeforeCellPaint = LazVirtualStringTree1BeforeCellPaint
+            OnBeforePaint = LazVirtualStringTree1BeforePaint
+            OnGetText = LazVirtualStringTree1GetText
+            OnPaintText = LazVirtualStringTree1PaintText
+          end
+        end
       end
       object TabSheetResume: TTabSheet
         Caption = 'Resume'
@@ -5744,8 +5931,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
     end
   end
   object ActionList1: TActionList
-    Left = 1240
-    Top = 184
+    Left = 1160
+    Top = 72
     object ActionBARU: TAction
       Caption = 'BARU '
       OnExecute = ActionBARUExecute
@@ -5768,8 +5955,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
     end
     object Action1KELUAR: TAction
       Caption = '[ECS] KELUAR'
-      OnExecute = Action1KELUARExecute
       ShortCut = 27
+      OnExecute = Action1KELUARExecute
     end
     object ActionBaruMsUmum: TAction
       Caption = 'BARU'

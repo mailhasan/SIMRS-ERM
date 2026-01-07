@@ -1,0 +1,82 @@
+object FormPeresepanDokter: TFormPeresepanDokter
+  Left = 589
+  Height = 502
+  Top = 182
+  Width = 748
+  BorderStyle = bsNone
+  Caption = 'Form Peresepan Dokter'
+  ClientHeight = 502
+  ClientWidth = 748
+  LCLVersion = '3.6.0.0'
+  WindowState = wsFullScreen
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 748
+    Align = alTop
+    Caption = 'RESEP DOKTER'
+    ClientHeight = 34
+    ClientWidth = 748
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object PanelKeluar: TPanel
+      Left = 673
+      Height = 32
+      Top = 1
+      Width = 74
+      Align = alRight
+      Caption = 'Keluar'
+      Color = 5987327
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      OnClick = PanelKeluarClick
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 54
+    Top = 34
+    Width = 748
+    Align = alTop
+    Caption = 'Panel1'
+    TabOrder = 1
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 54
+    Top = 88
+    Width = 748
+    Align = alTop
+    Caption = 'Panel2'
+    TabOrder = 2
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 306
+    Top = 142
+    Width = 748
+    Align = alClient
+    Caption = 'Panel3'
+    TabOrder = 3
+  end
+  object Panel4: TPanel
+    Left = 0
+    Height = 54
+    Top = 448
+    Width = 748
+    Align = alBottom
+    Caption = 'Panel4'
+    TabOrder = 4
+  end
+end

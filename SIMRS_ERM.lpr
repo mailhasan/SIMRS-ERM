@@ -14,7 +14,7 @@ uses
   unitDmKoneksi, zcomponent, unitRawatInap, unitdmrawatinap, unitKamar,
   unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd, unitPemeriksaanIGD,
   unitTriaseIgd, unitdmrawatjalan, unitRawatJalan, unitCariPoli,
-unitTtdSoapRehab;
+unitTtdSoapRehab, unitPeresepanDokter;
 
 {$R *.res}
 
@@ -36,6 +36,7 @@ begin
   Application.CreateForm(TFormRawatJalan, FormRawatJalan);
   Application.CreateForm(TFormCariPoli, FormCariPoli);
   Application.CreateForm(TFormTtdSoapRehab, FormTtdSoapRehab);
+  Application.CreateForm(TFormPeresepanDokter, FormPeresepanDokter);
   Application.Run;
 end.
 

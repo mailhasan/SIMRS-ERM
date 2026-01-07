@@ -120,6 +120,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
         Height = 21
         Top = 24
         Width = 192
+        Enabled = False
         TabOrder = 0
         Text = 'EditNoRawat'
       end
@@ -237,7 +238,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Height = 685
       Top = 80
       Width = 1398
-      ActivePage = TabSheetPemeriksaan
+      ActivePage = TabSheetObat
       Align = alClient
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
@@ -246,8 +247,8 @@ object FormERMRanapDokter: TFormERMRanapDokter
       Font.Style = [fsBold]
       ParentFont = False
       ScrollOpposite = True
-      Style = tsButtons
-      TabIndex = 0
+      Style = tsFlatButtons
+      TabIndex = 2
       TabOrder = 1
       OnChange = PageControl1Change
       object TabSheetPemeriksaan: TTabSheet
@@ -1171,7 +1172,6 @@ object FormERMRanapDokter: TFormERMRanapDokter
             ParentShowHint = False
             TabIndex = 0
             TabOrder = 0
-            TabPosition = tpBottom
             OnChange = PageControlAwalMedisUmumChange
             object TabSheetRiwayatKesehatan: TTabSheet
               AutoSize = True
@@ -5360,11 +5360,13 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Caption = 'PELAKSANA'
             ClientHeight = 45
             ClientWidth = 1384
+            Color = clWindow
             Font.CharSet = ANSI_CHARSET
             Font.Height = -11
             Font.Pitch = fpVariable
             Font.Quality = fqDraft
             ParentBackground = False
+            ParentColor = False
             ParentFont = False
             ParentShowHint = False
             TabOrder = 0
@@ -5728,9 +5730,136 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetObat: TTabSheet
         Caption = 'Obat'
+        ClientHeight = 652
+        ClientWidth = 1390
         Font.Height = -16
         Font.Style = [fsBold]
+        OnShow = TabSheetObatShow
         ParentFont = False
+        object Panel17: TPanel
+          Left = 0
+          Height = 16
+          Top = 0
+          Width = 1390
+          Align = alTop
+          Caption = 'RIWAYAT RESEP OBAT'
+          Color = 11834940
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Panel21: TPanel
+          Left = 0
+          Height = 50
+          Top = 16
+          Width = 1390
+          Align = alTop
+          ClientHeight = 50
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 1
+          object BitBtnObat: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 11
+            Width = 75
+            Caption = 'OBAT'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            OnClick = BitBtnObatClick
+            TabOrder = 0
+          end
+          object BitBtnRacikan: TBitBtn
+            Left = 88
+            Height = 30
+            Top = 11
+            Width = 104
+            Caption = 'RACIKAN'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            OnClick = BitBtnRacikanClick
+            TabOrder = 1
+          end
+          object BitBtnCopyResep: TBitBtn
+            Left = 200
+            Height = 30
+            Top = 11
+            Width = 96
+            Caption = 'COPY'
+            Images = FormUtama.ImageList1
+            ImageIndex = 3
+            OnClick = BitBtnCopyResepClick
+            TabOrder = 2
+          end
+        end
+        object Panel22: TPanel
+          Left = 0
+          Height = 50
+          Top = 66
+          Width = 1390
+          Align = alTop
+          ClientHeight = 50
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 2
+          object DateTimePicker1: TDateTimePicker
+            Left = 24
+            Height = 29
+            Top = 14
+            Width = 111
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 0
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 46028
+            Time = 0.545111319443095
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            OnChange = DateTimePicker1Change
+          end
+        end
+        object Panel23: TPanel
+          Left = 0
+          Height = 536
+          Top = 116
+          Width = 1390
+          Align = alClient
+          Caption = 'Panel23'
+          ClientHeight = 536
+          ClientWidth = 1390
+          ParentBackground = False
+          TabOrder = 3
+          object LazVirtualStringTree1: TLazVirtualStringTree
+            Left = 1
+            Height = 534
+            Top = 1
+            Width = 1388
+            Align = alClient
+            DefaultNodeHeight = 21
+            DefaultText = 'Node'
+            Header.AutoSizeIndex = 0
+            Header.Columns = <>
+            Header.MainColumn = -1
+            TabOrder = 0
+            OnGetText = LazVirtualStringTree1GetText
+            OnPaintText = LazVirtualStringTree1PaintText
+          end
+        end
       end
       object TabSheetResume: TTabSheet
         Caption = 'Resume'
