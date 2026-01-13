@@ -1,11 +1,11 @@
 object FormERMRanapDokter: TFormERMRanapDokter
-  Left = 390
-  Height = 800
-  Top = 102
+  Left = 347
+  Height = 909
+  Top = 57
   Width = 1400
   BorderStyle = bsNone
   Caption = 'FormERMRanapDokter'
-  ClientHeight = 800
+  ClientHeight = 909
   ClientWidth = 1400
   LCLVersion = '4.4.0.0'
   WindowState = wsFullScreen
@@ -48,11 +48,11 @@ object FormERMRanapDokter: TFormERMRanapDokter
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 766
+    Height = 875
     Top = 34
     Width = 1400
     Align = alClient
-    ClientHeight = 766
+    ClientHeight = 875
     ClientWidth = 1400
     Color = clWhite
     ParentBackground = False
@@ -235,7 +235,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
     end
     object PageControl1: TPageControl
       Left = 1
-      Height = 685
+      Height = 794
       Top = 80
       Width = 1398
       ActivePage = TabSheetObat
@@ -253,7 +253,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       OnChange = PageControl1Change
       object TabSheetPemeriksaan: TTabSheet
         Caption = 'Pemeriksaan'
-        ClientHeight = 652
+        ClientHeight = 761
         ClientWidth = 1390
         Font.Height = -21
         Font.Style = [fsBold]
@@ -279,14 +279,14 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object Panel5: TPanel
           Left = 0
-          Height = 636
+          Height = 745
           Top = 16
           Width = 1390
           Align = alClient
           BevelColor = clHotLight
           BevelInner = bvRaised
           BorderStyle = bsSingle
-          ClientHeight = 632
+          ClientHeight = 741
           ClientWidth = 1386
           Font.CharSet = ANSI_CHARSET
           Font.Height = -19
@@ -428,12 +428,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
           end
           object GroupBox2: TGroupBox
             Left = 2
-            Height = 565
+            Height = 674
             Top = 65
             Width = 1382
             Align = alClient
             Caption = 'SOAPE'
-            ClientHeight = 545
+            ClientHeight = 654
             ClientWidth = 1378
             Font.CharSet = ANSI_CHARSET
             Font.Pitch = fpVariable
@@ -932,7 +932,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object DBGrid1: TDBGrid
               Left = 0
-              Height = 141
+              Height = 250
               Top = 404
               Width = 1378
               Align = alClient
@@ -1112,7 +1112,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetAwalMedisUmum: TTabSheet
         Caption = 'Awal Medis Umum'
-        ClientHeight = 652
+        ClientHeight = 761
         ClientWidth = 1390
         Font.CharSet = ANSI_CHARSET
         Font.Height = -15
@@ -5512,7 +5512,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object DBGridAwalMedisUmum: TDBGrid
           Left = 0
-          Height = 187
+          Height = 296
           Top = 465
           Width = 1390
           Align = alClient
@@ -5731,7 +5731,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetObat: TTabSheet
         Caption = 'Obat'
-        ClientHeight = 652
+        ClientHeight = 761
         ClientWidth = 1390
         Font.Height = -16
         Font.Style = [fsBold]
@@ -5855,6 +5855,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             Width = 103
             Caption = 'By Tanggal'
             TabOrder = 1
+            OnClick = CheckBoxByTglClick
           end
           object DateTimePickerSampaiResep: TDateTimePicker
             Left = 360
@@ -5891,18 +5892,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object Panel23: TPanel
           Left = 0
-          Height = 536
+          Height = 645
           Top = 116
           Width = 1390
           Align = alClient
           Caption = 'Panel23'
-          ClientHeight = 536
+          ClientHeight = 645
           ClientWidth = 1390
           ParentBackground = False
           TabOrder = 3
           object LazVirtualStringTree1: TLazVirtualStringTree
             Left = 1
-            Height = 534
+            Height = 643
             Top = 1
             Width = 1388
             Align = alClient

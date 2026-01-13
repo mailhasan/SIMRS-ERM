@@ -58,4 +58,31 @@ object DataModuleFarmasi: TDataModuleFarmasi
     Left = 100
     Top = 354
   end
+  object ZQueryObatResep: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT databarang.kode_brng, databarang.nama_brng, jenis.nama, '
+      '       databarang.kode_sat, (databarang.h_beli + (databarang.h_beli * 0.2)) as harga,'
+      '       databarang.letak_barang, industrifarmasi.nama_industri, databarang.h_beli,'
+      '       SUM(gudangbarang.stok) as stok, databarang.kapasitas'
+      'FROM databarang '
+      'INNER JOIN jenis ON databarang.kdjns = jenis.kdjns'
+      'INNER JOIN industrifarmasi ON industrifarmasi.kode_industri = databarang.kode_industri'
+      'INNER JOIN gudangbarang ON databarang.kode_brng = gudangbarang.kode_brng'
+      'WHERE databarang.status = ''1'' '
+      'AND gudangbarang.stok > 0 '
+      'AND gudangbarang.kd_bangsal = ''DPIGD'''
+      'GROUP BY gudangbarang.kode_brng'
+      'ORDER BY databarang.nama_brng;'
+    )
+    Params = <>
+    Left = 107
+    Top = 434
+  end
+  object DataSourceObatResep: TDataSource
+    DataSet = ZQueryObatResep
+    Left = 216
+    Top = 440
+  end
 end

@@ -5,7 +5,7 @@ unit unitDmFarmasi;
 interface
 
 uses
-  Classes, SysUtils, ZDataset,Dialogs;
+  Classes, SysUtils, DB, ZDataset,Dialogs;
 
 type
   TResepHeader = record
@@ -51,7 +51,9 @@ type
   { TDataModuleFarmasi }
 
   TDataModuleFarmasi = class(TDataModule)
+    DataSourceObatResep: TDataSource;
     zqResepHeader: TZQuery;
+    ZQueryObatResep: TZQuery;
     ZQueryResepRacikanDetail: TZQuery;
     ZQueryResepRacikan: TZQuery;
     ZQueryResepDetail: TZQuery;
@@ -60,16 +62,7 @@ type
   private
 
   public
-   procedure LoadResepHeader(
-        const ANoRM: string;
-        const ATglAwal, ATglAkhir: TDate;
-        const AKodeDokter: string;
-        out AData: TResepHeaderArray
-      );
-   procedure LoadResepHeaderByNoRM(
-      const ANoRM: string;
-      out AData: TResepHeaderArray
-      );
+   procedure LoadResepHeader(const ANoRawat: string; const ATglAwal, ATglAkhir: TDate; const ALimit: string; out AData: TResepHeaderArray);
 
    procedure LoadDetailObat(const ANoResep: string; out AData: TResepDetailObatArray);
    procedure LoadDetailRacikan(const ANoResep: string; out AData: TResepRacikanArray);
@@ -204,180 +197,67 @@ begin
   end;
 end;}
 
-procedure TDataModuleFarmasi.LoadResepHeader(
-  const ANoRM: string;
-  const ATglAwal, ATglAkhir: TDate;
-  const AKodeDokter: string;
-  out AData: TResepHeaderArray
-);
+{ Prosedur Load Header Resep dengan Filter Tanggal & Limit }
+procedure TDataModuleFarmasi.LoadResepHeader(const ANoRawat: string; const ATglAwal, ATglAkhir: TDate; const ALimit: string; out AData: TResepHeaderArray);
 var
   i: Integer;
-  sDebug: string;
 begin
-  // Debug: Tampilkan parameter yang diterima
-  sDebug := 'Parameter LoadResepHeader:' + #13#10 +
-            'NoRM: ' + ANoRM + #13#10 +
-            'TglAwal: ' + DateToStr(ATglAwal) + #13#10 +
-            'TglAkhir: ' + DateToStr(ATglAkhir) + #13#10 +
-            'Dokter: ' + AKodeDokter;
-
-  // Tampilkan pesan debug - komentari setelah debug selesai
-  // ShowMessage(sDebug);
-
   zqResepHeader.Close;
-  zqResepHeader.SQL.Clear;
-
-  // **QUERY SANGAT SEDERHANA - TANPA FILTER DULU**
   zqResepHeader.SQL.Text :=
-    'SELECT ' +
-    '  ro.no_resep, ' +
-    '  ro.tgl_peresepan, ' +
-    '  ro.jam_peresepan, ' +
-    '  ro.no_rawat, ' +
-    '  rp.no_rkm_medis, ' +
-    '  rp.status_lanjut, ' +
-    '  p.nm_pasien, ' +
-    '  ro.kd_dokter, ' +
-    '  d.nm_dokter, ' +
-    '  CASE ' +
-    '    WHEN ro.tgl_perawatan IS NULL OR ro.tgl_perawatan = ''0000-00-00'' THEN ''Belum Terlayani'' ' +
-    '    ELSE ''Sudah Terlayani'' ' +
-    '  END AS status, ' +
-    '  ro.status AS status_asal ' +
+    'SELECT ro.no_resep, ro.tgl_peresepan, ro.jam_peresepan, ro.no_rawat, ' +
+    'rp.no_rkm_medis, rp.status_lanjut, p.nm_pasien, ro.kd_dokter, d.nm_dokter, ' +
+    'CASE WHEN ro.tgl_perawatan IS NULL OR ro.tgl_perawatan = "0000-00-00" THEN "Belum Terlayani" ELSE "Sudah Terlayani" END AS status_layan, ' +
+    'ro.status AS status_asal ' +
     'FROM resep_obat ro ' +
     'LEFT JOIN reg_periksa rp ON ro.no_rawat = rp.no_rawat ' +
     'LEFT JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ' +
     'LEFT JOIN dokter d ON ro.kd_dokter = d.kd_dokter ' +
-    'WHERE ro.no_rawat = :no_rawat ' +  // Filter utama pakai no_rawat
-    'ORDER BY ro.tgl_peresepan DESC ' +
-    'LIMIT 20';
+    'WHERE rp.no_rkm_medis = :no_rawat ';
 
-  // **Gunakan EditNoRawat.Text, bukan EditNORM.Text**
-  // Karena resep_obat terkait dengan no_rawat, bukan langsung no_rkm_medis
-  zqResepHeader.ParamByName('no_rawat').AsString := ANoRM; // Parameter sebenarnya adalah no_rawat
+  { Tambahkan Filter Tanggal jika tidak 0 }
+  if (ATglAwal > 0) then
+    zqResepHeader.SQL.Add('AND ro.tgl_peresepan BETWEEN :tgl1 AND :tgl2 ');
+
+  zqResepHeader.SQL.Add('ORDER BY ro.tgl_peresepan DESC, ro.jam_peresepan DESC');
+
+  { Tambahkan Limit (misal: LIMIT 10) }
+  if ALimit <> '' then zqResepHeader.SQL.Add(ALimit);
+
+  zqResepHeader.ParamByName('no_rawat').AsString := ANoRawat;
+  if (ATglAwal > 0) then
+  begin
+    zqResepHeader.ParamByName('tgl1').AsDate := ATglAwal;
+    zqResepHeader.ParamByName('tgl2').AsDate := ATglAkhir;
+  end;
 
   try
     zqResepHeader.Open;
-
-    // Debug jumlah record
-    // ShowMessage('Query berhasil. Jumlah record: ' + IntToStr(zqResepHeader.RecordCount));
-
     SetLength(AData, zqResepHeader.RecordCount);
     i := 0;
-
-    while not zqResepHeader.EOF do
+    while not zqResepHeader.Eof do
     begin
-      AData[i].NoResep    := zqResepHeader.FieldByName('no_resep').AsString;
-      AData[i].TglResep   := zqResepHeader.FieldByName('tgl_peresepan').AsDateTime;
-      AData[i].JamResep   := zqResepHeader.FieldByName('jam_peresepan').AsString;
-      AData[i].NoRawat    := zqResepHeader.FieldByName('no_rawat').AsString;
-      AData[i].NoRM       := zqResepHeader.FieldByName('no_rkm_medis').AsString;
-      AData[i].NamaPasien := zqResepHeader.FieldByName('nm_pasien').AsString;
-      AData[i].KodeDokter := zqResepHeader.FieldByName('kd_dokter').AsString;
-      AData[i].NamaDokter := zqResepHeader.FieldByName('nm_dokter').AsString;
-      AData[i].Status     := zqResepHeader.FieldByName('status').AsString;
-      AData[i].StatusAsal := zqResepHeader.FieldByName('status_asal').AsString;
-      AData[i].StatusLanjut := zqResepHeader.FieldByName('status_lanjut').AsString;
-
-      Inc(i);
-      zqResepHeader.Next;
-    end;
-
-    // Debug detail data
-    if Length(AData) > 0 then
-    begin
-      sDebug := 'Data ditemukan:' + #13#10;
-      for i := 0 to High(AData) do
+      with AData[i] do
       begin
-        sDebug := sDebug + Format('Resep %d: %s - %s' + #13#10,
-                 [i+1, AData[i].NoResep, AData[i].NamaPasien]);
+        NoResep      := zqResepHeader.FieldByName('no_resep').AsString;
+        TglResep     := zqResepHeader.FieldByName('tgl_peresepan').AsDateTime;
+        JamResep     := zqResepHeader.FieldByName('jam_peresepan').AsString;
+        NoRawat      := zqResepHeader.FieldByName('no_rawat').AsString;
+        NoRM         := zqResepHeader.FieldByName('no_rkm_medis').AsString;
+        NamaPasien   := zqResepHeader.FieldByName('nm_pasien').AsString;
+        KodeDokter   := zqResepHeader.FieldByName('kd_dokter').AsString;
+        NamaDokter   := zqResepHeader.FieldByName('nm_dokter').AsString;
+        Status       := zqResepHeader.FieldByName('status_layan').AsString;
+        StatusAsal   := zqResepHeader.FieldByName('status_asal').AsString;
+        StatusLanjut := zqResepHeader.FieldByName('status_lanjut').AsString;
       end;
-      // ShowMessage(sDebug);
-    end
-    else
-    begin
-      // ShowMessage('Tidak ada data ditemukan untuk no_rawat: ' + ANoRM);
-    end;
-
-  except
-    on E: Exception do
-    begin
-      {ShowMessage('ERROR LoadResepHeader: ' + E.Message + #13#10 +
-                  'SQL: ' + zqResepHeader.SQL.Text + #13#10 +
-                  'Parameter no_rawat: ' + ANoRM);}
-      SetLength(AData, 0);
-    end;
-  end;
-end;
-
-// Di DataModuleFarmasi - Versi cari berdasarkan no_rkm_medis
-procedure TDataModuleFarmasi.LoadResepHeaderByNoRM(
-  const ANoRM: string;
-  out AData: TResepHeaderArray
-);
-var
-  i: Integer;
-begin
-  zqResepHeader.Close;
-  zqResepHeader.SQL.Clear;
-
-  zqResepHeader.SQL.Text :=
-    'SELECT ' +
-    '  ro.no_resep, ' +
-    '  ro.tgl_peresepan, ' +
-    '  ro.jam_peresepan, ' +
-    '  ro.no_rawat, ' +
-    '  rp.no_rkm_medis, ' +
-    '  p.nm_pasien, ' +
-    '  ro.kd_dokter, ' +
-    '  d.nm_dokter, ' +
-    '  CASE ' +
-    '    WHEN ro.tgl_perawatan IS NULL OR ro.tgl_perawatan = ''0000-00-00'' THEN ''Belum Terlayani'' ' +
-    '    ELSE ''Sudah Terlayani'' ' +
-    '  END AS status, ' +
-    '  ro.status AS status_asal ' +
-    'FROM resep_obat ro ' +
-    'INNER JOIN reg_periksa rp ON ro.no_rawat = rp.no_rawat ' +
-    'INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ' +
-    'LEFT JOIN dokter d ON ro.kd_dokter = d.kd_dokter ' +
-    'WHERE rp.no_rkm_medis = :norm ' +
-    'ORDER BY ro.tgl_peresepan DESC ' +
-    'LIMIT 20';
-
-  zqResepHeader.ParamByName('norm').AsString := ANoRM;
-
-  try
-    zqResepHeader.Open;
-
-    SetLength(AData, zqResepHeader.RecordCount);
-    i := 0;
-
-    while not zqResepHeader.EOF do
-    begin
-      AData[i].NoResep    := zqResepHeader.FieldByName('no_resep').AsString;
-      AData[i].TglResep   := zqResepHeader.FieldByName('tgl_peresepan').AsDateTime;
-      AData[i].JamResep   := zqResepHeader.FieldByName('jam_peresepan').AsString;
-      AData[i].NoRawat    := zqResepHeader.FieldByName('no_rawat').AsString;
-      AData[i].NoRM       := zqResepHeader.FieldByName('no_rkm_medis').AsString;
-      AData[i].NamaPasien := zqResepHeader.FieldByName('nm_pasien').AsString;
-      AData[i].KodeDokter := zqResepHeader.FieldByName('kd_dokter').AsString;
-      AData[i].NamaDokter := zqResepHeader.FieldByName('nm_dokter').AsString;
-      AData[i].Status     := zqResepHeader.FieldByName('status').AsString;
-      AData[i].StatusAsal := zqResepHeader.FieldByName('status_asal').AsString;
-      AData[i].StatusLanjut := zqResepHeader.FieldByName('status_lanjut').AsString;
-
       Inc(i);
       zqResepHeader.Next;
     end;
-
   except
-    on E: Exception do
-    begin
-      ShowMessage('Error LoadResepHeaderByNoRM: ' + E.Message);
-      SetLength(AData, 0);
-    end;
+    on E: Exception do SetLength(AData, 0);
   end;
 end;
+
 
 { --- Prosedur 1: Load Obat Non-Racikan --- }
 procedure TDataModuleFarmasi.LoadDetailObat(const ANoResep: string; out AData: TResepDetailObatArray);

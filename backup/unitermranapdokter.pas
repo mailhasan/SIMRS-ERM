@@ -31,6 +31,7 @@ type
     Status    : string;
     Keterangan: string;
     StatusLanjut : String;
+    NoUrut :String;
   end;
 
 type
@@ -271,6 +272,7 @@ type
     procedure BitBtnUbahClick(Sender: TObject);
     procedure BitBtnHapusClick(Sender: TObject);
     procedure BitBtnSimpanClick(Sender: TObject);
+    procedure CheckBoxByTglClick(Sender: TObject);
     procedure Chromium1AcceleratedPaint(Sender: TObject;
       const browser: ICefBrowser; type_: TCefPaintElementType;
       dirtyRectsCount: NativeUInt; const dirtyRects: PCefRectArray;
@@ -391,8 +393,8 @@ type
    procedure baruPk;
 
    /// resep obat
-   procedure LoadDataResep;
-
+   procedure LoadDataResep(IsAuto: Boolean);
+   procedure BaruResep;
   end;
 
 var
@@ -660,112 +662,121 @@ begin
   // Paksa refresh
   LazVirtualStringTree1.Invalidate;
 end;}
-procedure TFormERMRanapDokter.LoadDataResep;
+procedure TFormERMRanapDokter.LoadDataResep(IsAuto: Boolean);
 var
   ParentNode, ChildNode, GrandChildNode: PVirtualNode;
   Data: PResepNodeData;
-  i, j, k: Integer;
+  i, j, k, Counter: Integer;
   ArrObat: TResepDetailObatArray;
   ArrRacik: TResepRacikanArray;
+  sLimit: string;
 begin
   if not Assigned(DataModuleFarmasi) then Exit;
 
-  // 1. Ambil Header
-  DataModuleFarmasi.LoadResepHeader(Trim(EditNoRawat.Text), DateTimePickerMulaiResep.Date, DateTimePickerSampaiResep.Date, '', FResepData);
+  // --- LOGIKA PENENTUAN PARAMETER ---
+  if IsAuto then
+    sLimit := 'LIMIT 10' // Jika otomatis saat buka form
+  else
+    sLimit := '';       // Jika klik tombol (tampil semua sesuai tanggal)
 
+  // 1. PANGGIL HEADER (Master Resep)
+  // Jika IsAuto = True, kirim tanggal 0 agar filter tanggal di DM diabaikan
+  if IsAuto then
+    DataModuleFarmasi.LoadResepHeader(Trim(EditNORM.Text), 0, 0, sLimit, FResepData)
+  else
+    DataModuleFarmasi.LoadResepHeader(Trim(EditNORM.Text),
+      DateTimePickerMulaiResep.Date, DateTimePickerSampaiResep.Date, sLimit, FResepData);
+
+  // --- PROSES TAMPIL KE TREEVIEW ---
   LazVirtualStringTree1.BeginUpdate;
   try
     LazVirtualStringTree1.Clear;
+    Counter := 1;
 
     for i := 0 to High(FResepData) do
     begin
+      // Tambah Node Master (Resep)
       ParentNode := LazVirtualStringTree1.AddChild(nil);
       Data := LazVirtualStringTree1.GetNodeData(ParentNode);
       if Assigned(Data) then
       begin
         Data^.NodeType := ntResepHeader;
+        Data^.NoUrut   := IntToStr(Counter);
         Data^.NoResep  := FResepData[i].NoResep;
-        Data^.Tgl      := DateToStr(FResepData[i].TglResep); // Ambil dari FResepData
-        Data^.Jam      := FResepData[i].JamResep;            // Ambil dari FResepData
-        Data^.NoRawat  := FResepData[i].NoRawat;            // Ambil dari FResepData
+        Data^.Tgl      := DateToStr(FResepData[i].TglResep);
+        Data^.Jam      := FResepData[i].JamResep;
         Data^.NoRM     := FResepData[i].NoRM;
         Data^.NamaPasien := FResepData[i].NamaPasien;
-        Data^.Dokter   := FResepData[i].NamaDokter;         // Ambil dari FResepData
-        Data^.Status   := FResepData[i].Status;
-        Data^.StatusLanjut   := FResepData[i].StatusLanjut;
+        Data^.Dokter   := FResepData[i].NamaDokter;
+
+        // Gabungkan Status Layan + Lokasi (Ranap/Rajal)
+        Data^.Status   := Format('[%s] %s', [UpperCase(FResepData[i].StatusLanjut), FResepData[i].Status]);
+        Inc(Counter);
       end;
 
-
-      // --- TAMBAHKAN HEADER UNTUK OBAT ---
+      // 2. PANGGIL & TAMPILKAN DETAIL OBAT JADI
       DataModuleFarmasi.LoadDetailObat(FResepData[i].NoResep, ArrObat);
       if Length(ArrObat) > 0 then
       begin
+        // Tambah Label Header "Non-Racikan"
         ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
-        Data := LazVirtualStringTree1.GetNodeData(ChildNode);
-        Data^.NodeType := ntObatHeader; // Kita tandai sebagai header obat
-      end;
+        PResepNodeData(LazVirtualStringTree1.GetNodeData(ChildNode))^.NodeType := ntObatHeader;
 
-      // 2. TAMBAH OBAT NON-RACIKAN
-      //DataModuleFarmasi.LoadDetailObat(FResepData[i].NoResep, ArrObat);
-      for j := 0 to High(ArrObat) do
-      begin
-        ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
-        Data := LazVirtualStringTree1.GetNodeData(ChildNode);
-        if Assigned(Data) then
+        for j := 0 to High(ArrObat) do
         begin
+          ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
+          Data := LazVirtualStringTree1.GetNodeData(ChildNode);
           Data^.NodeType := ntObatDetail;
           Data^.NamaObat := ArrObat[j].NamaBrng;
-          Data^.Jumlah   := FloatToStr(ArrObat[j].Jumlah); // PERBAIKAN: Gunakan .Jumlah
-          Data^.Satuan   := ArrObat[j].Satuan;             // PERBAIKAN: Gunakan .Satuan
-          Data^.Aturan   := ArrObat[j].Aturan;             // PERBAIKAN: Gunakan .Aturan
+          Data^.Jumlah   := FloatToStr(ArrObat[j].Jumlah);
+          Data^.Satuan   := ArrObat[j].Satuan;
+          Data^.Aturan   := ArrObat[j].Aturan;
         end;
       end;
 
-
-      // --- TAMBAHKAN HEADER UNTUK RACIKAN ---
+      // 3. PANGGIL & TAMPILKAN DETAIL RACIKAN
       DataModuleFarmasi.LoadDetailRacikan(FResepData[i].NoResep, ArrRacik);
       if Length(ArrRacik) > 0 then
       begin
+        // Tambah Label Header "Racikan"
         ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
-        Data := LazVirtualStringTree1.GetNodeData(ChildNode);
-        Data^.NodeType := ntRacikTitle; // Kita tandai sebagai header racikan
-      end;
-      // 3. TAMBAH RACIKAN
-      //DataModuleFarmasi.LoadDetailRacikan(FResepData[i].NoResep, ArrRacik);
-      for j := 0 to High(ArrRacik) do
-      begin
-        ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
-        Data := LazVirtualStringTree1.GetNodeData(ChildNode);
-        if Assigned(Data) then
+        PResepNodeData(LazVirtualStringTree1.GetNodeData(ChildNode))^.NodeType := ntRacikTitle;
+
+        for j := 0 to High(ArrRacik) do
         begin
+          ChildNode := LazVirtualStringTree1.AddChild(ParentNode);
+          Data := LazVirtualStringTree1.GetNodeData(ChildNode);
           Data^.NodeType := ntRacikHeader;
-          // PERBAIKAN: Sesuaikan dengan field record TResepRacikan
-          Data^.Keterangan := 'No.Racik: ' + ArrRacik[j].NoRacik + ' - ' + ArrRacik[j].NamaRacik;
+          Data^.Keterangan := 'Racik: ' + ArrRacik[j].NamaRacik + ' (' + ArrRacik[j].Metode + ')';
           Data^.Jumlah     := FloatToStr(ArrRacik[j].Jumlah);
           Data^.Aturan     := ArrRacik[j].Aturan;
-        end;
 
-        for k := 0 to High(ArrRacik[j].Komposisi) do
-        begin
-          GrandChildNode := LazVirtualStringTree1.AddChild(ChildNode);
-          Data := LazVirtualStringTree1.GetNodeData(GrandChildNode);
-          if Assigned(Data) then
+          // Tambah Komposisi Racikan (GrandChild)
+          for k := 0 to High(ArrRacik[j].Komposisi) do
           begin
+            GrandChildNode := LazVirtualStringTree1.AddChild(ChildNode);
+            Data := LazVirtualStringTree1.GetNodeData(GrandChildNode);
             Data^.NodeType := ntRacikDetail;
             Data^.NamaObat := ArrRacik[j].Komposisi[k].NamaBrng;
-            Data^.Jumlah   := FloatToStr(ArrRacik[j].Komposisi[k].Jumlah); // PERBAIKAN: Gunakan .Jumlah
-            Data^.Satuan   := ArrRacik[j].Komposisi[k].Satuan;             // PERBAIKAN: Gunakan .Satuan
+            Data^.Jumlah   := FloatToStr(ArrRacik[j].Komposisi[k].Jumlah);
+            Data^.Satuan   := ArrRacik[j].Komposisi[k].Satuan;
           end;
         end;
       end;
     end;
 
-    if LazVirtualStringTree1.TotalCount > 0 then LazVirtualStringTree1.FullExpand;
+    if LazVirtualStringTree1.TotalCount > 0 then
+      LazVirtualStringTree1.FullExpand;
   finally
     LazVirtualStringTree1.EndUpdate;
+    LazVirtualStringTree1.Header.AutoFitColumns;
   end;
 end;
 
+procedure TFormERMRanapDokter.BaruResep;
+begin
+  DateTimePickerMulaiResep.Date:=Now; DateTimePickerSampaiResep.Date:=Now; CheckBoxByTgl.Checked:= False;
+end;
 
 procedure TFormERMRanapDokter.PanelKeluarClick(Sender: TObject);
 begin
@@ -785,72 +796,8 @@ end;
 
 procedure TFormERMRanapDokter.TabSheetObatShow(Sender: TObject);
 begin
-  DateTimePickerMulaiResep.Date:= Now; DateTimePickerSampaiResep.Date:=Now;
-
-  LazVirtualStringTree1.NodeDataSize := SizeOf(TResepNodeData);
-
-  with LazVirtualStringTree1 do
-  begin
-    // Menghilangkan toAutoColumnAutoSize yang menyebabkan error
-    // Menggunakan opsi yang umum tersedia di Lazarus
-    TreeOptions.SelectionOptions := TreeOptions.SelectionOptions + [toFullRowSelect, toRightClickSelect];
-    TreeOptions.PaintOptions     := TreeOptions.PaintOptions + [toShowHorzGridLines, toShowVertGridLines, toThemeAware, toUseBlendedSelection];
-
-    // AutoOptions yang benar untuk Lazarus
-    TreeOptions.AutoOptions      := TreeOptions.AutoOptions + [toAutoSpanColumns, toAutoTristateTracking];
-
-    with Header do
-    begin
-      // Tambahkan hoAutoSpring jika ingin kolom otomatis memenuhi area yang kosong
-      Options := [hoVisible, hoAutoResize, hoShowSortGlyphs, hoColumnResize, hoHeaderClickAutoSort];
-      Font.Style := [fsBold];
-      Height := 30;
-
-      Columns.Clear;
-      with Columns.Add do begin
-        Text := 'No Resep';
-        Width := 100;
-      end;
-      with Columns.Add do begin
-        Text := 'Tanggal';
-        Width := 85;
-      end;
-      with Columns.Add do begin
-        Text := 'Jam';
-        Width := 70;
-      end;
-      with Columns.Add do begin
-        Text := 'No Rawat';
-        Width := 110;
-      end;
-      with Columns.Add do begin
-        Text := 'No RM';
-        Width := 80;
-      end;
-      with Columns.Add do begin
-        Text := 'Pasien';
-        Width := 180;
-      end;
-      with Columns.Add do begin
-        Text := 'Dokter';
-        Width := 150;
-      end;
-      with Columns.Add do begin
-        Text := 'Status';
-        Width := 100;
-      end;
-      with Columns.Add do begin
-        Text := 'Kunjungan';
-        Width := 100;
-      end;
-    end;
-  end;
-
   //LoadDataResep;
   BitBtnTampilResepClick(Sender);
-
-  // Cara melakukan AutoSize kolom yang benar di Lazarus:
-  LazVirtualStringTree1.Header.AutoFitColumns;
 end;
 
 procedure TFormERMRanapDokter.TabSheetRiwayatKesehatanContextPopup(Sender: TObject;
@@ -1322,7 +1269,6 @@ end;
 
 procedure TFormERMRanapDokter.FormCreate(Sender: TObject);
 begin
-
   LazVirtualStringTree1.Header.Options := [hoVisible, hoAutoResize, hoShowSortGlyphs];
   LazVirtualStringTree1.NodeDataSize := SizeOf(TResepNodeData);
   // PASTIKAN BARIS INI ADA UNTUK MENGALOKASI MEMORI NODE
@@ -1330,6 +1276,8 @@ begin
 
   // Inisialisasi tambahan
   LazVirtualStringTree1.TreeOptions.AutoOptions := LazVirtualStringTree1.TreeOptions.AutoOptions + [toAutoSpanColumns];
+
+  BaruResep;
 end;
 
 procedure TFormERMRanapDokter.FormKeyDown(Sender: TObject; var Key: Word;
@@ -1837,7 +1785,7 @@ end;
 
 procedure TFormERMRanapDokter.BitBtnTampilResepClick(Sender: TObject);
 begin
-   DateTimePickerMulaiResep.Date:= Now; DateTimePickerSampaiResep.Date:=Now;
+  //DateTimePickerMulaiResep.Date:= Now; DateTimePickerSampaiResep.Date:=Now;
 
   LazVirtualStringTree1.NodeDataSize := SizeOf(TResepNodeData);
 
@@ -1898,7 +1846,10 @@ begin
     end;
   end;
 
-  LoadDataResep;
+  if CheckBoxByTgl.Checked = True then
+     LoadDataResep(False)
+     else
+     LoadDataResep(True);
   ///BitBtnTampilResepClick(Sender);
 
   // Cara melakukan AutoSize kolom yang benar di Lazarus:
@@ -1918,6 +1869,11 @@ end;
 procedure TFormERMRanapDokter.BitBtnSimpanClick(Sender: TObject);
 begin
 
+end;
+
+procedure TFormERMRanapDokter.CheckBoxByTglClick(Sender: TObject);
+begin
+  BitBtnTampilResepClick(Sender);
 end;
 
 procedure TFormERMRanapDokter.BitBtnBaruClick(Sender: TObject);
@@ -2123,56 +2079,23 @@ procedure TFormERMRanapDokter.BitBtnObatClick(Sender: TObject);
 begin
   if not Assigned(FormPeresepanDokter) then
   FormPeresepanDokter := TFormPeresepanDokter.Create(Self);
+  with FormPeresepanDokter do begin
+  begin
+   EditNoRawatResep.Text:= EditNoRawat.Text;
+   EditPasienResep.Text:= EditNORM.Text + EditNAMA;
+  end;
   FormPeresepanDokter.ShowModal;
+
 end;
 
 procedure TFormERMRanapDokter.BitBtnRacikanClick(Sender: TObject);
 begin
-  if not Assigned(FormPeresepanDokter) then
-  FormPeresepanDokter := TFormPeresepanDokter.Create(Self);
-  FormPeresepanDokter.ShowModal;
+
 end;
 
 procedure TFormERMRanapDokter.BitBtnCopyResepClick(Sender: TObject);
-var
-  sNoRM: string;
 begin
- // Coba kedua cara:
 
-  // Cara 1: Pakai no_rawat (lebih tepat)
-  sNoRM := Trim(EditNORM.Text);
-
-  ShowMessage('Mencari resep dengan:' + #13#10 +
-              'No RM: ' + sNoRM + #13#10 +
-              'No Rawat: ' + EditNoRawat.Text);
-
-  try
-    // Coba pakai no_rawat dulu
-    DataModuleFarmasi.LoadResepHeader(
-      EditNoRawat.Text,  // Parameter sebagai no_rawat
-      Date, Date, '', FResepData
-    );
-
-    // Jika tidak ketemu, coba pakai no RM
-    if Length(FResepData) = 0 then
-    begin
-      ShowMessage('Tidak ditemukan dengan no_rawat, mencoba dengan no RM...');
-      DataModuleFarmasi.LoadResepHeaderByNoRM(sNoRM, FResepData);
-    end;
-
-    ShowMessage('Total resep ditemukan: ' + IntToStr(Length(FResepData)));
-
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Error: ' + E.Message);
-      Exit;
-    end;
-  end;
-
-  // Tampilkan di tree
-  LazVirtualStringTree1.RootNodeCount := Length(FResepData);
-  LazVirtualStringTree1.Invalidate;
 end;
 
 end.

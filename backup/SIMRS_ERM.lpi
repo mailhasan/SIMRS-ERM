@@ -199,6 +199,7 @@
         <Filename Value="unitperesepandokter.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormPeresepanDokter"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitPeresepanDokter"/>
       </Unit>
