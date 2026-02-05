@@ -66,6 +66,8 @@ type
 
    procedure LoadDetailObat(const ANoResep: string; out AData: TResepDetailObatArray);
    procedure LoadDetailRacikan(const ANoResep: string; out AData: TResepRacikanArray);
+
+   function GenerateNoResep(ATanggal: TDateTime): string;
   end;
 
 var
@@ -349,6 +351,30 @@ begin
   end;
 end;
 
+///zqResepHeader no otomatis
+function TDataModuleFarmasi.GenerateNoResep(ATanggal: TDateTime): string;
+var
+  sTglFormat: string;
+  iNextSeq: Integer;
+begin
+  // Format tanggal menjadi YYYYMMDD (contoh: 20260115)
+  sTglFormat := FormatDateTime('yyyymmdd', ATanggal);
+
+  zqResepHeader.Close;
+  zqResepHeader.SQL.Text := 'SELECT MAX(RIGHT(no_resep, 4)) as max_seq ' +
+                            'FROM resep_obat ' +
+                            'WHERE no_resep LIKE :tgl';
+  zqResepHeader.ParamByName('tgl').AsString := sTglFormat + '%';
+  zqResepHeader.Open;
+
+  if not zqResepHeader.FieldByName('max_seq').IsNull then
+    iNextSeq := zqResepHeader.FieldByName('max_seq').AsInteger + 1
+  else
+    iNextSeq := 1;
+
+  // Hasil: YYYYMMDD + 0001 (Total 12 digit)
+  Result := sTglFormat + Format('%.4d', [iNextSeq]);
+end;
 
 
 end.

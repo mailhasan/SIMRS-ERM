@@ -2082,10 +2082,12 @@ begin
   with FormPeresepanDokter do begin
   begin
    EditNoRawatResep.Text:= EditNoRawat.Text;
-   EditPasienResep.Text:= EditNORM.Text + EditNAMA;
-   EditKodePeresep.Text:= EditKode;
+   //EditPasienResep.Text:= EditNORM.Text + EditNAMA;
+   //EditKodePeresep.Text:= EditKode;
   end;
   FormPeresepanDokter.ShowModal;
+
+end;
 
 end;
 

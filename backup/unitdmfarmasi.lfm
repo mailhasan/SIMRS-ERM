@@ -60,7 +60,6 @@ object DataModuleFarmasi: TDataModuleFarmasi
   end
   object ZQueryObatResep: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT databarang.kode_brng, databarang.nama_brng, jenis.nama, '
       '       databarang.kode_sat, (databarang.h_beli + (databarang.h_beli * 0.2)) as harga,'
@@ -79,5 +78,10 @@ object DataModuleFarmasi: TDataModuleFarmasi
     Params = <>
     Left = 107
     Top = 434
+  end
+  object DataSourceObatResep: TDataSource
+    DataSet = ZQueryObatResep
+    Left = 216
+    Top = 440
   end
 end

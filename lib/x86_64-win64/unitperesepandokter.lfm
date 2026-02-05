@@ -1,23 +1,24 @@
 object FormPeresepanDokter: TFormPeresepanDokter
-  Left = 589
-  Height = 502
-  Top = 182
-  Width = 748
+  Left = 234
+  Height = 911
+  Top = 103
+  Width = 1410
   BorderStyle = bsNone
   Caption = 'Form Peresepan Dokter'
-  ClientHeight = 502
-  ClientWidth = 748
-  LCLVersion = '3.6.0.0'
+  ClientHeight = 911
+  ClientWidth = 1410
+  LCLVersion = '4.4.0.0'
   WindowState = wsFullScreen
+  OnShow = FormShow
   object PanelAtas: TPanel
     Left = 0
     Height = 34
     Top = 0
-    Width = 748
+    Width = 1410
     Align = alTop
     Caption = 'RESEP DOKTER'
     ClientHeight = 34
-    ClientWidth = 748
+    ClientWidth = 1410
     Color = 11834940
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
@@ -30,7 +31,7 @@ object FormPeresepanDokter: TFormPeresepanDokter
     ParentFont = False
     TabOrder = 0
     object PanelKeluar: TPanel
-      Left = 673
+      Left = 1335
       Height = 32
       Top = 1
       Width = 74
@@ -45,38 +46,557 @@ object FormPeresepanDokter: TFormPeresepanDokter
   end
   object Panel1: TPanel
     Left = 0
-    Height = 54
+    Height = 78
     Top = 34
-    Width = 748
+    Width = 1410
     Align = alTop
-    Caption = 'Panel1'
+    ClientHeight = 78
+    ClientWidth = 1410
+    Color = clWhite
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
     TabOrder = 1
+    object Label1: TLabel
+      Left = 11
+      Height = 17
+      Top = 18
+      Width = 59
+      Caption = 'No Rawat'
+    end
+    object Label2: TLabel
+      Left = 704
+      Height = 17
+      Top = 56
+      Width = 63
+      Caption = 'Tgl.Resep '
+    end
+    object Label3: TLabel
+      Left = 11
+      Height = 17
+      Top = 56
+      Width = 46
+      Caption = 'Dokter '
+    end
+    object Label4: TLabel
+      Left = 704
+      Height = 17
+      Top = 18
+      Width = 62
+      Caption = 'No.Resep '
+    end
+    object EditNoRawatResep: TEdit
+      Left = 103
+      Height = 25
+      Top = 10
+      Width = 153
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 0
+      Text = 'EditNoRawatResep'
+    end
+    object DateTimePickerResep: TDateTimePicker
+      Left = 768
+      Height = 25
+      Top = 48
+      Width = 157
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 1
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDateTime
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 46031
+      Time = 0.443262835651694
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
+    end
+    object EditKodePeresep: TEdit
+      Left = 103
+      Height = 25
+      Top = 48
+      Width = 80
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 2
+      Text = 'EditKodePeresep'
+    end
+    object ComboBoxPeresep: TComboBox
+      Left = 192
+      Height = 25
+      Top = 48
+      Width = 288
+      Color = clHighlightText
+      Enabled = False
+      ItemHeight = 17
+      TabOrder = 3
+      Text = 'ComboBoxPeresep'
+    end
+    object EditNoResep: TEdit
+      Left = 768
+      Height = 25
+      Top = 10
+      Width = 169
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 4
+      Text = 'EditNoResep'
+    end
+    object EditPasienResep: TEdit
+      Left = 320
+      Height = 25
+      Top = 8
+      Width = 376
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 5
+      Text = 'EditPasienResep'
+    end
+    object Label6: TLabel
+      Left = 264
+      Height = 17
+      Top = 16
+      Width = 44
+      Caption = 'Pasien '
+    end
+    object Label8: TLabel
+      Left = 488
+      Height = 17
+      Top = 56
+      Width = 28
+      Caption = 'Tarif'
+    end
+    object ComboBoxKelas: TComboBox
+      Left = 528
+      Height = 25
+      Top = 48
+      Width = 168
+      Color = clHighlightText
+      Enabled = False
+      ItemHeight = 17
+      TabOrder = 6
+      Text = 'ComboBoxKelas'
+    end
+    object SpeedButton1: TSpeedButton
+      Left = 945
+      Height = 22
+      Top = 13
+      Width = 23
+      Caption = '...'
+    end
   end
   object Panel2: TPanel
     Left = 0
-    Height = 54
-    Top = 88
-    Width = 748
+    Height = 152
+    Top = 112
+    Width = 1410
     Align = alTop
-    Caption = 'Panel2'
+    ClientHeight = 152
+    ClientWidth = 1410
+    Color = clWhite
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
     TabOrder = 2
+    object Label9: TLabel
+      Left = 8
+      Height = 21
+      Top = 72
+      Width = 91
+      Caption = 'Nama Obat '
+    end
+    object EditNamaObat: TEdit
+      Left = 104
+      Height = 29
+      Top = 64
+      Width = 312
+      TabOrder = 0
+      Text = 'EditNamaObat'
+    end
+    object Label10: TLabel
+      Left = 584
+      Height = 21
+      Top = 72
+      Width = 53
+      Caption = 'Satuan'
+    end
+    object EditSatuan: TEdit
+      Left = 696
+      Height = 29
+      Top = 64
+      Width = 160
+      TabOrder = 1
+      Text = 'EditSatuan'
+    end
+    object Label11: TLabel
+      Left = 864
+      Height = 21
+      Top = 72
+      Width = 79
+      Caption = 'Komposisi'
+    end
+    object EditKomposisi: TEdit
+      Left = 952
+      Height = 29
+      Top = 64
+      Width = 120
+      TabOrder = 2
+      Text = 'EditKomposisi'
+    end
+    object Label12: TLabel
+      Left = 1080
+      Height = 21
+      Top = 72
+      Width = 46
+      Caption = 'Harga'
+    end
+    object EditHarga: TEdit
+      Left = 1136
+      Height = 29
+      Top = 64
+      Width = 172
+      TabOrder = 3
+      Text = 'EditHarga'
+    end
+    object Label13: TLabel
+      Left = 8
+      Height = 21
+      Top = 112
+      Width = 79
+      Caption = 'Jenis Obat'
+    end
+    object Label14: TLabel
+      Left = 424
+      Height = 21
+      Top = 72
+      Width = 39
+      Caption = 'Kode'
+    end
+    object EditKode: TEdit
+      Left = 488
+      Height = 29
+      Top = 64
+      Width = 88
+      TabOrder = 4
+      Text = 'EditKode'
+    end
+    object EditJenisObat: TEdit
+      Left = 104
+      Height = 29
+      Top = 104
+      Width = 172
+      TabOrder = 5
+      Text = 'EditJenisObat'
+    end
+    object Label15: TLabel
+      Left = 288
+      Height = 21
+      Top = 112
+      Width = 34
+      Caption = 'Stok'
+    end
+    object EditStok: TEdit
+      Left = 328
+      Height = 29
+      Top = 104
+      Width = 88
+      TabOrder = 6
+      Text = 'EditStok'
+    end
+    object Label16: TLabel
+      Left = 424
+      Height = 21
+      Top = 112
+      Width = 56
+      Caption = 'Jumlah'
+    end
+    object EditJml: TEdit
+      Left = 488
+      Height = 29
+      Top = 104
+      Width = 88
+      TabOrder = 7
+      Text = 'EditJml'
+    end
+    object Label17: TLabel
+      Left = 584
+      Height = 21
+      Top = 112
+      Width = 98
+      Caption = 'Aturan Pakai'
+    end
+    object EditAturanPakai: TEdit
+      Left = 696
+      Height = 29
+      Top = 104
+      Width = 163
+      TabOrder = 8
+      Text = 'EditAturanPakai'
+    end
+    object Panel5: TPanel
+      Left = 1
+      Height = 47
+      Top = 1
+      Width = 1408
+      Align = alTop
+      Caption = 'Panel5'
+      ClientHeight = 47
+      ClientWidth = 1408
+      ParentBackground = False
+      TabOrder = 9
+      object Label5: TLabel
+        Left = 1
+        Height = 45
+        Top = 1
+        Width = 76
+        Align = alLeft
+        Caption = 'Pencarian'
+        Layout = tlCenter
+      end
+      object EditPencarian: TEdit
+        Left = 104
+        Height = 29
+        Top = 8
+        Width = 1203
+        TabOrder = 0
+        Text = 'EditPencarian'
+      end
+    end
+    object BitBtn1: TBitBtn
+      Left = 864
+      Height = 30
+      Top = 103
+      Width = 113
+      Action = ActionInputObat
+      Images = FormUtama.ImageList1
+      ImageIndex = 3
+      TabOrder = 10
+    end
+    object BitBtn2: TBitBtn
+      Left = 978
+      Height = 30
+      Top = 103
+      Width = 94
+      Action = ActionTambah
+      Images = FormUtama.ImageList1
+      ImageIndex = 3
+      TabOrder = 11
+    end
   end
   object Panel3: TPanel
     Left = 0
-    Height = 306
-    Top = 142
-    Width = 748
+    Height = 609
+    Top = 264
+    Width = 1410
     Align = alClient
     Caption = 'Panel3'
+    ClientHeight = 609
+    ClientWidth = 1410
     TabOrder = 3
+    object DBGridTransaksi: TDBGrid
+      Left = 1
+      Height = 607
+      Top = 1
+      Width = 1408
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'NAMA OBAT'
+        end      
+        item
+          Title.Caption = 'KODE'
+        end      
+        item
+          Title.Caption = 'SATUAN'
+        end      
+        item
+          Title.Caption = 'KOMPOSISI'
+        end      
+        item
+          Title.Caption = 'HARGA'
+        end      
+        item
+          Title.Caption = 'JENIS OBAT'
+        end      
+        item
+          Title.Caption = 'JUMLAH '
+        end      
+        item
+          Title.Caption = 'ATURAN PAKAI'
+        end>
+      TabOrder = 0
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -19
+      TitleFont.Name = 'Segoe UI Semibold'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+      TitleFont.Style = [fsBold]
+    end
   end
   object Panel4: TPanel
     Left = 0
-    Height = 54
-    Top = 448
-    Width = 748
+    Height = 38
+    Top = 873
+    Width = 1410
     Align = alBottom
-    Caption = 'Panel4'
+    ClientHeight = 38
+    ClientWidth = 1410
+    Color = clWhite
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 4
+    object BitBtnBaru1: TBitBtn
+      Left = 1
+      Height = 36
+      Top = 1
+      Width = 91
+      Action = ActionBaru
+      Align = alLeft
+      Images = FormUtama.ImageList1
+      ImageIndex = 4
+      TabOrder = 0
+    end
+    object BitBtnSimpan1: TBitBtn
+      Left = 92
+      Height = 36
+      Top = 1
+      Width = 110
+      Action = ActionSimpan
+      Align = alLeft
+      Images = FormUtama.ImageList1
+      ImageIndex = 3
+      TabOrder = 1
+    end
+    object BitBtnUbah1: TBitBtn
+      Left = 202
+      Height = 36
+      Top = 1
+      Width = 102
+      Action = ActionUbah
+      Align = alLeft
+      HotImageIndex = 3
+      Images = FormUtama.ImageList1
+      ImageIndex = 3
+      TabOrder = 2
+    end
+    object BitBtnHapus1: TBitBtn
+      Left = 304
+      Height = 36
+      Top = 1
+      Width = 104
+      Action = ActionHapus
+      Align = alLeft
+      HotImageIndex = 5
+      Images = FormUtama.ImageList1
+      ImageIndex = 5
+      TabOrder = 3
+    end
+  end
+  object DBGridPencarian: TDBGrid
+    Left = 104
+    Height = 648
+    Top = 152
+    Width = 1208
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'kode_brng'
+        Width = 100
+        FieldName = 'kode_brng'
+      end    
+      item
+        Title.Caption = 'nama_brng'
+        Width = 250
+        FieldName = 'nama_brng'
+      end    
+      item
+        Title.Caption = 'nama'
+        Width = 200
+        FieldName = 'nama'
+      end    
+      item
+        Title.Caption = 'kode_sat'
+        FieldName = 'kode_sat'
+      end    
+      item
+        Title.Caption = 'harga'
+        FieldName = 'harga'
+      end    
+      item
+        Title.Caption = 'letak_barang'
+        Width = 100
+        FieldName = 'letak_barang'
+      end    
+      item
+        Title.Caption = 'nama_industri'
+        Width = 120
+        FieldName = 'nama_industri'
+      end    
+      item
+        Title.Caption = 'h_beli'
+        FieldName = 'h_beli'
+      end    
+      item
+        Title.Caption = 'stok'
+        FieldName = 'stok'
+      end    
+      item
+        Title.Caption = 'kapasitas'
+        FieldName = 'kapasitas'
+      end>
+    DataSource = DataModuleFarmasi.DataSourceObatResep
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Segoe UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Segoe UI Semibold'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    TitleFont.Style = [fsBold]
+  end
+  object ActionList1: TActionList
+    Left = 1264
+    Top = 72
+    object ActionBaru: TAction
+      Caption = 'BARU'
+    end
+    object ActionSimpan: TAction
+      Caption = 'SIMPAN'
+    end
+    object ActionUbah: TAction
+      Caption = 'UBAH'
+    end
+    object ActionHapus: TAction
+      Caption = 'HAPUS'
+    end
+    object ActionInputObat: TAction
+      Caption = 'Input Obat'
+    end
+    object ActionTambah: TAction
+      Caption = 'Tambah'
+    end
   end
 end

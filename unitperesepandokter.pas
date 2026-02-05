@@ -28,8 +28,7 @@ type
     BitBtnUbah1: TBitBtn;
     ComboBoxKelas: TComboBox;
     ComboBoxPeresep: TComboBox;
-    DateTimePicker1: TDateTimePicker;
-    DateTimePicker2: TDateTimePicker;
+    DateTimePickerResep: TDateTimePicker;
     DBGridTransaksi: TDBGrid;
     DBGridPencarian: TDBGrid;
     EditPencarian: TEdit;
@@ -70,11 +69,13 @@ type
     PanelAtas: TPanel;
     PanelKeluar: TPanel;
     SpeedButton1: TSpeedButton;
+    procedure FormShow(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
   private
 
   public
    procedure baru;
+
   end;
 
 var
@@ -83,17 +84,27 @@ var
 implementation
 
 {$R *.lfm}
+uses unitDmFarmasi;
+
 
 { TFormPeresepanDokter }
 /// tampil baru
 procedure TFormPeresepanDokter.baru;
 begin
-
+   DateTimePickerResep.DateTime:= Now;
+   // Ambil nomor resep otomatis berdasarkan tanggal dari DateTimePicker
+  // fNoResep bisa disimpan di variabel global atau langsung ke EditNoResep.Text
+   EditNoResep.Text := DataModuleFarmasi.GenerateNoResep(DateTimePickerResep.DateTime);
 end;
 
 procedure TFormPeresepanDokter.PanelKeluarClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFormPeresepanDokter.FormShow(Sender: TObject);
+begin
+  baru;
 end;
 
 end.

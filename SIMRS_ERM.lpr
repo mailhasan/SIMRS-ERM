@@ -14,7 +14,8 @@ uses
   unitDmKoneksi, zcomponent, unitRawatInap, unitdmrawatinap, unitKamar,
   unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd, unitPemeriksaanIGD,
   unitTriaseIgd, unitdmrawatjalan, unitRawatJalan, unitCariPoli,
-unitTtdSoapRehab, unitPeresepanDokter;
+  unitTtdSoapRehab, unitPeresepanDokter, unitPendaftaran, unitPersetujuanUmum,
+  unitdmpendaftaran;
 
 {$R *.res}
 
@@ -26,17 +27,10 @@ begin
   Application.CreateForm(TDataModuleRanap, DataModuleRanap);
   Application.CreateForm(TDataModuleFarmasi, DataModuleFarmasi);
   Application.CreateForm(TFormLogin, FormLogin);
-  Application.CreateForm(TFormKamar, FormKamar);
-  Application.CreateForm(TFormERMRanapDokter, FormERMRanapDokter);
-  Application.CreateForm(TFormIGD, FormIGD);
   Application.CreateForm(TDataModuleIgd, DataModuleIgd);
-  Application.CreateForm(TFormPemeriksaanIgd, FormPemeriksaanIgd);
-  Application.CreateForm(TFormTriaseIgd, FormTriaseIgd);
   Application.CreateForm(TDataModuleRawatJalan, DataModuleRawatJalan);
-  Application.CreateForm(TFormRawatJalan, FormRawatJalan);
-  Application.CreateForm(TFormCariPoli, FormCariPoli);
-  Application.CreateForm(TFormTtdSoapRehab, FormTtdSoapRehab);
-  Application.CreateForm(TFormPeresepanDokter, FormPeresepanDokter);
+  Application.CreateForm(TFormUtama, FormUtama);
+  Application.CreateForm(TDataModulePendaftaran, DataModulePendaftaran);
   Application.Run;
 end.
 

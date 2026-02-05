@@ -1,0 +1,13 @@
+object DataModulePendaftaran: TDataModulePendaftaran
+  OldCreateOrder = False
+  Height = 482
+  HorizontalOffset = 446
+  VerticalOffset = 163
+  Width = 494
+  object ZQuery1: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Params = <>
+    Left = 54
+    Top = 44
+  end
+end

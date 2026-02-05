@@ -1,7 +1,7 @@
 object FormPeresepanDokter: TFormPeresepanDokter
-  Left = 340
+  Left = 234
   Height = 911
-  Top = 56
+  Top = 103
   Width = 1410
   BorderStyle = bsNone
   Caption = 'Form Peresepan Dokter'
@@ -9,6 +9,7 @@ object FormPeresepanDokter: TFormPeresepanDokter
   ClientWidth = 1410
   LCLVersion = '4.4.0.0'
   WindowState = wsFullScreen
+  OnShow = FormShow
   object PanelAtas: TPanel
     Left = 0
     Height = 34
@@ -94,15 +95,16 @@ object FormPeresepanDokter: TFormPeresepanDokter
       Height = 25
       Top = 10
       Width = 153
+      Color = clHighlightText
       Enabled = False
       TabOrder = 0
       Text = 'EditNoRawatResep'
     end
-    object DateTimePicker1: TDateTimePicker
+    object DateTimePickerResep: TDateTimePicker
       Left = 768
       Height = 25
       Top = 48
-      Width = 93
+      Width = 157
       CenturyFrom = 1941
       MaxDate = 2958465
       MinDate = -53780
@@ -110,29 +112,7 @@ object FormPeresepanDokter: TFormPeresepanDokter
       TrailingSeparator = False
       TextForNullDate = 'NULL'
       LeadingZeros = True
-      Kind = dtkDate
-      TimeFormat = tf24
-      TimeDisplay = tdHMS
-      DateMode = dmComboBox
-      Date = 46031
-      Time = 0.443262835651694
-      UseDefaultSeparators = True
-      HideDateTimeParts = []
-      MonthNames = 'Long'
-    end
-    object DateTimePicker2: TDateTimePicker
-      Left = 864
-      Height = 25
-      Top = 48
-      Width = 73
-      CenturyFrom = 1941
-      MaxDate = 2958465
-      MinDate = -53780
-      TabOrder = 2
-      TrailingSeparator = False
-      TextForNullDate = 'NULL'
-      LeadingZeros = True
-      Kind = dtkTime
+      Kind = dtkDateTime
       TimeFormat = tf24
       TimeDisplay = tdHMS
       DateMode = dmComboBox
@@ -147,7 +127,9 @@ object FormPeresepanDokter: TFormPeresepanDokter
       Height = 25
       Top = 48
       Width = 80
-      TabOrder = 3
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 2
       Text = 'EditKodePeresep'
     end
     object ComboBoxPeresep: TComboBox
@@ -155,8 +137,10 @@ object FormPeresepanDokter: TFormPeresepanDokter
       Height = 25
       Top = 48
       Width = 288
+      Color = clHighlightText
+      Enabled = False
       ItemHeight = 17
-      TabOrder = 4
+      TabOrder = 3
       Text = 'ComboBoxPeresep'
     end
     object EditNoResep: TEdit
@@ -164,16 +148,19 @@ object FormPeresepanDokter: TFormPeresepanDokter
       Height = 25
       Top = 10
       Width = 169
+      Color = clHighlightText
       Enabled = False
-      TabOrder = 5
+      TabOrder = 4
       Text = 'EditNoResep'
     end
     object EditPasienResep: TEdit
       Left = 320
       Height = 25
-      Top = 10
+      Top = 8
       Width = 376
-      TabOrder = 6
+      Color = clHighlightText
+      Enabled = False
+      TabOrder = 5
       Text = 'EditPasienResep'
     end
     object Label6: TLabel
@@ -191,13 +178,14 @@ object FormPeresepanDokter: TFormPeresepanDokter
       Caption = 'Tarif'
     end
     object ComboBoxKelas: TComboBox
-      Left = 544
+      Left = 528
       Height = 25
       Top = 48
-      Width = 152
+      Width = 168
+      Color = clHighlightText
       Enabled = False
       ItemHeight = 17
-      TabOrder = 7
+      TabOrder = 6
       Text = 'ComboBoxKelas'
     end
     object SpeedButton1: TSpeedButton
@@ -584,6 +572,7 @@ object FormPeresepanDokter: TFormPeresepanDokter
     TabOrder = 5
     TitleFont.CharSet = ANSI_CHARSET
     TitleFont.Height = -13
+    TitleFont.Name = 'Segoe UI Semibold'
     TitleFont.Pitch = fpVariable
     TitleFont.Quality = fqDraft
     TitleFont.Style = [fsBold]

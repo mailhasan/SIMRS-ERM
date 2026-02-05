@@ -2082,21 +2082,14 @@ begin
   with FormPeresepanDokter do begin
   begin
    EditNoRawatResep.Text:= EditNoRawat.Text;
-   EditPasienResep.Text:= EditNORM.Text + EditNAMA;
+   //EditPasienResep.Text:= EditNORM.Text + EditNAMA;
+   //EditKodePeresep.Text:= EditKode;
   end;
   FormPeresepanDokter.ShowModal;
 
 end;
-
-procedure TFormERMRanapDokter.BitBtnRacikanClick(Sender: TObject);
-begin
-
 end;
 
-procedure TFormERMRanapDokter.BitBtnCopyResepClick(Sender: TObject);
-begin
-
-end;
 
 end.
 

@@ -1,18 +1,18 @@
 object FormUtama: TFormUtama
   Left = 451
-  Height = 532
+  Height = 512
   Top = 197
   Width = 835
   Align = alClient
-  Caption = 'Form Utama'
-  ClientHeight = 532
+  Caption = 'SIMRS - ERM '
+  ClientHeight = 512
   ClientWidth = 835
   Color = 16053233
   Menu = MainMenu1
+  LCLVersion = '4.4.0.0'
+  WindowState = wsFullScreen
   OnActivate = FormActivate
   OnShow = FormShow
-  LCLVersion = '3.6.0.0'
-  WindowState = wsFullScreen
   object PanelAtas: TPanel
     Left = 0
     Height = 34
@@ -67,11 +67,11 @@ object FormUtama: TFormUtama
   end
   object PanelKiri: TPanel
     Left = 0
-    Height = 475
+    Height = 455
     Top = 34
     Width = 170
     Align = alLeft
-    ClientHeight = 475
+    ClientHeight = 455
     ClientWidth = 170
     Color = 15790320
     ParentBackground = False
@@ -81,7 +81,7 @@ object FormUtama: TFormUtama
     object BitBtnRawatInap: TBitBtn
       Left = 1
       Height = 30
-      Top = 31
+      Top = 61
       Width = 168
       Align = alTop
       Caption = 'RAWAT INAP'
@@ -94,14 +94,14 @@ object FormUtama: TFormUtama
       HotImageIndex = 0
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnRawatInapClick
       ParentFont = False
       TabOrder = 0
+      OnClick = BitBtnRawatInapClick
     end
     object BitBtnIGD: TBitBtn
       Left = 1
       Height = 30
-      Top = 1
+      Top = 31
       Width = 168
       Align = alTop
       Caption = 'IGD'
@@ -112,14 +112,14 @@ object FormUtama: TFormUtama
       Font.Style = [fsBold]
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnIGDClick
       ParentFont = False
       TabOrder = 1
+      OnClick = BitBtnIGDClick
     end
     object BitBtnRawatJalan: TBitBtn
       Left = 1
       Height = 30
-      Top = 61
+      Top = 91
       Width = 168
       Align = alTop
       Caption = 'RAWAT JALAN'
@@ -130,14 +130,32 @@ object FormUtama: TFormUtama
       Font.Style = [fsBold]
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnRawatJalanClick
       ParentFont = False
       TabOrder = 2
+      OnClick = BitBtnRawatJalanClick
+    end
+    object BitBtnPENDAFTARAN: TBitBtn
+      Left = 1
+      Height = 30
+      Top = 1
+      Width = 168
+      Align = alTop
+      Caption = 'PENDAFTARAN'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      Images = ImageList1
+      ImageIndex = 0
+      ParentFont = False
+      TabOrder = 3
+      OnClick = BitBtnPENDAFTARANClick
     end
   end
   object PanelTengah: TPanel
     Left = 170
-    Height = 475
+    Height = 455
     Top = 34
     Width = 665
     Align = alClient
@@ -150,7 +168,7 @@ object FormUtama: TFormUtama
   object StatusBarSIMRSERM: TStatusBar
     Left = 0
     Height = 23
-    Top = 509
+    Top = 489
     Width = 835
     Color = 14737632
     Panels = <    
@@ -277,6 +295,10 @@ object FormUtama: TFormUtama
       Caption = 'INFORMASI'
       object MenuItem2: TMenuItem
         Caption = 'UPDATE'
+        SubMenuImages = ImageList1
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'TENTANG SISTEM'
       end
     end
   end

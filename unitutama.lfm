@@ -1,18 +1,18 @@
 object FormUtama: TFormUtama
   Left = 451
-  Height = 532
+  Height = 492
   Top = 197
   Width = 835
   Align = alClient
-  Caption = 'Form Utama'
-  ClientHeight = 532
+  Caption = 'SIMRS - ERM '
+  ClientHeight = 492
   ClientWidth = 835
   Color = 16053233
   Menu = MainMenu1
+  LCLVersion = '4.4.0.0'
+  WindowState = wsFullScreen
   OnActivate = FormActivate
   OnShow = FormShow
-  LCLVersion = '3.6.0.0'
-  WindowState = wsFullScreen
   object PanelAtas: TPanel
     Left = 0
     Height = 34
@@ -67,11 +67,11 @@ object FormUtama: TFormUtama
   end
   object PanelKiri: TPanel
     Left = 0
-    Height = 475
+    Height = 435
     Top = 34
     Width = 170
     Align = alLeft
-    ClientHeight = 475
+    ClientHeight = 435
     ClientWidth = 170
     Color = 15790320
     ParentBackground = False
@@ -94,9 +94,9 @@ object FormUtama: TFormUtama
       HotImageIndex = 0
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnRawatInapClick
       ParentFont = False
       TabOrder = 0
+      OnClick = BitBtnRawatInapClick
     end
     object BitBtnIGD: TBitBtn
       Left = 1
@@ -112,9 +112,9 @@ object FormUtama: TFormUtama
       Font.Style = [fsBold]
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnIGDClick
       ParentFont = False
       TabOrder = 1
+      OnClick = BitBtnIGDClick
     end
     object BitBtnRawatJalan: TBitBtn
       Left = 1
@@ -130,14 +130,14 @@ object FormUtama: TFormUtama
       Font.Style = [fsBold]
       Images = ImageList1
       ImageIndex = 0
-      OnClick = BitBtnRawatJalanClick
       ParentFont = False
       TabOrder = 2
+      OnClick = BitBtnRawatJalanClick
     end
   end
   object PanelTengah: TPanel
     Left = 170
-    Height = 475
+    Height = 435
     Top = 34
     Width = 665
     Align = alClient
@@ -150,7 +150,7 @@ object FormUtama: TFormUtama
   object StatusBarSIMRSERM: TStatusBar
     Left = 0
     Height = 23
-    Top = 509
+    Top = 469
     Width = 835
     Color = 14737632
     Panels = <    
@@ -277,6 +277,10 @@ object FormUtama: TFormUtama
       Caption = 'INFORMASI'
       object MenuItem2: TMenuItem
         Caption = 'UPDATE'
+        SubMenuImages = ImageList1
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'TENTANG SISTEM'
       end
     end
   end

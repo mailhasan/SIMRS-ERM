@@ -20,6 +20,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     Panel1: TPanel;
     PanelKiriAtas: TPanel;
     PanelTengah: TPanel;
@@ -27,6 +28,7 @@ type
     PanelAtas: TPanel;
     StatusBarSIMRSERM: TStatusBar;
     procedure BitBtnIGDClick(Sender: TObject);
+    procedure BitBtnPENDAFTARANClick(Sender: TObject);
     procedure BitBtnRawatInapClick(Sender: TObject);
     procedure BitBtnRawatJalanClick(Sender: TObject);
     procedure BitBtnTombolMenuClick(Sender: TObject);
@@ -51,7 +53,7 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
-uses unitRawatInap,unitDmKoneksi,unitLogin,unitIGD, unitRawatJalan;
+uses unitRawatInap,unitDmKoneksi,unitLogin,unitPendaftaran, unitIGD, unitRawatJalan;
 
 var
    SidebarVisible: Boolean = True;
@@ -168,6 +170,11 @@ procedure TFormUtama.BitBtnIGDClick(Sender: TObject);
 begin
  Application.CreateForm(TFormIGD, FormIGD);
  FormIGD.ShowModal;
+end;
+
+procedure TFormUtama.BitBtnPENDAFTARANClick(Sender: TObject);
+begin
+
 end;
 
 end.

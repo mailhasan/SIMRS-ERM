@@ -1,0 +1,189 @@
+object FormPersetujuanUmum: TFormPersetujuanUmum
+  Left = 449
+  Height = 720
+  Top = 191
+  Width = 1048
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'General Consent (Persetujuan Umum) '
+  ClientHeight = 720
+  ClientWidth = 1048
+  LCLVersion = '4.4.0.0'
+  WindowState = wsFullScreen
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 1048
+    Align = alTop
+    Caption = 'General Consent (Persetujuan Umum) '
+    ClientHeight = 26
+    ClientWidth = 1048
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 973
+      Height = 24
+      Top = 1
+      Width = 74
+      Align = alRight
+      Caption = 'Keluar'
+      Color = 5987327
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 94
+    Top = 26
+    Width = 1048
+    Align = alTop
+    ClientHeight = 94
+    ClientWidth = 1048
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 8
+      Height = 15
+      Top = 32
+      Width = 51
+      Caption = 'No Rawat'
+    end
+    object Label2: TLabel
+      Left = 208
+      Height = 15
+      Top = 32
+      Width = 37
+      Caption = 'No RM'
+    end
+    object Label3: TLabel
+      Left = 400
+      Height = 15
+      Top = 32
+      Width = 32
+      Caption = 'Nama'
+    end
+    object Label4: TLabel
+      Left = 728
+      Height = 15
+      Top = 32
+      Width = 71
+      Caption = 'Tanggal Lahir'
+    end
+    object Edit1: TEdit
+      Left = 69
+      Height = 23
+      Top = 24
+      Width = 131
+      TabOrder = 0
+      Text = 'Edit1'
+    end
+    object Edit2: TEdit
+      Left = 256
+      Height = 23
+      Top = 24
+      Width = 136
+      TabOrder = 1
+      Text = 'Edit2'
+    end
+    object Edit3: TEdit
+      Left = 448
+      Height = 23
+      Top = 24
+      Width = 272
+      TabOrder = 2
+      Text = 'Edit3'
+    end
+    object Edit4: TEdit
+      Left = 808
+      Height = 23
+      Top = 24
+      Width = 152
+      TabOrder = 3
+      Text = 'Edit4'
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 15
+      Top = 60
+      Width = 42
+      Caption = 'Tanggal'
+    end
+    object DateTimePicker1: TDateTimePicker
+      Left = 71
+      Height = 23
+      Top = 56
+      Width = 83
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 4
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDate
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 46048
+      Time = 0.668110092592542
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
+    end
+    object Label6: TLabel
+      Left = 173
+      Height = 15
+      Top = 60
+      Width = 72
+      Caption = 'Kode Petugas'
+    end
+    object Edit5: TEdit
+      Left = 256
+      Height = 23
+      Top = 56
+      Width = 136
+      TabOrder = 5
+      Text = 'Edit5'
+    end
+    object Edit6: TEdit
+      Left = 448
+      Height = 23
+      Top = 56
+      Width = 272
+      TabOrder = 6
+      Text = 'Edit6'
+    end
+    object Label7: TLabel
+      Left = 400
+      Height = 15
+      Top = 60
+      Width = 42
+      Caption = 'Petugas'
+    end
+    object Label8: TLabel
+      Left = 728
+      Height = 15
+      Top = 60
+      Width = 19
+      Caption = 'No '
+    end
+    object Edit7: TEdit
+      Left = 808
+      Height = 23
+      Top = 56
+      Width = 152
+      TabOrder = 7
+      Text = 'Edit7'
+    end
+  end
+end
