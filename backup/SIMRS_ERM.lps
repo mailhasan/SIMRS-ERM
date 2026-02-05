@@ -19,10 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="33"/>
-        <CursorPos X="60" Y="65"/>
+        <CursorPos X="38" Y="52"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -35,8 +34,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="52"/>
-        <CursorPos X="99" Y="79"/>
+        <TopLine Value="135"/>
+        <CursorPos X="36" Y="137"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -48,9 +47,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="46"/>
-        <CursorPos X="5" Y="16"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="50" Y="23"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -73,7 +71,8 @@
         <ComponentName Value="DataModuleRanap"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="20"/>
         <CursorPos X="122" Y="42"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -98,10 +97,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="24"/>
-        <CursorPos X="3" Y="2080"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="1872"/>
+        <CursorPos X="86" Y="1886"/>
         <UsageCount Value="223"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmfarmasi.pas"/>
@@ -110,7 +112,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmFarmasi"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="133" Y="16"/>
         <UsageCount Value="236"/>
         <Loaded Value="True"/>
@@ -135,7 +137,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="258"/>
         <CursorPos X="4" Y="111"/>
         <UsageCount Value="221"/>
@@ -235,7 +237,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitPendaftaran"/>
         <CursorPos X="97" Y="40"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -248,7 +250,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="103" Y="33"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="110"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmpendaftaran.pas"/>
@@ -256,9 +258,9 @@
         <ComponentName Value="DataModulePendaftaran"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="99" Y="14"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -286,7 +288,7 @@
         <DefaultSyntaxHighlighter Value="Ini"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="11">
+    <JumpHistory HistoryIndex="25">
       <Position>
         <Filename Value="unitdmpendaftaran.pas"/>
         <Caret Line="9" Column="29"/>
@@ -333,7 +335,63 @@
       </Position>
       <Position>
         <Filename Value="unitutama.pas"/>
-        <Caret Line="44" Column="49" TopLine="55"/>
+        <Caret Line="164" Column="45" TopLine="142"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="12" Column="69"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="178" TopLine="151"/>
+      </Position>
+      <Position>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="177" TopLine="150"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="2080" Column="3" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="2071" Column="67" TopLine="2051"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="2070" Column="45" TopLine="2051"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1348" Column="58" TopLine="1326"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="9" Column="72"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1348" TopLine="1332"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1349" Column="42" TopLine="1334"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1882" Column="21" TopLine="1879"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1888" Column="54" TopLine="1872"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1886" Column="46" TopLine="1872"/>
+      </Position>
+      <Position>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1889" Column="84" TopLine="1872"/>
       </Position>
     </JumpHistory>
     <RunParams>

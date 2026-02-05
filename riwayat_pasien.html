@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Riwayat Pasien</title>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin: 5px;
+  background: #f4f6f9;
+}
+
+.container {
+  width: 100%;
+}
+
+.header {
+  background: #1e88e5;
+  color: white;
+  padding: 10px;
+}
+
+.header b {
+  font-size: 14px;
+}
+
+.info {
+  background: white;
+  padding: 8px;
+}
+
+.menu {
+  margin-top: 5px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.section {
+  background: white;
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.section h3 {
+  margin: 0;
+  padding: 5px;
+  background: #e3f2fd;
+  font-size: 13px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 4px;
+}
+
+th {
+  background: #f1f1f1;
+}
+
+@media screen {
+  body { max-width: 100%; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+  <b>RIWAYAT PASIEN</b><br>
+  No RM: {no_rm} | Nama: {nama}
+  <div class="menu">
+    <a href="#kunjungan">Kunjungan</a>
+    <a href="#igd">IGD</a>
+    <a href="#rajal">Rajal</a>
+    <a href="#soap">SOAP</a>
+    <a href="#obat">Obat</a>
+  </div>
+</div>
+
+<a name="kunjungan"></a>
+<div class="section">
+<h3>Kunjungan</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Tgl</th><th>Poli</th><th>Dokter</th></tr>
+{data_kunjungan}
+</table>
+</div>
+</div>
+
+<a name="igd"></a>
+<div class="section">
+<h3>IGD</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Tgl</th><th>Keluhan</th><th>Dx</th></tr>
+{data_igd}
+</table>
+</div>
+</div>
+
+<a name="rajal"></a>
+<div class="section">
+<h3>Rawat Jalan</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Tgl</th><th>Diagnosa</th></tr>
+{data_rajal}
+</table>
+</div>
+</div>
+
+<a name="soap"></a>
+<div class="section">
+<h3>SOAP</h3>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Tgl</th><th>S</th><th>O</th><th>A</th><th>P</th>
+</tr>
+{data_soap}
+</table>
+</div>
+</div>
+
+<a name="obat"></a>
+<div class="section">
+<h3>Obat</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Tgl</th><th>Nama</th><th>Dosis</th></tr>
+{data_obat}
+</table>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

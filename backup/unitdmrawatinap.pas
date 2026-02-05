@@ -558,7 +558,7 @@ begin
     Exit;
   end;
 
-  if IsPenilaianMedisExistsPrimay(no_rawat, tanggal) then
+  if IsPenilaianMedisExistsPrimay(no_rawat) then
   begin
     ShowMessage('Data penilaian medis sudah ada untuk nomor rawat tersebut!');
     Exit;

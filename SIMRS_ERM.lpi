@@ -222,7 +222,15 @@
         <Filename Value="unitdmpendaftaran.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DataModulePendaftaran"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitriwayatpasien.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRiwayatPasien"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitRiwayatPasien"/>
       </Unit>
     </Units>
   </ProjectOptions>

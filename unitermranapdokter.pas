@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Buttons, DBGrids, ActnList, VirtualTrees, HtmlView, ZDataset,
-  DateTimePicker, DBDateTimePicker, AnchorDockPanel, laz.VirtualTrees,
+  StdCtrls, Buttons, DBGrids, ActnList, DBCtrls, VirtualTrees, HtmlView,
+  ZDataset, DateTimePicker, DBDateTimePicker, AnchorDockPanel, laz.VirtualTrees,
   uCEFChromium, uCEFTypes, uCEFInterfaces, uCEFChromiumEvents, Types,
   unitDmFarmasi;
 
@@ -64,6 +64,7 @@ type
     BitBtnHapus: TBitBtn;
     BitBtnCopy: TBitBtn;
     BitBtnUbah1: TBitBtn;
+    Button1: TButton;
     CheckBoxByTgl: TCheckBox;
     ComboBox1Kulit: TComboBox;
     ComboBoxAbdomen: TComboBox;
@@ -177,6 +178,7 @@ type
     GroupBox7: TGroupBox;
     GroupBox8: TGroupBox;
     GroupBox9: TGroupBox;
+    HtmlViewer1: THtmlViewer;
     Image1: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -272,6 +274,7 @@ type
     procedure BitBtnUbahClick(Sender: TObject);
     procedure BitBtnHapusClick(Sender: TObject);
     procedure BitBtnSimpanClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure CheckBoxByTglClick(Sender: TObject);
     procedure Chromium1AcceleratedPaint(Sender: TObject;
       const browser: ICefBrowser; type_: TCefPaintElementType;
@@ -375,6 +378,7 @@ type
     procedure TabSheetObatShow(Sender: TObject);
     procedure TabSheetRiwayatKesehatanContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
+    procedure TabSheetRiwayatShow(Sender: TObject);
     procedure TabSheetStatusLokasiContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
   private
@@ -406,7 +410,7 @@ implementation
 {$R *.lfm}
 
 { TFormERMRanapDokter }
-uses unitdmrawatinap,DateUtils,LCLType,unitPeresepanDokter;
+uses unitdmrawatinap,DateUtils,LCLType,unitPeresepanDokter,unitRiwayatPasien;
 
 
 function TFormERMRanapDokter.ValidasiForm: Boolean;
@@ -804,6 +808,13 @@ procedure TFormERMRanapDokter.TabSheetRiwayatKesehatanContextPopup(Sender: TObje
   MousePos: TPoint; var Handled: Boolean);
 begin
 
+end;
+
+procedure TFormERMRanapDokter.TabSheetRiwayatShow(Sender: TObject);
+begin
+  Application.CreateForm(TFormRiwayatPasien, FormRiwayatPasien);
+  FormRiwayatPasien.EditCari.Text:= EditNoRawat.Text;
+  FormRiwayatPasien.ShowModal;
 end;
 
 procedure TFormERMRanapDokter.TabSheetStatusLokasiContextPopup(Sender: TObject;
@@ -1343,6 +1354,9 @@ begin
     BorderStyle := bsSingle;
   end;
 
+  /// contoh riwayat pasien html
+
+
 end;
 
 procedure TFormERMRanapDokter.GroupBox12KeyPress(Sender: TObject; var Key: char
@@ -1869,6 +1883,18 @@ end;
 procedure TFormERMRanapDokter.BitBtnSimpanClick(Sender: TObject);
 begin
 
+end;
+
+procedure TFormERMRanapDokter.Button1Click(Sender: TObject);
+var
+  FileHTML: string;
+begin
+    FileHTML := ExtractFilePath(Application.ExeName) + 'riwayat_pasien.html';
+
+  if FileExists(FileHTML) then
+    HTMLViewer1.LoadFromFile(FileHTML)
+  else
+    ShowMessage('File HTML tidak ditemukan!');
 end;
 
 procedure TFormERMRanapDokter.CheckBoxByTglClick(Sender: TObject);
