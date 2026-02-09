@@ -1,12 +1,13 @@
 object FormERMRanapDokter: TFormERMRanapDokter
-  Left = 347
-  Height = 909
-  Top = 57
+  Left = 377
+  Height = 889
+  Top = 90
   Width = 1400
   BorderStyle = bsNone
   Caption = 'FormERMRanapDokter'
-  ClientHeight = 909
+  ClientHeight = 889
   ClientWidth = 1400
+  Menu = MainMenu1
   LCLVersion = '4.4.0.0'
   WindowState = wsFullScreen
   OnCreate = FormCreate
@@ -48,11 +49,11 @@ object FormERMRanapDokter: TFormERMRanapDokter
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 875
+    Height = 855
     Top = 34
     Width = 1400
     Align = alClient
-    ClientHeight = 875
+    ClientHeight = 855
     ClientWidth = 1400
     Color = clWhite
     ParentBackground = False
@@ -235,10 +236,10 @@ object FormERMRanapDokter: TFormERMRanapDokter
     end
     object PageControl1: TPageControl
       Left = 1
-      Height = 794
+      Height = 774
       Top = 80
       Width = 1398
-      ActivePage = TabSheetRiwayat
+      ActivePage = TabSheetPemeriksaan
       Align = alClient
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
@@ -248,12 +249,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
       ParentFont = False
       ScrollOpposite = True
       Style = tsFlatButtons
-      TabIndex = 4
+      TabIndex = 0
       TabOrder = 1
       OnChange = PageControl1Change
       object TabSheetPemeriksaan: TTabSheet
         Caption = 'Pemeriksaan'
-        ClientHeight = 761
+        ClientHeight = 741
         ClientWidth = 1390
         Font.Height = -21
         Font.Style = [fsBold]
@@ -279,14 +280,14 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object Panel5: TPanel
           Left = 0
-          Height = 745
+          Height = 725
           Top = 16
           Width = 1390
           Align = alClient
           BevelColor = clHotLight
           BevelInner = bvRaised
           BorderStyle = bsSingle
-          ClientHeight = 741
+          ClientHeight = 721
           ClientWidth = 1386
           Font.CharSet = ANSI_CHARSET
           Font.Height = -19
@@ -428,12 +429,12 @@ object FormERMRanapDokter: TFormERMRanapDokter
           end
           object GroupBox2: TGroupBox
             Left = 2
-            Height = 674
+            Height = 654
             Top = 65
             Width = 1382
             Align = alClient
             Caption = 'SOAPE'
-            ClientHeight = 654
+            ClientHeight = 634
             ClientWidth = 1378
             Font.CharSet = ANSI_CHARSET
             Font.Pitch = fpVariable
@@ -932,7 +933,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
             end
             object DBGrid1: TDBGrid
               Left = 0
-              Height = 250
+              Height = 230
               Top = 404
               Width = 1378
               Align = alClient
@@ -1112,7 +1113,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetAwalMedisUmum: TTabSheet
         Caption = 'Awal Medis Umum'
-        ClientHeight = 761
+        ClientHeight = 741
         ClientWidth = 1390
         Font.CharSet = ANSI_CHARSET
         Font.Height = -15
@@ -5512,7 +5513,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object DBGridAwalMedisUmum: TDBGrid
           Left = 0
-          Height = 296
+          Height = 276
           Top = 465
           Width = 1390
           Align = alClient
@@ -5731,7 +5732,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetObat: TTabSheet
         Caption = 'Obat'
-        ClientHeight = 761
+        ClientHeight = 741
         ClientWidth = 1390
         Font.Height = -16
         Font.Style = [fsBold]
@@ -5892,18 +5893,18 @@ object FormERMRanapDokter: TFormERMRanapDokter
         end
         object Panel23: TPanel
           Left = 0
-          Height = 645
+          Height = 625
           Top = 116
           Width = 1390
           Align = alClient
           Caption = 'Panel23'
-          ClientHeight = 645
+          ClientHeight = 625
           ClientWidth = 1390
           ParentBackground = False
           TabOrder = 3
           object LazVirtualStringTree1: TLazVirtualStringTree
             Left = 1
-            Height = 643
+            Height = 623
             Top = 1
             Width = 1388
             Align = alClient
@@ -5928,35 +5929,7 @@ object FormERMRanapDokter: TFormERMRanapDokter
       end
       object TabSheetRiwayat: TTabSheet
         Caption = 'Riwayat'
-        ClientHeight = 761
-        ClientWidth = 1390
         OnShow = TabSheetRiwayatShow
-        object HtmlViewer1: THtmlViewer
-          Left = 0
-          Height = 761
-          Top = 0
-          Width = 1390
-          BorderStyle = htFocused
-          HistoryMaxCount = 0
-          NoSelect = False
-          PrintMarginBottom = 2
-          PrintMarginLeft = 2
-          PrintMarginRight = 2
-          PrintMarginTop = 2
-          PrintScale = 1
-          Align = alClient
-          TabOrder = 0
-          object Button1: TButton
-            Left = 0
-            Height = 25
-            Top = 0
-            Width = 1390
-            Align = alTop
-            Caption = 'Button1'
-            TabOrder = 4
-            OnClick = Button1Click
-          end
-        end
       end
     end
   end
@@ -6003,6 +5976,21 @@ object FormERMRanapDokter: TFormERMRanapDokter
     object ActionHapusMsumum: TAction
       Caption = 'Hapus'
       OnExecute = ActionHapusMsumumExecute
+    end
+  end
+  object MainMenu1: TMainMenu
+    ParentBidiMode = False
+    Images = FormUtama.ImageList1
+    Left = 1072
+    Top = 72
+    object MenuItem1: TMenuItem
+      Caption = 'RIWAYAT PASIEN'
+      OnClick = MenuItem1Click
+      object MenuItem2: TMenuItem
+        Caption = 'RIWAYAT PASIEN'
+        ImageIndex = 0
+        OnClick = MenuItem2Click
+      end
     end
   end
 end

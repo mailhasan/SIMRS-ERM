@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Buttons, DBGrids, ActnList, DBCtrls, VirtualTrees, HtmlView,
+  StdCtrls, Buttons, DBGrids, ActnList, DBCtrls, Menus, VirtualTrees, HtmlView,
   ZDataset, DateTimePicker, DBDateTimePicker, AnchorDockPanel, laz.VirtualTrees,
   uCEFChromium, uCEFTypes, uCEFInterfaces, uCEFChromiumEvents, Types,
   unitDmFarmasi;
@@ -64,7 +64,6 @@ type
     BitBtnHapus: TBitBtn;
     BitBtnCopy: TBitBtn;
     BitBtnUbah1: TBitBtn;
-    Button1: TButton;
     CheckBoxByTgl: TCheckBox;
     ComboBox1Kulit: TComboBox;
     ComboBoxAbdomen: TComboBox;
@@ -178,7 +177,6 @@ type
     GroupBox7: TGroupBox;
     GroupBox8: TGroupBox;
     GroupBox9: TGroupBox;
-    HtmlViewer1: THtmlViewer;
     Image1: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -195,6 +193,7 @@ type
     Label8: TLabel;
     Label9: TLabel;
     LazVirtualStringTree1: TLazVirtualStringTree;
+    MainMenu1: TMainMenu;
     MemoStatusLokasi: TMemo;
     MemoLabPk: TMemo;
     MemoRadiologiPk: TMemo;
@@ -215,6 +214,8 @@ type
     MemoPlan: TMemo;
     MemoSubjek: TMemo;
     MemoObjek: TMemo;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     PageControl1: TPageControl;
     PageControlAwalMedisUmum: TPageControl;
     Panel1: TPanel;
@@ -368,6 +369,8 @@ type
     procedure MemoSubjekKeyPress(Sender: TObject; var Key: char);
     procedure MemoSubjekMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure PageControlAwalMedisUmumChange(Sender: TObject);
     procedure Panel21Click(Sender: TObject);
@@ -812,9 +815,7 @@ end;
 
 procedure TFormERMRanapDokter.TabSheetRiwayatShow(Sender: TObject);
 begin
-  Application.CreateForm(TFormRiwayatPasien, FormRiwayatPasien);
-  FormRiwayatPasien.EditCari.Text:= EditNoRawat.Text;
-  FormRiwayatPasien.ShowModal;
+
 end;
 
 procedure TFormERMRanapDokter.TabSheetStatusLokasiContextPopup(Sender: TObject;
@@ -1777,6 +1778,19 @@ begin
 
 end;
 
+procedure TFormERMRanapDokter.MenuItem1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFormERMRanapDokter.MenuItem2Click(Sender: TObject);
+begin
+  Application.CreateForm(TFormRiwayatPasien, FormRiwayatPasien);
+  FormRiwayatPasien.EditNORM.Text:= EditNORM.Text;
+  FormRiwayatPasien.EditNAMA.Text:= EditNAMA.Text;
+  FormRiwayatPasien.ShowModal;
+end;
+
 procedure TFormERMRanapDokter.PageControl1Change(Sender: TObject);
 begin
 
@@ -1886,15 +1900,8 @@ begin
 end;
 
 procedure TFormERMRanapDokter.Button1Click(Sender: TObject);
-var
-  FileHTML: string;
 begin
-    FileHTML := ExtractFilePath(Application.ExeName) + 'riwayat_pasien.html';
 
-  if FileExists(FileHTML) then
-    HTMLViewer1.LoadFromFile(FileHTML)
-  else
-    ShowMessage('File HTML tidak ditemukan!');
 end;
 
 procedure TFormERMRanapDokter.CheckBoxByTglClick(Sender: TObject);

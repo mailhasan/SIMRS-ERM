@@ -1,62 +1,587 @@
 object FormRiwayatPasien: TFormRiwayatPasien
-  Left = 521
-  Height = 570
-  Top = 198
-  Width = 890
+  Left = 262
+  Height = 889
+  Top = 101
+  Width = 1400
   Align = alClient
+  BorderStyle = bsNone
   Caption = 'FormRiwayatPasien'
-  ClientHeight = 570
-  ClientWidth = 890
+  ClientHeight = 889
+  ClientWidth = 1400
   LCLVersion = '4.4.0.0'
-  object PanelAtas: TPanel
+  WindowState = wsFullScreen
+  OnShow = FormShow
+  object PanelKiri: TPanel
     Left = 0
-    Height = 50
+    Height = 889
     Top = 0
-    Width = 890
-    Align = alTop
-    ClientHeight = 50
-    ClientWidth = 890
+    Width = 400
+    Align = alLeft
+    ClientHeight = 889
+    ClientWidth = 400
+    Color = clWhite
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 0
-    object Label1: TLabel
-      Left = 12
-      Height = 15
-      Top = 21
-      Width = 51
-      Caption = 'No Rawat'
-    end
-    object EditCari: TEdit
-      Left = 74
-      Height = 23
-      Top = 16
-      Width = 152
+    object Panel2: TPanel
+      Left = 1
+      Height = 74
+      Top = 1
+      Width = 398
+      Align = alTop
+      ClientHeight = 74
+      ClientWidth = 398
+      Color = clWhite
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 0
-      Text = 'EditCari'
+      object Label4: TLabel
+        Left = 8
+        Height = 15
+        Top = 16
+        Width = 64
+        Caption = 'NO RM (JK)'
+        Font.CharSet = ANSI_CHARSET
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditNORM: TEdit
+        Left = 80
+        Height = 23
+        Top = 8
+        Width = 176
+        TabOrder = 0
+        Text = 'EditNORM'
+      end
+      object Label5: TLabel
+        Left = 8
+        Height = 15
+        Top = 40
+        Width = 36
+        Caption = 'NAMA'
+        Font.CharSet = ANSI_CHARSET
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditNAMA: TEdit
+        Left = 80
+        Height = 23
+        Top = 40
+        Width = 176
+        TabOrder = 1
+        Text = 'EditNAMA'
+      end
+    end
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 813
+      Top = 75
+      Width = 398
+      Align = alClient
+      Caption = 'Riwayat Kunjungan'
+      ClientHeight = 793
+      ClientWidth = 394
+      ParentBackground = False
+      TabOrder = 1
+      object DBGridKunjungan: TDBGrid
+        Left = 0
+        Height = 793
+        Top = 0
+        Width = 394
+        Align = alClient
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'No Rawat'
+            Width = 110
+            FieldName = 'no_rawat'
+          end        
+          item
+            Title.Caption = 'Tgl Reg'
+            Width = 75
+            FieldName = 'tgl_registrasi'
+          end        
+          item
+            Title.Caption = 'POLI / IGD'
+            Width = 80
+            FieldName = 'nm_poli'
+          end        
+          item
+            Title.Caption = 'BANGSAL'
+            Width = 80
+            FieldName = 'nm_bangsal'
+          end>
+        DataSource = DataSourceKunjungan
+        Font.CharSet = ANSI_CHARSET
+        Font.Name = 'Consolas'
+        Font.Pitch = fpFixed
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 0
+        OnCellClick = DBGridKunjunganCellClick
+      end
     end
   end
   object PanelKonten: TPanel
-    Left = 0
-    Height = 520
-    Top = 50
-    Width = 890
+    Left = 400
+    Height = 889
+    Top = 0
+    Width = 1000
     Align = alClient
-    ClientHeight = 520
-    ClientWidth = 890
+    Caption = 'PanelKonten'
+    ClientHeight = 889
+    ClientWidth = 1000
+    Color = clWhite
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 1
-    object HtmlViewer1: THtmlViewer
+    object PanelAtas: TPanel
       Left = 1
-      Height = 518
+      Height = 34
       Top = 1
-      Width = 888
-      BorderStyle = htFocused
-      HistoryMaxCount = 0
-      NoSelect = False
-      PrintMarginBottom = 2
-      PrintMarginLeft = 2
-      PrintMarginRight = 2
-      PrintMarginTop = 2
-      PrintScale = 1
-      Align = alClient
+      Width = 998
+      Align = alTop
+      Caption = 'RIWAYAT PASIEN'
+      ClientHeight = 34
+      ClientWidth = 998
+      Color = 11834940
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
       TabOrder = 0
+      object PanelKeluar: TPanel
+        Left = 923
+        Height = 32
+        Top = 1
+        Width = 74
+        Align = alRight
+        Caption = 'Keluar'
+        Color = 5987327
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+        OnClick = PanelKeluarClick
+      end
     end
+    object RichMemoRiwayat: TRichMemo
+      Left = 1
+      Height = 853
+      Top = 35
+      Width = 812
+      Align = alClient
+      HideSelection = False
+      Lines.Strings = (
+        'RichMemoRiwayat'
+      )
+      TabOrder = 1
+      ZoomFactor = 1
+    end
+    object PanelKanan: TPanel
+      Left = 813
+      Height = 853
+      Top = 35
+      Width = 186
+      Align = alRight
+      ClientHeight = 853
+      ClientWidth = 186
+      ParentBackground = False
+      TabOrder = 2
+      object clbRiwayat: TCheckListBox
+        Left = 1
+        Height = 836
+        Top = 16
+        Width = 184
+        Align = alClient
+        Font.CharSet = ANSI_CHARSET
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ItemHeight = 0
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Label1: TLabel
+        Left = 1
+        Height = 15
+        Top = 1
+        Width = 184
+        Align = alTop
+        Caption = 'DAFTAR DATA TAMPIL'
+      end
+    end
+  end
+  object ZQueryKunjungan: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '    rp.no_rawat,'
+      '    rp.tgl_registrasi,'
+      '    rp.jam_reg,'
+      '    rp.no_rkm_medis,'
+      '    ps.nm_pasien,'
+      '    rp.status_lanjut,'
+      '    rp.stts,'
+      '    rp.status_bayar,'
+      ''
+      '    -- Poli (untuk Rajal)'
+      '    pl.nm_poli,'
+      ''
+      '    -- Dokter'
+      '    dk.nm_dokter,'
+      ''
+      '    -- Ranap: kamar & bangsal'
+      '    bg.nm_bangsal,'
+      '    kmr.kd_kamar,'
+      '    kmr.kelas'
+      'FROM reg_periksa rp'
+      'LEFT JOIN pasien ps '
+      '    ON rp.no_rkm_medis = ps.no_rkm_medis'
+      'LEFT JOIN poliklinik pl '
+      '    ON rp.kd_poli = pl.kd_poli'
+      'LEFT JOIN dokter dk '
+      '    ON rp.kd_dokter = dk.kd_dokter'
+      ''
+      '-- JOIN khusus RAWAT INAP'
+      'LEFT JOIN kamar_inap ki '
+      '    ON rp.no_rawat = ki.no_rawat'
+      'LEFT JOIN kamar kmr '
+      '    ON ki.kd_kamar = kmr.kd_kamar'
+      'LEFT JOIN bangsal bg '
+      '    ON kmr.kd_bangsal = bg.kd_bangsal'
+      ''
+      'WHERE rp.status_lanjut IN (''Ralan'',''Ranap'') '
+      ''
+      'ORDER BY '
+      '    rp.tgl_registrasi DESC,'
+      '    rp.jam_reg DESC,'
+      '    rp.no_rawat DESC'
+    )
+    Params = <>
+    Left = 674
+    Top = 56
+  end
+  object DataSourceKunjungan: TDataSource
+    DataSet = ZQueryKunjungan
+    Left = 768
+    Top = 64
+  end
+  object ZQueryTriase: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  dt.no_rawat,'
+      '  dt.tgl_kunjungan,'
+      '  dt.cara_masuk,'
+      '  dt.alat_transportasi,'
+      '  dt.alasan_kedatangan,'
+      '  dt.keterangan_kedatangan,'
+      '  dt.tekanan_darah,'
+      '  dt.nadi,'
+      '  dt.pernapasan,'
+      '  dt.suhu,'
+      '  dt.saturasi_o2,'
+      '  dt.nyeri,'
+      '  mk.macam_kasus'
+      'FROM data_triase_igd dt'
+      'LEFT JOIN master_triase_macam_kasus mk'
+      '  ON dt.kode_kasus = mk.kode_kasus'
+      'WHERE dt.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 670
+    Top = 140
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object zqSOAP: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Params = <>
+    Left = 656
+    Top = 352
+  end
+  object ZQueryTriasePrimer: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  p.tanggaltriase,'
+      '  p.keluhan_utama,'
+      '  p.kebutuhan_khusus,'
+      '  p.catatan,'
+      '  p.plan,'
+      '  pg.nama'
+      'FROM data_triase_igdprimer p'
+      'LEFT JOIN pegawai pg ON p.nik = pg.nik'
+      'WHERE p.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 756
+    Top = 155
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryTriaseSekunder: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  s.tanggaltriase,'
+      '  s.anamnesa_singkat,'
+      '  s.catatan,'
+      '  s.plan,'
+      '  pg.nama'
+      'FROM data_triase_igdsekunder s'
+      'LEFT JOIN pegawai pg ON s.nik = pg.nik'
+      'WHERE s.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 840
+    Top = 181
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQuerySkala1: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  m.pengkajian_skala1'
+      'FROM data_triase_igddetail_skala1 d'
+      'JOIN master_triase_skala1 m'
+      '  ON d.kode_skala1 = m.kode_skala1'
+      'WHERE d.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 664
+    Top = 200
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQuerySkala2: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  m.pengkajian_skala2'
+      'FROM data_triase_igddetail_skala2 d'
+      'JOIN master_triase_skala2 m'
+      '  ON d.kode_skala2 = m.kode_skala2'
+      'WHERE d.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 728
+    Top = 230
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQuerySkala3: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  m.pengkajian_skala3'
+      'FROM data_triase_igddetail_skala3 d'
+      'JOIN master_triase_skala3 m'
+      '  ON d.kode_skala3 = m.kode_skala3'
+      'WHERE d.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 816
+    Top = 245
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQuerySkala4: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  m.pengkajian_skala4'
+      'FROM data_triase_igddetail_skala4 d'
+      'JOIN master_triase_skala4 m'
+      '  ON d.kode_skala4 = m.kode_skala4'
+      'WHERE d.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 656
+    Top = 272
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQuerySkala5: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT'
+      '  m.pengkajian_skala5'
+      'FROM data_triase_igddetail_skala5 d'
+      'JOIN master_triase_skala5 m'
+      '  ON d.kode_skala5 = m.kode_skala5'
+      'WHERE d.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 731
+    Top = 297
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryPenilaianIGD: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT'
+      '  p.no_rawat,'
+      '  p.tanggal,'
+      '  p.informasi,'
+      '  p.keluhan_utama,'
+      '  p.rpd,'
+      '  p.rpo,'
+      '  p.status_kehamilan,'
+      '  p.gravida,'
+      '  p.para,'
+      '  p.abortus,'
+      '  p.hpht,'
+      ''
+      '  p.tekanan,'
+      '  p.pupil,'
+      '  p.neurosensorik,'
+      '  p.integumen,'
+      '  p.turgor,'
+      '  p.edema,'
+      '  p.mukosa,'
+      '  p.perdarahan,'
+      '  p.jumlah_perdarahan,'
+      '  p.warna_perdarahan,'
+      '  p.intoksikasi,'
+      ''
+      '  p.psikologis,'
+      '  p.jiwa,'
+      '  p.perilaku,'
+      ''
+      '  p.nyeri,'
+      '  p.provokes,'
+      '  p.ket_provokes,'
+      '  p.quality,'
+      '  p.ket_quality,'
+      '  p.lokasi,'
+      '  p.menyebar,'
+      '  p.skala_nyeri,'
+      '  p.durasi,'
+      '  p.nyeri_hilang,'
+      ''
+      '  p.hasil,'
+      '  p.rencana,'
+      '  pg.nama AS perawat'
+      'FROM penilaian_awal_keperawatan_igd p'
+      'LEFT JOIN petugas pg ON p.nip = pg.nip'
+      'WHERE p.no_rawat = :no_rawat;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 667
+    Top = 416
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryMasalahKeperawatan: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT'
+      '  m.kode_masalah,'
+      '  m.nama_masalah'
+      'FROM penilaian_awal_keperawatan_igd_masalah pm'
+      'JOIN master_masalah_keperawatan_igd m'
+      '  ON pm.kode_masalah = m.kode_masalah'
+      'WHERE pm.no_rawat = :no_rawat'
+      'ORDER BY m.nama_masalah;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 800
+    Top = 416
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryRencanaKeperawatan: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT'
+      '  r.kode_rencana,'
+      '  mr.rencana_keperawatan'
+      'FROM penilaian_awal_keperawatan_ralan_rencana_igd r'
+      'JOIN master_rencana_keperawatan_igd mr'
+      '  ON r.kode_rencana = mr.kode_rencana'
+      'WHERE r.no_rawat = :no_rawat'
+      'ORDER BY r.kode_rencana;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 928
+    Top = 417
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryPenilaianMedisIGD: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Params = <>
+    Left = 684
+    Top = 505
   end
 end

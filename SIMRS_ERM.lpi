@@ -28,6 +28,18 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="richmemo_design"/>
+      </Item>
+      <Item>
+        <PackageName Value="richmemopackage"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEditDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEdit"/>
+      </Item>
+      <Item>
         <PackageName Value="virtualtreeview_package"/>
       </Item>
       <Item>
@@ -229,6 +241,7 @@
         <Filename Value="unitriwayatpasien.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormRiwayatPasien"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRiwayatPasien"/>
       </Unit>
