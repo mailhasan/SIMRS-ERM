@@ -30,6 +30,8 @@ type
     PanelKonten: TPanel;
     RichMemoRiwayat: TRichMemo;
     zqSOAP: TZQuery;
+    ZQueryTindakanRajal: TZQuery;
+    ZQueryTindakanRanap: TZQuery;
     ZQueryPenilaianMedisIGD: TZQuery;
     ZQueryRencanaKeperawatan: TZQuery;
     ZQueryMasalahKeperawatan: TZQuery;
@@ -53,6 +55,7 @@ type
     procedure AddSeparator;
     procedure AddSectionSeparator;
     //function StringRepeat(const AChar: Char; ACount: Integer): string;
+    function FormatCurrency(Value: Currency): string;
   public
     procedure LoadKunjungan(NoRM: string);
     //procedure TampilTriase(NoRawat: string);
@@ -63,6 +66,8 @@ type
     procedure LoadTriase(const NoRawat: string);
     procedure LoadPenilaianAwalIGD(const NoRawat: string);
     procedure LoadPenilaianMedisIGD(const NoRawat: string);
+    procedure LoadTindakanJalan(const NoRawat: string);
+    procedure LoadTindakanRanap(const NoRawat: string);
   end;
 
 var
@@ -84,6 +89,14 @@ begin
   for i := 1 to ACount do
     Result := Result + AChar;
 end;
+
+// Helper function untuk format currency
+function TFormRiwayatPasien.FormatCurrency(Value: Currency): string;
+begin
+  Result := FormatFloat('#,##0', Value);
+end;
+
+
 
 /// SETUP RICHMEMO (WAJIB)
 procedure TFormRiwayatPasien.InitRichMemo;
@@ -1088,6 +1101,307 @@ begin
   AddSectionSeparator;
 end;
 
+// PROCEDURE UNTUK LOAD TINDAKAN RAWAT JALAN
+// PROCEDURE UNTUK LOAD TINDAKAN RAWAT JALAN - VERSI FINAL
+procedure TFormRiwayatPasien.LoadTindakanJalan(const NoRawat: string);
+var
+  HasData: Boolean;
+  TotalTindakan: Integer;
+  GrandTotal: Currency;
+  Count: Integer;
+  TanggalSekarang, TanggalSebelum: string;
+  NamaTindakan, Petugas, StatusBayarText: string;
+  Biaya: Currency;
+  i: Integer;
+begin
+  HasData := False;
+  TotalTindakan := 0;
+  GrandTotal := 0;
+  Count := 0;
+  TanggalSebelum := '';
+
+  with ZQueryTindakanRajal do
+  begin
+    Close;
+    SQL.Clear;
+
+    // ==============================================
+    // QUERY SEDERHANA - PASTI JALAN
+    // ==============================================
+    SQL.Text :=
+      'SELECT ' +
+      '    r.tgl_perawatan, ' +
+      '    DATE_FORMAT(r.tgl_perawatan, "%d/%m/%Y") AS tgl_format, ' +
+      '    COALESCE(jp.nm_perawatan, "Tindakan") AS nm_perawatan, ' +
+      '    r.biaya_rawat, ' +
+      '    COALESCE(r.stts_bayar, "Belum") AS stts_bayar ' +
+      'FROM ' +
+      '( ' +
+      '    SELECT tgl_perawatan, kd_jenis_prw, biaya_rawat, stts_bayar ' +
+      '    FROM rawat_jl_dr WHERE no_rawat = "' + NoRawat + '" ' +
+      '    UNION ALL ' +
+      '    SELECT tgl_perawatan, kd_jenis_prw, biaya_rawat, stts_bayar ' +
+      '    FROM rawat_jl_pr WHERE no_rawat = "' + NoRawat + '" ' +
+      '    UNION ALL ' +
+      '    SELECT tgl_perawatan, kd_jenis_prw, biaya_rawat, stts_bayar ' +
+      '    FROM rawat_jl_drpr WHERE no_rawat = "' + NoRawat + '" ' +
+      ') r ' +
+      'LEFT JOIN jns_perawatan jp ON r.kd_jenis_prw = jp.kd_jenis_prw ' +
+      'ORDER BY r.tgl_perawatan DESC';
+
+    try
+      Open;
+
+      if not IsEmpty then
+      begin
+        HasData := True;
+        TotalTindakan := RecordCount;
+
+        // HITUNG GRAND TOTAL
+        First;
+        while not EOF do
+        begin
+          GrandTotal := GrandTotal + FieldByName('biaya_rawat').AsCurrency;
+          Next;
+        end;
+        First;
+
+        // ==============================================
+        // HEADER UTAMA
+        // ==============================================
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clNavy, 10);
+        AddHeader('🏥  TINDAKAN RAWAT JALAN', clNavy, 14);
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clNavy, 10);
+        AddLine('', 0);
+
+        // SUMMARY
+        AddLine('📋  No. Rawat: ' + NoRawat, 1);
+        AddLine('💰  Total Biaya: Rp ' + FormatFloat('#,##0', GrandTotal), 1);
+        AddLine('📊  Jumlah Tindakan: ' + IntToStr(TotalTindakan) + ' item', 1);
+        AddSeparator;
+        AddLine('', 0);
+
+        // ==============================================
+        // DETAIL TINDAKAN
+        // ==============================================
+        Count := 0;
+        TanggalSebelum := '';
+
+        while not EOF do
+        begin
+          Inc(Count);
+
+          // FORMAT TANGGAL
+          if FindField('tgl_format') <> nil then
+            TanggalSekarang := FieldByName('tgl_format').AsString
+          else
+            TanggalSekarang := FormatDateTime('dd/mm/yyyy', FieldByName('tgl_perawatan').AsDateTime);
+
+          // HEADER TANGGAL
+          if TanggalSekarang <> TanggalSebelum then
+          begin
+            if TanggalSebelum <> '' then
+              AddLine('', 0);
+            AddHeader('📅  ' + TanggalSekarang, clBlue, 11);
+            AddHeader('───────────────────────────────────────────────────────────────────', clGray, 8);
+            TanggalSebelum := TanggalSekarang;
+          end;
+
+          // NAMA TINDAKAN
+          NamaTindakan := FieldByName('nm_perawatan').AsString;
+          if NamaTindakan = '' then
+            NamaTindakan := 'Tindakan';
+          NamaTindakan := Copy(NamaTindakan, 1, 35);
+
+          // STATUS BAYAR
+          StatusBayarText := FieldByName('stts_bayar').AsString;
+          if StatusBayarText = 'Sudah' then
+            StatusBayarText := '✅'
+          else if StatusBayarText = 'Belum' then
+            StatusBayarText := '⏳'
+          else
+            StatusBayarText := '❓';
+
+          // BIAYA
+          Biaya := FieldByName('biaya_rawat').AsCurrency;
+
+          // TAMPILKAN 1 BARIS
+          AddLine(Format('  %2d.  %s  %-35s  Rp %s',
+            [Count,
+             StatusBayarText,
+             NamaTindakan,
+             FormatFloat('#,##0', Biaya)]), 0);
+
+          Next;
+        end;
+
+        AddLine('', 0);
+        AddSeparator;
+        AddHeader('✅  TOTAL: Rp ' + FormatFloat('#,##0', GrandTotal) + ' (' + IntToStr(TotalTindakan) + ' tindakan)', clGreen, 11);
+        AddSeparator;
+      end;
+
+    except
+      on E: Exception do
+      begin
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clRed, 10);
+        AddHeader('❌  ERROR', clRed, 14);
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clRed, 10);
+        AddLine('', 0);
+        AddLine('Terjadi kesalahan:', 1);
+        AddLine(E.Message, 1);
+        AddLine('', 0);
+        AddLine('No. Rawat: ' + NoRawat, 1);
+        AddSeparator;
+      end;
+    end;
+
+    Close;
+  end;
+
+  if not HasData then
+  begin
+    AddHeader('═══════════════════════════════════════════════════════════════════════', clGray, 10);
+    AddHeader('🏥  TINDAKAN RAWAT JALAN', clGray, 14);
+    AddHeader('═══════════════════════════════════════════════════════════════════════', clGray, 10);
+    AddLine('', 0);
+    AddLine('ℹ️  Tidak ada data tindakan', 2);
+    AddLine('   No. Rawat: ' + NoRawat, 1);
+    AddSeparator;
+  end;
+
+  AddSectionSeparator;
+end;
+
+// VERSI LENGKAP - SUDAH DENGAN NAMA TINDAKAN
+procedure TFormRiwayatPasien.LoadTindakanRanap(const NoRawat: string);
+var
+  HasData: Boolean;
+  GrandTotal: Currency;
+  Count: Integer;
+  TanggalSekarang, TanggalSebelum: string;
+begin
+  HasData := False;
+  GrandTotal := 0;
+  Count := 0;
+  TanggalSebelum := '';
+
+  with ZQueryTindakanRanap do
+  begin
+    Close;
+    SQL.Clear;
+
+    // QUERY UNTUK RAWAT_INAP_DR
+    SQL.Text :=
+      'SELECT ' +
+      '    rd.tgl_perawatan, ' +
+      '    rd.biaya_rawat, ' +
+      '    "Tindakan Dokter" as nama_tindakan ' +
+      'FROM rawat_inap_dr rd ' +
+      'WHERE rd.no_rawat = "' + NoRawat + '" ' +
+      'UNION ALL ' +
+      'SELECT ' +
+      '    rp.tgl_perawatan, ' +
+      '    rp.biaya_rawat, ' +
+      '    "Tindakan Perawat" as nama_tindakan ' +
+      'FROM rawat_inap_pr rp ' +
+      'WHERE rp.no_rawat = "' + NoRawat + '" ' +
+      'UNION ALL ' +
+      'SELECT ' +
+      '    rdp.tgl_perawatan, ' +
+      '    rdp.biaya_rawat, ' +
+      '    "Tindakan Dokter & Perawat" as nama_tindakan ' +
+      'FROM rawat_inap_drpr rdp ' +
+      'WHERE rdp.no_rawat = "' + NoRawat + '" ' +
+      'ORDER BY tgl_perawatan DESC';
+
+    try
+      Open;
+
+      if not IsEmpty then
+      begin
+        HasData := True;
+
+        // Hitung Grand Total
+        First;
+        while not EOF do
+        begin
+          GrandTotal := GrandTotal + FieldByName('biaya_rawat').AsCurrency;
+          Next;
+        end;
+        First;
+
+        // ==============================================
+        // HEADER
+        // ==============================================
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clNavy, 10);
+        AddHeader('🏥  TINDAKAN RAWAT INAP', clNavy, 14);
+        AddHeader('═══════════════════════════════════════════════════════════════════════', clNavy, 10);
+        AddLine('', 0);
+        AddHeader('💰 TOTAL KESELURUHAN: Rp ' + FormatFloat('#,##0', GrandTotal), clGreen, 12);
+        AddSeparator;
+        AddLine('', 0);
+
+        // ==============================================
+        // DETAIL PER TANGGAL
+        // ==============================================
+        while not EOF do
+        begin
+          Inc(Count);
+
+          // Format tanggal
+          TanggalSekarang := FormatDateTime('dd/mm/yyyy', FieldByName('tgl_perawatan').AsDateTime);
+
+          // Tampilkan header tanggal
+          if TanggalSekarang <> TanggalSebelum then
+          begin
+            if TanggalSebelum <> '' then
+              AddLine('', 0);
+            AddHeader('📅  ' + TanggalSekarang, clBlue, 11);
+            AddHeader('───────────────────────────────────────────────────────────────────', clGray, 8);
+            TanggalSebelum := TanggalSekarang;
+          end;
+
+          // Tampilkan tindakan
+          AddLine(Format('  %2d.  %-30s  Rp %s',
+            [Count,
+             Copy(FieldByName('nama_tindakan').AsString, 1, 30),
+             FormatFloat('#,##0', FieldByName('biaya_rawat').AsCurrency)]), 0);
+
+          Next;
+        end;
+
+        AddLine('', 0);
+        AddSeparator;
+        AddHeader('✅  Total: ' + IntToStr(Count) + ' tindakan', clGreen, 11);
+        AddSeparator;
+      end;
+
+    except
+      on E: Exception do
+      begin
+        AddHeader('❌ ERROR', clRed, 12);
+        AddLine('Terjadi kesalahan: ' + E.Message, 1);
+        AddSeparator;
+      end;
+    end;
+
+    Close;
+  end;
+
+  if not HasData then
+  begin
+    AddHeader('═══════════════════════════════════════════════════════════════════════', clGray, 10);
+    AddHeader('🏥  TINDAKAN RAWAT INAP', clGray, 14);
+    AddHeader('═══════════════════════════════════════════════════════════════════════', clGray, 10);
+    AddLine('', 0);
+    AddLine('ℹ️  Tidak ada data tindakan', 2);
+    AddSeparator;
+  end;
+
+  AddSectionSeparator;
+end;
+
 /// soap rawat jalan
 const
   SQL_SOAP_RAJAL =
@@ -1382,6 +1696,8 @@ begin
   clbRiwayat.Items.Add('Triase IGD');
   clbRiwayat.Items.Add('Keperawatan IGD');
   clbRiwayat.Items.Add('Penilaian Medis IGD');
+  clbRiwayat.Items.Add('Tindakan Rajal/Igd');
+  clbRiwayat.Items.Add('Tindakan Ranap');
   clbRiwayat.Items.Add('SOAP Rawat Jalan');
   clbRiwayat.Items.Add('SOAP Rawat Inap');
 
@@ -1390,6 +1706,9 @@ begin
   clbRiwayat.Checked[1] := True;
   clbRiwayat.Checked[2] := True;
   clbRiwayat.Checked[3] := True;
+  clbRiwayat.Checked[4] := True;
+  clbRiwayat.Checked[5] := True;
+  clbRiwayat.Checked[6] := True;
 
 end;
 
@@ -1417,6 +1736,10 @@ begin
   LoadTriase(NoRawat);
   LoadPenilaianAwalIGD(NoRawat);
   LoadPenilaianMedisIGD(NoRawat);
+  /// tindakan
+  LoadTindakanJalan(NoRawat);
+  LoadTindakanRanap(NoRawat);
+  ///
   LoadSOAPRajal(NoRawat);
   LoadSOAPRanap(NoRawat);
 

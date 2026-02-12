@@ -1,7 +1,7 @@
 object FormERMRanapDokter: TFormERMRanapDokter
-  Left = 377
+  Left = 363
   Height = 889
-  Top = 90
+  Top = 64
   Width = 1400
   BorderStyle = bsNone
   Caption = 'FormERMRanapDokter'

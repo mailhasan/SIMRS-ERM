@@ -470,7 +470,6 @@ object FormRiwayatPasien: TFormRiwayatPasien
   end
   object ZQueryPenilaianIGD: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT'
       '  p.no_rawat,'
@@ -532,7 +531,6 @@ object FormRiwayatPasien: TFormRiwayatPasien
   end
   object ZQueryMasalahKeperawatan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT'
       '  m.kode_masalah,'
@@ -556,7 +554,6 @@ object FormRiwayatPasien: TFormRiwayatPasien
   end
   object ZQueryRencanaKeperawatan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT'
       '  r.kode_rencana,'
@@ -581,7 +578,216 @@ object FormRiwayatPasien: TFormRiwayatPasien
   object ZQueryPenilaianMedisIGD: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
     Params = <>
-    Left = 684
-    Top = 505
+    Left = 674
+    Top = 480
+  end
+  object ZQueryTindakanRanap: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    r.no_rawat,'
+      '    r.tgl_perawatan,'
+      '    r.jam_rawat,'
+      '    jp.nm_perawatan,'
+      '    d.nm_dokter,'
+      '    p.nama AS nm_perawat,'
+      '    r.material,'
+      '    r.bhp,'
+      '    r.tarif_dokter,'
+      '    r.tarif_perawat,'
+      '    r.kso,'
+      '    r.menejemen,'
+      '    r.biaya_rawat,'
+      '    r.sumber'
+      'FROM'
+      '('
+      '    -- ==============================='
+      '    -- 1️⃣ Dokter saja'
+      '    -- ==============================='
+      '    SELECT '
+      '        rd.no_rawat,'
+      '        rd.tgl_perawatan,'
+      '        rd.jam_rawat,'
+      '        rd.kd_jenis_prw,'
+      '        rd.kd_dokter,'
+      '        NULL AS nip,'
+      '        rd.material,'
+      '        rd.bhp,'
+      '        rd.tarif_tindakandr AS tarif_dokter,'
+      '        0 AS tarif_perawat,'
+      '        rd.kso,'
+      '        rd.menejemen,'
+      '        rd.biaya_rawat,'
+      '        ''Dokter'' AS sumber'
+      '    FROM rawat_inap_dr rd'
+      ''
+      '    UNION ALL'
+      ''
+      '    -- ==============================='
+      '    -- 2️⃣ Perawat saja'
+      '    -- ==============================='
+      '    SELECT '
+      '        rp.no_rawat,'
+      '        rp.tgl_perawatan,'
+      '        rp.jam_rawat,'
+      '        rp.kd_jenis_prw,'
+      '        NULL AS kd_dokter,'
+      '        rp.nip,'
+      '        rp.material,'
+      '        rp.bhp,'
+      '        0 AS tarif_dokter,'
+      '        rp.tarif_tindakanpr AS tarif_perawat,'
+      '        rp.kso,'
+      '        rp.menejemen,'
+      '        rp.biaya_rawat,'
+      '        ''Perawat'' AS sumber'
+      '    FROM rawat_inap_pr rp'
+      ''
+      '    UNION ALL'
+      ''
+      '    -- ==============================='
+      '    -- 3️⃣ Dokter + Perawat'
+      '    -- ==============================='
+      '    SELECT '
+      '        rdp.no_rawat,'
+      '        rdp.tgl_perawatan,'
+      '        rdp.jam_rawat,'
+      '        rdp.kd_jenis_prw,'
+      '        rdp.kd_dokter,'
+      '        rdp.nip,'
+      '        rdp.material,'
+      '        rdp.bhp,'
+      '        rdp.tarif_tindakandr AS tarif_dokter,'
+      '        rdp.tarif_tindakanpr AS tarif_perawat,'
+      '        rdp.kso,'
+      '        rdp.menejemen,'
+      '        rdp.biaya_rawat,'
+      '        ''Dokter & Perawat'' AS sumber'
+      '    FROM rawat_inap_drpr rdp'
+      ''
+      ') r'
+      'LEFT JOIN dokter d ON r.kd_dokter = d.kd_dokter'
+      'LEFT JOIN petugas p ON r.nip = p.nip'
+      'LEFT JOIN jns_perawatan_inap jp ON r.kd_jenis_prw = jp.kd_jenis_prw'
+      'WHERE r.no_rawat = :no_rawat'
+      'ORDER BY r.tgl_perawatan DESC, r.jam_rawat DESC;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 670
+    Top = 548
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
+  end
+  object ZQueryTindakanRajal: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      '    r.no_rawat,'
+      '    r.tgl_perawatan,'
+      '    r.jam_rawat,'
+      '    jp.nm_perawatan,'
+      '    d.nm_dokter,'
+      '    p.nama AS nm_perawat,'
+      '    r.material,'
+      '    r.bhp,'
+      '    r.tarif_dokter,'
+      '    r.tarif_perawat,'
+      '    r.kso,'
+      '    r.menejemen,'
+      '    r.biaya_rawat,'
+      '    r.stts_bayar,'
+      '    r.sumber'
+      'FROM'
+      '('
+      '    -- ================================='
+      '    -- 1️⃣ Dokter saja'
+      '    -- ================================='
+      '    SELECT '
+      '        rd.no_rawat,'
+      '        rd.tgl_perawatan,'
+      '        rd.jam_rawat,'
+      '        rd.kd_jenis_prw,'
+      '        rd.kd_dokter,'
+      '        NULL AS nip,'
+      '        rd.material,'
+      '        rd.bhp,'
+      '        rd.tarif_tindakandr AS tarif_dokter,'
+      '        0 AS tarif_perawat,'
+      '        rd.kso,'
+      '        rd.menejemen,'
+      '        rd.biaya_rawat,'
+      '        rd.stts_bayar,'
+      '        ''Dokter'' AS sumber'
+      '    FROM rawat_jl_dr rd'
+      ''
+      '    UNION ALL'
+      ''
+      '    -- ================================='
+      '    -- 2️⃣ Perawat saja'
+      '    -- ================================='
+      '    SELECT '
+      '        rp.no_rawat,'
+      '        rp.tgl_perawatan,'
+      '        rp.jam_rawat,'
+      '        rp.kd_jenis_prw,'
+      '        NULL AS kd_dokter,'
+      '        rp.nip,'
+      '        rp.material,'
+      '        rp.bhp,'
+      '        0 AS tarif_dokter,'
+      '        rp.tarif_tindakanpr AS tarif_perawat,'
+      '        rp.kso,'
+      '        rp.menejemen,'
+      '        rp.biaya_rawat,'
+      '        rp.stts_bayar,'
+      '        ''Perawat'' AS sumber'
+      '    FROM rawat_jl_pr rp'
+      ''
+      '    UNION ALL'
+      ''
+      '    -- ================================='
+      '    -- 3️⃣ Dokter + Perawat'
+      '    -- ================================='
+      '    SELECT '
+      '        rdp.no_rawat,'
+      '        rdp.tgl_perawatan,'
+      '        rdp.jam_rawat,'
+      '        rdp.kd_jenis_prw,'
+      '        rdp.kd_dokter,'
+      '        rdp.nip,'
+      '        rdp.material,'
+      '        rdp.bhp,'
+      '        rdp.tarif_tindakandr AS tarif_dokter,'
+      '        rdp.tarif_tindakanpr AS tarif_perawat,'
+      '        rdp.kso,'
+      '        rdp.menejemen,'
+      '        rdp.biaya_rawat,'
+      '        rdp.stts_bayar,'
+      '        ''Dokter & Perawat'' AS sumber'
+      '    FROM rawat_jl_drpr rdp'
+      ''
+      ') r'
+      'LEFT JOIN dokter d ON r.kd_dokter = d.kd_dokter'
+      'LEFT JOIN petugas p ON r.nip = p.nip'
+      'LEFT JOIN jns_perawatan jp ON r.kd_jenis_prw = jp.kd_jenis_prw'
+      'WHERE r.no_rawat = :no_rawat'
+      'ORDER BY r.tgl_perawatan DESC, r.jam_rawat DESC;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 776
+    Top = 548
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
   end
 end
