@@ -15,7 +15,7 @@ uses
   unitERMRanapDokter, unitDmFarmasi, unitIGD, unitDmIgd, unitPemeriksaanIGD,
   unitTriaseIgd, unitdmrawatjalan, unitRawatJalan, unitCariPoli,
   unitTtdSoapRehab, unitPeresepanDokter, unitPendaftaran, unitPersetujuanUmum,
-  unitdmpendaftaran, unitRiwayatPasien;
+  unitdmpendaftaran, unitRiwayatPasien, unitFarmasi, unitFarmasiRawatJalan;
 
 {$R *.res}
 
@@ -32,6 +32,8 @@ begin
   Application.CreateForm(TFormUtama, FormUtama);
   Application.CreateForm(TDataModulePendaftaran, DataModulePendaftaran);
   Application.CreateForm(TFormRiwayatPasien, FormRiwayatPasien);
+  Application.CreateForm(TFormFarmasi, FormFarmasi);
+  Application.CreateForm(TFormFarmasiRawatJalan, FormFarmasiRawatJalan);
   Application.Run;
 end.
 

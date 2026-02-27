@@ -245,6 +245,22 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRiwayatPasien"/>
       </Unit>
+      <Unit>
+        <Filename Value="unitfarmasi.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormFarmasi"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitFarmasi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitfarmasirawatjalan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormFarmasiRawatJalan"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitFarmasiRawatJalan"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

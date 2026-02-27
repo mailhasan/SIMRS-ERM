@@ -13,12 +13,15 @@ type
   { TFormRiwayatPasien }
 
   TFormRiwayatPasien = class(TForm)
+    ButtonCentangSemua: TButton;
+    ButtonUnCentangSemua: TButton;
     clbRiwayat: TCheckListBox;
     DataSourceKunjungan: TDataSource;
     DBGridKunjungan: TDBGrid;
     EditNAMA: TEdit;
     EditNORM: TEdit;
     GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Label1: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -45,7 +48,10 @@ type
     ZQueryTriasePrimer: TZQuery;
     ZQueryTriase: TZQuery;
     ZQueryKunjungan: TZQuery;
+    procedure ButtonCentangSemuaClick(Sender: TObject);
+    procedure ButtonUnCentangSemuaClick(Sender: TObject);
     procedure DBGridKunjunganCellClick(Column: TColumn);
+    procedure DBGridKunjunganCellClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure PanelKeluarClick(Sender: TObject);
   private
@@ -1101,7 +1107,6 @@ begin
   AddSectionSeparator;
 end;
 
-// PROCEDURE UNTUK LOAD TINDAKAN RAWAT JALAN
 // PROCEDURE UNTUK LOAD TINDAKAN RAWAT JALAN - VERSI FINAL
 procedure TFormRiwayatPasien.LoadTindakanJalan(const NoRawat: string);
 var
@@ -1693,6 +1698,8 @@ begin
     BorderStyle := bsSingle;
   end;
 
+  clbRiwayat.Items.Clear;
+
   clbRiwayat.Items.Add('Triase IGD');
   clbRiwayat.Items.Add('Keperawatan IGD');
   clbRiwayat.Items.Add('Penilaian Medis IGD');
@@ -1701,20 +1708,15 @@ begin
   clbRiwayat.Items.Add('SOAP Rawat Jalan');
   clbRiwayat.Items.Add('SOAP Rawat Inap');
 
-  // default dicentang semua
-  clbRiwayat.Checked[0] := True;
-  clbRiwayat.Checked[1] := True;
-  clbRiwayat.Checked[2] := True;
-  clbRiwayat.Checked[3] := True;
-  clbRiwayat.Checked[4] := True;
-  clbRiwayat.Checked[5] := True;
-  clbRiwayat.Checked[6] := True;
+  // Default centang semua
+  clbRiwayat.CheckAll(cbChecked);
 
 end;
 
 procedure TFormRiwayatPasien.DBGridKunjunganCellClick(Column: TColumn);
 var
   NoRawat: string;
+  i: Integer;
 begin
   //TampilTriase(zqueryKunjungan.FieldByName('no_rawat').AsString);
   //ShowMessage(zqueryKunjungan.FieldByName('no_rawat').AsString);
@@ -1732,17 +1734,23 @@ begin
   AddLine('No Rawat: ' + NoRawat, 2);
   AddSeparator;
 
-  //AddSectionSeparator;
-  LoadTriase(NoRawat);
-  LoadPenilaianAwalIGD(NoRawat);
-  LoadPenilaianMedisIGD(NoRawat);
-  /// tindakan
-  LoadTindakanJalan(NoRawat);
-  LoadTindakanRanap(NoRawat);
-  ///
-  LoadSOAPRajal(NoRawat);
-  LoadSOAPRanap(NoRawat);
+ // =========================
+  // FILTER BERDASARKAN CEKLIST
+  // =========================
 
+ for i := 0 to clbRiwayat.Items.Count - 1 do
+  begin
+    if not clbRiwayat.Checked[i] then Continue;
+
+    case i of
+      0: LoadTriase(NoRawat);
+      1: LoadPenilaianAwalIGD(NoRawat);
+      2: LoadPenilaianMedisIGD(NoRawat);
+      3: LoadTindakanJalan(NoRawat);
+      4: LoadTindakanRanap(NoRawat);
+      5: LoadSOAPRajal(NoRawat);
+      6: LoadSOAPRanap(NoRawat);
+    end;
 
   // Jika tidak ada data sama sekali
   if RichMemoRiwayat.Lines.Count < 10 then
@@ -1755,6 +1763,23 @@ begin
   RichMemoRiwayat.SelStart := 0;
   RichMemoRiwayat.SelLength := 0;
   RichMemoRiwayat.VertScrollBar.Position := 0;
+end;
+
+end;
+
+procedure TFormRiwayatPasien.DBGridKunjunganCellClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFormRiwayatPasien.ButtonCentangSemuaClick(Sender: TObject);
+begin
+ clbRiwayat.CheckAll(cbChecked);
+end;
+
+procedure TFormRiwayatPasien.ButtonUnCentangSemuaClick(Sender: TObject);
+begin
+  clbRiwayat.CheckAll(cbUnchecked);
 end;
 
 end.

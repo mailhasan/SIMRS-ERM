@@ -51,8 +51,11 @@ type
   { TDataModuleFarmasi }
 
   TDataModuleFarmasi = class(TDataModule)
+    DataSourceResepPxRajal: TDataSource;
     DataSourceObatResep: TDataSource;
     zqResepHeader: TZQuery;
+    ZQueryPemberianObat: TZQuery;
+    ZQueryResepPxRajal: TZQuery;
     ZQueryObatResep: TZQuery;
     ZQueryResepRacikanDetail: TZQuery;
     ZQueryResepRacikan: TZQuery;
@@ -375,7 +378,6 @@ begin
   // Hasil: YYYYMMDD + 0001 (Total 12 digit)
   Result := sTglFormat + Format('%.4d', [iNextSeq]);
 end;
-
 
 
 end.

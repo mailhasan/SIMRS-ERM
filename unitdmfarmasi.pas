@@ -51,8 +51,11 @@ type
   { TDataModuleFarmasi }
 
   TDataModuleFarmasi = class(TDataModule)
+    DataSourceResepPxRajal: TDataSource;
     DataSourceObatResep: TDataSource;
     zqResepHeader: TZQuery;
+    ZQueryPemberianObat: TZQuery;
+    ZQueryResepPxRajal: TZQuery;
     ZQueryObatResep: TZQuery;
     ZQueryResepRacikanDetail: TZQuery;
     ZQueryResepRacikan: TZQuery;

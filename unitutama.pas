@@ -16,6 +16,7 @@ type
     BitBtnRawatJalan: TBitBtn;
     BitBtnIGD: TBitBtn;
     BitBtnRawatInap: TBitBtn;
+    BitBtnFarmasi: TBitBtn;
     ImageList1: TImageList;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
@@ -27,6 +28,8 @@ type
     PanelKiri: TPanel;
     PanelAtas: TPanel;
     StatusBarSIMRSERM: TStatusBar;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtnFarmasiClick(Sender: TObject);
     procedure BitBtnIGDClick(Sender: TObject);
     procedure BitBtnPENDAFTARANClick(Sender: TObject);
     procedure BitBtnRawatInapClick(Sender: TObject);
@@ -53,7 +56,7 @@ implementation
 {$R *.lfm}
 
 { TFormUtama }
-uses unitRawatInap,unitDmKoneksi,unitLogin,unitPendaftaran, unitIGD, unitRawatJalan;
+uses unitRawatInap,unitDmKoneksi,unitLogin,unitPendaftaran, unitIGD, unitRawatJalan, unitFarmasi;
 
 var
    SidebarVisible: Boolean = True;
@@ -170,6 +173,18 @@ procedure TFormUtama.BitBtnIGDClick(Sender: TObject);
 begin
  Application.CreateForm(TFormIGD, FormIGD);
  FormIGD.ShowModal;
+end;
+
+procedure TFormUtama.BitBtn1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFormUtama.BitBtnFarmasiClick(Sender: TObject);
+begin
+  /// FARMASI
+  Application.CreateForm(TFormFarmasi, FormFarmasi);
+  FormFarmasi.ShowModal;
 end;
 
 procedure TFormUtama.BitBtnPENDAFTARANClick(Sender: TObject);

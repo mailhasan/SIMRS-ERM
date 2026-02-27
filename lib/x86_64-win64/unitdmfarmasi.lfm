@@ -6,27 +6,99 @@ object DataModuleFarmasi: TDataModuleFarmasi
   Width = 822
   object ZQueryResep: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT * from resep_dokter limit 10'
+    )
     Params = <>
-    Left = 94
+    Left = 98
     Top = 48
   end
   object ZQueryResepDetail: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Params = <>
+    SQL.Strings = (
+      'SELECT '
+      '    rd.no_resep,'
+      '    rd.kode_brng,'
+      '    db.nama_brng,'
+      '    rd.jml,'
+      '    rd.aturan_pakai'
+      'FROM resep_dokter rd'
+      'INNER JOIN databarang db ON db.kode_brng = rd.kode_brng'
+      'WHERE rd.no_resep = :no_resep'
+      'ORDER BY db.nama_brng;'
+    )
+    Params = <    
+      item
+        Name = 'no_resep'
+      end>
     Left = 95
     Top = 119
+    ParamData = <    
+      item
+        Name = 'no_resep'
+      end>
   end
   object ZQueryResepRacikan: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Params = <>
+    SQL.Strings = (
+      'SELECT '
+      '    rr.no_resep,'
+      '    rr.no_racik,'
+      '    rr.nama_racik,'
+      '    rr.jml_dr,'
+      '    rr.aturan_pakai,'
+      '    rr.keterangan,'
+      '    mr.nm_racik'
+      'FROM resep_dokter_racikan rr'
+      'INNER JOIN metode_racik mr ON mr.kd_racik = rr.kd_racik'
+      'WHERE rr.no_resep = :no_resep'
+      'ORDER BY rr.no_racik;'
+    )
+    Params = <    
+      item
+        Name = 'no_resep'
+      end>
     Left = 98
     Top = 200
+    ParamData = <    
+      item
+        Name = 'no_resep'
+      end>
   end
   object ZQueryResepRacikanDetail: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Params = <>
+    SQL.Strings = (
+      'SELECT '
+      '    rrd.no_resep,'
+      '    rrd.no_racik,'
+      '    rrd.kode_brng,'
+      '    db.nama_brng,'
+      '    rrd.jml,'
+      '    rrd.p1,'
+      '    rrd.p2,'
+      '    rrd.kandungan'
+      'FROM resep_dokter_racikan_detail rrd'
+      'INNER JOIN databarang db ON db.kode_brng = rrd.kode_brng'
+      'WHERE rrd.no_resep = :no_resep'
+      'AND rrd.no_racik = :no_racik'
+      'ORDER BY db.nama_brng;'
+    )
+    Params = <    
+      item
+        Name = 'no_resep'
+      end    
+      item
+        Name = 'no_racik'
+      end>
     Left = 98
     Top = 282
+    ParamData = <    
+      item
+        Name = 'no_resep'
+      end    
+      item
+        Name = 'no_racik'
+      end>
   end
   object zqResepHeader: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
@@ -83,5 +155,80 @@ object DataModuleFarmasi: TDataModuleFarmasi
     DataSet = ZQueryObatResep
     Left = 216
     Top = 440
+  end
+  object ZQueryResepPxRajal: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT DISTINCT '
+      '    ro.*,'
+      '    r.no_rkm_medis,'
+      '    p.nm_pasien,'
+      '    d.nm_dokter,'
+      '    pl.nm_poli,'
+      '    CASE '
+      '        WHEN ro.tgl_perawatan IS NULL '
+      '             OR ro.tgl_perawatan = ''0000-00-00'''
+      '        THEN ''Belum'''
+      '        ELSE ''Sudah'''
+      '    END AS status_layanan'
+      ''
+      'FROM resep_obat ro'
+      'LEFT JOIN reg_periksa r ON r.no_rawat = ro.no_rawat'
+      'LEFT JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis'
+      'LEFT JOIN dokter d ON d.kd_dokter = r.kd_dokter'
+      'LEFT JOIN poliklinik pl ON pl.kd_poli = r.kd_poli'
+      'LEFT JOIN resep_dokter rd ON rd.no_resep = ro.no_resep'
+      'LEFT JOIN detail_pemberian_obat dpo ON dpo.no_rawat = ro.no_rawat'
+      ''
+      'WHERE ro.status = ''ralan'''
+      'LIMIT 10'
+    )
+    Params = <>
+    Left = 271
+    Top = 51
+  end
+  object DataSourceResepPxRajal: TDataSource
+    DataSet = ZQueryResepPxRajal
+    Left = 382
+    Top = 64
+  end
+  object ZQueryPemberianObat: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    dpo.tgl_perawatan,'
+      '    dpo.jam,'
+      '    dpo.no_rawat,'
+      '    dpo.kode_brng,'
+      '    db.nama_brng,'
+      '    ks.satuan,'
+      '    dpo.jml,'
+      '    dpo.biaya_obat,'
+      '    dpo.embalase,'
+      '    dpo.tuslah,'
+      '    dpo.total,'
+      '    dpo.status,'
+      '    IFNULL(ap.aturan,''-'') AS aturan'
+      'FROM detail_pemberian_obat dpo'
+      'INNER JOIN databarang db ON db.kode_brng = dpo.kode_brng'
+      'LEFT JOIN kodesatuan ks ON ks.kode_sat = db.kode_sat'
+      'LEFT JOIN aturan_pakai ap '
+      '       ON ap.tgl_perawatan = dpo.tgl_perawatan'
+      '       AND ap.jam = dpo.jam'
+      '       AND ap.no_rawat = dpo.no_rawat'
+      '       AND ap.kode_brng = dpo.kode_brng'
+      'WHERE dpo.no_rawat = :no_rawat'
+      'ORDER BY dpo.tgl_perawatan, dpo.jam;'
+    )
+    Params = <    
+      item
+        Name = 'no_rawat'
+      end>
+    Left = 261
+    Top = 130
+    ParamData = <    
+      item
+        Name = 'no_rawat'
+      end>
   end
 end

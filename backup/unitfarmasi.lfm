@@ -1,0 +1,84 @@
+object FormFarmasi: TFormFarmasi
+  Left = 737
+  Height = 108
+  Top = 295
+  Width = 564
+  BorderIcons = [biSystemMenu]
+  Caption = 'Form Menu Farmasi'
+  ClientHeight = 108
+  ClientWidth = 564
+  Position = poScreenCenter
+  LCLVersion = '4.4.0.0'
+  object BitBtnRawatJalan: TBitBtn
+    Left = 0
+    Height = 108
+    Top = 0
+    Width = 139
+    Align = alLeft
+    Caption = 'Rawat Jalan'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -19
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    Images = FormUtama.ImageList1
+    ImageIndex = 7
+    ParentFont = False
+    TabOrder = 0
+    OnClick = BitBtnRawatJalanClick
+  end
+  object BitBtnGudang: TBitBtn
+    Left = 417
+    Height = 108
+    Top = 0
+    Width = 139
+    Align = alLeft
+    Caption = 'Gudang'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    Images = FormUtama.ImageList1
+    ImageIndex = 7
+    ParentFont = False
+    TabOrder = 1
+    OnClick = BitBtnGudangClick
+  end
+  object BitBtnIgd: TBitBtn
+    Left = 278
+    Height = 108
+    Top = 0
+    Width = 139
+    Align = alLeft
+    Caption = 'IGD'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    Images = FormUtama.ImageList1
+    ImageIndex = 7
+    ParentFont = False
+    TabOrder = 2
+    OnClick = BitBtnIgdClick
+  end
+  object BitBtnRawatInap: TBitBtn
+    Left = 139
+    Height = 108
+    Top = 0
+    Width = 139
+    Align = alLeft
+    Caption = 'Rawat Inap'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    Images = FormUtama.ImageList1
+    ImageIndex = 7
+    ParentFont = False
+    TabOrder = 3
+    OnClick = BitBtnRawatInapClick
+  end
+end

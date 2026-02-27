@@ -1,11 +1,11 @@
 object FormUtama: TFormUtama
   Left = 451
-  Height = 492
+  Height = 472
   Top = 197
   Width = 835
   Align = alClient
   Caption = 'SIMRS - ERM '
-  ClientHeight = 492
+  ClientHeight = 472
   ClientWidth = 835
   Color = 16053233
   Menu = MainMenu1
@@ -67,11 +67,11 @@ object FormUtama: TFormUtama
   end
   object PanelKiri: TPanel
     Left = 0
-    Height = 435
+    Height = 415
     Top = 34
     Width = 170
     Align = alLeft
-    ClientHeight = 435
+    ClientHeight = 415
     ClientWidth = 170
     Color = 15790320
     ParentBackground = False
@@ -81,7 +81,7 @@ object FormUtama: TFormUtama
     object BitBtnRawatInap: TBitBtn
       Left = 1
       Height = 30
-      Top = 61
+      Top = 31
       Width = 168
       Align = alTop
       Caption = 'RAWAT INAP'
@@ -101,7 +101,7 @@ object FormUtama: TFormUtama
     object BitBtnIGD: TBitBtn
       Left = 1
       Height = 30
-      Top = 31
+      Top = 1
       Width = 168
       Align = alTop
       Caption = 'IGD'
@@ -119,7 +119,7 @@ object FormUtama: TFormUtama
     object BitBtnRawatJalan: TBitBtn
       Left = 1
       Height = 30
-      Top = 91
+      Top = 61
       Width = 168
       Align = alTop
       Caption = 'RAWAT JALAN'
@@ -134,13 +134,13 @@ object FormUtama: TFormUtama
       TabOrder = 2
       OnClick = BitBtnRawatJalanClick
     end
-    object BitBtnPENDAFTARAN: TBitBtn
+    object BitBtnFarmasi: TBitBtn
       Left = 1
       Height = 30
-      Top = 1
+      Top = 91
       Width = 168
       Align = alTop
-      Caption = 'PENDAFTARAN'
+      Caption = 'FARMASI'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
       Font.Pitch = fpVariable
@@ -150,12 +150,12 @@ object FormUtama: TFormUtama
       ImageIndex = 0
       ParentFont = False
       TabOrder = 3
-      OnClick = BitBtnPENDAFTARANClick
+      OnClick = BitBtnFarmasiClick
     end
   end
   object PanelTengah: TPanel
     Left = 170
-    Height = 435
+    Height = 415
     Top = 34
     Width = 665
     Align = alClient
@@ -168,7 +168,7 @@ object FormUtama: TFormUtama
   object StatusBarSIMRSERM: TStatusBar
     Left = 0
     Height = 23
-    Top = 469
+    Top = 449
     Width = 835
     Color = 14737632
     Panels = <    
