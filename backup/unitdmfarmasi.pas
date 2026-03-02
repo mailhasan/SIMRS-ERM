@@ -54,6 +54,8 @@ type
     DataSourceResepPxRajal: TDataSource;
     DataSourceObatResep: TDataSource;
     zqResepHeader: TZQuery;
+    ZQueryPiutangHeader: TZQuery;
+    ZQueryPiutangDetail: TZQuery;
     ZQueryPemberianObat: TZQuery;
     ZQueryResepPxRajal: TZQuery;
     ZQueryObatResep: TZQuery;

@@ -177,6 +177,15 @@ object FormFarmasiRawatJalan: TFormFarmasiRawatJalan
           FieldName = 'no_rawat'
         end      
         item
+          Title.Caption = 'tgl_perawatan'
+          Width = 80
+          FieldName = 'tgl_perawatan'
+        end      
+        item
+          Title.Caption = 'jam'
+          FieldName = 'jam'
+        end      
+        item
           Title.Caption = 'No RM'
           Width = 70
           FieldName = 'no_rkm_medis'

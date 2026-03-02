@@ -218,17 +218,95 @@ object DataModuleFarmasi: TDataModuleFarmasi
       '       AND ap.no_rawat = dpo.no_rawat'
       '       AND ap.kode_brng = dpo.kode_brng'
       'WHERE dpo.no_rawat = :no_rawat'
+      '  AND (:tgl IS NULL OR dpo.tgl_perawatan = :tgl)'
+      '  AND (:jam = '''' OR dpo.jam = :jam)'
       'ORDER BY dpo.tgl_perawatan, dpo.jam;'
     )
     Params = <    
       item
         Name = 'no_rawat'
+      end    
+      item
+        Name = 'tgl'
+      end    
+      item
+        Name = 'jam'
       end>
     Left = 261
     Top = 130
     ParamData = <    
       item
         Name = 'no_rawat'
+      end    
+      item
+        Name = 'tgl'
+      end    
+      item
+        Name = 'jam'
+      end>
+  end
+  object ZQueryPiutangDetail: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    p.nota_piutang,'
+      '    p.tgl_piutang,'
+      '    p.no_rkm_medis,'
+      '    p.nm_pasien,'
+      '    p.jns_jual,'
+      '    dp.kode_brng,'
+      '    db.nama_brng,'
+      '    dp.jumlah,'
+      '    ks.satuan,'
+      '    dp.h_jual,'
+      '    dp.dis,'
+      '    dp.bsr_dis,'
+      '    dp.total,'
+      '    dp.aturan_pakai'
+      'FROM piutang p'
+      'JOIN detailpiutang dp ON p.nota_piutang = dp.nota_piutang'
+      'JOIN databarang db ON dp.kode_brng = db.kode_brng'
+      'LEFT JOIN kodesatuan ks ON dp.kode_sat = ks.kode_sat'
+      'WHERE p.nota_piutang = :nota_piutang'
+      'ORDER BY db.nama_brng ASC;'
+    )
+    Params = <    
+      item
+        Name = 'nota_piutang'
+      end>
+    Left = 254
+    Top = 201
+    ParamData = <    
+      item
+        Name = 'nota_piutang'
+      end>
+  end
+  object ZQueryPiutangHeader: TZQuery
+    Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    SQL.Strings = (
+      'SELECT '
+      '    nota_piutang,'
+      '    tgl_piutang,'
+      '    no_rkm_medis,'
+      '    nm_pasien,'
+      '    jns_jual,'
+      '    catatan,'
+      '    ongkir,'
+      '    uangmuka,'
+      '    sisapiutang,'
+      '    tgltempo'
+      'FROM piutang'
+      'WHERE nota_piutang = :nota_piutang;'
+    )
+    Params = <    
+      item
+        Name = 'nota_piutang'
+      end>
+    Left = 257
+    Top = 283
+    ParamData = <    
+      item
+        Name = 'nota_piutang'
       end>
   end
 end

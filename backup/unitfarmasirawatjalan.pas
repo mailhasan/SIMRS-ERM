@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, DBGrids, Menus, DateTimePicker, Grids, RichMemo;
+  Buttons, DBGrids, Menus, DateTimePicker, Grids, RichMemo, LCLType;
 
 type
 
@@ -68,7 +68,11 @@ type
     procedure TampilDataResep;
     procedure tampilAwal;
     procedure TampilResep(noResep: string);
-    procedure TampilPemberianObat(noRawat: string);
+    procedure TampilPemberianObat(
+              noRawat: string;
+              tglFilter: TDateTime;
+              jamFilter: string);
+    procedure TampilPiutang(notaPiutang: string);
     procedure TampilSemuaCekbox(noResep, noRawat: string);
   end;
 
@@ -201,29 +205,55 @@ begin
 end;
 
 /// resep tervalidasi
-procedure TFormFarmasiRawatJalan.TampilPemberianObat(noRawat: string);
+procedure TFormFarmasiRawatJalan.TampilPemberianObat(
+  noRawat: string; tglFilter: TDateTime; jamFilter: string);
 var
-  noUrut: integer;
-  totalSemua: double;
+  noUrut: Integer;
+  totalSemua: Double;
   tglJamSebelumnya: string;
 begin
-  ///RichMemoResep.Clear;
+  //RichMemoResep.Clear;
 
   if Trim(noRawat) = '' then Exit;
 
-  DataModuleFarmasi.ZQueryPemberianObat.Close;
-  DataModuleFarmasi.ZQueryPemberianObat.ParamByName('no_rawat').AsString := noRawat;
-  DataModuleFarmasi.ZQueryPemberianObat.Open;
+  with DataModuleFarmasi.ZQueryPemberianObat do
+  begin
+    Close;
+    SQL.Text :=
+      'SELECT dpo.tgl_perawatan, dpo.jam, dpo.no_rawat, dpo.kode_brng, ' +
+      'db.nama_brng, ks.satuan, dpo.jml, dpo.biaya_obat, dpo.embalase, ' +
+      'dpo.tuslah, dpo.total, dpo.status, IFNULL(ap.aturan,''-'') AS aturan ' +
+      'FROM detail_pemberian_obat dpo ' +
+      'INNER JOIN databarang db ON db.kode_brng = dpo.kode_brng ' +
+      'LEFT JOIN kodesatuan ks ON ks.kode_sat = db.kode_sat ' +
+      'LEFT JOIN aturan_pakai ap ON ap.tgl_perawatan = dpo.tgl_perawatan ' +
+      'AND ap.jam = dpo.jam ' +
+      'AND ap.no_rawat = dpo.no_rawat ' +
+      'AND ap.kode_brng = dpo.kode_brng ' +
+      'WHERE dpo.no_rawat = :no_rawat ' +
+      'AND (:tgl IS NULL OR dpo.tgl_perawatan = :tgl) ' +
+      'AND (:jam = '''' OR dpo.jam = :jam) ' +
+      'ORDER BY dpo.tgl_perawatan, dpo.jam';
 
-  if DataModuleFarmasi.ZQueryPemberianObat.IsEmpty then Exit;
+    ParamByName('no_rawat').AsString := noRawat;
+
+    if tglFilter = 0 then
+      ParamByName('tgl').Clear
+    else
+      ParamByName('tgl').AsDate := tglFilter;
+
+    ParamByName('jam').AsString := jamFilter;
+
+    Open;
+
+    if IsEmpty then Exit;
+  end;
 
   RichMemoResep.Lines.Add('==================================================');
   RichMemoResep.Lines.Add('            PEMBERIAN OBAT PASIEN');
   RichMemoResep.Lines.Add('==================================================');
   RichMemoResep.Lines.Add('');
   RichMemoResep.Lines.Add('No Rawat : ' + noRawat);
-  RichMemoResep.Lines.Add('Status   : ' +
-    DataModuleFarmasi.ZQueryPemberianObat.FieldByName('status').AsString);
   RichMemoResep.Lines.Add('--------------------------------------------------');
   RichMemoResep.Lines.Add('');
 
@@ -233,41 +263,47 @@ begin
 
   while not DataModuleFarmasi.ZQueryPemberianObat.EOF do
   begin
-    // tampilkan header tanggal/jam jika berubah
-    if tglJamSebelumnya <> DataModuleFarmasi.ZQueryPemberianObat.FieldByName(
-      'tgl_perawatan').AsString + DataModuleFarmasi.ZQueryPemberianObat.FieldByName(
-      'jam').AsString then
+    if tglJamSebelumnya <>
+       DataModuleFarmasi.ZQueryPemberianObat.FieldByName('tgl_perawatan').AsString +
+       DataModuleFarmasi.ZQueryPemberianObat.FieldByName('jam').AsString then
     begin
       RichMemoResep.Lines.Add(
-        'Tanggal : ' + FormatDateTime('dd-mm-yyyy',
+        'Tanggal : ' +
+        FormatDateTime('dd-mm-yyyy',
         DataModuleFarmasi.ZQueryPemberianObat.FieldByName(
         'tgl_perawatan').AsDateTime) +
-        '  Jam : ' + DataModuleFarmasi.ZQueryPemberianObat.FieldByName(
-        'jam').AsString);
+        '  Jam : ' +
+        DataModuleFarmasi.ZQueryPemberianObat.FieldByName('jam').AsString);
       RichMemoResep.Lines.Add('');
+
       tglJamSebelumnya :=
         DataModuleFarmasi.ZQueryPemberianObat.FieldByName('tgl_perawatan').AsString +
         DataModuleFarmasi.ZQueryPemberianObat.FieldByName('jam').AsString;
     end;
 
     RichMemoResep.Lines.Add(
-      IntToStr(noUrut) + '. ' + DataModuleFarmasi.ZQueryPemberianObat.FieldByName(
-      'nama_brng').AsString);
+      IntToStr(noUrut) + '. ' +
+      DataModuleFarmasi.ZQueryPemberianObat.FieldByName('nama_brng').AsString);
 
     RichMemoResep.Lines.Add(
-      '   Jumlah  : ' + DataModuleFarmasi.ZQueryPemberianObat.FieldByName('jml').AsString +
-      ' ' + DataModuleFarmasi.ZQueryPemberianObat.FieldByName('satuan').AsString);
+      '   Jumlah  : ' +
+      DataModuleFarmasi.ZQueryPemberianObat.FieldByName('jml').AsString +
+      ' ' +
+      DataModuleFarmasi.ZQueryPemberianObat.FieldByName('satuan').AsString);
 
     RichMemoResep.Lines.Add(
-      '   Aturan  : ' + DataModuleFarmasi.ZQueryPemberianObat.FieldByName('aturan').AsString);
+      '   Aturan  : ' +
+      DataModuleFarmasi.ZQueryPemberianObat.FieldByName('aturan').AsString);
 
     RichMemoResep.Lines.Add(
-      '   Total   : Rp ' + FormatFloat('#,##0',
+      '   Total   : Rp ' +
+      FormatFloat('#,##0',
       DataModuleFarmasi.ZQueryPemberianObat.FieldByName('total').AsFloat));
 
     RichMemoResep.Lines.Add('');
 
-    totalSemua := totalSemua + DataModuleFarmasi.ZQueryPemberianObat.FieldByName('total').AsFloat;
+    totalSemua := totalSemua +
+      DataModuleFarmasi.ZQueryPemberianObat.FieldByName('total').AsFloat;
 
     Inc(noUrut);
     DataModuleFarmasi.ZQueryPemberianObat.Next;
@@ -277,13 +313,142 @@ begin
   RichMemoResep.Lines.Add(
     'TOTAL BIAYA OBAT : Rp ' + FormatFloat('#,##0', totalSemua));
   RichMemoResep.Lines.Add('==================================================');
+
+ RichMemoResep.Lines.Add('');
+ //RichMemoResep.Lines.Add('==================================================');
+end;
+
+procedure TFormFarmasiRawatJalan.TampilPiutang(notaPiutang: string);
+var
+  noUrut: Integer;
+  totalSemua: Double;
+begin
+  ///RichMemoResep.Clear;
+
+  if Trim(notaPiutang) = '' then Exit;
+
+  { ====================== }
+  { HEADER PIUTANG }
+  { ====================== }
+
+  with DataModuleFarmasi.ZQueryPiutangHeader do
+  begin
+    Close;
+    SQL.Text :=
+      'SELECT nota_piutang, tgl_piutang, no_rkm_medis, nm_pasien, ' +
+      'jns_jual, catatan, ongkir, uangmuka, sisapiutang, tgltempo ' +
+      'FROM piutang WHERE nota_piutang = :nota';
+    ParamByName('nota').AsString := notaPiutang;
+    Open;
+
+    if IsEmpty then
+    begin
+      RichMemoResep.Lines.Add('Data piutang tidak ditemukan.');
+      Exit;
+    end;
+
+    RichMemoResep.Lines.Add('==================================================');
+    RichMemoResep.Lines.Add('               PIUTANG OBAT PASIEN');
+    RichMemoResep.Lines.Add('==================================================');
+    RichMemoResep.Lines.Add('');
+    RichMemoResep.Lines.Add('Nota       : ' + FieldByName('nota_piutang').AsString);
+    RichMemoResep.Lines.Add('Tanggal    : ' +
+      FormatDateTime('dd-mm-yyyy', FieldByName('tgl_piutang').AsDateTime));
+    RichMemoResep.Lines.Add('No RM      : ' + FieldByName('no_rkm_medis').AsString);
+    RichMemoResep.Lines.Add('Nama Pasien: ' + FieldByName('nm_pasien').AsString);
+    RichMemoResep.Lines.Add('Jenis      : ' + FieldByName('jns_jual').AsString);
+    RichMemoResep.Lines.Add('Jatuh Tempo: ' +
+      FormatDateTime('dd-mm-yyyy', FieldByName('tgltempo').AsDateTime));
+    RichMemoResep.Lines.Add('--------------------------------------------------');
+    RichMemoResep.Lines.Add('');
+  end;
+
+  { ====================== }
+  { DETAIL OBAT }
+  { ====================== }
+
+  with DataModuleFarmasi.ZQueryPiutangDetail do
+  begin
+    Close;
+    SQL.Text :=
+      'SELECT dp.kode_brng, db.nama_brng, dp.jumlah, ks.satuan, ' +
+      'dp.h_jual, dp.dis, dp.bsr_dis, dp.total, dp.aturan_pakai ' +
+      'FROM detailpiutang dp ' +
+      'JOIN databarang db ON dp.kode_brng = db.kode_brng ' +
+      'LEFT JOIN kodesatuan ks ON dp.kode_sat = ks.kode_sat ' +
+      'WHERE dp.nota_piutang = :nota ' +
+      'ORDER BY db.nama_brng ASC';
+    ParamByName('nota').AsString := notaPiutang;
+    Open;
+
+    if IsEmpty then
+    begin
+      RichMemoResep.Lines.Add('Tidak ada detail obat.');
+      Exit;
+    end;
+
+    noUrut := 1;
+    totalSemua := 0;
+
+    while not EOF do
+    begin
+      RichMemoResep.Lines.Add(
+        IntToStr(noUrut) + '. ' + FieldByName('nama_brng').AsString);
+
+      RichMemoResep.Lines.Add(
+        '   Jumlah  : ' + FieldByName('jumlah').AsString + ' ' +
+        FieldByName('satuan').AsString);
+
+      RichMemoResep.Lines.Add(
+        '   Harga   : Rp ' +
+        FormatFloat('#,##0', FieldByName('h_jual').AsFloat));
+
+      if FieldByName('bsr_dis').AsFloat > 0 then
+        RichMemoResep.Lines.Add(
+          '   Diskon  : Rp ' +
+          FormatFloat('#,##0', FieldByName('bsr_dis').AsFloat));
+
+      RichMemoResep.Lines.Add(
+        '   Total   : Rp ' +
+        FormatFloat('#,##0', FieldByName('total').AsFloat));
+
+      if Trim(FieldByName('aturan_pakai').AsString) <> '' then
+        RichMemoResep.Lines.Add(
+          '   Aturan  : ' + FieldByName('aturan_pakai').AsString);
+
+      RichMemoResep.Lines.Add('');
+
+      totalSemua := totalSemua + FieldByName('total').AsFloat;
+
+      Inc(noUrut);
+      Next;
+    end;
+  end;
+
+  { ====================== }
+  { TOTAL }
+  { ====================== }
+
+  RichMemoResep.Lines.Add('--------------------------------------------------');
+  RichMemoResep.Lines.Add(
+    'TOTAL PIUTANG : Rp ' + FormatFloat('#,##0', totalSemua));
+  RichMemoResep.Lines.Add('==================================================');
+
+  { Auto Scroll ke bawah }
+  RichMemoResep.SelStart := Length(RichMemoResep.Text);
+  RichMemoResep.SelLength := 0;
 end;
 
 /// kateregori tampil
-procedure TFormFarmasiRawatJalan.TampilSemuaCekbox(noResep, noRawat: string);
+procedure TFormFarmasiRawatJalan.TampilSemuaCekbox(
+  noResep, noRawat: string);
+var
+  tgl: TDateTime;
+  jam: string;
 begin
   RichMemoResep.Clear;
 
+  { ================= RESEP ================= }
   if cbResepDokter.Checked then
   begin
     TampilResep(noResep);
@@ -291,17 +456,37 @@ begin
     RichMemoResep.Lines.Add('');
   end;
 
+  { ================= PEMBERIAN ================= }
   if cbPemberian.Checked then
   begin
-    TampilPemberianObat(noRawat);
+    if not DataModuleFarmasi.ZQueryResepPxRajal.IsEmpty then
+    begin
+      tgl := DataModuleFarmasi.ZQueryResepPxRajal.FieldByName('tgl_perawatan').AsDateTime;
+      jam := DataModuleFarmasi.ZQueryResepPxRajal.FieldByName('jam').AsString;
+    end
+    else
+    begin
+      tgl := 0;
+      jam := '';
+    end;
+
+    TampilPemberianObat(noRawat, tgl, jam);
+
     RichMemoResep.Lines.Add('');
     RichMemoResep.Lines.Add('');
   end;
 
+  { ================= PIUTANG ================= }
   if cbPiutang.Checked then
   begin
-    //TampilPiutang(noRawat); // nanti kita buat
+    TampilPiutang(noRawat);  // asumsi piutang berdasarkan no_rawat
+    RichMemoResep.Lines.Add('');
+    RichMemoResep.Lines.Add('');
   end;
+
+  { Auto Scroll }
+  RichMemoResep.SelStart := Length(RichMemoResep.Text);
+
 end;
 
 
@@ -400,9 +585,18 @@ end;
 
 procedure TFormFarmasiRawatJalan.CheckBoxAllClick(Sender: TObject);
 begin
+if CheckBoxAll.Checked = true then
+ begin
   cbResepDokter.Checked:= True;
   cbPemberian.Checked:= true;
   cbPiutang.Checked:=True;
+ end
+ else
+  begin
+   cbResepDokter.Checked:= False;
+   cbPemberian.Checked:= False;
+   cbPiutang.Checked:=False;
+  end;
 end;
 
 procedure TFormFarmasiRawatJalan.DBGridResepPxRajalCellClick(Column: TColumn);
