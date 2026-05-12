@@ -183,7 +183,7 @@ end;
 procedure TFormUtama.BitBtnFarmasiClick(Sender: TObject);
 begin
   /// FARMASI
-  Application.CreateForm(TFormFarmasi, FormIGD);
+  Application.CreateForm(TFormFarmasi, FormFarmasi);
   FormFarmasi.ShowModal;
 end;
 

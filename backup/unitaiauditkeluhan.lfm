@@ -1,0 +1,121 @@
+object FormAiAuditKeluhan: TFormAiAuditKeluhan
+  Left = 486
+  Height = 706
+  Top = 191
+  Width = 1053
+  Caption = 'Form Ai - Audit Keluhan'
+  ClientHeight = 706
+  ClientWidth = 1053
+  LCLVersion = '4.4.0.0'
+  OnShow = FormShow
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 1053
+    Align = alTop
+    Caption = 'Form Ai - Audit Keluhan'
+    ClientHeight = 34
+    ClientWidth = 1053
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 978
+      Height = 32
+      Top = 1
+      Width = 74
+      Align = alRight
+      Caption = 'Keluar'
+      Color = 5987327
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+    end
+  end
+  object PanelTengah: TPanel
+    Left = 0
+    Height = 622
+    Top = 34
+    Width = 1053
+    Align = alClient
+    ClientHeight = 622
+    ClientWidth = 1053
+    TabOrder = 1
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 620
+      Top = 1
+      Width = 313
+      Align = alLeft
+      Caption = 'Riwayat Keluhan'
+      ClientHeight = 600
+      ClientWidth = 309
+      TabOrder = 0
+      object MemoRiwayatKeluhan: TMemo
+        Left = 0
+        Height = 600
+        Top = 0
+        Width = 309
+        Align = alClient
+        Lines.Strings = (
+          'MemoRiwayatKeluhan'
+        )
+        TabOrder = 0
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 314
+      Height = 620
+      Top = 1
+      Width = 534
+      Align = alLeft
+      Caption = 'Hasil Analisa'
+      ClientHeight = 600
+      ClientWidth = 530
+      TabOrder = 1
+      object Button1: TButton
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 530
+        Align = alTop
+        Caption = 'Koreksi Dengan Ai'
+        TabOrder = 0
+        OnClick = Button1Click
+      end
+      object MemoAnalisaRekomendasi: TMemo
+        Left = 0
+        Height = 575
+        Top = 25
+        Width = 530
+        Align = alClient
+        Lines.Strings = (
+          'MemoAnalisaRekomendasi'
+        )
+        TabOrder = 1
+      end
+    end
+  end
+  object PanelBawah: TPanel
+    Left = 0
+    Height = 50
+    Top = 656
+    Width = 1053
+    Align = alBottom
+    TabOrder = 2
+  end
+  object ZQuery1: TZQuery
+    Params = <>
+    Left = 614
+    Top = 124
+  end
+end

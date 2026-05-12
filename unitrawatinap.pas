@@ -31,6 +31,8 @@ type
     Label2: TLabel;
     Label3: TLabel;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -52,6 +54,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure SpeedButtonKamarClick(Sender: TObject);
   private
@@ -69,7 +72,7 @@ implementation
 {$R *.lfm}
 
 { TFormRawatInap }
-uses unitdmrawatinap,unitKamar,unitERMRanapDokter,unitUtama;
+uses unitdmrawatinap,unitKamar,unitERMRanapDokter,unitUtama,unitAiAuditKeluhan;
 
 procedure TFormRawatInap.TerimaKamar(const NamaKamar: string);
 begin
@@ -273,6 +276,11 @@ end;
 procedure TFormRawatInap.MenuItem2Click(Sender: TObject);
 begin
 
+end;
+
+procedure TFormRawatInap.MenuItem3Click(Sender: TObject);
+begin
+  FormAiAuditKeluhan.ShowModal;
 end;
 
 procedure TFormRawatInap.Panel3Click(Sender: TObject);

@@ -8,9 +8,8 @@
       <Unit>
         <Filename Value="SIMRS_ERM.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="6"/>
-        <CursorPos X="112" Y="9"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="114" Y="33"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit>
@@ -21,12 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitLogin"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="33"/>
-        <CursorPos X="38" Y="52"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="35"/>
+        <CursorPos X="117" Y="52"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitutama.pas"/>
@@ -35,9 +32,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitUtama"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="157"/>
-        <CursorPos X="53" Y="186"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="119"/>
+        <CursorPos X="102" Y="145"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -49,8 +46,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmKoneksi"/>
-        <EditorIndex Value="14"/>
-        <CursorPos X="120" Y="16"/>
+        <EditorIndex Value="12"/>
+        <CursorPos X="19"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -62,10 +59,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatInap"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="219"/>
-        <CursorPos Y="226"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="268"/>
+        <CursorPos X="78" Y="291"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitdmrawatinap.pas"/>
@@ -73,12 +72,10 @@
         <ComponentName Value="DataModuleRanap"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <CursorPos X="122" Y="42"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitkamar.pas"/>
@@ -99,9 +96,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitERMRanapDokter"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="1378"/>
-        <CursorPos X="90" Y="1401"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="1958"/>
+        <CursorPos X="61" Y="1976"/>
         <UsageCount Value="223"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -113,8 +110,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmFarmasi"/>
-        <EditorIndex Value="11"/>
-        <CursorPos X="39" Y="96"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="375"/>
+        <CursorPos X="115" Y="396"/>
         <UsageCount Value="236"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -138,7 +136,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDmIgd"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="17"/>
         <CursorPos X="15"/>
         <UsageCount Value="221"/>
         <Loaded Value="True"/>
@@ -151,10 +149,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitPemeriksaanIGD"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="880"/>
         <CursorPos X="70" Y="901"/>
         <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unittriaseigd.pas"/>
@@ -188,10 +188,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRawatJalan"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="71"/>
         <CursorPos X="8" Y="121"/>
         <UsageCount Value="292"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitcaripoli.pas"/>
@@ -258,8 +260,8 @@
         <ComponentName Value="DataModulePendaftaran"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="9"/>
-        <CursorPos X="97" Y="15"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="59" Y="6"/>
         <UsageCount Value="207"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -272,8 +274,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitRiwayatPasien"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="509"/>
-        <CursorPos X="60" Y="526"/>
+        <TopLine Value="26"/>
+        <CursorPos X="35" Y="50"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -285,10 +287,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitFarmasi"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="24"/>
-        <CursorPos X="68" Y="38"/>
-        <UsageCount Value="58"/>
+        <CursorPos X="37" Y="43"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -299,11 +301,39 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitFarmasiRawatJalan"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="671"/>
+        <CursorPos X="119" Y="681"/>
+        <UsageCount Value="81"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitfarmasivalidasiresep.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormValidasiResep"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitFarmasiValidasiResep"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="39"/>
+        <CursorPos X="80" Y="60"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAiAuditKeluhan"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitAiAuditKeluhan"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="13"/>
-        <TopLine Value="453"/>
-        <CursorPos X="70" Y="467"/>
-        <UsageCount Value="57"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="136"/>
+        <CursorPos X="97" Y="162"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -313,157 +343,159 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="137"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\config_lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZDatasetParam.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="4568"/>
         <CursorPos X="95" Y="4587"/>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="59"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\config_lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcMySql.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1247"/>
         <CursorPos X="72" Y="1253"/>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="59"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="config0.ini"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Ini"/>
       </Unit>
       <Unit>
         <Filename Value="config.ini"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="16"/>
         <CursorPos X="102" Y="11"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Ini"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
+    <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="200" Column="10" TopLine="181"/>
+        <Filename Value="unitfarmasivalidasiresep.pas"/>
+        <Caret Line="62" Column="58" TopLine="39"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="274" Column="16" TopLine="239"/>
+        <Filename Value="unitfarmasivalidasiresep.pas"/>
+        <Caret Line="63" Column="58" TopLine="40"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="240" Column="27" TopLine="204"/>
+        <Filename Value="unitfarmasivalidasiresep.pas"/>
+        <Caret Line="62" Column="58" TopLine="39"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="397" Column="39" TopLine="374"/>
+        <Filename Value="unitutama.pas"/>
+        <Caret Line="83" Column="89" TopLine="69"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="243" Column="33" TopLine="225"/>
+        <Filename Value="unitermranapdokter.pas"/>
+        <Caret Line="1401" Column="90" TopLine="1378"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="281" Column="102" TopLine="260"/>
+        <Filename Value="unitrawatinap.pas"/>
+        <Caret Line="226" TopLine="219"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="282" Column="102" TopLine="261"/>
+        <Filename Value="unitrawatinap.pas"/>
+        <Caret Line="227" TopLine="220"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="281" Column="102" TopLine="260"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="24" Column="38"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="282" Column="46" TopLine="260"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="28" Column="38"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="283" Column="88" TopLine="261"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="27" Column="38"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="284" Column="77" TopLine="262"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="29" Column="38"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="281" Column="36" TopLine="263"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="30" Column="38"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="284" Column="27" TopLine="264"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="20" Column="37"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="282" Column="33" TopLine="265"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="21" Column="37"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="68" Column="59" TopLine="67"/>
+        <Filename Value="unitriwayatpasien.pas"/>
+        <Caret Line="1556" Column="94" TopLine="1529"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="433" Column="31" TopLine="400"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Column="6"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="393" Column="3" TopLine="383"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="109" Column="5" TopLine="58"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="392" Column="58" TopLine="380"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="37" Column="30" TopLine="20"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="388" Column="58" TopLine="381"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="26" Column="14" TopLine="21"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="276" Column="70" TopLine="254"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="44" Column="44" TopLine="27"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="402" Column="5" TopLine="392"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="50" Column="64" TopLine="50"/>
       </Position>
       <Position>
-        <Filename Value="unitdmfarmasi.pas"/>
-        <Caret Line="57" Column="56" TopLine="47"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Column="6"/>
       </Position>
       <Position>
-        <Filename Value="unitdmfarmasi.pas"/>
-        <Caret Line="68" Column="74" TopLine="47"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="136" Column="58" TopLine="126"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="9" Column="68"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="156" Column="39" TopLine="136"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="71" Column="15" TopLine="52"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="152" Column="19" TopLine="135"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="319" Column="5" TopLine="282"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="128" Column="30" TopLine="108"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="318" Column="4" TopLine="290"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="170" Column="82" TopLine="140"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="489" Column="3" TopLine="465"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="51" Column="2" TopLine="48"/>
       </Position>
       <Position>
-        <Filename Value="unitfarmasirawatjalan.pas"/>
-        <Caret Line="545" Column="67" TopLine="624"/>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="157" Column="108" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <Caret Line="150" Column="19" TopLine="132"/>
       </Position>
     </JumpHistory>
     <RunParams>

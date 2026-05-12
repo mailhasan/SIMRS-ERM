@@ -7,18 +7,18 @@ object FormRawatInap: TFormRawatInap
   Caption = 'Form Rawat Inap'
   ClientHeight = 492
   ClientWidth = 908
+  LCLVersion = '4.4.0.0'
+  WindowState = wsMaximized
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.6.0.0'
-  WindowState = wsMaximized
   object PanelAtas: TPanel
     Left = 0
-    Height = 26
+    Height = 34
     Top = 0
     Width = 908
     Align = alTop
     Caption = 'DAFTAR PASIEN RAWAT INAP'
-    ClientHeight = 26
+    ClientHeight = 34
     ClientWidth = 908
     Color = 11834940
     Font.CharSet = ANSI_CHARSET
@@ -33,7 +33,7 @@ object FormRawatInap: TFormRawatInap
     TabOrder = 0
     object Panel3: TPanel
       Left = 833
-      Height = 24
+      Height = 32
       Top = 1
       Width = 74
       Align = alRight
@@ -47,11 +47,11 @@ object FormRawatInap: TFormRawatInap
   end
   object PanelTengah: TPanel
     Left = 0
-    Height = 466
-    Top = 26
+    Height = 458
+    Top = 34
     Width = 908
     Align = alClient
-    ClientHeight = 466
+    ClientHeight = 458
     ClientWidth = 908
     Color = clWhite
     Font.Color = 2302240
@@ -349,11 +349,11 @@ object FormRawatInap: TFormRawatInap
     end
     object PanelTengah1: TPanel
       Left = 1
-      Height = 369
+      Height = 361
       Top = 96
       Width = 906
       Align = alClient
-      ClientHeight = 369
+      ClientHeight = 361
       ClientWidth = 906
       Color = 15131358
       Font.CharSet = ANSI_CHARSET
@@ -368,7 +368,7 @@ object FormRawatInap: TFormRawatInap
       TabOrder = 1
       object DBGridPasienRanap: TDBGrid
         Left = 1
-        Height = 367
+        Height = 359
         Top = 1
         Width = 904
         Align = alClient
@@ -483,6 +483,14 @@ object FormRawatInap: TFormRawatInap
       ImageIndex = 1
       SubMenuImages = FormUtama.ImageList1
       OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'AI'
+      ImageIndex = 1
+      object MenuItem3: TMenuItem
+        Caption = 'AUDIT KELUHAN'
+        ImageIndex = 3
+      end
     end
   end
 end

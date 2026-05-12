@@ -261,6 +261,22 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitFarmasiRawatJalan"/>
       </Unit>
+      <Unit>
+        <Filename Value="unitfarmasivalidasiresep.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormValidasiResep"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitFarmasiValidasiResep"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitaiauditkeluhan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAiAuditKeluhan"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitAiAuditKeluhan"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

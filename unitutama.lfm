@@ -1,11 +1,11 @@
 object FormUtama: TFormUtama
   Left = 451
-  Height = 472
+  Height = 452
   Top = 197
   Width = 835
   Align = alClient
   Caption = 'SIMRS - ERM '
-  ClientHeight = 472
+  ClientHeight = 452
   ClientWidth = 835
   Color = 16053233
   Menu = MainMenu1
@@ -67,11 +67,11 @@ object FormUtama: TFormUtama
   end
   object PanelKiri: TPanel
     Left = 0
-    Height = 415
+    Height = 395
     Top = 34
     Width = 170
     Align = alLeft
-    ClientHeight = 415
+    ClientHeight = 395
     ClientWidth = 170
     Color = 15790320
     ParentBackground = False
@@ -155,7 +155,7 @@ object FormUtama: TFormUtama
   end
   object PanelTengah: TPanel
     Left = 170
-    Height = 415
+    Height = 395
     Top = 34
     Width = 665
     Align = alClient
@@ -168,7 +168,7 @@ object FormUtama: TFormUtama
   object StatusBarSIMRSERM: TStatusBar
     Left = 0
     Height = 23
-    Top = 449
+    Top = 429
     Width = 835
     Color = 14737632
     Panels = <    

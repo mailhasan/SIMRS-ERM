@@ -1,0 +1,135 @@
+object FormValidasiResep: TFormValidasiResep
+  Left = 527
+  Height = 640
+  Top = 193
+  Width = 994
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Form Validasi Resep'
+  ClientHeight = 640
+  ClientWidth = 994
+  Color = clWhite
+  LCLVersion = '4.4.0.0'
+  WindowState = wsMaximized
+  OnShow = FormShow
+  object PanelAtas: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 994
+    Align = alTop
+    BevelColor = clWhite
+    Caption = 'FARMASI - RAWAT JALAN - VALIDASI RESEP'
+    Color = 11834940
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object PanelAtas1: TPanel
+    Left = 0
+    Height = 78
+    Top = 26
+    Width = 994
+    Align = alTop
+    ClientHeight = 78
+    ClientWidth = 994
+    ParentBackground = False
+    TabOrder = 1
+    object Label5: TLabel
+      Left = 8
+      Height = 15
+      Top = 16
+      Width = 50
+      Caption = 'No Resep'
+    end
+    object EditNoResep: TEdit
+      Left = 74
+      Height = 23
+      Top = 8
+      Width = 128
+      TabOrder = 0
+      Text = 'EditNoResep'
+    end
+    object Label6: TLabel
+      Left = 216
+      Height = 15
+      Top = 16
+      Width = 51
+      Caption = 'No Rawat'
+    end
+    object EditNoRawat: TEdit
+      Left = 280
+      Height = 23
+      Top = 8
+      Width = 128
+      TabOrder = 1
+      Text = 'EditNoRawat'
+    end
+    object EditKeterangan: TEdit
+      Left = 416
+      Height = 23
+      Top = 8
+      Width = 536
+      TabOrder = 2
+      Text = 'EditKeterangan'
+    end
+  end
+  object PanelTengah: TPanel
+    Left = 0
+    Height = 414
+    Top = 154
+    Width = 994
+    Align = alClient
+    ClientHeight = 414
+    ClientWidth = 994
+    ParentBackground = False
+    TabOrder = 2
+    OnClick = PanelTengahClick
+    object DBGrid1: TDBGrid
+      Left = 1
+      Height = 412
+      Top = 1
+      Width = 992
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      TabOrder = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 104
+    Width = 994
+    Align = alTop
+    Caption = 'Panel1'
+    ParentBackground = False
+    TabOrder = 3
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 72
+    Top = 568
+    Width = 994
+    Align = alBottom
+    Caption = 'Panel2'
+    ParentBackground = False
+    TabOrder = 4
+  end
+  object BufDataset1: TBufDataset
+    FieldDefs = <>
+    Left = 840
+    Top = 132
+  end
+  object DataSource1: TDataSource
+    DataSet = BufDataset1
+    Left = 872
+    Top = 172
+  end
+end

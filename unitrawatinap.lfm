@@ -7,10 +7,10 @@ object FormRawatInap: TFormRawatInap
   Caption = 'Form Rawat Inap'
   ClientHeight = 492
   ClientWidth = 908
+  LCLVersion = '4.4.0.0'
+  WindowState = wsMaximized
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.6.0.0'
-  WindowState = wsMaximized
   object PanelAtas: TPanel
     Left = 0
     Height = 34
@@ -483,6 +483,15 @@ object FormRawatInap: TFormRawatInap
       ImageIndex = 1
       SubMenuImages = FormUtama.ImageList1
       OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'AI'
+      ImageIndex = 1
+      object MenuItem3: TMenuItem
+        Caption = 'AUDIT KELUHAN'
+        ImageIndex = 3
+        OnClick = MenuItem3Click
+      end
     end
   end
 end

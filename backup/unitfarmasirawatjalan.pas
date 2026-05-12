@@ -43,7 +43,6 @@ type
     Label9: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -61,6 +60,7 @@ type
     procedure DBGridResepPxRajalDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
   private
 
@@ -84,7 +84,12 @@ implementation
 {$R *.lfm}
 
 { TFormFarmasiRawatJalan }
-uses unitDmFarmasi;
+uses unitDmFarmasi,unitFarmasiValidasiResep;
+
+const
+  WARNA_BELUM  = $E8E8FF; // soft merah kebiruan
+  WARNA_SUDAH  = $E8FFE8; // soft hijau
+  WARNA_SELECT = $FFD8A8; // soft orange highlight
 
 /// resep dokter
 procedure TFormFarmasiRawatJalan.TampilResep(noResep: string);
@@ -468,6 +473,7 @@ begin
     begin
       tgl := 0;
       jam := '';
+
     end;
 
     TampilPemberianObat(noRawat, tgl, jam);
@@ -508,6 +514,8 @@ begin
   EditPoli.Clear;
   EditDokter.Clear;
   EditKeterangan.Clear;
+
+  RichMemoResep.Clear;
 end;
 
 procedure TFormFarmasiRawatJalan.TampilDataResep;
@@ -539,7 +547,7 @@ begin
       'OR (:filter_status = ''SUDAH'' AND (ro.tgl_perawatan IS NOT NULL AND ro.tgl_perawatan <> ''0000-00-00''))) '
       +
       'AND ro.tgl_peresepan BETWEEN :tgl1 AND :tgl2 ' +
-      'ORDER BY ro.tgl_peresepan DESC, ' +
+      'ORDER BY ro.tgl_peresepan,ro.jam DESC, ' +
       'CASE WHEN ro.tgl_perawatan IS NULL OR ro.tgl_perawatan = ''0000-00-00'' THEN 0 ELSE 1 END ASC';
 
     ParamByName('cari').AsString :=
@@ -649,7 +657,40 @@ end;
 
 procedure TFormFarmasiRawatJalan.DBGridResepPxRajalDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
+var
+  status: string;
 begin
+  status := UpperCase(DataModuleFarmasi.DataSourceResepPxRajal.DataSet.FieldByName('status_layanan').AsString);
+
+  // Default font
+  DBGridResepPxRajal.Canvas.Font.Style := [];
+
+  // Baris dipilih
+  if gdSelected in State then
+  begin
+    DBGridResepPxRajal.Canvas.Brush.Color := $FFD8A8;
+    DBGridResepPxRajal.Canvas.Font.Color := clBlack;
+  end
+  else
+  begin
+    if status = 'Belum' then
+    begin
+      DBGridResepPxRajal.Canvas.Brush.Color := $E8E8FF;
+      DBGridResepPxRajal.Canvas.Font.Color := clRed;
+      DBGridResepPxRajal.Canvas.Font.Style := [fsBold];
+    end
+    else
+    if status = 'Sudah' then
+    begin
+      DBGridResepPxRajal.Canvas.Brush.Color := $E8FFE8;
+      DBGridResepPxRajal.Canvas.Font.Color := clGreen;
+    end
+    else
+      DBGridResepPxRajal.Canvas.Brush.Color := clWhite;
+  end;
+
+  DBGridResepPxRajal.Canvas.FillRect(Rect);
+  DBGridResepPxRajal.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
 end;
 
@@ -657,6 +698,13 @@ procedure TFormFarmasiRawatJalan.FormShow(Sender: TObject);
 begin
   tampilAwal;
   TampilDataResep;
+end;
+
+procedure TFormFarmasiRawatJalan.MenuItem1Click(Sender: TObject);
+begin
+   /// FARMASI RAWAT JALAN
+  Application.CreateForm(TFormValidasiResep, FormValidasiResep);
+  FormValidasiResep.ShowModal;
 end;
 
 end.

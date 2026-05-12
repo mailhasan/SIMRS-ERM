@@ -158,7 +158,6 @@ object DataModuleFarmasi: TDataModuleFarmasi
   end
   object ZQueryResepPxRajal: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
-    Active = True
     SQL.Strings = (
       'SELECT DISTINCT '
       '    ro.*,'
@@ -187,9 +186,153 @@ object DataModuleFarmasi: TDataModuleFarmasi
     Params = <>
     Left = 271
     Top = 51
+    object ZQueryResepPxRajalno_resep: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'no_resep'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 14
+    end
+    object ZQueryResepPxRajaltgl_perawatan: TZDateField
+      FieldKind = fkData
+      FieldName = 'tgl_perawatan'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQueryResepPxRajaljam: TZTimeField
+      FieldKind = fkData
+      FieldName = 'jam'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQueryResepPxRajalno_rawat: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'no_rawat'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 17
+    end
+    object ZQueryResepPxRajalkd_dokter: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'kd_dokter'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQueryResepPxRajaltgl_peresepan: TZDateField
+      FieldKind = fkData
+      FieldName = 'tgl_peresepan'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQueryResepPxRajaljam_peresepan: TZTimeField
+      FieldKind = fkData
+      FieldName = 'jam_peresepan'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQueryResepPxRajalstatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'status'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 5
+    end
+    object ZQueryResepPxRajaltgl_penyerahan: TZDateField
+      FieldKind = fkData
+      FieldName = 'tgl_penyerahan'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQueryResepPxRajaljam_penyerahan: TZTimeField
+      FieldKind = fkData
+      FieldName = 'jam_penyerahan'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQueryResepPxRajalno_rkm_medis: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'no_rkm_medis'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object ZQueryResepPxRajalnm_pasien: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'nm_pasien'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object ZQueryResepPxRajalnm_dokter: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'nm_dokter'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQueryResepPxRajalnm_poli: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'nm_poli'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ZQueryResepPxRajalstatus_layanan: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'status_layanan'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 5
+    end
   end
   object DataSourceResepPxRajal: TDataSource
     DataSet = ZQueryResepPxRajal
+    OnDataChange = DataSourceResepPxRajalDataChange
     Left = 382
     Top = 64
   end

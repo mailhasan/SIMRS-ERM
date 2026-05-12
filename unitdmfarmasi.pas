@@ -5,7 +5,7 @@ unit unitDmFarmasi;
 interface
 
 uses
-  Classes, SysUtils, DB, ZDataset,Dialogs;
+  Classes, SysUtils, DB, ZDataset, ZAbstractRODataset,Dialogs;
 
 type
   TResepHeader = record
@@ -59,10 +59,26 @@ type
     ZQueryPemberianObat: TZQuery;
     ZQueryResepPxRajal: TZQuery;
     ZQueryObatResep: TZQuery;
+    ZQueryResepPxRajaljam: TZTimeField;
+    ZQueryResepPxRajaljam_penyerahan: TZTimeField;
+    ZQueryResepPxRajaljam_peresepan: TZTimeField;
+    ZQueryResepPxRajalkd_dokter: TZRawStringField;
+    ZQueryResepPxRajalnm_dokter: TZRawStringField;
+    ZQueryResepPxRajalnm_pasien: TZRawStringField;
+    ZQueryResepPxRajalnm_poli: TZRawStringField;
+    ZQueryResepPxRajalno_rawat: TZRawStringField;
+    ZQueryResepPxRajalno_resep: TZRawStringField;
+    ZQueryResepPxRajalno_rkm_medis: TZRawStringField;
+    ZQueryResepPxRajalstatus: TZRawStringField;
+    ZQueryResepPxRajalstatus_layanan: TZRawStringField;
+    ZQueryResepPxRajaltgl_penyerahan: TZDateField;
+    ZQueryResepPxRajaltgl_perawatan: TZDateField;
+    ZQueryResepPxRajaltgl_peresepan: TZDateField;
     ZQueryResepRacikanDetail: TZQuery;
     ZQueryResepRacikan: TZQuery;
     ZQueryResepDetail: TZQuery;
     ZQueryResep: TZQuery;
+    procedure DataSourceResepPxRajalDataChange(Sender: TObject; Field: TField);
 
   private
 
@@ -203,6 +219,12 @@ begin
     end;
   end;
 end;}
+
+procedure TDataModuleFarmasi.DataSourceResepPxRajalDataChange(Sender: TObject;
+  Field: TField);
+begin
+
+end;
 
 { Prosedur Load Header Resep dengan Filter Tanggal & Limit }
 procedure TDataModuleFarmasi.LoadResepHeader(const ANoRawat: string; const ATglAwal, ATglAkhir: TDate; const ALimit: string; out AData: TResepHeaderArray);

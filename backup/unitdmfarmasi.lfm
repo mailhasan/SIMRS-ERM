@@ -158,6 +158,7 @@ object DataModuleFarmasi: TDataModuleFarmasi
   end
   object ZQueryResepPxRajal: TZQuery
     Connection = DataModuleKoneksi.ZConnectionSimrsERM
+    Active = True
     SQL.Strings = (
       'SELECT DISTINCT '
       '    ro.*,'

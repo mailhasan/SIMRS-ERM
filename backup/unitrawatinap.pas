@@ -31,6 +31,8 @@ type
     Label2: TLabel;
     Label3: TLabel;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -69,7 +71,7 @@ implementation
 {$R *.lfm}
 
 { TFormRawatInap }
-uses unitdmrawatinap,unitKamar,unitERMRanapDokter,unitUtama;
+uses unitdmrawatinap,unitKamar,unitERMRanapDokter,unitUtama,unitAiAuditKeluhan;
 
 procedure TFormRawatInap.TerimaKamar(const NamaKamar: string);
 begin
